@@ -49,6 +49,7 @@ header li:hover a, a:hover{
     color:darkgray;
 }
 
-#artsamples, #photosamples{
+/*This is for my JS with hide and show*/
+#artsamples, #photosamples, #digitalsamples, #papersamples{
     display:none;
 }
