@@ -54,14 +54,14 @@ section h2{
     width: 7em;
     padding: .5em 0;
     text-align:center;
-    background-color:darkgray;
+    background-color:white;
     margin-bottom:3px;
 }
 section h2:hover{
-    background-color:white;
+    background-color:darkgray;
 }
 section h2:hover a, a:hover{
-    color:darkgray;
+    color:white;
 }
 /*This is for my JS with hide and show*/
 #artsamples, #photosamples, #digitalsamples, #papersamples{
