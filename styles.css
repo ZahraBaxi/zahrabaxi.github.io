@@ -50,21 +50,17 @@ header li:hover a, a:hover{
 }
 
 /*hover for samples*/
-h2{
+section h2{
     width: 7em;
     padding: .5em 0;
     text-align:center;
     background-color:darkgray;
     margin-bottom:3px;
 }
-h2:hover{
+section h2:hover{
     background-color:white;
 }
-a{
- text-decoration:none;  
- color:white;
-}
-h2:hover a, a:hover{
+section h2:hover a, a:hover{
     color:darkgray;
 }
 /*This is for my JS with hide and show*/
