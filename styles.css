@@ -67,3 +67,6 @@ section h2:hover a, a:hover{
 #artsamples, #photosamples, #digitalsamples, #papersamples{
     display:none;
 }
+
+/*hover buttons*/
+.pointer         { cursor: pointer; }
