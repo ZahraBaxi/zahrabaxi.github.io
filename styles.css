@@ -51,7 +51,7 @@ header li:hover a, a:hover{
 
 /*hover for samples*/
 section h2{
-    width: 7em;
+    width: 8em;
     padding: .5em 0;
     text-align:center;
     background-color:white;
@@ -63,9 +63,7 @@ section h2:hover{
 section h2:hover a, a:hover{
     color:white;
 }
-div {
-    cursor:pointer;
-}
+
 /*This is for my JS with hide and show*/
 #artsamples, #photosamples, #digitalsamples, #papersamples{
     display:none;
