@@ -11,7 +11,6 @@ function showHideArt(){
     //console.log("showingOrHidingArt");
     if(!artclick){
         artsamples.style.display="inline";
-        artsamples.style.opacity="1";
     }else{
         artsamples.style.display="none";
     }
