@@ -66,4 +66,8 @@ section h2:hover a, a:hover{
 /*This is for my JS with hide and show*/
 #artsamples, #photosamples, #digitalsamples, #papersamples{
     display:none;
+    opacity:0;
+    transition:all 600ms;
+   
 }
+    
