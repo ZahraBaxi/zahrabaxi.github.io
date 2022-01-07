@@ -7,21 +7,19 @@
 
 body {
   background-color: #fafafa;
-  font-family: verdana;
-
 }
+
 h1 {
   color: #b497c4;
+  font-family: verdana;
 }
 
 h2 {
     color: black;
+    font-family: verdana;
 }
 
 p {
   color: black;
-}
-
-a {
-    color: #b497c4;
+  font-family: verdana;
 }
