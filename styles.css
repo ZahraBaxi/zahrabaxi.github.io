@@ -9,9 +9,16 @@
 
 body {
   background-color: #fafafa;
+}
+
+main {
   width: 800px;
   margin: auto;
 }
+
+cont {
+}
+    
 
 h1 {
   color: #bd73ae;
