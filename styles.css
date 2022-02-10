@@ -17,16 +17,19 @@ h1 {
   color: #bd73ae;
   font-family: Lato;
   font-weight: 900;
+  font-size: 40px;
 }
 
 h2 {
     color: black;
     font-family: Lato;
+    font-size: 20px;
 }
 
 p {
   color: black;
   font-family: Lato;
+  font-size: 14px;
 }
 
 a {
