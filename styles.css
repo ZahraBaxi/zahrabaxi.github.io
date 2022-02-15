@@ -16,6 +16,13 @@ main {
   margin: auto;
 }
 
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 cont {
   width: 1100px;
   margin: auto;
