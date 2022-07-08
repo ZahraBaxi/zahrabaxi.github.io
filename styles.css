@@ -6,6 +6,7 @@
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 body {
   background-color: #fafafa;
@@ -42,19 +43,19 @@ h1 {
 
 h2 {
     color: black;
-    font-family: Lato;
+    font-family: Bebas Neue;
     font-size: 25px;
 }
 
 p {
   color: black;
-  font-family: Lato;
+  font-family: Courier New;
   font-size: 18px;
 }
 
 a {
   color: #bd73ae;
-  font-family: Lato;
+  font-family: Courier New;
 }
 
 /* SOCIAL MEDIA ICONS */
