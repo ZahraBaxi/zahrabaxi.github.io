@@ -9,7 +9,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 body {
-  background-color: #fafafa;
+  background-color: white;
 }
 
 main {
@@ -34,16 +34,16 @@ cont {
 }
     
 
-h1 {
-  color: #bd73ae;
-  font-family: Lato;
+titlemain {
+  color: #ff00ff;
+  font-family: Bebas Neue;
   font-weight: 900;
   font-size: 50px;
 }
 
-h2 {
-    color: black;
-    font-family: Bebas Neue;
+titlehead {
+    color: #ff00ff;
+    font-family: Courier New;
     font-size: 25px;
 }
 
@@ -54,7 +54,7 @@ p {
 }
 
 a {
-  color: #bd73ae;
+  color: #ff00ff;
   font-family: Courier New;
 }
 
@@ -74,21 +74,22 @@ a {
 }
 
 .fa-facebook {
-  background: #3B5998;
+  background: #ff00ff;
   color: white;
 }
 
 .fa-linkedin {
-  background: #007bb5;
+  background: #ff00ff;
   color: white;
 }
 
 .fa-instagram {
-  background: #f50083;
+  background: #ff00ff;
   color: white;
 }
 
+
 .fa-behance {
-  background: #00aff0;
+  background: #ff00ff;
   color: white
 }
