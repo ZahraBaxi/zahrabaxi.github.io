@@ -39,6 +39,11 @@ p {
   font-size: 16px;
 }
 
+a {
+  color: #ff00ff;
+  font-family: Courier New;
+}
+
 footerfont{
 	color: #ff00ff;
     font-family: Courier New;
