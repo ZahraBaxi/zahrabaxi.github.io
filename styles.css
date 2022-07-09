@@ -16,6 +16,7 @@
 }
 
 body {
+  background-color: white;
   margin: 0;
   font-family: Courier New;
 }
@@ -27,6 +28,11 @@ h1{
   font-size: 37.333px;
 }
 
+h2 {
+    color: #ff00ff;
+    font-family: Courier New;
+}
+
 descrip{
   color: #ff00ff;
   font-family: Courier New;
@@ -34,6 +40,7 @@ descrip{
 }
 
 p {
+
   color: black;
   font-family: Courier New;
   font-size: 16px;
@@ -54,14 +61,17 @@ spanone{
 	color: #ff00ff;
 }
 
+
 /* Style the header */
 .header {
-  padding: 20px;
   text-align: left;
+  padding: 10px;
+  font-size: 22px;
+  line-height: 26px;
   margin-top: 20px;
-  margin-bottom: 50px;
-  margin-right: 350px;
-  margin-left: 350px;
+  margin-bottom: 10px;
+  margin-right: 300px;
+  margin-left: 300px; 
 }
 
 /* Style the top navigation bar */
@@ -89,17 +99,25 @@ spanone{
 /* Create three unequal columns that floats next to each other */
 .column {
   float: left;
-  padding: 10px;
+  /*padding: 60px;*/
 }
 
-/* Left and right column */
+/* Left Column */
 .column.side {
-  width: 40%;
+  width: 30%;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-right: 5px;
+  margin-left: 250px;
 }
 
-/* Middle column */
+/* Form Column */
 .column.big {
-  width: 60%;
+  width: 40%;
+  margin-top: 15px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+  margin-left: 5px;
 }
 
 /* Clear floats after the columns */
