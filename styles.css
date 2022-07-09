@@ -50,6 +50,10 @@ footerfont{
     font-size: 12px;
 }
 
+spanone{
+	color: #ff00ff;
+}
+
 /* Style the header */
 .header {
   padding: 20px;
