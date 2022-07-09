@@ -7,109 +7,95 @@
 
 /* font family imports */
 
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
-
-
-body {
-  background-color: white;
-}
-
-main {
-  width: 800px;
-  margin: auto;
-}
-
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  display: inline;
-}
-
-cont {
-  width: 1100px;
-  margin: auto;
-}
-    
-
-titlemain {
-  color: #ff00ff;
-  font-family: Bebas Neue;
-  font-weight: 900;
-  font-size: 37.333px;
-}
-
-titlehead {
-    color: #ff00ff;
-    font-family: Courier New;
-    font-size: 20px;
-}
-
-p {
-  color: black;
-  font-family: Courier New;
-  font-size: 18.667px;
-}
-
-footerfont {
-    color: #ff00ff;
-    font-family: Courier New;
-    font-size: 12px;
-}
-
-a {
-  color: #ff00ff;
-  font-family: Courier New;
-}
-
-
-
 
 * {
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  font-family: Courier New;
+}
 
+h1{
+  color: #ff00ff;
+  font-family: Bebas Neue;
+  font-weight: 400;
+  font-size: 37.333px;
+}
 
+descrip{
+  color: #ff00ff;
+  font-family: Courier New;
+  font-size: 20px;
+}
 
+p {
+  color: black;
+  font-family: Courier New;
+  font-size: 16px;
+}
 
-/* Create two columns/boxes that floats next to each other */
-naver {
-  float: left;
-  width: 30%;
-  height: 300px; /* only for demonstration, should be removed */
-  background: white;
+footerfont{
+	color: #ff00ff;
+    font-family: Courier New;
+    font-size: 12px;
+}
+
+/* Style the header */
+.header {
   padding: 20px;
+  text-align: center;
 }
 
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: white;
 }
 
-article {
+/* Style the topnav links */
+.topnav a {
+  float: right;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: t;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ff00ff;
+  color: black;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
   float: left;
   padding: 10px;
-  width: 70%;
-  background-color: white;
-  height: 800px; /* only for demonstration, should be removed */
+}
+
+/* Left and right column */
+.column.side {
+  width: 40%;
+}
+
+/* Middle column */
+.column.big {
+  width: 60%;
 }
 
 /* Clear floats after the columns */
-section::after {
+.row:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Style the footer */
 footer {
   background-color: white;
   padding: 10px;
@@ -118,48 +104,10 @@ footer {
   
 }
 
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-  nav, article {
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
     width: 100%;
-    height: auto;
   }
 }
-
-
-/* Social Media Icons */ 
-
-.fa {
-  padding: 12px;
-  font-size: 20px;
-  width: 20px;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 50%;
-  margin: 2px 2px;
-}
-
-.fa:hover {
-    opacity: 0.65;
-}
-
-.fa-facebook {
-  background: #ff00ff;
-  color: white;
-}
-
-.fa-linkedin {
-  background: #ff00ff;
-  color: white;
-}
-
-.fa-instagram {
-  background: #ff00ff;
-  color: white;
-}
-
-.fa-behance {
-  background: #ff00ff;
-  color: white
-}
-
