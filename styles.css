@@ -57,14 +57,18 @@ spanone{
 
 /* Style the header */
 .header {
-  text-align: left;
+  width: 50%; 
+  margin: auto; 
+  text-align: center
+
+  /*text-align: left;
   padding: 10px;
   font-size: 22px;
   line-height: 26px;
   margin-top: 80px;
   margin-bottom: 40px;
-  margin-right: 300px;
-  margin-left: 300px; 
+  /* margin-right: 300px;
+  margin-left: 300px;  */ */
 
 }/* header grid */ 
 .grid-container {
