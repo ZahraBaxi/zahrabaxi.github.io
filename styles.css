@@ -90,7 +90,7 @@ spanone{
 .topnav a {
   float: right;
   display: block;
-  color: black;
+  color: #ff00ff;
   text-align: center;
   padding: 14px 16px;
   text-decoration: t;
@@ -98,8 +98,11 @@ spanone{
 
 /* Change color on hover */
 .topnav a:hover {
-  background-color: #ff00ff;
-  color: black;
+  opacity: 0.6;
+}
+
+.active {
+  font-weight: bold;
 }
 
 /* Create three unequal columns that floats next to each other */
