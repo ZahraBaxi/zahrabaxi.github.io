@@ -1,10 +1,3 @@
-/*
-*{
-    margin:0; 
-    padding:0;
-}
-*/
-
 /* import fonts */  
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
@@ -28,8 +21,9 @@ h1{
 }
 
 h2 {
-    color: #ff00ff;
-    font-family: Ariel;
+  color: #ff00ff;
+  font-family: Ariel;
+  margin-bottom: 50px;
 }
 
 descrip{
@@ -39,7 +33,6 @@ descrip{
 }
 
 p {
-
   color: black;
   font-family: Courier New;
   font-size: 16px;
@@ -68,8 +61,8 @@ spanone{
   padding: 10px;
   font-size: 22px;
   line-height: 26px;
-  margin-top: 150px;
-  margin-bottom: 10px;
+  margin-top: 80px;
+  margin-bottom: 40px;
   margin-right: 300px;
   margin-left: 300px; 
 
