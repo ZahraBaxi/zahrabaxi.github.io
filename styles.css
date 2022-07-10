@@ -135,6 +135,19 @@ footer {
   
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: white
+  padding: 10px;
+}
+.grid-item {
+  background-color: white;
+  padding: 20px;
+  font-size: 30px;
+  text-align: left;
+}
+
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
