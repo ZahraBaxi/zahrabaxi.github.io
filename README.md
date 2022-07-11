@@ -1,11 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <style>
-p {
-  color: black;
-  font-family: Courier New;
-  font-size: 16px;
-}
+  p {
+    color: black;
+    font-family: Courier New;
+    font-size: 16px;
+  }
 </style>
-
+<body>
+  
 # zahrabaxi.github.io
 
 - 👋 Hi, I’m Zahra!
@@ -13,3 +17,6 @@ p {
 - 🌱 I’m currently learning HTML/CSS/JS
 
 I have been working on creating my website through HTML for many years. This is where I store my HTML files for my website. While this site is still a work in progress, you can see my site at <a href="https://www.zahrabaxi.com"> www.zahrabaxi.com </a> (which currently uses Google Sites until I complete my HTML site)
+
+</body>
+</html>
