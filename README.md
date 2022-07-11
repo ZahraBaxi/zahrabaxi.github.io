@@ -1,4 +1,4 @@
-# ZahraBaxi.github.io
+# zahraBaxi.github.io
 
 - 👋 Hi, I’m Zahra!
 - 👀 I’m interested in Human Centered Design
