@@ -1,4 +1,12 @@
-# zahraBaxi.github.io
+<style>
+p {
+  color: black;
+  font-family: Courier New;
+  font-size: 16px;
+}
+</style>
+
+# zahrabaxi.github.io
 
 - 👋 Hi, I’m Zahra!
 - 👀 I’m interested in Human Centered Design
