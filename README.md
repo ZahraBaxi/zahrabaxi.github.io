@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<style>
-  p {
-    color: black;
-    font-family: Courier New;
-    font-size: 16px;
-  }
-</style>
+<title>Page Title</title>
+</head>
 <body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html>
   
 # zahrabaxi.github.io
 
@@ -18,5 +19,3 @@
 
 I have been working on creating my website through HTML for many years. This is where I store my HTML files for my website. While this site is still a work in progress, you can see my site at <a href="https://www.zahrabaxi.com"> www.zahrabaxi.com </a> (which currently uses Google Sites until I complete my HTML site)
 
-</body>
-</html>
