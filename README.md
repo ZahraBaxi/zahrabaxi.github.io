@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
 </head>
 <body>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+<h1>zahrabaxi.github.io</h1>
+<p style="color:#ff00ff;">This is a paragraph.</p>
 
 </body>
 </html>
   
-# zahrabaxi.github.io
 
 - 👋 Hi, I’m Zahra!
 - 👀 I’m interested in Human Centered Design
