@@ -61,6 +61,9 @@ header ul{
     opacity: 0.8;
     
 }
+.tag{
+    font-size: 12pt;
+}
 
 /* ABOUT SECTION */
 main{
@@ -83,6 +86,33 @@ main img{
     /* border-radius: 43px; */
 }
 
+/* POST PAGES */
+.post{
+    width: 1000px;
+    margin: auto;
+    padding: 100px;
+}
+.post img{
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+.post ul{
+    padding: 40px;
+}
+.post ul li{
+    font-size: 14pt;
+}
+
+
+.post ol li{
+    font-size: 14pt;
+}
+.center{
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
 /* footer */
 footer {
@@ -125,7 +155,7 @@ h3{
 p{
     /* color: #152422; */
     line-height: 1.5em;
-    font-size: 12pt;
+    font-size: 14pt;
 }
 
 .imagewithtext{
@@ -145,7 +175,7 @@ time{
 }
 
 /* links */
-nav a{
+.navigation a{
     color: #FF45A8;
     text-decoration: none;
 }
