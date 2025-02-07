@@ -83,7 +83,7 @@ main section{
 main img{
     /* width: 337px; */
     /* height: 337px; */
-    max-width: 100%;
+    /* max-width: 100%; */
     padding-bottom: 25px;
     /* border-radius: 43px; */
 }
@@ -209,6 +209,7 @@ main img{
     /* width: 100%;  */
     /* background-color: #333;  */
     color: #152422; 
+    /* background: #F4F4F4; */
     font-size: 25pt;
     padding: 40px; 
     text-align: center;
@@ -366,7 +367,7 @@ a:hover{
         padding: 100px;
         display: flex;
         flex-direction: row;
-        /* align-items: center; */
+        align-items: center;
         justify-content: center;
         gap: 50px;
     }
