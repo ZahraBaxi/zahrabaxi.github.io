@@ -126,13 +126,14 @@ main img{
 
 /* POST PAGES */
 .post{
-    width: 1000px;
+    /* width: 1000px; */
     margin: auto;
-    padding: 100px;
+    padding: 20px;
 }
 .post img{
     padding-top: 40px;
     padding-bottom: 10px;
+    max-width: 100%;
 }
 
 /* ADDITIONS FROM GEMINI SUGGESTIONS */
@@ -351,6 +352,12 @@ a:hover{
         color: #222e2d;
         /* font-weight: 400; */
         font-size: 18pt;
+    }
+
+    .post{
+        width: 1000px;
+        margin: auto;
+        padding: 100px;
     }
 
 }
