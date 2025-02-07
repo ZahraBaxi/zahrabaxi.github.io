@@ -33,7 +33,7 @@ header ul{
 .blurb{
     padding: 40px;
     margin: auto;
-    width: 400px;
+    /* width: 400px; */
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -337,4 +337,20 @@ a:hover{
         grid-template-columns: repeat(3, 1fr);
         gap: 50px;
     }
+
+    .blurb{
+        padding: 40px;
+        margin: auto;
+        width: 400px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    
+    }
+    .blurbtext{
+        color: #222e2d;
+        /* font-weight: 400; */
+        font-size: 18pt;
+    }
+
 }
