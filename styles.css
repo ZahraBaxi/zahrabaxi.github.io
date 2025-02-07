@@ -67,11 +67,11 @@ header ul{
 
 /* ABOUT SECTION */
 main{
-    width: 1000px;
+    /* width: 1000px; */
     margin: auto;
-    padding: 100px;
-    display: flex;
-    flex-direction: row;
+    padding: 20px;
+    /* display: flex; */
+    /* flex-direction: row; */
     /* align-items: center; */
     justify-content: center;
     gap: 50px;
@@ -83,7 +83,7 @@ main section{
 main img{
     /* width: 337px; */
     /* height: 337px; */
-
+    max-width: 100%;
     padding-bottom: 25px;
     /* border-radius: 43px; */
 }
@@ -358,6 +358,17 @@ a:hover{
         width: 1000px;
         margin: auto;
         padding: 100px;
+    }
+
+    main{
+        width: 1000px;
+        margin: auto;
+        padding: 100px;
+        display: flex;
+        flex-direction: row;
+        /* align-items: center; */
+        justify-content: center;
+        gap: 50px;
     }
 
 }
