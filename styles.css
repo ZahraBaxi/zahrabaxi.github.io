@@ -6,7 +6,6 @@ body{
 
 }
 
-
 /* HEADER w/ NAVIGATION */
 header{
     padding: 20px;
@@ -180,7 +179,7 @@ main img{
 
 
 .headingimage{
-    width: 1000px;
+    max-width: 1000px;
     margin: auto;
     /* padding: 100px; */
 }
@@ -313,7 +312,7 @@ a:hover{
         color: #FF45A8;
     }
     
-    .navigation{
+    /* .navigation{
         margin: auto;
         width: 1115px;
         padding: 20px;
@@ -321,7 +320,7 @@ a:hover{
         justify-content: space-between;
         flex-direction: row;
     }
-    
+     */
     header ul{
         list-style-type: none;
         display: flex;
@@ -356,13 +355,13 @@ a:hover{
     }
 
     .post{
-        width: 1000px;
+        max-width: 1000px;
         margin: auto;
         padding: 100px;
     }
 
     main{
-        width: 1000px;
+        max-width: 1000px;
         margin: auto;
         padding: 100px;
         display: flex;
