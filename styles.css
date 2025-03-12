@@ -88,9 +88,11 @@ main img{
 }
 
 /* SOCIAL MEDIA ICONS */
-.socialmedia{
-    padding-bottom: 20px:
+
+main .aboutimg{
+    padding-bottom: 40px;
 }
+
 .fa {
     padding: 12px;
     font-size: 20px;
@@ -324,6 +326,7 @@ a:hover{
         flex-direction: row;
     }
      */
+     
     header ul{
         list-style-type: none;
         display: flex;
