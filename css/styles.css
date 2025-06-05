@@ -80,34 +80,51 @@ a:hover {
   color: #e23c95; /* a slightly darker version for hover */
 }
 
-.nav-list {
-  font-size: 1.1rem;
-  list-style: none;
+header {
+  padding: 1rem;
+  background: #fffef9;
+  text-align: center;
+}
+
+.site-title h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+  font-family: 'MyDisplayFont';
+  text-transform: uppercase;
+}
+
+.main-nav ul {
+  list-style: none;       /* REMOVE BULLETS */
+  padding: 0;
+  margin: 0;
   display: flex;
+  gap: 1.5rem;
   justify-content: center;
-  gap: 2rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
-.nav-list li a {
+/* Individual links */
+.main-nav a {
   text-decoration: none;
-  text-transform: lowercase;
-  font-weight: 700;
-  color: #FF45A8; /* bright blue */
-  font-family: 'MyMainFont';
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
+  font-weight: bold;
+  color: #222;
+  transition: color 0.2s ease;
 }
 
-.nav-list li a:hover,
-.nav-list li a[aria-current="page"] {
-  color: #FF45A8; /* bright red on hover or active */
+.main-nav a:hover,
+.main-nav a.active {
+  color: #FF45A8;
 }
 
-.nav-list a.active {
-  color: #FF45A8; /* your bright red */
-  font-weight: 700;
+.external-icon {
+  font-size: 0.8em;
+  margin-left: 0.25em;
 }
+
+
+
 .project-description ul {
   list-style: none;
   padding-left: 1.2em; /* slight indent to align with paragraph text */
@@ -158,116 +175,95 @@ main {
 /* About me quick header on portfolio */
 
 .about-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: flex-start; /* important for vertical alignment */
-  max-width: 9000px;
+  padding: 2rem;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 1rem;
 }
 
-.about-left {
-  flex: 1 1 250px; /* grows, shrinks, basis 250px */
-  max-width: 300px;
+.about-grid {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* pushes social to bottom */
-  height: 100%; /* match height of the right side */
+  gap: 2rem;
 }
 
-.about-image {
-  max-width: 100%;
-  max-height: 800px;
+.about-photo {
+  width: 100%;
+  max-width: 250px;
   border-radius: 8px;
-  object-fit: cover;
-  margin-bottom: 1rem;
-  display: block;
+  padding-bottom: 20px;
 }
 
 .socialmedia {
   margin-top: 1rem;
-  text-align: left;
-  justify-content: left;
-  /* padding-right: 1rem; */
-  max-width: 600px;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.socialmedia h2 {
-  font-size: 1.4rem;
+.socialmedia a {
+  width: 40px;
+  height: 40px;
+  background-color: #e23c95;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  font-size: 20px;
+}
+.socialmedia a:hover {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  color: #e23c95;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.about-right h2 {
+  font-size: 1.6rem;
   margin-bottom: 1rem;
 }
 
-.social-icons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: flex-start;
-}
-
-.social-icons a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background-color: #FF45A8;
-  border-radius: 50%;
-  color: #fffef9;
-  font-size: 16px;
-  text-decoration: none;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.social-icons a:hover {
-  background-color: #ed76b5; /* or your red */
-  color: #fffef9;
-}
-
-.about-right {
-  flex: 2 1 400px;
-  /* display: flex; */
-  align-items: center;
-  font-size: 1.1rem;
+.about-right p {
+  font-size: 1rem;
   line-height: 1.6;
-  color: #444; /* off-black */
 }
 
-/* RESPONSIVE: Move socialmedia below text on mobile */
-@media (max-width: 768px) {
-  .about-container {
-    flex-direction: column;
-  }
-
-  .socialmedia {
-    order: 2;
-    width: 100%;
-    text-align: center;
+@media (min-width: 768px) {
+  .about-grid {
+    flex-direction: row;
+    align-items: flex-start;
   }
 
   .about-left {
-    order: 1; /* image stays above */
-    align-self: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .about-right {
-    order: 1;
-    width: 100%;
+    flex: 2;
   }
 
-  .social-icons {
-    justify-content: center;
+  /* On wide screens, push icons to bottom */
+  .socialmedia {
+    margin-top: auto;
   }
 }
 
-
-@media (max-width: 700px) {
-  .about-container {
-    flex-direction: column;
-    align-items: center;
+@media (max-width: 767px) {
+  .socialmedia {
+    margin-top: 1rem;
+    order: 2;
   }
-  .about-right {
-    text-align: center;
+
+  .about-left {
+    align-items: center;
   }
 }
 

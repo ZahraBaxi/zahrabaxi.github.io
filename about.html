@@ -1,149 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About – Zahra Baxi</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+</head>
+<body>
 
-        <title>About</title>
-        <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+  <!-- Load header -->
+  <div id="header"></div>
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="styles.css">
-        <style>
-            h1 {
-                text-align: center;
-                font-weight: 600;
-                font-size: 20pt;
-                margin-bottom: 20px;
-            }
-            .about-me {
-                text-align: center;
-                margin-bottom: 50px;
-            }
-            .about-me img {
-                border-radius: 50%;
-                width: 150px;
-                height: 150px;
-                object-fit: cover;
-            }
-            .about-me p {
-                font-size: 1.2em;
-                max-width: 800px;
-                margin: 20px auto;
-                line-height: 1.6;
-            }
-            .media-section {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(250px, 1fr));
-                gap: 20px;
-                max-width: 1000px;
-                margin: auto;
-            }
-            .media-card {
-                background: white;
-                border-radius: 12px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                overflow: hidden;
-                transition: transform 0.3s ease-in-out;
-            }
-            .media-card:hover {
-                transform: translateY(-10px);
-            }
-            .media-image {
-                width: 100%;
-                height: 300px;
-                object-fit: cover;
-            }
-            .media-content {
-                padding: 20px;
-            }
-            .media-title {
-                font-size: 1.5em;
-                margin-bottom: 10px;
-                font-weight: 600;
-                transition: color 0.3s ease-in-out;
-            }
-            .media-description {
-                font-size: 1em;
-                line-height: 1.6;
-            }
-            footer {
-                text-align: center;
-                margin-top: 50px;
-            }
-        </style>
-    </head>
-    <body>
-        <!-- NAVIGATION BAR -->
-        <header>
-            <div class="navigation">
-                <h1><a href="index.html">ZAHRA BAXI</a></h1>
-                <nav>
-                    <ul>
-                        <li><a href = "index.html"> portfolio</a></li>
-                        <li><a href = "art.html"> art / photography</a></li>
-                        <li><a href="https://trinketsbypickles.com" target="blank"> trinkets by pickles ↗</a></li>
-                        <li><a href = "about.html"> <strong>about</strong></a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <main>
-            <section class="aboutimg">
-                <img src ="images/zahraprofilepic.jpeg" alt="Photo of Zahra Baxi" width="400" height="">
-                <section class="socialmedia">
-                    <a href="https://www.linkedin.com/in/zahra-baxi-b3a946152/" target="blank" class="fa fa-linkedin"></a>
-                    <a href="https://www.facebook.com/zahra.baxi"  target="blank" class="fa fa-facebook"></a>
-                    <a href="https://www.instagram.com/zahrabaxi/" target="blank" class="fa fa-instagram"></a>
-                    <a href="https://www.behance.net/zahra_baxi" target="blank" class="fa fa-behance"></a>
-                </section>
-                
-            </section>
-            <section class="about">
-                <div class="aboutheader">Hi I’m Zahra!</div>
-                <p>A grad student at UC Davis with a passion for human-centered design and all things creative.</p>
-                <div class="aboutparagraph">I am a first year MFA Graduate Student in Interactive Design at the University of California Davis. I am also a graduate teaching assistant for core courses in their undergraduate design program.
-                <br>I completed my undergraduate education in May 2024 at the University of California Berkeley where I studied Human Centered Design, an interdisciplinary degree that combines coursework in design, sociology, psychology, and technology. I completed the Berkeley Certificate in Design Innovation where I learned about the life cycle of innovations, from idea to execution. <br> <br> I was also a part of UC Berkeley’s Human Centered Design Club, Berkeley Innovation. I found it my goal during my time at UC Berkeley to make the Product Design community there as inclusive and accessible as possible. To fulfill my concert-cravings on a student budget, I worked as an usher at Another Planet Entertainment. It was a great way for me to explore new genres and interact with music lovers from all walks of life. When I’m taking a break from studying, campus clubs, and working, I like to sketch, bake, take photographs, skateboard, and explore the Bay Area.</p> </div>
-            </section>
-        </main>
-        <!-- <div class="center"><div class="aboutheader"> Currently... </div></div>
-        <section class="media-section">
-            <div class="media-card">
-                <img src="images/book.jpg" alt="Book Cover" class="media-image">
-                <div class="media-content">
-                    <h2 class="media-title">Reading</h2>
-                    <p class="media-description">Citizen Scientist: Searching for Heroes and Hope in an Age of Extinction written by Mary Ellen Hannibal</p>
-                </div>
-            </div>
-
-
-            <div class="media-card">
-                <img src="images/parks.webp" alt="Game Cover" class="media-image">
-                <div class="media-content">
-                    <h2 class="media-title">Playing</h2>
-                    <p class="media-description">PARKS Board Game designed by Henry Audubon</p>
-                </div>
-            </div>
-            
-            <div class="media-card">
-                <img src="images/music.jpg" alt="Album Cover" class="media-image">
-                <div class="media-content">
-                    <h2 class="media-title">Listening</h2>
-                    <p class="media-description">Golden Hour - Kacey Musgraves, A Folk and Country Album</p>
-                </div>
-            </div>
+  <!-- Main content -->
+  <main class="about-container">
+    <section class="about-grid">
+      <!-- Left: image and social -->
+      <div class="about-left">
+        <img src="images/zahraprofilepic.jpeg" alt="Zahra Baxi" class="about-photo" />
+        <section class="socialmedia">
+          <a href="https://linkedin.com" class="fa fa-linkedin"></a>
+          <a href="https://instagram.com" class="fa fa-instagram"></a>
+          <a href="https://facebook.com" class="fa fa-facebook"></a>
+          <a href="https://behance.net" class="fa fa-behance"></a>
         </section>
-         -->
-        <!-- FOOTER -->
-        <footer>
-            <p class="foot">made by zahra with HTML/CSS, GitHub, & some sparkle dust ✦₊⁺</p>
-            <p class="foot"> &copy; zahra baxi 2024</p>
-       </footer>
-       
-   </body>
+      </div>
+
+      <!-- Right: about text -->
+      <div class="about-right">
+        <h2>Hi! I’m Zahra</h2>
+        <h3>A grad student at UC Davis with a passion for human-centered design and all things creative.</h3><br>
+        <p>I am a first year MFA Graduate Student in Interactive Design at the University of California Davis. I am also a graduate teaching assistant for core courses in their undergraduate design program.
+                <br>I completed my undergraduate education in May 2024 at the University of California Berkeley where I studied Human Centered Design, an interdisciplinary degree that combines coursework in design, sociology, psychology, and technology. I completed the Berkeley Certificate in Design Innovation where I learned about the life cycle of innovations, from idea to execution. <br> <br> I was also a part of UC Berkeley’s Human Centered Design Club, Berkeley Innovation. I found it my goal during my time at UC Berkeley to make the Product Design community there as inclusive and accessible as possible. To fulfill my concert-cravings on a student budget, I worked as an usher at Another Planet Entertainment. It was a great way for me to explore new genres and interact with music lovers from all walks of life. When I’m taking a break from studying, campus clubs, and working, I like to sketch, bake, take photographs, skateboard, and explore the Bay Area.</p> </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Load footer -->
+  <div id="footer"></div>
+  <script src="js/partial-loader.js"></script>
+
+</body>
 </html>

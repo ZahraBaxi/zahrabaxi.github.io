@@ -1,99 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Art</title>
+  <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="header"></div>
 
-        <title>Art / Photography</title>
-        <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+  <main>
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
+    <section aria-label="Portfolio Gallery">
+      <div class="gallery-grid">
+        <!-- 9 portfolio items -->
+        <a href="bwfilm.html" class="gallery-item" tabindex="0">
+          <img src="images/BWPhotographyMAIN.png" alt="Project 1 Thumbnail" />
+          <div class="overlay">BW Film Photography</div>
+        </a>
+        <a href="csssa.html" class="gallery-item" tabindex="0">
+          <img src="images/CsssaMAIN.png" alt="Project 2 Thumbnail" />
+          <div class="overlay">California State Summer School for the Arts 2019</div>
+        </a>
+        <a href="colorphoto.html" class="gallery-item" tabindex="0">
+          <img src="images/ColorPhotographyMAIN.png" alt="Project 3 Thumbnail" />
+          <div class="overlay">Color Film Photography</div>
+        </a>
+        <a href="thebay.html" class="gallery-item" tabindex="0">
+          <img src="images/BayMAIN.png" alt="Project 4 Thumbnail" />
+          <div class="overlay">The Bay — Illustration</div>
+        </a>
+        <a href="tarot.html" class="gallery-item" tabindex="0">
+          <img src="images/TarotMAIN.png" alt="Project 5 Thumbnail" />
+          <div class="overlay">Tarot Cards — Illustration</div>
+        </a>
+        <a href="notathome.html" class="gallery-item" tabindex="0">
+          <img src="images/NotHomeMAIN.png" alt="Project 6 Thumbnail" />
+          <div class="overlay">Not At Home — Zine</div>
+        </a>
+      </div>
+    </section>
+  </main>
 
-    </head>
-    <body>
-        <!-- NAVIGATION BAR -->
-        <header>
-            <div class="navigation">
-                <h1><a href="index.html">ZAHRA BAXI</a></h1>
-                <nav>
-                    <ul>
-                        <li><a href = "index.html"> portfolio</a></li>
-                        <li><a href = "art.html"> <strong>art / photography</strong></a></li>
-                        <li><a href="https://trinketsbypickles.com" target="blank"> trinkets by pickles ↗</a></li>
-                        <li><a href = "about.html"> about</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <!-- ART AND PHOTOGRAPHY SECTION -->
-                 <!-- PORTFOLIO SECTION -->
-        <section class="portfolio">
-            <article>
-                <!-- Image for Portfolio -->
-                <a href="/artpages/thebay.html"><img src ="images/BayMAIN.png" alt="The Bay portfolio image" width="326" height="326"></a>
-                <h3><a href="/artpages/thebay.html">The Bay</a></h3>
-                <!-- tags -->
-                    <!-- <a href="#">tag 1,</a>  -->
-                    <!-- <a href="#">tag 1</a> -->
-            </article>
-
-            <article>
-                <!-- Image for Portfolio -->
-                <a href="/artpages/csssa.html"><img src ="images/CsssaMAIN.png" alt="CSSSA portfolio image" width="326" height="326"></a>
-                <h3><a href="/artpages/csssa.html">CSSSA</a></h3>
-                <!-- tags -->
-                    <!-- <a href="#">tag 1,</a>  -->
-                    <!-- <a href="#">tag 1</a> -->
-            </article>
-
-            <article>
-                <!-- Image for Portfolio -->
-                <a href="/artpages/bwfilm.html"><img src ="images/BWPhotographyMAIN.png" alt="Black and White Film portfolio image" width="326" height="326"></a>
-                <h3><a href="/artpages/bwfilm.html">B/W Film Photography</a></h3>
-                <!-- tags -->
-                    <!-- <a href="#">tag 1,</a>  -->
-                    <!-- <a href="#">tag 1</a> -->
-            </article>
-
-            <article>
-                <!-- Image for Portfolio -->
-                <a href="/artpages/tarot.html"><img src ="images/TarotMAIN.png" alt="Tarot Cards portfolio image" width="326" height="326"></a>
-                <h3><a href="/artpages/tarot.html">Tarot Cards</a></h3>
-                <!-- tags -->
-                    <!-- <a href="#">tag 1,</a>  -->
-                    <!-- <a href="#">tag 1</a> -->
-            </article>
-
-            <article>
-                <!-- Image for Portfolio -->
-                <a href="/artpages/colorfilm.html"><img src ="images/ColorPhotographyMAIN.png" alt="Color Photography portfolio image" width="326" height="326"></a>
-                <h3><a href="/artpages/colorfilm.html">Color Film Photography</a></h3>
-                <!-- tags -->
-                    <!-- <a href="#">tag 1,</a>  -->
-                    <!-- <a href="#">tag 1</a> -->
-            </article>
-
-            <article>
-                <!-- Image for Portfolio -->
-                <a href="/artpages/notathome.html"><img src ="images/NotHomeMAIN.png" alt="Not At Home portfolio image" width="326" height="326"></a>
-                <h3><a href="/artpages/notathome.html">Not At Home Zine</a></h3>
-                <!-- tags -->
-                    <!-- <a href="#">tag 1,</a>  -->
-                    <!-- <a href="#">tag 1</a> -->
-            </article>
-        </section>
-
-
-        <!-- FOOTER -->
-        <footer>
-            <p class="foot">made by zahra with HTML/CSS, GitHub, & some sparkle dust ✦₊⁺</p>
-            <p class="foot"> &copy; zahra baxi 2024</p>
-       </footer>
-       
-   </body>
+  <div id="footer"></div>
+  <script src="js/partial-loader.js"></script>
+</body>
 </html>
