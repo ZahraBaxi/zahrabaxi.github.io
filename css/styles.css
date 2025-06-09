@@ -137,7 +137,7 @@ header {
 }
 
 .project-description ul li::before {
-  content: "✦ "; /* or use ✿, ❀, ⭑, etc. */
+  content: "⁕ "; /* ✦or use ✿, ❀, ⭑, etc. */
   color: #79904d; /* soft red for branding */
   font-size: 1em;
   margin-right: 0.3em;
@@ -297,6 +297,12 @@ main {
   margin-bottom: 1rem;
 }
 
+.gallery-icon {
+  color: #79904d;
+  margin-right: 0.5em;
+  font-size: 1.1rem;
+}
+
 .gallery-text h3 {
   font-size: 1.3rem;
   font-weight: 700;
@@ -369,6 +375,6 @@ footer {
   padding: 1rem;
   text-align: center;
   font-size: 0.9rem;
-  color: #444;
+  color: #79904d;
   /* width: 100%; */
 }
