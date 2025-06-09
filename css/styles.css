@@ -1,3 +1,10 @@
+:root {
+  --beige: #fff6ec;
+  --green: #79904d;
+  --text-dark: #222;
+}
+
+
 @font-face {
     font-family: 'MyDisplayFont';
     src: url('../fonts/futura\ medium\ bt.ttf') format('opentype');
@@ -38,7 +45,7 @@ body {
   font-family: 'MyMainFont';
   /* font-size: 1.1rem; */
   /* background: #fdfdfd; */
-  background: #fff6ec;
+  background: var(--beige);
   color: #222;
   line-height: 1.6;
   min-height: 100vh;
