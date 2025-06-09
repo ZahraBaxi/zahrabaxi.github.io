@@ -39,7 +39,7 @@ body {
   /* font-size: 1.1rem; */
   /* background: #fdfdfd; */
   background: ##fff6ec; /* warm beige */
-  color: #111;
+  color: #222;
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
@@ -62,7 +62,7 @@ header {
   font-size: 1.8rem;
   letter-spacing: 0.2em;
   margin: 1rem 0 0.5rem 0;
-  color: #111; /* off-black */
+  color: #222; /* off-black */
 }
 p{
   font-size: 1.1rem;
@@ -93,7 +93,7 @@ header {
 .site-title h1 {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
-  color: #222;
+  color: #79904d;
   font-family: 'MyDisplayFont';
   text-transform: uppercase;
 }
@@ -113,13 +113,15 @@ header {
 .main-nav a {
   text-decoration: none;
   font-weight: bold;
-  color: #222;
+  color: #79904d;
   transition: color 0.2s ease;
 }
 
-.main-nav a:hover,
+.main-nav a:hover{
+  color: #97ad6d;
+}
 .main-nav a.active {
-  color: #79904d;
+  color: #4a5a2c;
 }
 
 .external-icon {
@@ -154,7 +156,7 @@ header {
   font-size: 1.4rem; /* try 2rem or higher for bigger text */
   line-height: 1.4;
   font-weight: 400;
-  color: #111; /* soft black */
+  color: #222; /* soft black */
 }
 
 /* Mobile stacked nav */
@@ -218,8 +220,8 @@ main {
 .socialmedia a:hover {
   width: 40px;
   height: 40px;
-  background-color: transparent;
-  color: #79904d;
+  background-color: #97ad6d;
+  color: #fff6ec;
   border-radius: 50%;
   text-align: center;
   line-height: 40px;
@@ -303,7 +305,7 @@ main {
 
 .gallery-text p {
   font-size: 1rem;
-  color: #555;
+  color: #222;
 }
 
 @media (max-width: 900px) {
