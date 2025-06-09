@@ -1,19 +1,19 @@
 @font-face {
     font-family: 'MyDisplayFont';
-    src: url('../fonts/PPNeueMontreal-Book.otf') format('opentype');
+    src: url('../fonts/futura\ medium\ bt.ttf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'MyMainFont';
-    src: url('../fonts/PPNeueMontreal-Book.otf') format('opentype');
+    src: url('../fonts/Futura\ Book\ font.ttf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'MyMainFont';
-    src: url('../fonts/PPNeueMontreal-Medium.otf') format('opentype');
+    src: url('../fonts/futura\ medium\ bt.ttf') format('opentype');
     font-weight: bold;
     font-style: normal;
 }
@@ -33,10 +33,13 @@ html, body {
   flex-direction: column;
 }
 
+
 body {
   font-family: 'MyMainFont';
-  background: #fffef9; /* off-white */
-  color: #222; /* dark gray, not pure black */
+  /* font-size: 1.1rem; */
+  /* background: #fdfdfd; */
+  background: #fffaf3; /* warm beige */
+  color: #111;
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
@@ -46,8 +49,8 @@ body {
 /* Header styles */
 header {
   background: #fffef9;
-  padding: 1rem 2rem;
-  border-bottom: 2px solid #FF45A8; /* bright blue accent */
+  padding: 4rem 1rem;
+  /* border-bottom: 2px solid #ff2700; bright blue accent */
   position: sticky;
   top: 0;
   z-index: 100;
@@ -71,18 +74,19 @@ p{
 }
 
 a {
-  color: #FF45A8;
+  color: #ff2700;
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
-  color: #e23c95; /* a slightly darker version for hover */
+  color: #ff2700; /* a slightly darker version for hover */
 }
 
 header {
+  background: transparent;
+  /* border-bottom: 1px solid #eee; */
   padding: 1rem;
-  background: #fffef9;
   text-align: center;
 }
 
@@ -95,12 +99,12 @@ header {
 }
 
 .main-nav ul {
+  justify-content: center;
+  gap: 2rem;
   list-style: none;       /* REMOVE BULLETS */
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 1.5rem;
-  justify-content: center;
   flex-wrap: wrap;
   align-items: center;
 }
@@ -115,7 +119,7 @@ header {
 
 .main-nav a:hover,
 .main-nav a.active {
-  color: #FF45A8;
+  color: #ff2700;
 }
 
 .external-icon {
@@ -132,7 +136,7 @@ header {
 
 .project-description ul li::before {
   content: "✦ "; /* or use ✿, ❀, ⭑, etc. */
-  color: #FF45A8; /* soft red for branding */
+  color: #ff2700; /* soft red for branding */
   font-size: 1em;
   margin-right: 0.3em;
 }
@@ -203,7 +207,7 @@ main {
 .socialmedia a {
   width: 40px;
   height: 40px;
-  background-color: #e23c95;
+  background-color: #ff2700;
   color: white;
   border-radius: 50%;
   text-align: center;
@@ -215,7 +219,7 @@ main {
   width: 40px;
   height: 40px;
   background-color: white;
-  color: #e23c95;
+  color: #ff2700;
   border-radius: 50%;
   text-align: center;
   line-height: 40px;
@@ -270,8 +274,36 @@ main {
 /* Grid gallery */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  /* padding-top: 2rem; */
+}
+
+.gallery-item {
+
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  /* additons */
+  position: relative;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.gallery-text h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem 0;
+}
+
+.gallery-text p {
+  font-size: 1rem;
+  color: #555;
 }
 
 @media (max-width: 900px) {
@@ -288,17 +320,18 @@ main {
 
 /* Gallery item */
 .gallery-item {
-  background: #fffef9;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  /* background: #fffef9; */
+  /* border: 1px solid #ccc; */
+  /* border-radius: 8px; */
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  transition: box-shadow 0.3s ease;
+  /* transition: box-shadow 0.3s ease; */
+  padding: 1rem
 }
 
 .gallery-item:hover {
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  /* box-shadow: 0 4px 10px rgba(0,0,0,0.12); */
 }
 
 /* Image styling */
@@ -329,7 +362,8 @@ main {
 
 /* Footer styles */
 footer {
-  background-color: #fffef9;
+  /* background-color: #fffef9; */
+  background-color: transparent;
   padding: 1rem;
   text-align: center;
   font-size: 0.9rem;
