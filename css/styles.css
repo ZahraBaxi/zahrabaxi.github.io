@@ -38,7 +38,7 @@ body {
   font-family: 'MyMainFont';
   /* font-size: 1.1rem; */
   /* background: #fdfdfd; */
-  background: #fffaf3; /* warm beige */
+  background: ##fff6ec; /* warm beige */
   color: #111;
   line-height: 1.6;
   min-height: 100vh;
@@ -48,7 +48,7 @@ body {
 
 /* Header styles */
 header {
-  background: #fffef9;
+  background: #fff6ec;
   padding: 4rem 1rem;
   /* border-bottom: 2px solid #ff2700; bright blue accent */
   position: sticky;
@@ -74,13 +74,13 @@ p{
 }
 
 a {
-  color: #ff2700;
+  color: #79904d;
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
-  color: #ff2700; /* a slightly darker version for hover */
+  color: #6a7951; /* a slightly darker version for hover */
 }
 
 header {
@@ -119,7 +119,7 @@ header {
 
 .main-nav a:hover,
 .main-nav a.active {
-  color: #ff2700;
+  color: #79904d;
 }
 
 .external-icon {
@@ -136,7 +136,7 @@ header {
 
 .project-description ul li::before {
   content: "✦ "; /* or use ✿, ❀, ⭑, etc. */
-  color: #ff2700; /* soft red for branding */
+  color: #79904d; /* soft red for branding */
   font-size: 1em;
   margin-right: 0.3em;
 }
@@ -207,8 +207,8 @@ main {
 .socialmedia a {
   width: 40px;
   height: 40px;
-  background-color: #ff2700;
-  color: white;
+  background-color: #79904d;
+  color: #fff6ec;
   border-radius: 50%;
   text-align: center;
   line-height: 40px;
@@ -218,8 +218,8 @@ main {
 .socialmedia a:hover {
   width: 40px;
   height: 40px;
-  background-color: white;
-  color: #ff2700;
+  background-color: transparent;
+  color: #79904d;
   border-radius: 50%;
   text-align: center;
   line-height: 40px;
@@ -347,7 +347,7 @@ main {
 .gallery-item .overlay {
   position: absolute;
   bottom: 0;
-  background: #fffef9;
+  background: #fff6ec;
   width: 100%;
   color: #444;
   padding: 0.75rem;
