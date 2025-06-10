@@ -202,7 +202,7 @@ main {
 .about-photo {
   width: 100%;
   max-width: 450px;
-  border-radius: 8px;
+border-radius: 300px 300px 0px 0px;
   padding-bottom: 20px;
 }
 
