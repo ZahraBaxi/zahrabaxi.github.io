@@ -386,8 +386,46 @@ border-radius: 300px 300px 0px 0px;
 
 
 
+#skills-chart {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 2rem;
+  border: 3px;
+  background: #fff6ec; /* beige background */
+  align-items: flex-end;
+}
 
+.skill-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px;
+}
 
+.label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #222;
+  font-weight: 600;
+}
+
+.dot-stack {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.4rem;
+  height: 150px;
+  justify-content: flex-end;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: #79904d; /* green */
+  border-radius: 50%;
+}
 
 
 
