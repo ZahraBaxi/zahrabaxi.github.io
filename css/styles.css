@@ -429,6 +429,42 @@ border-radius: 300px 300px 0px 0px;
   object-fit: cover;
 }
 
+.gallery-item img:hover {
+  opacity: 0.9;
+}
+
+.tooltip-container {
+  position: relative;
+  cursor: help;
+  display: inline-block;
+  border-bottom: 2px dotted #c7b5a0; /* optional: subtle visual cue */
+}
+
+.tooltip-container .tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background-color: #222;
+  color: #fff6ec;
+  text-align: left;
+  border-radius: 6px;
+  padding: 6px 10px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 240px;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  white-space: normal;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
 
 
 
