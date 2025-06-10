@@ -56,6 +56,7 @@ body {
 /* Header styles */
 header {
   background: #fff6ec;
+  margin-top: 10px;
   padding: 4rem 1rem;
   /* border-bottom: 2px solid #ff2700; bright blue accent */
   position: sticky;
@@ -160,7 +161,7 @@ header {
 
 #about-me {
   text-align: center;
-  max-width: 600px;   /* optional: limits line length for readability */
+  max-width: 800px;   /* optional: limits line length for readability */
   margin: 0 auto 2rem auto;  /* centers the section and adds bottom spacing */
   padding: 0 1rem;    /* optional horizontal padding for smaller screens */
   font-size: ;
@@ -168,7 +169,7 @@ header {
 
 #about-me p {
   font-family: 'MyMainFont';
-  font-size: 1.4rem; /* try 2rem or higher for bigger text */
+  font-size: 1.2rem; /* try 2rem or higher for bigger text */
   line-height: 1.4;
   font-weight: 400;
   color: #222; /* soft black */
@@ -196,7 +197,7 @@ main {
 /* About me quick header on portfolio */
 
 .about-container {
-  padding: 2rem;
+  padding-top: 4rem;
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -208,10 +209,11 @@ main {
 }
 
 .about-photo {
+  padding-top: 1.5rem;
   width: 100%;
   max-width: 450px;
 border-radius: 300px 300px 0px 0px;
-  padding-bottom: 20px;
+  padding-bottom: 2rem;
 }
 
 .socialmedia {
@@ -313,11 +315,62 @@ border-radius: 300px 300px 0px 0px;
   margin-bottom: 1rem;
 }
 
+.gallery-icon-wrapper {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.3em;
+}
+
+.gallery-icon {
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+  display: block;
+  position: relative;
+  top: 2px; /* nudges the icon down visually */
+}
+
+
+
+.gallery-item:hover .gallery-icon {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* 
 .gallery-icon {
   color: #79904d;
   margin-right: 0.5em;
   font-size: 1.1rem;
+ display: block;
+  transform-origin: center;
+  transition: transform 0.3s ease;
+} */
+
+/* 
+.gallery-item:hover .gallery-icon {
+  display: inline-block; /* ensures transform works correctly */
+  animation: spin 2s linear infinite;
+} */
+/* 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
+ */
 
 .gallery-text h3 {
   font-size: 1.3rem;
