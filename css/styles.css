@@ -96,9 +96,12 @@ a {
 }
 
 a:hover {
-  color: #6a7951; /* a slightly darker version for hover */
+  color: #79904d; /* a slightly darker version for hover */
 }
 
+.project-description a:hover{
+  color: #6a7951;
+}
 header {
   background: transparent;
   /* border-bottom: 1px solid #eee; */
@@ -376,11 +379,16 @@ border-radius: 300px 300px 0px 0px;
   font-size: 1.3rem;
   font-weight: 700;
   margin: 0 0 0.2rem 0;
+  color: #222;
 }
 
 .gallery-text p {
   font-size: 1rem;
   color: #222;
+}
+
+.gallery-text h3 :hover{
+  color: #79904d;
 }
 
 @media (max-width: 900px) {
@@ -409,6 +417,7 @@ border-radius: 300px 300px 0px 0px;
 
 .gallery-item:hover {
   /* box-shadow: 0 4px 10px rgba(0,0,0,0.12); */
+
 }
 
 /* Image styling */
@@ -420,22 +429,7 @@ border-radius: 300px 300px 0px 0px;
   object-fit: cover;
 }
 
-/* Overlay on hover for details */
-.gallery-item .overlay {
-  position: absolute;
-  bottom: 0;
-  background: #fff6ec;
-  width: 100%;
-  color: #444;
-  padding: 0.75rem;
-  font-size: 0.9rem;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
 
-.gallery-item:hover .overlay {
-  opacity: 1;
-}
 
 
 
