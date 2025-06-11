@@ -164,7 +164,7 @@ header {
 
 #about-me {
   text-align: center;
-  max-width: 800px;   /* optional: limits line length for readability */
+  max-width: 700px;   /* optional: limits line length for readability */
   margin: 0 auto 2rem auto;  /* centers the section and adds bottom spacing */
   padding: 0 1rem;    /* optional horizontal padding for smaller screens */
   font-size: ;
