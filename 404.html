@@ -5,9 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Page Not Found</title>
   <style>
+    @font-face {
+    font-family: 'MyDisplayFont';
+    src: url('../fonts/futura\ medium\ bt.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'MyMainFont';
+        src: url('../fonts/Futura\ Book\ font.ttf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'MyMainFont';
+        src: url('../fonts/futura\ medium\ bt.ttf') format('opentype');
+        font-weight: bold;
+        font-style: normal;
+    } 
+
     body {
       background-color: #fff6ec;
-      font-family: Futura, sans-serif;
+      /* font-family: Futura, sans-serif; */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -18,18 +38,21 @@
     }
 
     h1 {
+      font-family: "MyDisplayFont";
       font-size: 3rem;
       color: #79904d;
       /* margin-bottom: 0.5rem; */
     }
 
     p {
+      font-family: "MyMainFont";
       color: #222;
       font-size: 1.2rem;
-      max-width: 600px;
+      max-width: 800px;
     }
 
     .home-link {
+        font-family: "MyMainFont";
       margin-top: 2rem;
       display: inline-block;
       padding: 0.75rem 1.5rem;
@@ -56,7 +79,7 @@
   <img src ="images/bunny.png" class="bunny">
   <!-- <div class="bunny">🐇</div> -->
   <h1>404 — Page Not Found</h1>
-  <p>Looks like this page wandered off trail. Let’s help you hop back to safety.</p>
+  <p>Looks like we accidently hopped off the trail. Let’s get you back to safety.</p>
   <a href="index.html" class="home-link">Go to Homepage</a>
 </body>
 </html>
