@@ -6,6 +6,8 @@
   <title>Zahra Portfolio</title>
   <link rel="icon" type="image/x-icon" href="../images/favicon.png">
   <link rel="stylesheet" href="css/styles.css" />
+  
+  <!-- <link rel="script" href="js/scripts.js" /> -->
 </head>
 <body>
   <div id="header"></div>
@@ -89,6 +91,9 @@
       </div>
     </section>
   </main>
+  <div id="mobile-toast" class="mobile-toast">
+    Psst — tap instead of hover on mobile! Some features are best on desktop.
+  </div>
 
   <div id="footer"></div>
   <div id="site-overlay" class="overlay hidden" role="dialog" aria-live="polite">
@@ -99,19 +104,6 @@
   </div>
 </div>
   <script src="js/partial-loader.js"></script>
-  <script>
-  // Show overlay manually
-  function showOverlay() {
-    document.getElementById('site-overlay').classList.remove('hidden');
-  }
-
-  // Hide overlay manually
-  function hideOverlay() {
-    document.getElementById('site-overlay').classList.add('hidden');
-  }
-
-  // Example: auto-show on page load if needed
-  window.addEventListener('load', hideOverlay);
-</script>
+  <script src="js/scripts.js" defer></script>
 </body>
 </html>
