@@ -99,6 +99,12 @@ a:hover {
   color: #79904d; /* a slightly darker version for hover */
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 .project-description a:hover{
   color: #6a7951;
 }
@@ -185,6 +191,7 @@ header {
     gap: 1rem;
     align-items: center;
   }
+  
 }
 
 /* Main content container */
