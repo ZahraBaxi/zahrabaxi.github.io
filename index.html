@@ -91,6 +91,27 @@
   </main>
 
   <div id="footer"></div>
+  <div id="site-overlay" class="overlay hidden" role="dialog" aria-live="polite">
+  <div class="overlay-content">
+    <h2>🚧 <br>Site Under Construction</h2>
+    <p>I'm currently making updates to this site. Pardon if things are wonky!</p>
+    <button onclick="hideOverlay()" class="overlay-close">Close</button>
+  </div>
+</div>
   <script src="js/partial-loader.js"></script>
+  <script>
+  // Show overlay manually
+  function showOverlay() {
+    document.getElementById('site-overlay').classList.remove('hidden');
+  }
+
+  // Hide overlay manually
+  function hideOverlay() {
+    document.getElementById('site-overlay').classList.add('hidden');
+  }
+
+  // Example: auto-show on page load if needed
+  window.addEventListener('load', showOverlay);
+</script>
 </body>
 </html>
