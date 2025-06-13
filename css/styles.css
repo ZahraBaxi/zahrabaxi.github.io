@@ -155,6 +155,21 @@ header {
 }
 
 
+.hero {
+  padding: 3rem;
+  background-color: #fff6ec;
+  font-family: 'Futura', sans-serif;
+  color: #222;
+}
+
+h1, p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+
+
 
 .project-description ul {
   list-style: none;
