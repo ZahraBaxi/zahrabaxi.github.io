@@ -22,20 +22,4 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  const lines = [
-  { id: "line1", text: "Hi! I’m Zahra, a product designer passionate about using", delay: 0 },
-  { id: "line2", text: "human-centered design to create meaningful, interactive experiences.", delay: 2000 },
-  { id: "line3", text: "With a foundation in graphic design and user experience, I design experiences that encourage thoughtful engagement with the spaces and communities we share.", delay: 4000 }
-];
-
-lines.forEach(({ id, text, delay }) => {
-  const element = document.getElementById(id);
-  setTimeout(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      element.textContent += text[i];
-      i++;
-      if (i === text.length) clearInterval(interval);
-    }, 20); // speed (ms per character)
-  }, delay);
-});
+  
