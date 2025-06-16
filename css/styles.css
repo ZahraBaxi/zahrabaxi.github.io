@@ -51,6 +51,12 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+body.fade-out {
+  opacity: 0;
 }
 
 /* Header styles */
@@ -560,7 +566,7 @@ border-radius: 300px 300px 0px 0px;
   left: 50%;
   transform: translateX(-50%);
   background: #fff6ec;
-  color: #222;
+  color: #79904d;
   width: 20rem;
   padding: 1rem 1rem;
   border: 1px solid #79904d;
@@ -578,6 +584,36 @@ border-radius: 300px 300px 0px 0px;
   100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
 }
 
+.floating-buttons {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  z-index: 1000;
+}
+
+.floating-buttons button {
+  width: 2.75rem;
+  height: 2.75rem;
+  background: #fff6ec;
+  color: #79904d;
+  border: 2px solid #79904d;
+  border-radius: 9999px;
+  font-family: 'Futura', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.floating-buttons button:hover {
+  background: #ece4d9;
+  transform: translateY(-2px);
+}
 
 
 /* Footer styles */
