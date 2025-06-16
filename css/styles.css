@@ -616,6 +616,76 @@ border-radius: 300px 300px 0px 0px;
 }
 
 
+#zine-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+  margin-top: 1rem;
+}
+
+#zine-gallery a {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+#zine-gallery a:hover,
+#zine-gallery a:focus {
+  transform: scale(1.05);
+  outline: none;
+}
+
+.gallery-prompt {
+  font-style: italic;
+  color: #79904d; /* your green */
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+
+/* Change the background of the lightbox overlay */
+.lg-backdrop {
+  background-color: #fff6ec !important; /* darker overlay */
+}
+
+/* Change the color of the "1/16" counter text */
+.lg-counter {
+  color: #79904d !important; /* your green color */
+}
+
+.lg-sub-html {
+  color: #79904d !important; /* your green */
+  font-weight: 600;           /* optional: make it stand out more */
+  font-family: "MyMainFont"; /* optional: match your site font */
+  text-align: center;         /* center align caption */
+}
+
+/* Change the background and color of the toolbar */
+.lg-toolbar {
+  background-color: #fff6ec !important;
+  color: #fff6ec !important;
+}
+
+/* Change color of icons/buttons */
+.lg-icon {
+  background-color: transparent !important;
+  color: #79904d !important; /* your custom color */
+}
+
+/* Change color of close button on hover */
+.lg-close:hover {
+  color: #79904d !important;
+}
+
+/* Customize the pager dots */
+.lg-pager .lg-pager-item.active {
+  background-color: #79904d !important;
+}
+
+
+
 /* Footer styles */
 footer {
   /* background-color: #fffef9; */
