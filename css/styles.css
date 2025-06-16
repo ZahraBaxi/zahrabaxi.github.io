@@ -168,8 +168,13 @@ header {
   color: #222;
 }
 
-h1, p {
-  font-size: 1.2rem;
+h1{
+  font-size: 1.9rem;
+    line-height: 1.5;
+  white-space: pre-wrap;
+}
+p {
+  font-size: 1.1rem;
   line-height: 1.5;
   white-space: pre-wrap;
 }
@@ -178,6 +183,7 @@ h1, p {
 
 
 .project-description ul {
+  font-size: 1.1em;
   list-style: none;
   padding-left: 1.2em; /* slight indent to align with paragraph text */
 }
@@ -185,7 +191,7 @@ h1, p {
 .project-description ul li::before {
   content: "⁕ "; /* ✦or use ✿, ❀, ⭑, etc. */
   color: #79904d; /* soft red for branding */
-  font-size: 1em;
+  
   margin-right: 0.3em;
 }
 
@@ -194,12 +200,11 @@ h1, p {
   max-width: 700px;   /* optional: limits line length for readability */
   margin: 0 auto 2rem auto;  /* centers the section and adds bottom spacing */
   padding: 0 1rem;    /* optional horizontal padding for smaller screens */
-  font-size: ;
 }
 
 #about-me p {
   font-family: 'MyMainFont';
-  font-size: 1.2rem; /* try 2rem or higher for bigger text */
+  font-size: 1.25rem; /* try 2rem or higher for bigger text */
   line-height: 1.4;
   font-weight: 400;
   color: #222; /* soft black */
