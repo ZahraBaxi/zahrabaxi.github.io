@@ -180,8 +180,6 @@ p {
 }
 
 
-
-
 .project-description ul {
   font-size: 1.1em;
   list-style: none;
@@ -688,6 +686,24 @@ border-radius: 300px 300px 0px 0px;
 .lg-pager .lg-pager-item.active {
   background-color: #79904d !important;
 }
+
+
+.zine-thumb {
+  width: 220px !important;
+  height: auto !important;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+.zine-thumb:hover {
+  transform: scale(1.03);
+}
+
+
+
 
 
 

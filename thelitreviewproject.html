@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Lit Review Project</title>
+  <link rel="icon" type="image/x-icon" href="../images/favicon.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- LightGallery CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css">
+
+</head>
+<body>
+  <div id="header"></div>
+  <main>
+    <article class="project-detail">
+      <h1>The Lit Review Project</h1><br>
+      <!-- <img src="https://via.placeholder.com/800x400" alt="Full project image"> -->
+      <section class="project-description">
+        <p>The Lit Review Project is an ongoing series of visual literature reviews that merge research, design, and reflection. What began as a way to reframe my master’s thesis reading into something more personal and tactile became a creative methodology of its own. Each zine translates a single book or theme into illustrated spreads, hand-drawn diagrams, and fieldwork-inspired layouts. </p> <br>
+        <!-- <h3>Citizen Scientist by Mary Ellen Hannibal</h3> -->
+
+<section class="zine-collection">
+  <h2>Explore the Zines</h2>
+  <p class="gallery-prompt">Click to flip through each one like a book or download the PDF below.</p>
+
+  <div id="zine-gallery">
+    <!-- Zine 1: Citizen Scientist -->
+    <div class="gallery-item">
+      <a href="images/litreview1-1.jpg" class="zine-lightbox" data-lg="group1" data-sub-html="<h4>Citizen Scientist</h4><p>Exploring observation as care, through citizen science.</p>">
+        <img src="images/litreview1-1.jpg" alt="Citizen Scientist cover" class="zine-thumb">
+      </a>
+      <a href="images/litreview1-2.jpg" class="zine-lightbox" data-lg="group1"></a>
+      <a href="images/litreview1-3.jpg" class="zine-lightbox" data-lg="group1"></a>
+      <a href="images/litreview1-4.jpg" class="zine-lightbox" data-lg="group1"></a>
+      <a href="images/litreview1-5.jpg" class="zine-lightbox" data-lg="group1"></a>
+      <p class="center"><a href="pdfs/citizen science zine.pdf" download>Download PDF</a></p>
+    </div>
+
+    <!-- Zine 2: History of Info Graphics -->
+    <!-- <div class="gallery-item">
+      <a href="images/litreview2-1.jpg" class="zine-lightbox" data-lg="group2" data-sub-html="<h4>History of Information Graphics</h4><p>A visual dive into the evolution of knowledge-sharing diagrams.</p>">
+        <img src="images/litreview2-1.jpg" alt="History of Information Graphics cover" class="zine-thumb">
+      </a>
+      <a href="images/litreview2-2.jpg" class="zine-lightbox" data-lg="group2"></a>
+      <a href="images/litreview2-3.jpg" class="zine-lightbox" data-lg="group2"></a>
+      <a href="images/litreview2-4.jpg" class="zine-lightbox" data-lg="group2"></a>
+      <a href="images/litreview2-5.jpg" class="zine-lightbox" data-lg="group2"></a>
+      <p class="center"><a href="zines/history-of-info-graphics.pdf" download>Download PDF</a></p>
+    </div> -->
+
+    <!-- Zine 3: Play & Conservation -->
+    <!-- <div class="gallery-item">
+      <a href="images/litreview3-1.jpg" class="zine-lightbox" data-lg="group3" data-sub-html="<h4>Play & Conservation</h4><p>Where play theory meets ecological design.</p>">
+        <img src="images/litreview3-1.jpg" alt="Play & Conservation cover" class="zine-thumb">
+      </a>
+      <a href="images/litreview3-2.jpg" class="zine-lightbox" data-lg="group3"></a>
+      <a href="images/litreview3-3.jpg" class="zine-lightbox" data-lg="group3"></a>
+      <a href="images/litreview3-4.jpg" class="zine-lightbox" data-lg="group3"></a>
+      <a href="images/litreview3-5.jpg" class="zine-lightbox" data-lg="group3"></a>
+      <p class="center"><a href="zines/play-and-conservation.pdf" download>Download PDF</a></p>
+    </div> -->
+  </div>
+</section>
+
+
+    <!-- Add more zines here in same format -->
+  </div>
+</section>
+      </section>
+    </article>
+  </main>
+  <div id="footer"></div>
+    <div class="floating-buttons">
+  <button id="backBtn" aria-label="Back to portfolio page">←</button>
+  <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+</div>
+  <script src="js/scripts.js" defer></script>
+  <script src="js/partial-loader.js"></script>
+
+  <!-- LightGallery JS -->
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script>
+
+<script>
+  lightGallery(document.getElementById('zine-gallery'), {
+    selector: '.zine-lightbox',
+    thumbnail: true,
+    zoom: true,
+    download: false
+  });
+</script>
+
+</body>
+</html>
