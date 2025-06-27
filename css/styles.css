@@ -1,5 +1,5 @@
 :root {
-  --beige: #f3eae2;
+  --beige: #fff6ec;
   --green: #79904d;
   --text-dark: #222;
 }
@@ -63,7 +63,7 @@ body.fade-out {
 header {
   background: #fff6ec;
   margin-top: 10px;
-  /* padding: 4rem 1rem; */
+  padding: 4rem 1rem;
   /* border-bottom: 2px solid #ff2700; bright blue accent */
   position: sticky;
   top: 0;
@@ -704,165 +704,6 @@ border-radius: 300px 300px 0px 0px;
 
 
 
-
-
-/* archived */
-.object-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  max-width: 800px;
-  margin: 4rem auto;
-  gap: 2rem;
-  justify-items: center;
-  align-items: start;
-  padding: 1rem;
-}
-
-.object-item {
-  text-align: center;
-}
-
-.object-item img {
-  width: 80px;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-  transition: transform 0.2s ease;
-}
-
-.object-item img:hover {
-  transform: scale(1.05);
-}
-
-.object-item p {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-  color: #79904d;
-  letter-spacing: 0.5px;
-}
-
-@keyframes shake {
-  0% { transform: rotate(0deg); }
-  20% { transform: rotate(-4deg); }
-  40% { transform: rotate(4deg); }
-  60% { transform: rotate(-3deg); }
-  80% { transform: rotate(3deg); }
-  100% { transform: rotate(0deg); }
-}
-
-.object-item img:hover {
-  animation: shake 0.5s ease;
-  cursor: pointer;
-}
-
-
-/* end archive */
-
-
-.tab-stack {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Each row spans full width */
-.file-tab-row {
-  width: 100%;
-  height: 50px;
-  background-color: var(--tab-bg);
-  position: relative;
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-top: -15px;
-  z-index: 1;
-
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 👈 slightly deeper for realism */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* No overlap on first row */
-.file-tab-row:first-child {
-  margin-top: 0;
-}
-
-/* Overlapping order */
-.file-tab-row:nth-child(1) { z-index: 1; }
-.file-tab-row:nth-child(2) { z-index: 2; }
-.file-tab-row:nth-child(3) { z-index: 3; }
-.file-tab-row:nth-child(4) { z-index: 4; }
-
-/* Container centers and constrains tab width */
-.tab-label-container {
-  max-width: 700px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-  height: 100%;
-}
-
-/* Base tab label */
-.tab-label {
-  top: -15px; /* raise the tab above the row */
-  position: absolute;
-  /* top: 0; */
-  background-color: var(--tab-bg);
-  padding: 0.5rem 1.5rem;
-  border-radius: 8px 8px 0 0;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #222;
-  /* box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); */
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  white-space: nowrap;
-}
-
-
-/* Position each tab at a different spot inside the 700px row */
-.tab-label.first   { left: 0%; }
-.tab-label.second  { left: 25%;  }
-.tab-label.third   { left: 60%; }
-.tab-label.fourth  { right: 0; left: auto;}
-
-/* Remove hover transform from just the label */
-.tab-label:hover {
-  transform: none;
-  color: white
-}
-
-.tab-label:active {
-  color: #555;
-}
-
-/* Move entire folder row including the tab on hover */
-.file-tab-row:hover {
-  /* transform: translateY(-10px); */
-  /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); */
-  /* transition: transform 0.2s ease, box-shadow 0.2s ease; */
-  transform: translateY(-10px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* 👈 stronger shadow on lift */
-}
-
-/* Mobile: scale layout down */
-@media (max-width: 720px) {
-  .tab-label {
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
-  
-  }
-
-  .tab-label.second  { left: 25%; }
-  .tab-label.third   { left: 55%; }
-}
-
-
-.tab-label a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  color: inherit;
-  text-decoration: none;
-}
 
 
 

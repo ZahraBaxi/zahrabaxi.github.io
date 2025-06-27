@@ -1,27 +1,3 @@
-document.querySelectorAll('.tab-label').forEach(tab => {
-  tab.addEventListener('click', e => {
-    e.preventDefault(); // prevent default link behavior if needed
-
-    const newBg = tab.getAttribute('data-bg');
-    const contentArea = document.getElementById('content-area');
-
-    if (contentArea) {
-      contentArea.style.backgroundColor = newBg;
-    }
-
-    // Optionally, update active tab styles
-    document.querySelectorAll('.tab-label').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-  });
-});
-
-
-
-
-
-
-
-
 function showOverlay() {
     document.getElementById('site-overlay').classList.remove('hidden');
   }
@@ -99,5 +75,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-
