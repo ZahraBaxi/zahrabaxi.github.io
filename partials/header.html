@@ -15,10 +15,9 @@
   }
 
     a:hover .material-symbols-outlined {
-    color: #97ad6d; /* change this to any hover color you want */
+    color: white; /* change this to any hover color you want */
   }
 </style>
-
 <header>
 
 
@@ -27,17 +26,32 @@
     <img src="images/header-icon.png" alt="Zahra Baxi logo" class="header-icon" />
     <h1>Zahra Baxi</h1>
   </div>
-  <nav class="main-nav">
-    <ul>
-      <li><a href="index.html">Portfolio</a></li>
-      <li><a href="art.html">Art/Photography</a></li>
-      <li>
-      <a href="https://trinketsbypickles.com" target="_blank" rel="noopener">
-        Trinkets by Pickles
-        <span class="material-symbols-outlined">open_in_new</span>
-      </a>
-      </li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
-</header>
+  
+
+<section class="tab-stack">
+
+  <div class="file-tab-row" style="--tab-bg: #bea633;">
+    <div class="tab-label-container">
+      <a href="index.html" class="tab-label first" data-bg="#bea633">portfolio</a>
+    </div>
+  </div>
+
+  <div class="file-tab-row" style="--tab-bg: #ebb8b4;">
+    <div class="tab-label-container">
+      <a href="art.html" class="tab-label second" data-bg="#ebb8b4">art & photography</a>
+    </div>
+  </div>
+
+  <div class="file-tab-row" style="--tab-bg: #dee4e8;">
+    <div class="tab-label-container">
+      <a href="https://trinketsbypickles.com" target="_blank" rel="noopener" class="tab-label third" data-bg="#dee4e8">trinkets by pickles<span class="material-symbols-outlined">open_in_new</span></a>
+    </div>
+  </div>
+
+  <div class="file-tab-row" style="--tab-bg: #ce6732;">
+    <div class="tab-label-container">
+      <a href="about.html" class="tab-label fourth" data-bg="#ce6732">about</a>
+    </div>
+  </div>
+
+</section>
