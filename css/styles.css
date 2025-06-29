@@ -17,7 +17,7 @@
   --willow-fog: #ABB1AA;     
   --terracotta-rose: #B67B5C;
   --olive-seed: #A99F57;   
-  --lavender: #958BA3;
+  --lavender: #A39EB2;
 }
 
 @font-face {
@@ -52,19 +52,6 @@
 
 
 /* BASE TYPOGRAPHY AND LAYOUT */
-body::before {
-  content: "";
-  pointer-events: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: url('../images/grain.png') repeat;
-  opacity: 1; /* adjust to your taste */
-  z-index: 1;
-}
-
 html, body {
   height: 100%;
   margin: 0;
@@ -74,7 +61,9 @@ html, body {
 
 body {
   font-family: 'MyMainFont';
-  background: var(--linen);
+  background: 
+    url('../images/grain.png') repeat
+    var(--linen);
   color: var(--charcoal);
   line-height: 1.6;
   min-height: 100vh;
@@ -501,7 +490,7 @@ border-radius: 300px 300px 0px 0px;
   width: 40px;
   height: 40px;
   background-color: var(--linen);
-  color: var(--about);
+  color: var(--olive-seed);
   border-radius: 50%;
   text-align: center;
   line-height: 40px;
@@ -511,7 +500,7 @@ border-radius: 300px 300px 0px 0px;
 .socialmedia a:hover {
   width: 40px;
   height: 40px;
-  background-color: var(--about);
+  background-color: var(--olive-seed);
   color: var(--linen);
   border-radius: 50%;
   text-align: center;
@@ -944,3 +933,5 @@ footer {
   color: var(--olive-bark);
   /* width: 100%; */
 }
+
+
