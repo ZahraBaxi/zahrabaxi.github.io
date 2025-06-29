@@ -75,46 +75,54 @@ body.fade-out {
   border-radius: 2rem;
   position: relative;
   z-index: 3;
-  padding: 1rem;
+  padding: 0.5rem;
   /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); */
 }
 
 .homebox{
-  margin: 2rem;
+  margin-top: 2rem;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
   background-color: var(--home);
   border-radius: 2rem;
   position: relative;
   z-index: 3;
-  padding: 1rem;
+  padding: 0.5rem;
   /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); */
 }
 
 .aboutbox{
-  margin: 2rem;
+  margin-top: 2rem;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
   background-color: var(--about);
   border-radius: 2rem;
   position: relative;
   z-index: 3;
-  padding: 1rem;
+  padding: 0.5rem;
   /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); */
 }
 
 .portfoliobox {
-  margin: 2rem;
+  margin-top: 2rem;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
   background-color: var(--portfolio);
   border-radius: 2rem;
   position: relative;
   z-index: 3;
-  padding: 1rem;
+  padding: 0.5rem;
   /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); */
 }
 .artbox{
-  margin: 2rem;
+  margin-top: 2rem;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
   background-color: var(--art);
   border-radius: 2rem;
   position: relative;
   z-index: 3;
-  padding: 1rem;
+  padding: 0.5rem;
   /* box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); */
 }
 
