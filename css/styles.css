@@ -70,7 +70,9 @@ body.fade-out {
 }
 
 .itembox{
-  margin: 2rem;
+  margin-top: 2rem;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
   background-color: var(--offbeige);
   border-radius: 2rem;
   position: relative;
