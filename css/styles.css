@@ -52,6 +52,19 @@
 
 
 /* BASE TYPOGRAPHY AND LAYOUT */
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('../images/grain.png') repeat;
+  opacity: 1; /* adjust to your taste */
+  z-index: 1;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -70,6 +83,8 @@ body {
   opacity: 1;
   transition: opacity 0.4s ease;
 }
+
+
 
 body.fade-out {
   opacity: 0;
