@@ -16,7 +16,8 @@
   --lichen: #BAB9A4;        
   --willow-fog: #ABB1AA;     
   --terracotta-rose: #B67B5C;
-  --olive-seed: #A99F57;     
+  --olive-seed: #A99F57;   
+  --lavender: #958BA3;
 }
 
 @font-face {
@@ -775,11 +776,11 @@ border-radius: 300px 300px 0px 0px;
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--linen);
-  color: var(--olive-bark);
+  background: var(--lavender);
+  color: var(--linen);
   width: 20rem;
   padding: 1rem 1rem;
-  border: 1px solid var(--olive-bark);
+  border: 1px solid var(--linen);
   border-radius: 0.5rem;
   font-size: 0.85rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
