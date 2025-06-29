@@ -2,18 +2,23 @@
 
 /* ROOT VARIABLE & FONTS */
 :root {
-  --beige: #f4f1e9;
-  --hometext: #38342B;
-  --offbeige: #ddd4c8;
-  --green: #857E48;
-  --greenhov: #A79F61;
-  --text-dark: #38342B;
-  --home:#a6a77e;
-  --portfolio:#BAB9A4;
-  --art:#ABB1AA;
-  --trinket:#B67B5C;
-  --about:#A99F57;
+  /* main colors */
+  --linen: #f4f1e9;     
+  --clay: #ddd4c8;      
+  --charcoal: #38342B; 
+
+  /* links and descriptions */
+  --olive-bark: #857E48;    
+  --sunlit-moss: #A79F61;  
+
+  /* tab colors */
+  --sage-dust: #a6a77e;      
+  --lichen: #BAB9A4;        
+  --willow-fog: #ABB1AA;     
+  --terracotta-rose: #B67B5C;
+  --olive-seed: #A99F57;     
 }
+
 @font-face {
     font-family: 'MyDisplayFont';
     src: url('../fonts/futura\ medium\ bt.ttf') format('opentype');
@@ -55,8 +60,8 @@ html, body {
 
 body {
   font-family: 'MyMainFont';
-  background: var(--beige);
-  color: var(--text-dark);
+  background: var(--linen);
+  color: var(--charcoal);
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
@@ -73,7 +78,7 @@ body.fade-out {
   margin-top: 2rem;
   margin-left: 0.8rem;
   margin-right: 0.8rem;
-  background-color: var(--offbeige);
+  background-color: var(--clay);
   border-radius: 2rem;
   position: relative;
   z-index: 3;
@@ -85,7 +90,7 @@ body.fade-out {
   margin-top: 2rem;
   margin-left: 0.8rem;
   margin-right: 0.8rem;
-  background-color: var(--home);
+  background-color: var(--sage-dust);
   border-radius: 2rem;
   position: relative;
   z-index: 3;
@@ -97,7 +102,7 @@ body.fade-out {
   margin-top: 2rem;
   margin-left: 0.8rem;
   margin-right: 0.8rem;
-  background-color: var(--about);
+  background-color: var(--olive-seed);
   border-radius: 2rem;
   position: relative;
   z-index: 3;
@@ -109,7 +114,7 @@ body.fade-out {
   margin-top: 2rem;
   margin-left: 0.8rem;
   margin-right: 0.8rem;
-  background-color: var(--portfolio);
+  background-color: var(--lichen);
   border-radius: 2rem;
   position: relative;
   z-index: 3;
@@ -120,7 +125,7 @@ body.fade-out {
   margin-top: 2rem;
   margin-left: 0.8rem;
   margin-right: 0.8rem;
-  background-color: var(--art);
+  background-color: var(--willow-fog);
   border-radius: 2rem;
   position: relative;
   z-index: 3;
@@ -129,7 +134,7 @@ body.fade-out {
 }
 
 header {
-  background: var(--beige);
+  background: var(--linen);
   margin-top: 10px;
   /* padding: 4rem 1rem; */
   position: sticky;
@@ -154,7 +159,7 @@ header {
   font-weight: 800;
   font-size: 1.8rem;
   letter-spacing: 0.2em;
-  color: var(--text-dark); 
+  color: var(--charcoal); 
 }
 
 h1{
@@ -175,13 +180,13 @@ p {
 }
 
 a {
-  color: var(--green);
+  color: var(--olive-bark);
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
-  color: var(--greenhov); 
+  color: var(--sunlit-moss); 
 }
 
 img {
@@ -190,7 +195,7 @@ img {
 }
 
 .project-description a:hover{
-  color: var(--greenhov);
+  color: var(--sunlit-moss);
 }
 
 
@@ -212,11 +217,11 @@ img {
 }
 
 .tab-label {
-  background-color: var(--tab-bg, var(--beige));
+  background-color: var(--tab-bg, var(--linen));
   border-radius: 1rem 1rem 0 0;
   font-weight: bold;
   text-decoration: none;
-  color: var(--text-dark);
+  color: var(--charcoal);
   transition: transform 0.2s ease;
   padding: 0.8rem 4rem;
   font-size: 1rem;
@@ -228,12 +233,12 @@ img {
 .tab-label:hover {
   transform: translateY(-10px);
   z-index: 3;
-  color: var(--beige);
+  color: var(--linen);
 }
 
 .tab-label.active {
   background-color: var(--tab-bg) !important;
-  color: var(--beige);
+  color: var(--linen);
   z-index: 4;
 }
 
@@ -280,12 +285,12 @@ img {
   .hamburger {
     display: block;
     background: var(--o);
-    color: var(--text-dark);
+    color: var(--charcoal);
     font-size: 1.5rem;
     font-weight: bold;
     padding: 0.6rem 1rem;
     margin: 1rem auto;
-    border: 2px solid var(--offbeige);
+    border: 2px solid var(--clay);
     border-radius: 1rem;
     cursor: pointer;
     z-index: 100;
@@ -295,7 +300,7 @@ img {
     display: none;
     flex-direction: column;
     align-items: center;
-    background-color: var(--beige);
+    background-color: var(--linen);
     padding: 1rem;
     margin: 0 1rem;
     border-radius: 1rem;
@@ -330,7 +335,7 @@ img {
   font-size: 1.25rem; /* try 2rem or higher for bigger text */
   line-height: 1.4;
   font-weight: 400;
-  color: var(--hometext); /* soft black */
+  color: var(--charcoal); /* soft black */
 }
 
 .object-grid {
@@ -347,49 +352,52 @@ img {
   text-align: center;
   margin: 4rem 2rem;
 }
-
 .object-grid-title {
-  color: var(--hometext);
+  color: var(--charcoal);
   font-size: 1.4rem;
   font-weight: bold;
   /* margin-bottom: 0.5rem; */
 }
 
 .object-grid-description {
-  color: var(--hometext);
+  color: var(--charcoal);
   font-size: 1.25rem;
   /* margin-bottom: 2rem; */
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
-
 .object-item {
+  display: inline-block;
   text-align: center;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .object-item img {
   width: 12rem;
   height: auto;
-  justify-content: center;
-  align-items: center;
   border-radius: 12px;
-  /* box-shadow: 0 3px 8px rgba(0,0,0,0.05); */
   transition: transform 0.2s ease;
 }
 
-.object-item img:hover {
+.object-item:hover img {
   transform: scale(1.05);
 }
 
 .object-item p {
   font-family: "MyMainFont";
-  padding-bottom: 1rem;;
   margin-top: 0.5rem;
+  padding-bottom: 1rem;
   font-size: 1rem;
-  color: var(--hometext);
-  letter-spacing: 0.5px;
+  color: var(--charcoal);
+  transition: color 0.2s ease;
 }
+
+.object-item:hover p {
+  color: var(--linen);
+}
+
 
 @keyframes shake {
   0% { transform: rotate(0deg); }
@@ -417,7 +425,7 @@ img {
 
 .project-description ul li::before {
   content: "⁕ "; /* ✦or use ✿, ❀, ⭑, etc. */
-  color: var(--green); /* soft red for branding */
+  color: var(--olive-bark); /* soft red for branding */
   
   margin-right: 0.3em;
 }
@@ -476,7 +484,7 @@ border-radius: 300px 300px 0px 0px;
 .socialmedia a {
   width: 40px;
   height: 40px;
-  background-color: var(--beige);
+  background-color: var(--linen);
   color: var(--about);
   border-radius: 50%;
   text-align: center;
@@ -488,7 +496,7 @@ border-radius: 300px 300px 0px 0px;
   width: 40px;
   height: 40px;
   background-color: var(--about);
-  color: var(--beige);
+  color: var(--linen);
   border-radius: 50%;
   text-align: center;
   line-height: 40px;
@@ -607,16 +615,16 @@ border-radius: 300px 300px 0px 0px;
   font-size: 1.3rem;
   font-weight: 700;
   margin: 0 0 0.2rem 0;
-  color: var(--text-dark);
+  color: var(--charcoal);
 }
 
 .gallery-text p {
   font-size: 1rem;
-  color: var(--text-dark);
+  color: var(--charcoal);
 }
 
 .gallery-text h3 :hover{
-  color: var(--beige);
+  color: var(--linen);
 }
 
 @media (max-width: 900px) {
@@ -660,21 +668,21 @@ border-radius: 300px 300px 0px 0px;
 }
 
 .gallery-item:hover{
-  color: var(--beige);
+  color: var(--linen);
 }
 
 .tooltip-container {
   position: relative;
   cursor: help;
   display: inline-block;
-  border-bottom: 2px dotted var(--text-dark); /* optional: subtle visual cue */
+  border-bottom: 2px dotted var(--charcoal); /* optional: subtle visual cue */
 }
 
 .tooltip-container .tooltip {
   visibility: hidden;
   opacity: 0;
-  background-color: var(--text-dark);
-  color: var(--beige);
+  background-color: var(--charcoal);
+  color: var(--linen);
   text-align: left;
   border-radius: 6px;
   padding: 6px 10px;
@@ -705,7 +713,7 @@ border-radius: 300px 300px 0px 0px;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--beige); /* light beige w/ transparency */
+  background-color: var(--linen); /* light beige w/ transparency */
   z-index: 9999;
   display: flex;
   justify-content: center;
@@ -723,8 +731,8 @@ border-radius: 300px 300px 0px 0px;
 
 /* Inner content */
 .overlay-content {
-  background: var(--beige);
-  border: 2px dashed var(--green);
+  background: var(--linen);
+  border: 2px dashed var(--olive-bark);
   padding: 2rem 3rem;
   border-radius: 12px;
   max-width: 400px;
@@ -736,8 +744,8 @@ border-radius: 300px 300px 0px 0px;
   margin-top: 2rem;
   /* margin-bottom: 1rem; */
   background: none;
-  border: 1px solid var(--green);
-  color: var(--text-dark);
+  border: 1px solid var(--olive-bark);
+  color: var(--charcoal);
   padding: 0.5rem 1rem;
   cursor: pointer;
   border-radius: 6px;
@@ -746,18 +754,18 @@ border-radius: 300px 300px 0px 0px;
 }
 
 .overlay-close:hover {
-  background: var(--green);
-  color: var(--beige);
+  background: var(--olive-bark);
+  color: var(--linen);
 }
 .overlay-content h2 {
   font-size: 1.5rem;
-  color: var(--text-dark);
+  color: var(--charcoal);
   margin-bottom: 0.75rem;
 }
 
 .overlay-content p {
   font-size: 1rem;
-  color: var(--text-dark);
+  color: var(--charcoal);
 }
 
 
@@ -767,11 +775,11 @@ border-radius: 300px 300px 0px 0px;
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--beige);
-  color: var(--green);
+  background: var(--linen);
+  color: var(--olive-bark);
   width: 20rem;
   padding: 1rem 1rem;
-  border: 1px solid var(--green);
+  border: 1px solid var(--olive-bark);
   border-radius: 0.5rem;
   font-size: 0.85rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -798,9 +806,9 @@ border-radius: 300px 300px 0px 0px;
 .floating-buttons button {
   width: 2.75rem;
   height: 2.75rem;
-  background: var(--beige);
-  color: var(--green);
-  border: 2px solid var(--green);
+  background: var(--linen);
+  color: var(--olive-bark);
+  border: 2px solid var(--olive-bark);
   border-radius: 9999px;
   font-family: 'Futura', sans-serif;
   font-size: 1.5rem;
@@ -841,7 +849,7 @@ border-radius: 300px 300px 0px 0px;
 
 .gallery-prompt {
   font-style: italic;
-  color: var(--green); 
+  color: var(--olive-bark); 
   font-weight: 500;
   margin-bottom: 0.5rem;
   text-align: center;
@@ -850,16 +858,16 @@ border-radius: 300px 300px 0px 0px;
 
 /* Change the background of the lightbox overlay */
 .lg-backdrop {
-  background-color: var(--beige) !important; /* darker overlay */
+  background-color: var(--linen) !important; /* darker overlay */
 }
 
 /* Change the color of the "1/16" counter text */
 .lg-counter {
-  color: var(--green) !important; 
+  color: var(--olive-bark) !important; 
 }
 
 .lg-sub-html {
-  color: var(--green) !important; 
+  color: var(--olive-bark) !important; 
   font-weight: 400;           /* optional: make it stand out more */
   font-family: "MyMainFont"; /* optional: match your site font */
   text-align: center;         /* center align caption */
@@ -869,30 +877,30 @@ border-radius: 300px 300px 0px 0px;
   font-size: 1rem; /* or try 0.9rem for slightly smaller */
   line-height: 1.4;
   font-family: "MyMainFont", sans-serif;
-  color: var(--green);
+  color: var(--olive-bark);
   text-align: center;
 }
 
 /* Change the background and color of the toolbar */
 .lg-toolbar {
-  background-color: var(--beige) !important;
-  color: var(--beige) !important;
+  background-color: var(--linen) !important;
+  color: var(--linen) !important;
 }
 
 /* Change color of icons/buttons */
 .lg-icon {
   background-color: transparent !important;
-  color: var(--green) !important;
+  color: var(--olive-bark) !important;
 }
 
 /* Change color of close button on hover */
 .lg-close:hover {
-  color: var(--green) !important;
+  color: var(--olive-bark) !important;
 }
 
 /* Customize the pager dots */
 .lg-pager .lg-pager-item.active {
-  background-color: var(--green) !important;
+  background-color: var(--olive-bark) !important;
 }
 
 
@@ -917,6 +925,6 @@ footer {
   padding: 1rem;
   text-align: center;
   font-size: 0.9rem;
-  color: var(--green);
+  color: var(--olive-bark);
   /* width: 100%; */
 }
