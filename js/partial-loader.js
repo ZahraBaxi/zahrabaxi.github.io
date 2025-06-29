@@ -27,3 +27,18 @@ function highlightActiveLink() {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const currentPage = document.body.dataset.page;
+  const tabs = document.querySelectorAll(".tab-label");
+
+  tabs.forEach(tab => {
+    if (tab.dataset.page === currentPage) {
+      tab.classList.add("active");
+      document.querySelector(".tab-content")?.style.setProperty(
+        "background-color",
+        tab.dataset.bg
+      );
+    }
+  });
+});

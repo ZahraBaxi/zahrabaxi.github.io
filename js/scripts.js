@@ -75,3 +75,98 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Wait for the header partial to load if it's inserted dynamically
+  const waitForTabs = () => {
+    const tabs = document.querySelectorAll(".tab-label");
+    if (tabs.length === 0) {
+      setTimeout(waitForTabs, 50);
+      return;
+    }
+
+    const currentPage = document.body.getAttribute("data-page");
+    tabs.forEach(tab => {
+      const tabHref = tab.getAttribute("href");
+      const tabPage = tabHref.replace(".html", "").split("/").pop();
+
+      if (tabPage === currentPage) {
+        tab.classList.add("active");
+
+        // Change the background of the main content area
+        const tabColor = tab.dataset.bg;
+        const contentArea = document.querySelector("#content-area");
+        if (contentArea && tabColor) {
+          contentArea.style.backgroundColor = tabColor;
+        }
+      }
+    });
+
+    // Also: make external links open in new tab
+    tabs.forEach(tab => {
+      const href = tab.getAttribute("href");
+      if (href && href.startsWith("http")) {
+        tab.setAttribute("target", "_blank");
+        tab.setAttribute("rel", "noopener noreferrer");
+      }
+    });
+  };
+
+  waitForTabs();
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const tabs = document.querySelectorAll(".tab-label");
+  const currentPage = document.body.getAttribute("data-page");
+
+  tabs.forEach((tab) => {
+    const href = tab.getAttribute("href");
+    const bgColor = tab.getAttribute("data-bg");
+
+    // Mark tab active if URL includes its name
+    if (href.includes(currentPage)) {
+      tab.classList.add("active");
+
+      // Change body background
+      document.body.style.backgroundColor = bgColor;
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const page = document.body.getAttribute("data-page");
+  const tabs = document.querySelectorAll(".tab-label");
+  const content = document.querySelector(".tab-content");
+
+  tabs.forEach(tab => {
+    const tabPage = tab.getAttribute("data-page");
+    const bgColor = tab.getAttribute("data-bg");
+
+    if (tabPage === page) {
+      tab.classList.add("active");
+
+      if (content && bgColor) {
+        content.style.backgroundColor = bgColor;
+      }
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Wait for header partial to load first
+  const headerInterval = setInterval(() => {
+    const hamburger = document.getElementById("hamburgerBtn");
+    const nav = document.getElementById("mobileNav");
+
+    if (hamburger && nav) {
+      hamburger.addEventListener("click", () => {
+        nav.classList.toggle("show");
+      });
+      clearInterval(headerInterval); // Stop checking once found
+    }
+  }, 100); // check every 100ms until partial is loaded
+});
