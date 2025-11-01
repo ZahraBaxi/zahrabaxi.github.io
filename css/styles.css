@@ -1,6 +1,6 @@
-/* styles.css */
-
-/* ROOT VARIABLE & FONTS */
+/* =========================
+   ROOT VARIABLES & FONTS
+========================= */
 :root {
   /* main colors */
   --linen: #f4f1e9;     
@@ -21,55 +21,43 @@
 }
 
 @font-face {
-    font-family: 'MyDisplayFont';
-    src: url('../fonts/futura\ medium\ bt.ttf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'MyDisplayFont';
+  src: url('../fonts/futura medium bt.ttf') format('opentype');
 }
+
 @font-face {
-    font-family: 'MyMainFont';
-    src: url('../fonts/Futura\ Book\ font.ttf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'MyMainFont';
+  src: url('../fonts/Futura Book font.ttf') format('opentype');
+  font-weight: normal;
 }
+
 @font-face {
-    font-family: 'MyMainFont';
-    src: url('../fonts/futura\ medium\ bt.ttf') format('opentype');
-    font-weight: bold;
-    font-style: normal;
+  font-family: 'MyMainFont';
+  src: url('../fonts/futura medium bt.ttf') format('opentype');
+  font-weight: bold;
 }
 
-
-
-/* GLOBAL RESET */
+/* =========================
+   GLOBAL RESET & TYPOGRAPHY
+========================= */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  
 }
 
-
-
-/* BASE TYPOGRAPHY AND LAYOUT */
 html, body {
   height: 100%;
-  margin: 0;
   display: flex;
   flex-direction: column;
+  font-family: 'MyMainFont', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
 body {
-  font-family: 'MyMainFont';
-  background: 
-    url('../images/grain.png') repeat
-    var(--linen);
+  background: url('../images/grain.png') repeat var(--linen);
   color: var(--charcoal);
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  opacity: 1;
   transition: opacity 0.4s ease;
 }
 
@@ -77,60 +65,78 @@ body.fade-out {
   opacity: 0;
 }
 
-.itembox{
-  margin-top: 2rem;
-  margin-left: 0.8rem;
-  margin-right: 0.8rem;
-  background-color: var(--clay);
+h1 { font-size: 1.9rem; line-height: 1.5; white-space: pre-wrap; }
+p  { font-size: 1.1rem; line-height: 1.5; white-space: pre-wrap; }
+
+a {
+  color: var(--olive-bark);
+  text-decoration: none;
+  font-weight: bold;
+}
+a:hover { color: var(--sunlit-moss); }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.components-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem; /* space between components */
+}
+
+.component {
+  text-align: center;
+}
+
+.component-pair {
+  display: inline-flex; /* images side by side */
+  gap: 0; /* no gap if you want them tight */
+  justify-content: center;
+  align-items: center;
+}
+
+.component img {
+  display: block;
+}
+
+.component figcaption {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: var(--charcoal);
+}
+
+
+/* =========================
+   BOX STYLES (ITEM/HOME/ABOUT)
+   Consolidated repetitive styles
+========================= */
+.itembox, .homebox, .aboutbox, .portfoliobox, .artbox {
+  margin: 2rem 0.8rem 0 0.8rem;
   border-radius: 2rem;
   position: relative;
   z-index: 3;
   padding: 0.5rem;
 }
 
-.homebox{
-  margin-top: 2rem;
-  margin-left: 0.8rem;
-  margin-right: 0.8rem;
-  background-color: var(--sage-dust);
-  border-radius: 2rem;
-  position: relative;
-  z-index: 3;
-  padding: 0.5rem;
-}
+.itembox { background-color: var(--clay); }
+.homebox { background-color: var(--sage-dust); }
+.aboutbox { background-color: var(--olive-seed); }
+.portfoliobox { background-color: var(--lichen); }
+.artbox { background-color: var(--willow-fog); }
 
-.aboutbox{
-  margin-top: 2rem;
-  margin-left: 0.8rem;
-  margin-right: 0.8rem;
-  background-color: var(--olive-seed);
-  border-radius: 2rem;
-  position: relative;
-  z-index: 3;
-  padding: 0.5rem;
-}
-
-.portfoliobox {
-  margin-top: 2rem;
-  margin-left: 0.8rem;
-  margin-right: 0.8rem;
-  background-color: var(--lichen);
-  border-radius: 2rem;
-  position: relative;
-  z-index: 3;
-  padding: 0.5rem;
-}
-.artbox{
-  margin-top: 2rem;
-  margin-left: 0.8rem;
-  margin-right: 0.8rem;
-  background-color: var(--willow-fog);
-  border-radius: 2rem;
-  position: relative;
-  z-index: 3;
-  padding: 0.5rem;
-}
-
+/* =========================
+   HEADER & NAVIGATION
+========================= */
 header {
   background: var(--linen);
   margin-top: 10px;
@@ -139,15 +145,12 @@ header {
   z-index: 100;
 }
 
-.header{
-  padding-top: 2rem;
-}
+.header { padding-top: 2rem; }
 
 .header-icon {
   display: block;
   margin: 0 auto 0.5rem auto;
   max-height: 7rem;
-  width: auto;
 }
 
 .site-name {
@@ -161,56 +164,15 @@ header {
 
 main {
   flex: 1;
-  flex-grow: 1;
   padding: 2rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
 
-h1{
-  font-size: 1.9rem;
-    line-height: 1.5;
-  white-space: pre-wrap;
-}
-p {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  white-space: pre-wrap;
-}
-
-.center{
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-a {
-  color: var(--olive-bark);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-a:hover {
-  color: var(--sunlit-moss); 
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-.project-description a:hover{
-  color: var(--sunlit-moss);
-}
-
-
-
-/* HEADER / NAV */
-.hamburger {
-  display: none;
-}
-
+/* =========================
+   TABS
+========================= */
 .tab-bar {
   display: flex;
   flex-wrap: wrap;
@@ -233,7 +195,7 @@ img {
   font-size: 1rem;
   position: relative;
   z-index: 2;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
 }
 
 .tab-label:hover {
@@ -248,47 +210,17 @@ img {
   z-index: 4;
 }
 
- @media (max-width: 1300px) {
-  .tab-bar {
-  gap: 0.8rem;
-  }
-  .tab-label {
-    border-radius: 0.5rem 0.5rem 0 0;
-    padding: 0.8rem 3rem;
-    font-size: 1rem;
-  }
-}
+/* Media queries consolidated and simplified */
+@media (max-width: 1300px) { .tab-bar { gap: 0.8rem; } }
+@media (max-width: 1050px) { .tab-label { padding: 0.8rem 2-3rem; } }
+@media (max-width: 900px)  { .tab-label { padding: 0.8rem 1.8rem; font-size: 0.9rem; } }
 
- @media (max-width: 1050px) {
-  .tab-bar {
-  gap: 0.8rem;
-  }
-  .tab-label {
-    border-radius: 0.5rem 0.5rem 0 0;
-    padding: 0.8rem 2rem;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 900px) {
-    .tab-bar {
-  gap: 0.3rem;
-  }
-  .tab-label {
-    border-radius: 0.5rem 0.5rem 0 0;
-    padding: 0.8rem 1.8rem;
-    font-size: 0.9rem;
-  }
-}
-
-.mobile-tab-dropdown {
-  display: none;
-}
-
-@media screen and (max-width: 768px) {
+/* Mobile hamburger menu */
+.hamburger { display: none; }
+@media (max-width: 768px) {
   .hamburger {
     display: block;
-    background: var(--o);
+    background: var(--linen);
     color: var(--charcoal);
     font-size: 1.5rem;
     font-weight: bold;
@@ -300,46 +232,21 @@ img {
     z-index: 100;
   }
 
-  .tab-bar {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    background-color: var(--linen);
-    padding: 1rem;
-    margin: 0 1rem;
-    border-radius: 1rem;
-  }
-
-  .tab-bar.show {
-    display: flex;
-  }
-
-  .tab-label {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-    font-size: 1rem;
-    margin: 0.25rem 0;
-    border-radius: 0.8rem;
-  }
+  .tab-bar { display: none; flex-direction: column; align-items: center; background-color: var(--linen); padding: 1rem; margin: 0 1rem; border-radius: 1rem; }
+  .tab-bar.show { display: flex; }
+  .tab-label { width: 100%; text-align: center; margin: 0.25rem 0; border-radius: 0.8rem; padding: 1rem; font-size: 1rem; }
 }
 
-/* HOME PAGE */
+/* =========================
+   HOME PAGE
+========================= */
 #about-me {
   text-align: center;
   max-width: 800px;   
   margin: 0 auto 2rem auto;  
   padding: 0 1rem;  
 }
-
-#about-me p {
-  font-family: 'MyMainFont';
-  font-size: 1.25rem; 
-  line-height: 1.4;
-  font-weight: 400;
-  color: var(--charcoal);
-}
+#about-me p { font-size: 1.25rem; line-height: 1.4; font-weight: 400; color: var(--charcoal); }
 
 .object-grid {
   display: grid;
@@ -350,54 +257,21 @@ img {
   justify-items: center;
   align-items: start;
 }
-.object-grid-section {
-  text-align: center;
-  margin: 4rem 2rem;
-}
-.object-grid-title {
-  color: var(--charcoal);
-  font-size: 1.4rem;
-  font-weight: bold;
-}
+.object-grid-section { text-align: center; margin: 4rem 2rem; }
+.object-grid-title { font-size: 1.4rem; font-weight: bold; color: var(--charcoal); }
+.object-grid-description { font-size: 1.25rem; max-width: 600px; margin: 0 auto; color: var(--charcoal); }
 
-.object-grid-description {
-  color: var(--charcoal);
-  font-size: 1.25rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
 .object-item {
   display: inline-block;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
-
-.object-item img {
-  width: 12rem;
-  height: auto;
-  border-radius: 12px;
-  transition: transform 0.2s ease;
-}
-
-.object-item:hover img {
-  transform: scale(1.05);
-}
-
-.object-item p {
-  font-family: "MyMainFont";
-  margin-top: 0.5rem;
-  padding-bottom: 1rem;
-  font-size: 1rem;
-  color: var(--charcoal);
-  transition: color 0.2s ease;
-}
-
-.object-item:hover p {
-  color: var(--linen);
-}
-
+.object-item img { width: 12rem; border-radius: 12px; }
+.object-item img:hover { transform: scale(1.05); animation: shake 0.5s ease; }
+.object-item p { margin-top: 0.5rem; font-size: 1rem; color: var(--charcoal); }
+.object-item:hover p { color: var(--linen); }
 
 @keyframes shake {
   0% { transform: rotate(0deg); }
@@ -408,71 +282,36 @@ img {
   100% { transform: rotate(0deg); }
 }
 
-.object-item img:hover {
-  animation: shake 0.5s ease;
-  cursor: pointer;
-}
-
-
-
-/* PROJECT PAGE */
-
+/* =========================
+   PROJECT PAGE
+========================= */
 .project-description ul {
   font-size: 1.1em;
   list-style: none;
   padding-left: 1.2em; 
 }
-
 .project-description ul li::before {
-  content: "⁕ "; /* ✦or use ✿, ❀, ⭑, etc. */
-  color: var(--olive-bark); 
+  content: "⁕ ";
+  color: var(--olive-bark);
   margin-right: 0.3em;
 }
 
-
-/* Mobile stacked nav */
-/* @media (max-width: 600px) {
-  .nav-list {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-  }
-  
-} */
-
-
-
-/* ABOUT PAGE */
-.about-container {
-  padding-top: 2rem;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.about-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.about-photo {
-  padding-top: 1.5rem;
-  width: 100%;
-  max-width: 450px;
-border-radius: 300px 300px 0px 0px;
-  padding-bottom: 2rem;
-}
+/* =========================
+   ABOUT PAGE
+========================= */
+.about-container { padding-top: 2rem; max-width: 1000px; margin: 0 auto; }
+.about-grid { display: flex; flex-direction: column; gap: 2rem; }
+.about-photo { width: 100%; max-width: 450px; border-radius: 300px 300px 0 0; padding-top: 1.5rem; padding-bottom: 2rem; }
+.about-right h2 { font-size: 1.6rem; margin-bottom: 1rem; }
+.about-right p { font-size: 1.1rem; line-height: 1.6; }
 
 .socialmedia {
-  margin-top: 1rem;
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
 }
-
 .socialmedia a {
-  width: 40px;
-  height: 40px;
+  width: 40px; height: 40px;
   background-color: var(--linen);
   color: var(--olive-seed);
   border-radius: 50%;
@@ -480,70 +319,30 @@ border-radius: 300px 300px 0px 0px;
   line-height: 40px;
   text-decoration: none;
   font-size: 20px;
+  transition: all 0.2s ease;
 }
-.socialmedia a:hover {
-  width: 40px;
-  height: 40px;
-  background-color: var(--olive-seed);
-  color: var(--linen);
-  border-radius: 50%;
-  text-align: center;
-  line-height: 40px;
-  text-decoration: none;
-  font-size: 20px;
-}
-
-.about-right h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-}
-
-.about-right p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
+.socialmedia a:hover { background-color: var(--olive-seed); color: var(--linen); }
 
 @media (min-width: 768px) {
-  .about-grid {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .about-left {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .about-right {
-    flex: 2;
-  }
-
-  /* On wide screens, push icons to bottom */
-  .socialmedia {
-    margin-top: auto;
-  }
+  .about-grid { flex-direction: row; align-items: flex-start; }
+  .about-left { flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
+  .about-right { flex: 2; }
+  .socialmedia { margin-top: auto; }
 }
-
 @media (max-width: 767px) {
-  .socialmedia {
-    margin-top: 1rem;
-    order: 2;
-  }
-
-  .about-left {
-    align-items: center;
-  }
+  .about-left { align-items: center; }
+  .socialmedia { margin-top: 1rem; order: 2; }
 }
 
+/* =========================
+   TOOLTIP
+========================= */
 .tooltip-container {
   position: relative;
   cursor: help;
   display: inline-block;
   border-bottom: 2px dotted var(--charcoal);
 }
-
 .tooltip-container .tooltip {
   visibility: hidden;
   opacity: 0;
@@ -564,127 +363,57 @@ border-radius: 300px 300px 0px 0px;
   pointer-events: none;
   transition: opacity 0.25s ease;
 }
-
 .tooltip-container:hover .tooltip {
   visibility: visible;
   opacity: 1;
 }
 
-
-/* PORTFOLIO AND PERSONAL WORK GALLERY */
+/* =========================
+   PORTFOLIO / GALLERY
+========================= */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 3rem;
 }
-
 .gallery-item {
   text-decoration: none;
   color: inherit;
   display: block;
   position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 1rem;
 }
-
 .gallery-item img {
   width: 100%;
-  height: auto;
-  border-radius: 15px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
+  border-radius: 15px;
   margin-bottom: 1rem;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
+.gallery-item:hover img { opacity: 0.9; }
+.gallery-item:hover { color: var(--linen); }
 
-.gallery-icon-wrapper {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin-right: 0.3em;
-}
-
+.gallery-icon-wrapper { display: inline-block; width: 1em; height: 1em; margin-right: 0.3em; }
 .gallery-icon {
-  width: 100%;
-  height: 100%;
-  transform-origin: center;
+  width: 100%; height: 100%; transform-origin: center;
   transition: transform 0.3s ease;
   display: block;
   position: relative;
-  top: 2px; 
+  top: 2px;
 }
+.gallery-item:hover .gallery-icon { animation: spin 3s linear infinite; }
 
-.gallery-item:hover .gallery-icon {
-  animation: spin 3s linear infinite;
-}
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-animation: spin 2s linear infinite;  /* dont delete lol, for some reason the bug makes things work */
-
-.gallery-text h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin: 0 0 0.2rem 0;
-  color: var(--charcoal);
-}
-.gallery-text p {
-  font-size: 1rem;
-  color: var(--charcoal);
-}
-
-.gallery-text h3 :hover{
-  color: var(--linen);
-}
-
-@media (max-width: 900px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.gallery-item {
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-  padding: 1rem
-}
-
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-  aspect-ratio: 3 / 3;
-  object-fit: cover;
-}
-
-.gallery-item img:hover {
-  opacity: 0.9;
-}
-
-.gallery-item:hover{
-  color: var(--linen);
-}
-
-
-
-/* OVERLAY */
-.overlay {
+/* =========================
+   OVERLAY
+========================= */
+.overlay, #site-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--linen); /* light beige w/ transparency */
-  z-index: 9999;
+  inset: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -692,11 +421,14 @@ animation: spin 2s linear infinite;  /* dont delete lol, for some reason the bug
   padding: 2rem;
   box-sizing: border-box;
   font-family: Futura, sans-serif;
+  background-color: var(--linen);
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.4s ease;
 }
 
-.overlay.hidden {
-  display: none;
-}
+.overlay.hidden, #site-overlay.hidden { display: none; }
+#site-overlay.fade-out { opacity: 0; }
 
 .overlay-content {
   background: var(--linen);
@@ -717,46 +449,14 @@ animation: spin 2s linear infinite;  /* dont delete lol, for some reason the bug
   font-size: 0.9rem;
   transition: background 0.2s;
 }
+.overlay-close:hover { background: var(--olive-bark); color: var(--linen); }
 
-.overlay-close:hover {
-  background: var(--olive-bark);
-  color: var(--linen);
-}
-.overlay-content h2 {
-  font-size: 1.5rem;
-  color: var(--charcoal);
-  margin-bottom: 0.75rem;
-}
+.overlay-content h2 { font-size: 1.5rem; color: var(--charcoal); margin-bottom: 0.75rem; }
+.overlay-content p { font-size: 1rem; color: var(--charcoal); }
 
-.overlay-content p {
-  font-size: 1rem;
-  color: var(--charcoal);
-}
-
-
-#site-overlay {
-  position: fixed;
-  inset: 0;
-  background: var(--linen);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  opacity: 1;
-  transition: opacity 0.4s ease;
-}
-
-#site-overlay.hidden {
-  display: none;
-}
-
-#site-overlay.fade-out {
-  opacity: 0;
-}
-
-
-
-/* TOAST - NOTIFICATION */
+/* =========================
+   TOAST NOTIFICATION
+========================= */
 .mobile-toast {
   display: none;
   position: fixed;
@@ -766,7 +466,7 @@ animation: spin 2s linear infinite;  /* dont delete lol, for some reason the bug
   background: var(--lavender);
   color: var(--linen);
   width: 20rem;
-  padding: 1rem 1rem;
+  padding: 1rem;
   border: 1px solid var(--linen);
   border-radius: 0.5rem;
   font-size: 0.85rem;
@@ -782,9 +482,9 @@ animation: spin 2s linear infinite;  /* dont delete lol, for some reason the bug
   100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
 }
 
-
-
-/* STICKY BUTTONS */
+/* =========================
+   STICKY BUTTONS
+========================= */
 .floating-buttons {
   position: fixed;
   bottom: 1.5rem;
@@ -793,7 +493,6 @@ animation: spin 2s linear infinite;  /* dont delete lol, for some reason the bug
   gap: 1rem;
   z-index: 1000;
 }
-
 .floating-buttons button {
   width: 2.75rem;
   height: 2.75rem;
@@ -810,16 +509,15 @@ animation: spin 2s linear infinite;  /* dont delete lol, for some reason the bug
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
 }
-
 .floating-buttons button:hover {
   background: white;
   opacity: 0.95;
   transform: translateY(-2px);
 }
 
-
-
-/* ZINE BOOKLET*/
+/* =========================
+   ZINE BOOKLET
+========================= */
 #zine-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -829,65 +527,13 @@ animation: spin 2s linear infinite;  /* dont delete lol, for some reason the bug
 }
 
 #zine-gallery a {
+  display: block;
   cursor: pointer;
   transition: transform 0.3s ease;
-  display: block;
 }
+#zine-gallery a:hover, #zine-gallery a:focus { transform: scale(1.05); outline: none; }
 
-#zine-gallery a:hover,
-#zine-gallery a:focus {
-  transform: scale(1.05);
-  outline: none;
-}
-
-.gallery-prompt {
-  font-style: italic;
-  color: var(--olive-bark); 
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  text-align: center;
-}
-
-.lg-backdrop {
-  background-color: var(--linen) !important; 
-}
-
-.lg-counter {
-  color: var(--olive-bark) !important; 
-}
-
-.lg-sub-html {
-  color: var(--olive-bark) !important; 
-  font-weight: 400;          
-  font-family: "MyMainFont"; 
-  text-align: center;
-}
-
-.lg-sub-html p {
-  font-size: 1rem; 
-  line-height: 1.4;
-  font-family: "MyMainFont", sans-serif;
-  color: var(--olive-bark);
-  text-align: center;
-}
-
-.lg-toolbar {
-  background-color: var(--linen) !important;
-  color: var(--linen) !important;
-}
-
-.lg-icon {
-  background-color: transparent !important;
-  color: var(--olive-bark) !important;
-}
-
-.lg-close:hover {
-  color: var(--olive-bark) !important;
-}
-
-.lg-pager .lg-pager-item.active {
-  background-color: var(--olive-bark) !important;
-}
+.gallery-prompt { font-style: italic; color: var(--olive-bark); font-weight: 500; margin-bottom: 0.5rem; text-align: center; }
 
 .zine-thumb {
   width: 220px !important;
@@ -898,14 +544,11 @@ animation: spin 2s linear infinite;  /* dont delete lol, for some reason the bug
   display: block;
   margin: 0 auto;
 }
+.zine-thumb:hover { transform: scale(1.03); }
 
-.zine-thumb:hover {
-  transform: scale(1.03);
-}
-
-
-
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 footer {
   background-color: transparent;
   padding: 1rem;
