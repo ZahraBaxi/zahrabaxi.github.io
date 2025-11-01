@@ -10,8 +10,8 @@
   <!-- <link rel="script" href="js/scripts.js" /> -->
 </head>
 
-<body data-page="index">
-  
+<body data-page="index" data-construction="true">
+
   <div id="header"></div>
     <section class="homebox">
       <main>
@@ -52,13 +52,16 @@
 
   <div id="footer"></div>
   
+
   <div id="site-overlay" class="overlay hidden" role="dialog" aria-live="polite">
-  <div class="overlay-content">
-    <h2>🚧 <br>Site Under Construction</h2>
-    <p>I'm currently making updates to this site. Pardon if things are wonky!</p>
-    <button onclick="hideOverlay()" class="overlay-close">Close</button>
+    <div class="overlay-content">
+      <h2>🚧 <br>Site Under Construction</h2>
+      <p>I'm currently making updates to this site. Pardon if things are wonky!</p>
+      <button id="closeOverlay" class="overlay-close">Close</button>
+    </div>
   </div>
-  </div>
+
+  
   <div class="floating-buttons">
     <!-- <button id="backBtn" aria-label="Back to portfolio page">←</button> -->
     <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>

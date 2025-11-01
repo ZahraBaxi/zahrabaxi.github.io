@@ -734,6 +734,27 @@ animation: spin 2s linear infinite;  /* dont delete lol, for some reason the bug
 }
 
 
+#site-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--linen);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+#site-overlay.hidden {
+  display: none;
+}
+
+#site-overlay.fade-out {
+  opacity: 0;
+}
+
+
 
 /* TOAST - NOTIFICATION */
 .mobile-toast {
