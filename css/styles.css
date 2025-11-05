@@ -608,6 +608,93 @@ main {
 }
 .zine-thumb:hover { transform: scale(1.03); }
 
+
+/* =========================
+   BUG
+========================= */
+.bug-container {
+  position: fixed;
+  bottom: 2rem; /* normal position when no other buttons */
+  right: 2rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  transition: bottom 0.3s ease;
+}
+
+#bugButton {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  color: var(--olive-bark);
+}
+
+#bugButton:hover {
+  transform: rotate(10deg) scale(1.2);
+}
+
+#bugPopup {
+  position: absolute;
+  bottom: 3rem;
+  right: 0;
+  background: var(--linen);
+  border: 2px solid var(--olive-bark);
+  border-radius: 1rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  padding: 1rem;
+  width: 240px;
+  animation: fadeIn 0.3s ease;
+  text-align: left;
+}
+
+#bugPopup::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  right: 20px;
+  border-width: 10px 10px 0 10px;
+  border-style: solid;
+  border-color: var(--olive-bark) transparent transparent transparent;
+}
+
+#bugPopup h3 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+#bugPopup p {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+#bugPopup a {
+  background-color: var(--olive-bark);
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+#bugPopup a:hover {
+  background-color: var(--sunlit-moss);
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
 /* =========================
    FOOTER
 ========================= */

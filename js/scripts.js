@@ -186,3 +186,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("beforeunload", destroyCurrent);
 });
+
+
+//bug
+const bugBtn = document.getElementById("bugButton");
+const bugPopup = document.getElementById("bugPopup");
+
+bugBtn.addEventListener("click", () => {
+  bugPopup.classList.toggle("hidden");
+});
+
+
+const bugContainer = document.querySelector('.bug-container');
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+if (bugContainer && scrollTopBtn) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // scroll button is visible
+        bugContainer.style.bottom = '5rem';
+      } else {
+        // scroll button hidden
+        bugContainer.style.bottom = '2rem';
+      }
+    });
+  }, { threshold: 0.1 }); // triggers when 10% of scrollTopBtn is visible
+
+  observer.observe(scrollTopBtn);
+}
+
+
+
