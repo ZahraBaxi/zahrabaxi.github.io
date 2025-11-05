@@ -285,16 +285,77 @@ main {
 /* =========================
    PROJECT PAGE
 ========================= */
+/* =========================
+   PROJECT DETAIL PAGE FIX
+========================= */
+.project-detail {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background-color: var(--clay);
+  border-radius: 1.5rem;
+}
+
+.project-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.project-description p {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--charcoal);
+  margin: 0 auto;
+  max-width: 750px;
+  text-align: left;
+}
+
 .project-description ul {
-  font-size: 1.1em;
-  list-style: none;
-  padding-left: 1.2em; 
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  max-width: 750px;
 }
-.project-description ul li::before {
-  content: "⁕ ";
+
+.project-description li {
+  margin-bottom: 0.5rem;
+}
+
+.project-description img {
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 8px;
+  /* box-shadow: 0 2px 6px rgba(0,0,0,0.15); */
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.project-description h3 {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.4rem;
   color: var(--olive-bark);
-  margin-right: 0.3em;
 }
+
+/* --- Responsive Fixes --- */
+@media (max-width: 768px) {
+  .project-detail {
+    padding: 1.5rem 1rem;
+  }
+  .project-description p, 
+  .project-description ul {
+    max-width: 100%;
+  }
+  .project-description img {
+    width: 100% !important;
+  }
+}
+
 
 /* =========================
    ABOUT PAGE
