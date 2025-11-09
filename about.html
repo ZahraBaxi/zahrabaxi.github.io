@@ -19,47 +19,70 @@
     <section class="about-grid">
       <!-- Left: image and social -->
       <div class="about-left">
-        <img src="images/ZahraBaxi.JPG" alt="Zahra Baxi" class="about-photo" />
+        <img src="images/ZahraBaxi.JPG" alt="Zahra Baxi" class="about-photo"/>
         <section class="socialmedia">
-          <a href="https://www.linkedin.com/in/zahrabaxi/" class="fa fa-linkedin"></a>
-          <a href="https://www.instagram.com/zahrabaxi/" class="fa fa-instagram"></a>
-          <a href="https://www.facebook.com/zahra.baxi" class="fa fa-facebook"></a>
-          <a href="https://www.behance.net/zahra_baxi" class="fa fa-behance"></a>
+          <a href="https://www.linkedin.com/in/zahrabaxi/" class="fa fa-linkedin" aria-label="LinkedIn"></a>
+          <a href="https://www.instagram.com/zahrabaxi/" class="fa fa-instagram" aria-label="Instagram"></a>
+          <a href="https://www.facebook.com/zahra.baxi" class="fa fa-facebook" aria-label="Facebook"></a>
+          <a href="https://www.behance.net/zahra_baxi" class="fa fa-behance" aria-label="Behance"></a>
         </section>
       </div>
 
       <!-- Right: about text -->
       <div class="about-right">
         <h2>Hi! I’m Zahra</h2>
-        <h3>A product designer passionate about creating meaningful, interactive experiences through <span class="tooltip-container"> human-centered design<span class="tooltip">A process that prioritizes the needs and experiences of people in every step of the design journey.</span></span>.</h3><br>
-        
-        <p>I’m currently pursuing an MFA in Interactive Design at UC Davis, where my work focuses on using play and interaction to raise awareness about land conservation and environmental stewardship. I also worked for California State Parks as a Park Interpretive Specialist at the California State Railroad Museum, creating a digital exhibit guide to improve language accessibility and assist visitors with visual impairments.</p><br>
+        <h3>A product designer passionate about creating meaningful, interactive experiences through <span class="tooltip-container">human & planet centered design<span class="tooltip">An approach that balances people’s needs with the well-being of the planet’s ecosystems, designing with care for both.</span></span>.</h3>
 
-        <p>I completed my undergraduate studies at UC Berkeley in Human-Centered Design, an interdisciplinary major blending design, sociology, psychology, and technology. I also earned a Certificate in Design Innovation, which gave me a deeper understanding of the full lifecycle of bringing ideas to life. While at Berkeley, I helped establish the DEI Officer position within the Human-Centered Design Club, Berkeley Innovation, to promote greater accessibility in design communities.</p><br>
+        <p>I’m currently pursuing an MFA in Interactive Design at UC Davis, where my work focuses on using play and interaction to raise awareness about land conservation and environmental stewardship. I also worked for California State Parks as a Park Interpretive Specialist at the California State Railroad Museum, creating a digital exhibit guide to improve language accessibility and assist visitors with visual impairments.</p>
+
+        <p>I completed my undergraduate studies at UC Berkeley in Human-Centered Design, an interdisciplinary major blending design, sociology, psychology, and technology. I also earned a Certificate in Design Innovation, which gave me a deeper understanding of the full lifecycle of bringing ideas to life. While at Berkeley, I helped establish the DEI Officer position within the Human-Centered Design Club, Berkeley Innovation, to promote greater accessibility in design communities.</p>
 
         <p>Outside of design, I love sketching, baking, photography, and running <em>Trinkets by Pickles</em>, where I sell handmade art and goods.</p>
-
       </div>
     </section>
+
+    <div class="worktogether-section worktogether-content">
+      <h2>Interested in working together?</h2>
+      <p class="intro">I design experiences that help people connect more deeply with the world around them. My work blends Human-Centered Design with Planet-Centered Design, two approaches that balance people’s needs with the well-being of the environments we live, learn, and explore in.</p>
+
+      <div class="process" aria-labelledby="process-heading">
+        <h3 id="process-heading">My Process</h3>
+        <ul>
+          <li><strong>Empathize &amp; Observe:</strong> uncover insights from people, places, and contexts to guide smart, meaningful design decisions.</li>
+          <li><strong>Define &amp; Frame:</strong> turn insights into clear goals and opportunities that make experiences more inclusive and impactful.</li>
+          <li><strong>Ideate &amp; Prototype:</strong> bring ideas to life through sketches, mockups, and interactive experiments to see what really works.</li>
+          <li><strong>Test &amp; Iterate:</strong> refine every detail based on feedback and real-world use to create experiences that are intuitive, engaging, and effective.</li>
+        </ul>
+
+        </ul>
+      </div>
+      <p class="closing">We’d be a great fit if you care about education, inclusion, and the environment, or if you’re working on projects that help people learn, explore, or reconnect with the world around them. If that sounds like you, let’s connect and bring your next project to life.</p>
+
+      <div class="cta">
+        <a href="https://tally.so/r/MeKMak" target="_blank" rel="noopener" class="cta-button">→ Let’s build something meaningful together</a>
+      </div>
+    </div>  
+    </div>
+
   </main>
   </section>
-  <div class="bug-container">
-      <button id="bugButton" aria-label="Report a bug">
-        🐞
-      </button>
 
-      <div id="bugPopup" class="hidden">
-        <h3>found a bug?</h3>
-        <p>oops! is something not working right or looking off?<br>let me know and i'll squish it ASAP</p>
-        <a href="https://forms.gle/faSp5ED53zuXknfv7" target="_blank">Report it here</a>
-      </div>
+  <div class="bug-container">
+    <button id="bugButton" aria-label="Report a bug">🐞</button>
+    <div id="bugPopup" class="hidden">
+      <h3>found a bug?</h3>
+      <p>oops! is something not working right or looking off?<br>let me know and i'll squish it ASAP</p>
+      <a href="https://forms.gle/faSp5ED53zuXknfv7" target="_blank" rel="noopener">Report it here</a>
+    </div>
   </div>
+
   <!-- Load footer -->
   <div id="footer"></div>
-    <div class="floating-buttons">
-  <!-- <button id="backBtn" aria-label="Back to portfolio page">←</button> -->
-  <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
-</div>
+
+  <div class="floating-buttons" aria-hidden="true">
+    <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+  </div>
+
   <script src="js/scripts.js" defer></script>
   <script src="js/partial-loader.js"></script>
 

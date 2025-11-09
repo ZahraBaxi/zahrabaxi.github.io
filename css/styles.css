@@ -361,7 +361,7 @@ main {
    ABOUT PAGE
 ========================= */
 .about-container { padding-top: 2rem; max-width: 1000px; margin: 0 auto; }
-.about-grid { display: flex; flex-direction: column; gap: 2rem; }
+.about-grid { display: flex; flex-direction: column; gap: 1.5rem; }
 .about-photo { width: 100%; max-width: 450px; border-radius: 300px 300px 0 0; padding-top: 1.5rem; padding-bottom: 2rem; }
 .about-right h2 { font-size: 1.6rem; margin-bottom: 1rem; }
 .about-right p { font-size: 1.1rem; line-height: 1.6; }
@@ -372,12 +372,12 @@ main {
   flex-wrap: wrap;
 }
 .socialmedia a {
-  width: 40px; height: 40px;
+  width: 45px; height: 45px;
   background-color: var(--linen);
   color: var(--olive-seed);
   border-radius: 50%;
   text-align: center;
-  line-height: 40px;
+  line-height: 45px;
   text-decoration: none;
   font-size: 20px;
   transition: all 0.2s ease;
@@ -428,6 +428,102 @@ main {
   visibility: visible;
   opacity: 1;
 }
+
+
+
+/* =========================
+   WORK TOGETHER SECTION
+========================= */
+.worktogether-section {
+  background-color: var(--clay);
+  border-radius: 2rem;
+  padding: 3rem 2rem;
+  margin: 3rem auto;
+  max-width: 800px;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.worktogether-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--charcoal);
+}
+
+.worktogether-content p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--charcoal);
+  margin-bottom: 1.5rem;
+}
+
+.worktogether-content .highlight {
+  font-weight: bold;
+  color: var(--olive-bark);
+}
+
+.process {
+  background-color: var(--linen);
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+}
+
+.process h3 {
+  font-size: 1.4rem;
+  color: var(--olive-bark);
+  margin-bottom: 1rem;
+}
+
+.process ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.process li {
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.process li::before {
+  content: "→";
+  color: var(--olive-bark);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.cta-button {
+  background-color: var(--olive-bark);
+  color: var(--linen);
+  font-weight: bold;
+  padding: 0.8rem 1.6rem;
+  border-radius: 1.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.cta-button:hover {
+  background-color: var(--sunlit-moss);
+  color: var(--linen);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .worktogether-section {
+    padding: 2rem 1.5rem;
+  }
+}
+
 
 /* =========================
    PORTFOLIO / GALLERY
@@ -692,6 +788,7 @@ main {
   from { opacity: 0; transform: translateY(5px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
 
 
 
