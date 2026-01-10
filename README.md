@@ -6,7 +6,7 @@ this repository isn’t linked anywhere obvious. if you’re reading this, you p
 ## status
 still in progress... as always
 
-## built With
+## built with
 - HTML / CSS / JavaScript  
 - GitHub Pages
 everything is here, i might end up using back4app to have forms and submissions 
