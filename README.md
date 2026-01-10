@@ -1,8 +1,12 @@
-# zahrabaxi.github.io
+# Portfolio Website
+this repository contains the source code for my personal portfolio website.
+i’ve been working on various versions of this site since 2019. it’s been rewritten many times as my interests and skills have changed. there isn’t really a final version.
+this repository isn’t linked anywhere obvious. if you’re reading this, you probably clicked around a bit, so welcome! 
 
-- 👋 Hi, I’m Zahra!
-- 👀 I’m interested in Human Centered Design
-- 🌱 I’m currently learning HTML/CSS/JS
+## Status
+still in progress... as always
 
-I have been working on creating my website through HTML for many years. This is where I store my HTML files for my website. While this site is still a work in progress, you can see my site at <a href="https://www.zahrabaxi.com"> www.zahrabaxi.com </a> (which currently uses Cargo until I complete my HTML site)
-
+## Built With
+- HTML / CSS / JavaScript  
+- GitHub Pages
+everything is here, i might end up using back4app to have forms and submissions 
