@@ -611,6 +611,70 @@ main {
 .overlay-content h2 { font-size: 1.5rem; color: var(--charcoal); margin-bottom: 0.75rem; }
 .overlay-content p { font-size: 1rem; color: var(--charcoal); }
 
+/* LIGHTBOX BASE */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* IMAGE */
+.lightbox img {
+  max-width: 95%;
+  max-height: 95%;
+}
+
+/* HIDDEN STATE */
+.hidden {
+  display: none;
+}
+
+/* CLOSE BUTTON */
+.lightbox-close {
+  color: blue;
+  font-family: monospace;
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* NAV BUTTONS */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #000;
+  padding: 0 1rem;
+}
+
+.lightbox-nav.prev {
+  left: 1rem;
+  color: blue;
+  font-family: monospace;
+  font-size: 2.5rem;
+}
+
+.lightbox-nav.next {
+  right: 1rem;
+  color: blue;
+  font-family: monospace;
+  font-size: 2.5rem;
+}
+
+
+
 /* =========================
    TOAST NOTIFICATION
 ========================= */
