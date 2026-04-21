@@ -4,114 +4,112 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Lit Review Project</title>
-  <link rel="icon" type="image/x-icon" href="../images/favicon.png">
-  <link rel="stylesheet" href="css/styles.css">
-  <!-- LightGallery CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/css/lightgallery-bundle.min.css">
-
+  <link rel="icon" type="image/png" href="images/content/icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="partials.js" defer></script>
 </head>
-<body data-page="portfolio">
+<body>
+
+  <!-- HEADER -->
   <div id="header"></div>
-  <section class="itembox">
-    <main>
-      <article class="project-detail">
-        <h1>The Lit Review Project</h1><br>
-        <!-- <img src="https://via.placeholder.com/800x400" alt="Full project image"> -->
-        <section class="project-description">
-          <p><em>HELLO, QUICK NOTE! This is an ongoing project that follows along with the progress of my Masters Thesis. This page currently does not reflect all of the zines I've created so far. Most of my current zines are still in progress or are being user tested. I hope to update this page shortly with some more of those zines, however enjoy what is currently publicly uploaded! Full project of 20+ zines will be uploaded by June 2026!</em></p>
 
-          <p>The Lit Review Project is an ongoing series of visual literature reviews that merge research, design, and reflection. What began as a way to reframe my master’s thesis reading into something more personal and tactile became a creative methodology of its own! Each zine translates a single book or theme from my literature review list into illustrated spreads, hand-drawn diagrams, and fieldwork-inspired layouts. All zines are designed to be printed and folded at home (you'll find a download link below each example, along with for most zines instructions within with gallery), making them accessible and interactive for readers. Also feel free to also browse the full list of literature for my thesis on <a href="https://www.goodreads.com/review/list/174145630?shelf=thesis" target="_blank">Goodreads ↗</a> if you're interested in reading any of these yourself!</p> <br> 
-          <!-- <h3>Citizen Scientist by Mary Ellen Hannibal</h3> -->
+  <!-- PROJECT INTRO -->
+  <main class="projectpage">
 
-          <section class="zine-collection">
-            <h2>Explore the Zines</h2>
-            <p class="gallery-prompt">Click to flip through each one like a book or download the PDF below.</p>
+    <section class="projectintro">
+      <h1>The Lit Review Project</h1>
+      <p class="subtitle">An ongoing series of visual literature reviews merging research, design, and reflection.</p>
+      <ul class="projectmeta">
+        <li><strong>type:</strong> zine / publication design</li>
+        <li><strong>status:</strong> ONGOING - full series by june 2026</li>
+        <li><strong>context:</strong> masters thesis</li>
+      </ul>
+    </section>
 
-            <div id="zine-gallery">
-              <!-- Zine 1: Citizen Scientist -->
-              <div class="gallery-item">
-                <a href="images/litreview1-1.png" class="zine-lightbox" data-lg="group1" data-sub-html="<h4>Citizen Scientist</h4><p>how non-scientists can contribute to ecological knowledge.</p>">
-                  <img src="images/litreview1-1.png" alt="Citizen Scientist cover" class="zine-thumb">
-                </a>
-                <a href="images/litreview1-2.png" class="zine-lightbox" data-lg="group1"></a>
-                <a href="images/litreview1-3.png" class="zine-lightbox" data-lg="group1"></a>
-                <a href="images/litreview1-4.png" class="zine-lightbox" data-lg="group1"></a>
-                <a href="images/litreview1-5.png" class="zine-lightbox" data-lg="group1"></a>
-                <a href="images/litreview1-6.JPG" class="zine-lightbox" data-lg="group1" data-sub-html="print out the zine on any color paper you want. we're going to be following the basic zine layout fold"></a>
-                <a href="images/litreview1-7.JPG" class="zine-lightbox" data-lg="group1" data-sub-html="cut off the black lines"></a>
-                <a href="images/litreview1-8.jpg" class="zine-lightbox" data-lg="group1" data-sub-html="here's your full zine page"></a>
-                <a href="images/litreview1-9.jpg" class="zine-lightbox" data-lg="group1" data-sub-html="fold long side half way and open back up"></a>
-                <a href="images/litreview1-10.JPG" class="zine-lightbox" data-lg="group1" data-sub-html="fold short side half way, keep folded"></a>
-                <a href="images/litreview1-11.JPG" class="zine-lightbox" data-lg="group1" data-sub-html="fold again short side half way, so that the short side has 4 folds"></a>
-                <a href="images/litreview1-12.jpg" class="zine-lightbox" data-lg="group1" data-sub-html="open it all out"></a>
-                <a href="images/litreview1-13.jpg" class="zine-lightbox" data-lg="group1" data-sub-html="cut the middle two lines in the center of the page"></a>
-                <a href="images/litreview1-14.JPG" class="zine-lightbox" data-lg="group1" data-sub-html="fold long side half way again, content side facing you"></a>
-                <a href="images/litreview1-15.JPG" class="zine-lightbox" data-lg="group1" data-sub-html="push together folding in half"></a>
-                <a href="images/litreview1-16.JPG" class="zine-lightbox" data-lg="group1" data-sub-html="push the pages to make the book, and you're finished!"></a>
-                <p class="center"><a href="zines/citizen science zine.pdf" download>Download PDF</a></p>
-              </div>
+    <!-- OVERVIEW -->
+    <section class="projectsection">
+      <p class="project-note">Quick note! This is an ongoing project that follows my Masters Thesis progress. Most current zines are still in progress or being user tested. Full project of 20+ zines will be uploaded by June 2026!</p>
 
-              <!-- Zine 2: Reciprocity -->
-              <div class="gallery-item">
-                <a href="images/zine2/zine1.JPG" class="zine-lightbox" data-lg="group2" data-sub-html="<h4>Reciprocity</h4><p>a guide book to following Original Instructions.</p>">
-                  <img src="images/zine2/zine1.JPG" alt="Reciprocity" class="zine-thumb">
-                </a>
-                <a href="images/zine2/zine2.JPG" class="zine-lightbox" data-lg="group2"></a>
-                <a href="images/zine2/zine3.JPG" class="zine-lightbox" data-lg="group2"></a>
-                <a href="images/zine2/zine4.jpg" class="zine-lightbox" data-lg="group2"></a>
-                <a href="images/zine2/zine5.JPG" class="zine-lightbox" data-lg="group2"></a>
-                <a href="images/zine2/zine6.JPG" class="zine-lightbox" data-lg="group2"></a>
-                <a href="images/zine2/zine7.JPG" class="zine-lightbox" data-lg="group2"></a>
-                <p class="center"><a href="zines/reciprocity zine.zip" download>Download ZIP</a></p>
-              </div>
+      <p>The Lit Review Project is an ongoing series of visual literature reviews that merge research, design, and reflection. What began as a way to reframe my master's thesis reading into something more personal and tactile became a creative methodology of its own. Each zine translates a single book or theme from my literature review list into illustrated spreads, hand-drawn diagrams, and fieldwork-inspired layouts. All zines are designed to be printed and folded at home, there are download links below each one. Feel free to also browse the full reading list on <a href="https://www.goodreads.com/review/list/174145630?shelf=thesis" target="_blank">Goodreads ↗</a>.</p>
+    </section>
 
-              <!-- Zine 3: Design Justice -->
-              <div class="gallery-item">
-                <a href="images/zine3/page1.JPG" class="zine-lightbox" data-lg="group3" data-sub-html="<h4>Design Justice</h4><p>Design is ALWAYS political.</p>">
-                  <img src="images/zine3/page1.JPG" alt="Design for the real world cover" class="zine-thumb">
-                </a>
-                <a href="images/zine3/page2.JPG" class="zine-lightbox" data-lg="group3"></a>
-                <a href="images/zine3/page3.JPG" class="zine-lightbox" data-lg="group3"></a>
-                <a href="images/zine3/page4.JPG" class="zine-lightbox" data-lg="group3"></a>
-                <a href="images/zine3/page5.JPG" class="zine-lightbox" data-lg="group3"></a>
-                <p class="center"><a href="zines/designjustice.pdf" download>Download PDF</a></p>
-              </div>
+    <!-- ZINE GALLERY -->
+    <section class="projectsection" style="max-width: 100%;">
+      <h2>explore the zines</h2>
+      <p class="section-subheading">Click any cover to flip through, or download the PDF to print &amp; fold at home.</p>
 
-                  <!-- Zine 3: Play & Conservation -->
-              <!-- <div class="gallery-item">
-                <a href="images/litreview3-1.jpg" class="zine-lightbox" data-lg="group3" data-sub-html="<h4>Play & Conservation</h4><p>Where play theory meets ecological design.</p>">
-                  <img src="images/litreview3-1.jpg" alt="Play & Conservation cover" class="zine-thumb">
-                </a>
-                <a href="images/litreview3-2.jpg" class="zine-lightbox" data-lg="group3"></a>
-                <a href="images/litreview3-3.jpg" class="zine-lightbox" data-lg="group3"></a>
-                <a href="images/litreview3-4.jpg" class="zine-lightbox" data-lg="group3"></a>
-                <a href="images/litreview3-5.jpg" class="zine-lightbox" data-lg="group3"></a>
-                <p class="center"><a href="zines/play-and-conservation.pdf" download>Download PDF</a></p>
-              </div> -->
-            </div>
-          </section>
+      <div id="zine-gallery">
 
+        <!-- Zine 1: Citizen Scientist -->
+        <div class="zine-card" data-zine-images='[
+          "images/projects/litreview/zine1/1.png",
+          "images/projects/litreview/zine1/2.png",
+          "images/projects/litreview/zine1/3.png",
+          "images/projects/litreview/zine1/4.png",
+          "images/projects/litreview/zine1/5.png"
+        ]'>
+          <div class="zine-thumb-wrap">
+            <img src="images/projects/litreview/zine1/1.png" alt="Citizen Scientist cover" class="zine-thumb">
+          </div>
+          <div class="zine-info">
+            <h3>Citizen Scientist</h3>
+            <p>How non-scientists can contribute to ecological knowledge.</p>
+            <a href="download/zines/citizen science zine.pdf" download class="zine-download">Download PDF ↓</a>
+          </div>
+        </div>
 
-              <!-- Add more zines here in same format -->
-            </div>
-          </section>
-        </section>
-      </article>
-    </main>
-  </section>
+        <!-- Zine 2: Reciprocity -->
+        <div class="zine-card" data-zine-images='[
+          "images/projects/litreview/zine2/zine1.JPG",
+          "images/projects/litreview/zine2/zine2.JPG",
+          "images/projects/litreview/zine2/zine3.JPG",
+          "images/projects/litreview/zine2/zine4.jpg",
+          "images/projects/litreview/zine2/zine5.JPG",
+          "images/projects/litreview/zine2/zine6.JPG",
+          "images/projects/litreview/zine2/zine7.JPG"
+        ]'>
+          <div class="zine-thumb-wrap">
+            <img src="images/projects/litreview/zine2/zine1.JPG" alt="Reciprocity cover" class="zine-thumb">
+          </div>
+          <div class="zine-info">
+            <h3>Reciprocity</h3>
+            <p>A guidebook to following Original Instructions.</p>
+            <a href="download/zines/reciprocity zine.zip" download class="zine-download">Download ZIP ↓</a>
+          </div>
+        </div>
+
+        <!-- Zine 3: Design Justice -->
+        <div class="zine-card" data-zine-images='[
+          "images/projects/litreview/zine3/page1.JPG",
+          "images/projects/litreview/zine3/page2.JPG",
+          "images/projects/litreview/zine3/page3.JPG",
+          "images/projects/litreview/zine3/page4.JPG",
+          "images/projects/litreview/zine3/page5.JPG"
+        ]'>
+          <div class="zine-thumb-wrap">
+            <img src="images/projects/litreview/zine3/page1.JPG" alt="Design Justice cover" class="zine-thumb">
+          </div>
+          <div class="zine-info">
+            <h3>Design Justice</h3>
+            <p>Design is always political.</p>
+            <a href="download/zines/designjustice.pdf" download class="zine-download">Download PDF ↓</a>
+          </div>
+        </div>
+
+        <!-- ADD MORE ZINES: copy a zine-card block above and update:
+             1. data-zine-images list (all pages in order)
+             2. src on the cover img + alt text
+             3. h3 title, p description, download href -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
   <div id="footer"></div>
-    <div class="floating-buttons">
-  <button id="backBtn" aria-label="Back to portfolio page">←</button>
-  <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
-</div>
-  <script src="js/scripts.js" defer></script>
-  <script src="js/partial-loader.js"></script>
 
-  <!-- LightGallery JS -->
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/lightgallery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/thumbnail/lg-thumbnail.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/zoom/lg-zoom.min.js"></script>
-
+  <script src="scripts.js"></script>
 
 </body>
 </html>

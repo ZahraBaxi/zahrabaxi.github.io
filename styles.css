@@ -1,0 +1,677 @@
+/* =========================
+   ROOT
+========================= */
+:root {
+    --blackish: #06042D;
+    --accentblue: #1C17A0;   
+    --cream: #FBF7E8;
+
+}
+
+
+
+/* =========================
+   GLOBAL RESET & TYPOGRAPHY
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'montreal';
+  src: url('fonts/PPNeueMontreal-Book.otf') format('woff');
+}
+@font-face {
+  font-family: 'montreal medium';
+  src: url('fonts/PPNeueMontreal-Medium.otf') format('woff');
+}
+
+
+
+/* =========================
+   BODY CONTENT
+========================= */
+
+body {
+    font-family: "montreal";
+    background-color: var(--cream);
+    color: var(--blackish);
+}
+
+h3{
+    font-family: "montreal medium";
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+
+/* =========================
+   HEADER CONTENT
+========================= */
+.logo{
+    width: 3em;
+}
+
+.titlefont{
+    font-family: "montreal";
+    font-size: 1.4em;
+    color: var(--blackish);
+}
+
+.title:link, .title:visited {
+    text-decoration: none;
+    color: var(--blackish);
+}
+
+header{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: space-between;
+    justify-content: space-between;
+    padding-top: 2em;
+    /* padding: 1em; */
+    /* position: sticky; */
+}
+
+.leftsidecontent{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.rightsidecontent{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2em;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--blackish);
+    font-family: "montreal medium";
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+nav ul li a:hover {
+    /* font-family: "montreal medium"; */
+    color: var(--accentblue);
+}
+
+.blurb{
+    width: 45%;
+    margin: 0 auto;
+    padding: 4em 0;
+}
+
+.blurb p{
+    font-size: 1.5em;
+    line-height: 1.5;
+    /* text-align: center; */
+}
+
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+.projects{
+    width: 75%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 3em;
+    padding: 4em 0;
+}
+
+.projectcontainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.project{
+    font-family: "montreal medium";
+    font-size: 1.5em;
+    text-decoration: none;
+    color: var(--blackish);
+}
+
+.projecttitle{
+    padding-top: 0.7em;
+    font-family: "montreal medium";
+    font-size: 1.3em;
+    text-decoration: none;
+    color: var(--blackish);
+}
+.project:link, .project:visited {
+    text-decoration: none;
+    color: var(--blackish);
+}
+
+.project:hover {
+    color: var(--accentblue);
+}
+
+.projects img{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 1.5em;
+}
+
+.projectcontainer:hover{
+    opacity: 0.9;
+}
+.projects img:hover{
+    transform: scale(1.01);
+    transition: transform 0.3s ease;
+}
+
+.projecttags li::marker{
+    font-size: 1.5em; 
+    color: var(--accentblue);
+    content: "✱  ";
+}
+
+.projecttags{
+    padding-left: 1.6em;
+    gap: .5em;
+    font-size: 1em;
+    color: var(--blackish);
+}
+
+@media screen and (max-width: 1000px) {
+    .projects {
+        width: 90%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .blurb {
+            width: 90%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .projects {
+        /* grid-template-columns: repeat(1, 1fr); */
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
+    .blurb {
+            width: 90%;
+    }
+
+}
+
+
+
+/* =========================
+PROJECT PAGE
+========================= */
+.projectpage {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0 0 5em;
+}
+
+/* back link */
+.back-link {
+    padding: 2em 0 0;
+    display: block;
+}
+
+.back-link a {
+    font-family: "montreal medium";
+    font-size: 0.95em;
+    text-decoration: none;
+    color: var(--blackish);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    transition: color 0.2s ease;
+}
+
+.back-link a:hover {
+    color: var(--accentblue);
+}
+
+/* intro — ruled header block */
+.projectintro {
+    padding: 3em 0 2em;
+    border-bottom: 1px solid var(--blackish);
+    margin-bottom: 3em;
+}
+
+.projectintro h1 {
+    font-family: "montreal medium";
+    font-size: 2.8em;
+    line-height: 1.15;
+    margin-bottom: 0.4em;
+}
+
+.subtitle {
+    font-size: 1.15em;
+    max-width: 600px;
+    line-height: 1.6;
+    opacity: 0.75;
+    margin-bottom: 0;
+}
+
+/* metadata */
+.projectmeta {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    font-size: 0.9em;
+    opacity: 0.7;
+    margin-top: 1.5em;
+}
+
+.projectmeta li strong {
+    font-family: "montreal medium";
+    display: block;
+    margin-bottom: 0.15em;
+}
+
+/* sections */
+.projectsection {
+    margin-bottom: 4em;
+    max-width: 700px;
+}
+
+.projectsection h2 {
+    font-family: "montreal medium";
+    margin-bottom: 0.8em;
+    font-size: 1.4em;
+}
+
+.projectsection p {
+    line-height: 1.6;
+    margin-bottom: 1.5em;
+}
+
+/* images */
+figure {
+    margin: 2em 0;
+}
+
+figure img {
+    max-height: 90vh;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 1.5em;
+}
+
+figcaption {
+    font-size: 0.85em;
+    margin-top: 0.5em;
+    opacity: 0.7;
+}
+
+.imagesidebyside{
+    display: flex;
+    gap: 1em;
+}
+
+
+/* =========================
+ABOUT PAGE
+========================= */
+.abouttitle{
+    font-family: "montreal medium";
+    font-size: 2.2em;
+    margin-bottom: 1em;
+}
+
+.aboutheading{
+    font-family: "montreal medium";
+    font-size: 2em;
+    /* text-align: center; */
+    margin-bottom: 0.5em;
+}
+
+.aboutblurb{
+    line-height: 1.7;
+    font-size: 1.15em;
+    margin-bottom: 1.2em;
+}
+
+.aboutpage{
+    width: 80%;
+    margin: 0 auto;
+    padding: 4em 0;
+}
+
+.aboutsection{
+    display: flex;
+    gap: 3em;
+    align-items: flex-start;
+    margin-bottom: 4em;
+}
+
+.aboutsection + .aboutsection {
+    padding-top: 3em;
+    border-top: 1px solid rgba(6, 4, 45, 0.15);
+    margin-bottom: 0;
+}
+
+.aboutcontent {
+    flex: 1;
+    min-width: 0;
+}
+
+.aboutcontent p {
+    line-height: 1.7;
+    font-size: 1em;
+    margin-bottom: 1em;
+}
+
+.profilepic{
+    width: 45%;
+    aspect-ratio: 2094 / 1220;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 1.5em;
+    display: block;
+    margin-bottom: 2.5em;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.2em;
+    margin-top: 1.2em;
+}
+
+.social-icon {
+    color: var(--blackish);
+    transition: color 0.2s ease;
+}
+
+.social-icon:hover {
+    color: var(--accentblue);
+}
+
+.about-contact-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 1em;
+    font-size: 1em;
+    line-height: 2;
+}
+
+.about-link {
+    color: var(--blackish);
+    font-family: "montreal medium";
+    text-decoration: none;
+    border-bottom: 1px solid var(--blackish);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.about-link:hover {
+    color: var(--accentblue);
+    border-color: var(--accentblue);
+}
+
+
+
+/* =========================
+   GALLERY
+========================= */   
+.gallery{
+    display: flex;
+    gap: 1em;
+}
+
+
+/* =========================
+   GALLERY
+========================= */   
+.gallery{
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+}
+
+.gallery img{
+    /* aspect-ratio: auto; */
+    height: 90vh;
+    width: auto;
+    object-fit: contain;
+    /* height:100%; */
+    /* object-fit: contain; */
+    border-radius: 1em;
+}
+
+
+/* =========================
+   LIGHTBOX
+========================= */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 4, 45, 0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+}
+
+.lightbox-img {
+    max-height: 90vh;
+    max-width: 90vw;
+    object-fit: contain;
+    /* border-radius: 1em; */
+}
+
+.lightbox-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--cream);
+    font-size: 2.5em;
+    cursor: pointer;
+    padding: 0.5em;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    font-family: "montreal";
+}
+
+.lightbox-btn:hover { opacity: 1; }
+.lightbox-prev { left: 1.5em; }
+.lightbox-next { right: 1.5em; }
+
+.lightbox-close {
+    position: fixed;
+    top: 1.2em;
+    right: 1.5em;
+    background: none;
+    border: none;
+    color: var(--cream);
+    font-size: 1.5em;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.lightbox-close:hover { opacity: 1; }
+
+.lightbox-counter {
+    position: fixed;
+    bottom: 1.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--cream);
+    font-family: "montreal";
+    font-size: 0.9em;
+    opacity: 0.6;
+}
+
+
+/* =========================
+   FOOTER CONTENT
+========================= */        
+footer{
+    width: 80%;
+    margin: 0 auto;
+    padding: 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5em;
+}
+
+footer p{
+    text-align: center;
+    font-size: .9em;
+    color: var(--blackish);
+}
+
+
+
+/* =========================
+   LIT REVIEW PROJECT PAGE
+========================= */
+
+.project-note {
+    border-left: 3px solid var(--accentblue);
+    padding: 1em 1.5em;
+    margin-bottom: 2.5em;
+    font-size: 0.95em;
+    line-height: 1.6;
+    max-width: 700px;
+    font-style: italic;
+    opacity: 0.75;
+}
+
+.project-body {
+    max-width: 700px;
+    font-size: 1.1em;
+    line-height: 1.7;
+    margin-bottom: 3em;
+}
+
+.project-body a {
+    color: var(--accentblue);
+    text-decoration: none;
+    font-family: "montreal medium";
+    border-bottom: 1px solid var(--accentblue);
+    transition: opacity 0.2s ease;
+}
+
+.project-body a:hover {
+    opacity: 0.6;
+}
+
+.section-heading {
+    font-family: "montreal medium";
+    font-size: 1.6em;
+    margin-bottom: 0.3em;
+}
+
+.section-subheading {
+    font-size: 1em;
+    opacity: 0.6;
+    margin-bottom: 2.5em;
+    font-style: italic;
+}
+
+/* =========================
+   LIT REVIEW ZINE GRID PAGE
+========================= */
+#zine-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3em;
+}
+
+.zine-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9em;
+    cursor: pointer;
+}
+
+.zine-thumb-wrap {
+    overflow: hidden;
+    border-radius: 1.5em;
+    aspect-ratio: 1 / 1;
+}
+
+.zine-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1.5em;
+    display: block;
+    transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+.zine-card:hover .zine-thumb {
+    transform: scale(1.03);
+    opacity: 0.9;
+}
+
+.zine-info h3 {
+    font-family: "montreal medium";
+    font-size: 1.15em;
+    margin-bottom: 0.2em;
+}
+
+.zine-info p {
+    font-size: 0.9em;
+    line-height: 1.5;
+    opacity: 0.65;
+    margin-bottom: 0.6em;
+}
+
+.zine-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    font-family: "montreal medium";
+    font-size: 0.88em;
+    color: var(--blackish);
+    text-decoration: none;
+    border-bottom: 1px solid var(--blackish);
+    transition: color 0.2s ease, border-color 0.2s ease;
+    padding-bottom: 1px;
+}
+
+.zine-download:hover {
+    color: var(--accentblue);
+    border-color: var(--accentblue);
+}
+
+@media screen and (max-width: 1000px) {
+    .back-link,
+    .project-header { width: 90%; }
+
+    #zine-gallery { grid-template-columns: repeat(2, 1fr); gap: 2em; }
+}
+
+@media screen and (max-width: 600px) {
+    .back-link,
+    .project-header { width: 92%; }
+
+    .project-header h1 { font-size: 2em; }
+
+    #zine-gallery { grid-template-columns: 1fr; }
+}
