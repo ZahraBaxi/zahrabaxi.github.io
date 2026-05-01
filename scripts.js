@@ -167,12 +167,42 @@
 
 
     // =========================
+    // SCROLL TO TOP
+    // — injects a small fixed button that appears after scrolling down
+    // — only shows up if the page is actually taller than the viewport
+    // =========================
+
+    function initScrollTop() {
+        if (document.body.scrollHeight <= window.innerHeight) return;
+
+        var btn = document.createElement("button");
+        btn.className = "scroll-top-btn";
+        btn.setAttribute("aria-label", "Back to top");
+        btn.textContent = "↑";
+        document.body.appendChild(btn);
+
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 400) {
+                btn.classList.add("visible");
+            } else {
+                btn.classList.remove("visible");
+            }
+        });
+
+        btn.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+
+
+    // =========================
     // INIT
     // =========================
 
     document.addEventListener("DOMContentLoaded", function () {
         initLightbox();
         initZineLightbox();
+        initScrollTop();
     });
 
 }());

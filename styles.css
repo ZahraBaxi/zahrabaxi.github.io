@@ -17,7 +17,8 @@
  *    9. gallery & lightbox
  *   10. footer
  *   11. lit review project page
- *   12. media queries
+ *   12. scroll to top button
+ *   13. media queries
  * =========================================================
  */
 
@@ -653,7 +654,41 @@ footer p {
 
 
 /* =========================
-   12. MEDIA QUERIES
+   12. SCROLL TO TOP BUTTON
+========================= */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    width: 2.6em;
+    height: 2.6em;
+    border-radius: 50%;
+    border: 1px solid var(--blackish);
+    background: var(--cream);
+    color: var(--blackish);
+    font-family: "montreal";
+    font-size: 1em;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, color 0.2s ease, border-color 0.2s ease;
+    z-index: 500;
+}
+
+.scroll-top-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.scroll-top-btn:hover {
+    color: var(--accentblue);
+    border-color: var(--accentblue);
+}
+
+
+
+/* =========================
+   13. MEDIA QUERIES
 ========================= */
 @media screen and (max-width: 1000px) {
     .projects {
