@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>site map — zahra baxi</title>
+    <link rel="icon" type="image/png" href="images/content/icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="partials.js" defer></script>
+    <style>
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3em;
+            margin-bottom: 4em;
+        }
+
+        .sitemap-group h2 {
+            font-family: "montreal medium";
+            font-size: 1.1em;
+            margin-bottom: 1em;
+            padding-bottom: 0.5em;
+            border-bottom: 1px solid var(--blackish);
+        }
+
+        .sitemap-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+
+        .sitemap-list li a {
+            font-family: "montreal";
+            font-size: 1em;
+            color: var(--blackish);
+            text-decoration: none;
+            display: flex;
+            align-items: baseline;
+            gap: 0.6em;
+            transition: color 0.2s ease;
+            line-height: 1.6;
+        }
+
+        .sitemap-list li a:hover {
+            color: var(--accentblue);
+        }
+
+        .sitemap-list li a .page-path {
+            font-size: 0.8em;
+            opacity: 0.4;
+            font-family: "montreal";
+        }
+
+        @media screen and (max-width: 600px) {
+            .sitemap-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <main>
+        <div class="projectpage">
+
+            <div class="back-link"><a href="index.html">←</a></div>
+
+            <div class="projectintro">
+                <h1>site map</h1>
+                <p class="subtitle">every page on this site, in one place.</p>
+            </div>
+
+            <div class="sitemap-grid">
+
+                <div class="sitemap-group">
+                    <h2>main</h2>
+                    <ul class="sitemap-list">
+                        <li><a href="index.html">home <span class="page-path">/index.html</span></a></li>
+                        <li><a href="about.html">about <span class="page-path">/about.html</span></a></li>
+                        <li><a href="thelitreviewproject.html">the lit review project <span class="page-path">/thelitreviewproject.html</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="sitemap-group">
+                    <h2>meta</h2>
+                    <ul class="sitemap-list">
+                        <li><a href="colophon.html">colophon <span class="page-path">/colophon.html</span></a></li>
+                        <li><a href="accessibility.html">accessibility <span class="page-path">/accessibility.html</span></a></li>
+                        <li><a href="disclaimers.html">disclaimers <span class="page-path">/disclaimers.html</span></a></li>
+                        <li><a href="sitemap.html">site map <span class="page-path">/sitemap.html</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="sitemap-group" style="grid-column: 1 / -1;">
+                    <h2>projects</h2>
+                    <ul class="sitemap-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5em 3em;">
+                        <li><a href="projects/mfathesis.html">mfa thesis <span class="page-path">/projects/mfathesis.html</span></a></li>
+                        <li><a href="projects/wildsofcalifornia.html">wilds of california <span class="page-path">/projects/wildsofcalifornia.html</span></a></li>
+                        <li><a href="projects/modularplanters.html">modular planters <span class="page-path">/projects/modularplanters.html</span></a></li>
+                        <li><a href="projects/onsanpablo.html">on san pablo <span class="page-path">/projects/onsanpablo.html</span></a></li>
+                        <li><a href="projects/kpdesignchallenge.html">kp design challenge <span class="page-path">/projects/kpdesignchallenge.html</span></a></li>
+                        <li><a href="projects/thebay.html">the bay <span class="page-path">/projects/thebay.html</span></a></li>
+                        <li><a href="projects/photography.html">analog photography <span class="page-path">/projects/photography.html</span></a></li>
+                        <li><a href="projects/neoniche.html">neoniche <span class="page-path">/projects/neoniche.html</span></a></li>
+                        <li><a href="projects/howdycowboyjoe.html">howdy cowboy joe <span class="page-path">/projects/howdycowboyjoe.html</span></a></li>
+                        <li><a href="projects/zoomredesign.html">zoom redesign <span class="page-path">/projects/zoomredesign.html</span></a></li>
+                        <li><a href="projects/csssa.html">csssa <span class="page-path">/projects/csssa.html</span></a></li>
+                        <li><a href="projects/stebbins.html">stebbins <span class="page-path">/projects/stebbins.html</span></a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+    <div id="footer"></div>
+</body>
+</html>
