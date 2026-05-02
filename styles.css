@@ -455,13 +455,13 @@ figcaption {
 }
 
 .about-item.has-media {
-    grid-template-columns: 90px 1fr 260px; /* increased from 180px */
+    grid-template-columns: 90px 1fr 260px; 
     gap: 1.5em;
 }
 
 .about-media {
     width: 100%;
-    height: 180px; /* NEW: gives it presence */
+    height: 180px; 
     object-fit: cover;
     border-radius: 1.2em;
     display: block;
@@ -987,6 +987,24 @@ footer p {
         grid-template-columns: repeat(2, 1fr);
         gap: 2em;
     }
+
+    /* about page — tablet */
+    .aboutpage {
+        width: 90%;
+    }
+
+    .profilepic {
+        width: 65%;
+    }
+
+    .about-item.has-media {
+        grid-template-columns: 90px 1fr;
+    }
+
+    .about-media {
+        width: ;
+        display: none;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -1010,5 +1028,94 @@ footer p {
 
     #zine-gallery {
         grid-template-columns: 1fr;
+    }
+
+    /* about page — mobile */
+    .aboutpage {
+        width: 92%;
+        padding: 2em 0;
+    }
+
+    .abouttitle {
+        font-size: 1.8em;
+    }
+
+    .profilepic {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
+    .aboutsection {
+        flex-direction: column;
+        gap: 1.5em;
+    }
+
+    .aboutheading {
+        font-size: 1.5em;
+    }
+
+    .aboutblurb {
+        font-size: 1em;
+    }
+
+    .aboutcontent p {
+        font-size: 1em;
+    }
+
+    /* about-list: stack date above details on mobile */
+    .about-list li,
+    .about-item {
+        grid-template-columns: 1fr;
+        gap: 0.3em;
+    }
+
+    .about-item.has-media {
+        grid-template-columns: 1fr;
+    }
+
+    .about-date {
+        font-size: 0.8em;
+        opacity: 0.5;
+    }
+
+    .about-media {
+        display: block;
+        height: 140px;
+        margin-top: 0.5em;
+    }
+
+    .about-title {
+        font-size: 1em;
+    }
+
+    .about-meta {
+        font-size: 0.85em;
+    }
+
+    /* contact form */
+    .contact-form-wrap {
+        max-width: 100%;
+    }
+
+    /* social icons */
+    .social-icons {
+        flex-wrap: wrap;
+        gap: 0.8em;
+    }
+
+    /* nav */
+    header {
+        width: 92%;
+        flex-wrap: wrap;
+        gap: 0.5em;
+        padding-top: 1.2em;
+    }
+
+    nav ul {
+        gap: 1.2em;
+    }
+
+    nav ul li a {
+        font-size: 1em;
     }
 }
