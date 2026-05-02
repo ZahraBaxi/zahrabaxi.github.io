@@ -31,6 +31,36 @@
             gap: 0.5em;
         }
 
+        .sitemap-projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6em 3em;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sitemap-projects li a {
+            font-family: "montreal";
+            font-size: 1em;
+            color: var(--blackish);
+            text-decoration: none;
+            display: flex;
+            align-items: baseline;
+            gap: 0.6em;
+            line-height: 1.6;
+            transition: color 0.2s ease;
+        }
+
+        .sitemap-projects li a:hover {
+            color: var(--accentblue);
+        }
+
+        .page-path {
+            font-size: 0.8em;
+            opacity: 0.4;
+        }
+
         .sitemap-list li a {
             font-family: "montreal";
             font-size: 1em;
@@ -57,7 +87,13 @@
             .sitemap-grid {
                 grid-template-columns: 1fr;
             }
+
+            .sitemap-projects {
+                grid-template-columns: 1fr;
+                gap: 0.6em;
+            }
         }
+   
     </style>
 </head>
 <body>
@@ -93,23 +129,24 @@
                     </ul>
                 </div>
 
-                <div class="sitemap-group" style="grid-column: 1 / -1;">
-                    <h2>projects</h2>
-                    <ul class="sitemap-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5em 3em;">
-                        <li><a href="projects/mfathesis.html">mfa thesis <span class="page-path">/projects/mfathesis.html</span></a></li>
-                        <li><a href="projects/wildsofcalifornia.html">wilds of california <span class="page-path">/projects/wildsofcalifornia.html</span></a></li>
-                        <li><a href="projects/modularplanters.html">modular planters <span class="page-path">/projects/modularplanters.html</span></a></li>
-                        <li><a href="projects/onsanpablo.html">on san pablo <span class="page-path">/projects/onsanpablo.html</span></a></li>
-                        <li><a href="projects/kpdesignchallenge.html">kp design challenge <span class="page-path">/projects/kpdesignchallenge.html</span></a></li>
-                        <li><a href="projects/thebay.html">the bay <span class="page-path">/projects/thebay.html</span></a></li>
-                        <li><a href="projects/photography.html">analog photography <span class="page-path">/projects/photography.html</span></a></li>
-                        <li><a href="projects/neoniche.html">neoniche <span class="page-path">/projects/neoniche.html</span></a></li>
-                        <li><a href="projects/howdycowboyjoe.html">howdy cowboy joe <span class="page-path">/projects/howdycowboyjoe.html</span></a></li>
-                        <li><a href="projects/zoomredesign.html">zoom redesign <span class="page-path">/projects/zoomredesign.html</span></a></li>
-                        <li><a href="projects/csssa.html">csssa <span class="page-path">/projects/csssa.html</span></a></li>
-                        <li><a href="projects/stebbins.html">stebbins <span class="page-path">/projects/stebbins.html</span></a></li>
-                    </ul>
-                </div>
+                <div class="sitemap-group projects-group">
+                <h2>projects</h2>
+
+                <ul class="sitemap-projects">
+                    <li><a href="projects/mfathesis.html">mfa thesis <span class="page-path">/projects/mfathesis.html</span></a></li>
+                    <li><a href="projects/wildsofcalifornia.html">wilds of california <span class="page-path">/projects/wildsofcalifornia.html</span></a></li>
+                    <li><a href="projects/modularplanters.html">modular planters <span class="page-path">/projects/modularplanters.html</span></a></li>
+                    <li><a href="projects/onsanpablo.html">on san pablo <span class="page-path">/projects/onsanpablo.html</span></a></li>
+                    <li><a href="projects/kpdesignchallenge.html">kp design challenge <span class="page-path">/projects/kpdesignchallenge.html</span></a></li>
+                    <li><a href="projects/thebay.html">the bay <span class="page-path">/projects/thebay.html</span></a></li>
+                    <li><a href="projects/photography.html">analog photography <span class="page-path">/projects/photography.html</span></a></li>
+                    <li><a href="projects/neoniche.html">neoniche <span class="page-path">/projects/neoniche.html</span></a></li>
+                    <li><a href="projects/howdycowboyjoe.html">howdy cowboy joe <span class="page-path">/projects/howdycowboyjoe.html</span></a></li>
+                    <li><a href="projects/zoomredesign.html">zoom redesign <span class="page-path">/projects/zoomredesign.html</span></a></li>
+                    <li><a href="projects/csssa.html">csssa <span class="page-path">/projects/csssa.html</span></a></li>
+                    <li><a href="projects/stebbins.html">stebbins <span class="page-path">/projects/stebbins.html</span></a></li>
+                </ul>
+            </div>
 
             </div>
 
