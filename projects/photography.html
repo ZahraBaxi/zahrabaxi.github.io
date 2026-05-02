@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="../images/content/icon.png">
 
     <link rel="stylesheet" href="../styles.css">
+    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
     <script src="../partials.js"></script>
     <script src="../scripts.js"></script>
 </head>
@@ -52,30 +53,58 @@ PROJECT STORY
     </section> -->
 
     <div class="gallery">   
-        <img src="../images/projects/analogphotos/color1.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color2.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color3.jpg" alt="placeholder image for project">
+        <img src="../images/projects/analogphotos/color1.jpg" alt="flowers in the air">
+        <img src="../images/projects/analogphotos/color2.jpg" alt="market street san francisco">
+        <img src="../images/projects/analogphotos/color3.jpg" alt="pink house near haight and ashbury san francisco">
         <!-- <img src="../images/projects/analogphotos/color4.jpg" alt="placeholder image for project"> -->
-        <img src="../images/projects/analogphotos/color5.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color6.jpg" alt="placeholder image for project">  
-        <img src="../images/projects/analogphotos/color7.jpg" alt="placeholder image for project">
+        <img src="../images/projects/analogphotos/color5.jpg" alt="berkeley firetrails view of uc berkeley campus">
+        <!-- <img src="../images/projects/analogphotos/color6.jpg" alt="beac">   -->
+        <img src="../images/projects/analogphotos/color7.jpg" alt="rockridge bart station">
         <!-- <img src="../images/projects/analogphotos/color8.jpg" alt="placeholder image for project"> -->
-        <img src="../images/projects/analogphotos/color9.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color10.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color11.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color12.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color13.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color14.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color15.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color16.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color17.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color18.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color19.jpg" alt="placeholder image for project">
-        <img src="../images/projects/analogphotos/color20.jpg" alt="placeholder image for project">
+        <img src="../images/projects/analogphotos/color9.jpg" alt="view of golden gate bridge from boat, san francisco">
+        <img src="../images/projects/analogphotos/color10.jpg" alt="brown dog smiling at camera, his name is pilot!">
+        <img src="../images/projects/analogphotos/color11.jpg" alt="sunset, with sillouette of joshua trees">
+        <img src="../images/projects/analogphotos/color12.jpg" alt="white dog in apartment lobby">
+        <img src="../images/projects/analogphotos/color13.jpg" alt="nasan market in oakland">
+        <img src="../images/projects/analogphotos/color14.jpg" alt="sunset view from boat looking towards berkeley">
+        <img src="../images/projects/analogphotos/color15.jpg" alt="market street san francisco with tram">
+        <img src="../images/projects/analogphotos/color16.jpg" alt="movie theather the grand in mission district san francisco">
+        <img src="../images/projects/analogphotos/color17.jpg" alt="seagull on lamp post">
+        <img src="../images/projects/analogphotos/color18.jpg" alt="fishers on pacifica pier">
+        <img src="../images/projects/analogphotos/color19.jpg" alt="view from street of pacifica pier and ocean">
+        <img src="../images/projects/analogphotos/color20.jpg" alt="dog on pacifica pier">
 
     </div>
 
 </main>
+
+        <!-- BUG REPORT MODAL -->
+    <div class="modal-overlay" id="bug-modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="bug-modal-close" aria-label="Close">✕</button>
+            <h2 class="modal-title">report a bug</h2>
+            <p class="modal-subtitle">spotted something broken, wrong, or inaccessible? let me know and i'll fix it!</p>
+            <div id="bug-form-area">
+                <div class="form-row">
+                    <label for="bug-page">where did you see it?</label>
+                    <input type="text" id="bug-page" placeholder="e.g. about page, lit review project...">
+                </div>
+                <div class="form-row">
+                    <label for="bug-description">what happened?</label>
+                    <textarea id="bug-description" rows="4" placeholder="describe the bug, what you saw, what you expected..."></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="bug-email">your email <span style="opacity:0.5;">(optional, if you want a reply)</span></label>
+                    <input type="email" id="bug-email" placeholder="your@email.com" autocomplete="email">
+                </div>
+                <button class="form-submit" id="bug-submit">submit report ↗</button>
+                <p class="form-status" id="bug-status"></p>
+
+                <p>thank you for helping me making my website a better place!</p>
+            </div>
+        </div>
+    </div>
+
 
 <!-- =========================
 FOOTER

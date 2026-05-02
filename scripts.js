@@ -196,6 +196,162 @@
 
 
     // =========================
+    // BACK4APP CONFIG
+    // — REST API directly, no SDK needed
+    // — uses X-Parse-REST-API-Key header
+    // =========================
+
+    var PARSE_APP_ID      = "rLyvaf4wL6oXTKqKyOXLLHjQJWBAU2aJqmOb08Pg";
+    var PARSE_REST_KEY    = "zHwvRS8aTb8q23MdYJrMYxhXh4Hg5ZNVoDbGvLB1";
+    var PARSE_API_URL     = "https://parseapi.back4app.com/classes/";
+
+    function saveToBack4App(className, data, onSuccess, onError) {
+        fetch(PARSE_API_URL + className, {
+            method: "POST",
+            headers: {
+                "X-Parse-Application-Id": PARSE_APP_ID,
+                "X-Parse-REST-API-Key":   PARSE_REST_KEY,
+                "Content-Type":           "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(function (response) {
+            if (!response.ok) {
+                return response.json().then(function (err) { throw err; });
+            }
+            return response.json();
+        })
+        .then(function () { onSuccess(); })
+        .catch(function (err) {
+            console.error("Back4App error:", err);
+            onError();
+        });
+    }
+
+
+    // =========================
+    // CONTACT FORM
+    // — saves name, email, message to Back4App ContactForm class
+    // =========================
+
+    function initContactForm() {
+        var submitBtn = document.querySelector("#contact-submit");
+        if (!submitBtn) return;
+
+        submitBtn.addEventListener("click", function () {
+            var name    = document.querySelector("#contact-name").value.trim();
+            var email   = document.querySelector("#contact-email").value.trim();
+            var message = document.querySelector("#contact-message").value.trim();
+            var status  = document.querySelector("#contact-status");
+
+            if (!name || !email || !message) {
+                status.textContent = "please fill in all fields.";
+                status.className = "form-status error";
+                return;
+            }
+
+            submitBtn.disabled = true;
+            status.textContent = "sending...";
+            status.className = "form-status";
+
+            saveToBack4App("ContactForm", { name: name, email: email, message: message },
+                function () {
+                    status.textContent = "sent! i'll get back to you soon :)";
+                    status.className = "form-status success";
+                    document.querySelector("#contact-name").value = "";
+                    document.querySelector("#contact-email").value = "";
+                    document.querySelector("#contact-message").value = "";
+                    submitBtn.disabled = false;
+                },
+                function () {
+                    status.textContent = "something went wrong! sorry about that!";
+                    status.className = "form-status error";
+                    submitBtn.disabled = false;
+                }
+            );
+        });
+    }
+
+
+    // =========================
+    // BUG REPORT BUTTON & MODAL
+    // — floating bug button sits in line with scroll-to-top, just above it
+    // — saves page, description, optional email to Back4App BugReport class
+    // =========================
+
+    function initBugReport() {
+        var bugBtn = document.createElement("button");
+        bugBtn.className = "bug-report-btn";
+        bugBtn.setAttribute("aria-label", "Report a bug");
+        bugBtn.innerHTML = "🐛";
+        document.body.appendChild(bugBtn);
+
+        var overlay   = document.querySelector("#bug-modal-overlay");
+        var closeBtn  = document.querySelector("#bug-modal-close");
+        var submitBtn = document.querySelector("#bug-submit");
+
+        if (!overlay) return;
+
+        function openModal() {
+            overlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            overlay.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        bugBtn.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+
+        overlay.addEventListener("click", function (e) {
+            if (e.target === overlay) closeModal();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape" && overlay.classList.contains("active")) closeModal();
+        });
+
+        submitBtn.addEventListener("click", function () {
+            var page        = document.querySelector("#bug-page").value.trim();
+            var description = document.querySelector("#bug-description").value.trim();
+            var email       = document.querySelector("#bug-email").value.trim();
+            var status      = document.querySelector("#bug-status");
+
+            if (!page || !description) {
+                status.textContent = "please fill in the location and description.";
+                status.className = "form-status error";
+                return;
+            }
+
+            submitBtn.disabled = true;
+            status.textContent = "submitting...";
+            status.className = "form-status";
+
+            var data = { page: page, description: description };
+            if (email) data.email = email;
+
+            saveToBack4App("BugReport", data,
+                function () {
+                    status.textContent = "got it, thank you! i'll look into it.";
+                    status.className = "form-status success";
+                    document.querySelector("#bug-page").value = "";
+                    document.querySelector("#bug-description").value = "";
+                    document.querySelector("#bug-email").value = "";
+                    submitBtn.disabled = false;
+                },
+                function () {
+                    status.textContent = "something went wrong! sorry about that!";
+                    status.className = "form-status error";
+                    submitBtn.disabled = false;
+                }
+            );
+        });
+    }
+
+
+    // =========================
     // INIT
     // =========================
 
@@ -203,6 +359,8 @@
         initLightbox();
         initZineLightbox();
         initScrollTop();
+        initContactForm();
+        initBugReport();
     });
 
 }());

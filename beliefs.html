@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>beliefs — zahra baxi</title>
+    <link rel="icon" type="image/png" href="images/content/icon.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+    <script src="scripts.js"></script>
+    <script src="partials.js" defer></script>
+</head>
+<body>
+    <div id="header"></div>
+    <main>
+        <div class="projectpage">
+
+            <div class="back-link"><a href="index.html">←</a></div>
+
+            <div class="projectintro">
+                <h1>beliefs</h1>
+                <p class="subtitle">This is a spot on my personal perspectives, which help shape my designs. I believe to share my principles to keep myself accountable and find my own inconsistencies (they're what make us human). Adding this page was inspired by <a href="https://github.com/busterbenson/public/blob/master/book-of-beliefs.md" target="_blank" rel="noopener noreferrer">this ↗</a>.</p>
+            </div>
+
+            <div class="projectsection">
+                <h2>on design</h2>
+                <p>The best design is often the kind people don't notice. It works, it's accessible, and it makes our life easier.</p>
+                <p>Good research should not extract but instead reciprocates. The people we design with should benefit as much as the people we design for.</p>
+            </div>
+
+            <div class="projectsection">
+                <h2>on ecology & place & sustainability</h2>
+                <p>We often don't consider the most important infrastructures to us until it fails. There are key things that sustain us: water, soil, migration corridors. They deserve as much design attention as the things we interact with every day.</p>
+                <p>You can't separate human communities from ecological ones. I believe in planet-centered design, a concept that blends the term <a href="https://www.ideou.com/blogs/inspiration/what-is-human-centered-design?srsltid=AfmBOorJvQrb90gq8G-Brm_pnUo-X_VPFSAF6WDdgAUAqMGlJqCvog9K" target="_blank" rel="noopener noreferrer">human-centered design ↗</a> with caring for our future generations by prioritizing long-term impacts to our planet.</p>
+                <p>I strive to be a person with zero to low-waste impact. I have my inconsistencies I admit, but I try to be mindful of them. Much of the current designs in our world are not sustainable and will harm us and our future generations. A quote I love is "we do not need one person doing sustainability perfectly; we need millions of people doing it imperfectly."</p>
+            </div>
+
+            <div class="projectsection">
+                <h2>on learning & making</h2>
+                <p>Making something by hand, such as folding a zine or knitting a row, is a different kind of thinking than anything you can do on a screen.</p>
+                <p>Not everything needs to be designed for a large scale. Some things are worth doing for ten people.</p>
+                <p>Teaching is one of the fastest ways to learn something properly.</p>
+                <p>Literacy is a fundamental skill that empowers individuals and communities. Literacy can come in many different forms not just in reading and writing. I believe proper access to literacy should be free / low-cost and be made important to systems around us.</p>
+                <p>My pedagogy is rooted in inclusivity and accesibility. Everyone has something valuable to contribute. My teaching philosophy emphasizes critical thinking alongside social responsibility. My goal in the classes I have taught are for students to pause and reflect on who their work is for, who it might leave out, and how it functions in the world beyond an educational setting.</p>
+            </div>
+
+            <!-- <div class="projectsection">
+                <h2>on people & community</h2>
+
+            </div> -->
+
+            <div class="projectsection">
+                <h2>on the internet & this site</h2>
+                <p>While I have publicly accessible social media platforms, I hardly use them. In fact I have none downloaded on my phone. I take more pride and joy in maintaining this space and spending time engaging with more physical media.</p>
+                <p>Technology & the web is evolving rapidly. Some of the developments I may personally not agree with however I must not ignore them, as they are the future. I must understand them and know I can adapt to these changes as a designer.</p>
+                <p>Being able to control your own space on the internet is empowering. It should be free. While I do not currently maintain a blog, I find a beauty and value in them. Access to blogs are a part of increasing digital equity and our literacy.</p>
+                <p>My thoughts will evolve over time, and I'm okay with that.</p>
+            </div>
+            <p>this statement was a new addition to my site and was published/last updated on May 1st 2026</p>
+        </div>
+
+        
+    </main>
+
+        <!-- BUG REPORT MODAL -->
+    <div class="modal-overlay" id="bug-modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="bug-modal-close" aria-label="Close">✕</button>
+            <h2 class="modal-title">report a bug</h2>
+            <p class="modal-subtitle">spotted something broken, wrong, or inaccessible? let me know and i'll fix it!</p>
+            <div id="bug-form-area">
+                <div class="form-row">
+                    <label for="bug-page">where did you see it?</label>
+                    <input type="text" id="bug-page" placeholder="e.g. about page, lit review project...">
+                </div>
+                <div class="form-row">
+                    <label for="bug-description">what happened?</label>
+                    <textarea id="bug-description" rows="4" placeholder="describe the bug, what you saw, what you expected..."></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="bug-email">your email <span style="opacity:0.5;">(optional, if you want a reply)</span></label>
+                    <input type="email" id="bug-email" placeholder="your@email.com" autocomplete="email">
+                </div>
+                <button class="form-submit" id="bug-submit">submit report ↗</button>
+                <p class="form-status" id="bug-status"></p>
+
+                <p>thank you for helping me making my website a better place!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+</body>
+</html>
