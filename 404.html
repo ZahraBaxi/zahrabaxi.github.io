@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — zahra baxi</title>
+    <link rel="icon" type="image/png" href="/images/content/icon.png">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/partials.js" defer></script>
+    <style>
+        .fourohfour-wrap {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4em 1em;
+            overflow: hidden;
+        }
+
+        .fourohfour-bg {
+            position: absolute;
+            font-family: "montreal medium";
+            font-size: clamp(12em, 38vw, 28em);
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: var(--blackish);
+            opacity: 0.04;
+            user-select: none;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .fourohfour-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3em;
+        }
+
+        .fourohfour-number {
+            font-family: "montreal medium";
+            color: var(--accentblue);
+            font-size: clamp(3em, 10vw, 7em);
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+
+        .fourohfour-label {
+            font-family: "montreal medium";
+            font-size: 1.2em;
+            margin-top: 0.3em;
+        }
+
+        .fourohfour-note {
+            font-size: 1em;
+            line-height: 1.7;
+            max-width: 380px;
+            opacity: 0.6;
+            margin: 0.8em 0 2em;
+        }
+
+        .fourohfour-links {
+            display: flex;
+            gap: 1.5em;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .fourohfour-links a {
+            font-family: "montreal medium";
+            font-size: 0.95em;
+            color: var(--blackish);
+            text-decoration: none;
+            border-bottom: 1px solid var(--blackish);
+            padding-bottom: 1px;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .fourohfour-links a:hover {
+            color: var(--accentblue);
+            border-color: var(--accentblue);
+        }
+
+        .fourohfour-stamp {
+            font-family: "montreal";
+            font-size: 0.75em;
+            opacity: 0.25;
+            margin-top: 3em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+
+    <main>
+        <div class="fourohfour-wrap">
+            <span class="fourohfour-bg" aria-hidden="true">404</span>
+
+            <div class="fourohfour-content">
+                <div class="fourohfour-number">WHOOPSIE!</div>
+                <p class="fourohfour-label">page not found.</p>
+                <p class="fourohfour-note">whatever you were looking for either moved, never existed, or escaped into the void. happens to the best of us.</p>
+
+                <div class="fourohfour-links">
+                    <a href="/index.html">← back home</a>
+                    <a href="/about.html">about me</a>
+                    <a href="/thelitreviewproject.html">lit review project</a>
+                    <a href="/sitemap.html">full site map</a>
+                </div>
+
+                <!-- <p class="fourohfour-stamp">error 404 · zahrabaxi.com</p> -->
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+</body>
+</html>
