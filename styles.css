@@ -708,7 +708,7 @@ footer p {
 .zine-card {
     display: flex;
     flex-direction: column;
-    gap: 0.9em;
+    gap: 0em;
     cursor: pointer;
 }
 
@@ -716,6 +716,7 @@ footer p {
     overflow: hidden;
     border-radius: 1.5em;
     aspect-ratio: 1 / 1;
+    margin-bottom: 0.9em;
 }
 
 .zine-thumb {
@@ -732,17 +733,27 @@ footer p {
     opacity: 0.9;
 }
 
+/* zine-info uses flex column so download always pins to bottom */
+.zine-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0;
+}
+
 .zine-info h3 {
     font-family: "montreal medium";
     font-size: 1.15em;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.3em;
+    margin-top: 0.2em;
 }
 
 .zine-info p {
-    font-size: 1em;
+    font-size: 0.95em;
     line-height: 1.5;
     opacity: 0.65;
-    margin-bottom: 0.6em;
+    margin-bottom: 0;
+    flex: 1;
 }
 
 .zine-download {
@@ -756,11 +767,278 @@ footer p {
     border-bottom: 1px solid var(--blackish);
     transition: color 0.2s ease, border-color 0.2s ease;
     padding-bottom: 1px;
+    margin-top: 0.9em;
+    align-self: flex-start;
 }
 
 .zine-download:hover {
     color: var(--accentblue);
     border-color: var(--accentblue);
+}
+
+/* fold type badge + theme tags row */
+.zine-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    flex-wrap: wrap;
+    margin-bottom: 0.3em;
+}
+
+.zine-fold-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.8em;
+    height: 1.8em;
+    border: 1px solid var(--blackish);
+    border-radius: 0.4em;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.zine-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35em;
+}
+
+.zine-tag {
+    font-family: "montreal";
+    font-size: 0.75em;
+    color: var(--blackish);
+    border: 1px solid var(--blackish);
+    border-radius: 2em;
+    padding: 0.15em 0.65em;
+    opacity: 0.6;
+    white-space: nowrap;
+}
+
+.zine-tag:hover {
+    opacity: 1;
+    color: var(--accentblue);
+    border-color: var(--accentblue);
+}
+
+/* fold icon SVG */
+.fold-icon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+/* fold legend above gallery */
+.fold-legend {
+    display: flex;
+    gap: 1.5em;
+    margin-bottom: 2em;
+    flex-wrap: wrap;
+}
+
+.fold-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45em;
+    font-size: 0.88em;
+    opacity: 0.65;
+}
+
+/* =========================
+   TUTORIALS
+========================= */
+
+/* two-column grid of cards */
+.tutorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5em;
+}
+
+/* section border — matches the projectintro divider style */
+.projectsection.tutorials-section {
+    border-top: 1px solid var(--blackish);
+    padding-top: 3em;
+}
+
+/* tutorial card — thumb + info side by side */
+.tutorial-card {
+    display: flex;
+    gap: 1.2em;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid rgba(6, 4, 45, 0.2);
+    border-radius: 1.2em;
+    padding: 1.2em;
+    transition: border-color 0.2s ease;
+}
+
+.tutorial-card:hover {
+    border-color: var(--blackish);
+}
+
+.tutorial-card:hover .tutorial-thumb {
+    opacity: 0.85;
+    transform: scale(1.02);
+}
+
+.tutorial-thumb-wrap {
+    position: relative;
+    width: 130px;
+    flex-shrink: 0;
+    border-radius: 0.7em;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+}
+
+.tutorial-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.25s ease, transform 0.3s ease;
+}
+
+.tutorial-overlay-hint {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.6em 0.8em;
+    background: linear-gradient(transparent, rgba(6,4,45,0.7));
+    color: var(--cream);
+    font-family: "montreal medium";
+    font-size: 0.8em;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.tutorial-card:hover .tutorial-overlay-hint {
+    opacity: 1;
+}
+
+.tutorial-card-info {
+    flex: 1;
+    padding-top: 0.3em;
+}
+
+.tutorial-card-title {
+    font-family: "montreal medium";
+    font-size: 1.05em;
+    margin-bottom: 0.4em;
+    opacity: 1 !important;
+}
+
+.tutorial-card-desc {
+    font-size: 0.95em;
+    line-height: 1.6;
+    opacity: 0.65;
+}
+
+/* tutorial lightbox overlay — split layout */
+.tutorial-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 4, 45, 0.95);
+    z-index: 1100;
+    align-items: center;
+    justify-content: center;
+    padding: 2em;
+}
+
+.tutorial-overlay.active {
+    display: flex;
+}
+
+.tutorial-close {
+    position: fixed;
+    top: 1.2em;
+    right: 1.5em;
+    background: none;
+    border: none;
+    color: var(--cream);
+    font-size: 1.5em;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+    z-index: 1101;
+}
+
+.tutorial-close:hover { opacity: 1; }
+
+.tutorial-layout {
+    display: flex;
+    gap: 3em;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+}
+
+.tutorial-instructions {
+    flex: 0 0 220px;
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+}
+
+.tutorial-step-label {
+    font-family: "montreal medium";
+    font-size: 0.8em;
+    opacity: 0.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.8em;
+    flex-shrink: 0;
+}
+
+.tutorial-step-text {
+    font-size: 1.05em;
+    line-height: 1.7;
+    margin-bottom: 0;
+    opacity: 1;
+    flex: 1;
+}
+
+.tutorial-nav {
+    display: flex;
+    gap: 1em;
+    margin-top: auto;
+    padding-top: 2em;
+    flex-shrink: 0;
+}
+
+.tutorial-btn {
+    font-family: "montreal medium";
+    font-size: 0.9em;
+    color: var(--cream);
+    background: transparent;
+    border: 1px solid rgba(245,242,232,0.4);
+    border-radius: 2em;
+    padding: 0.4em 1em;
+    cursor: pointer;
+    transition: border-color 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+}
+
+.tutorial-btn:hover { opacity: 1; border-color: var(--cream); }
+.tutorial-btn:disabled { opacity: 0.25; cursor: default; }
+
+.tutorial-img-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.tutorial-img {
+    height: 90vh;
+    max-width: 100%;
+    object-fit: contain;
+    border-radius: 1em;
 }
 
 
@@ -988,6 +1266,27 @@ footer p {
         gap: 2em;
     }
 
+    .tutorial-grid {
+        grid-template-columns: 1fr;
+        gap: 2em;
+    }
+
+    .tutorial-card {
+        gap: 1.5em;
+    }
+
+    .tutorial-thumb-wrap {
+        width: 130px;
+    }
+
+    .tutorial-layout {
+        gap: 2em;
+    }
+
+    .tutorial-instructions {
+        flex: 0 0 220px;
+    }
+
     /* about page — tablet */
     .aboutpage {
         width: 90%;
@@ -1028,6 +1327,42 @@ footer p {
 
     #zine-gallery {
         grid-template-columns: 1fr;
+    }
+
+    /* tutorial mobile — stack image on top, instructions below */
+    .tutorial-card {
+        flex-direction: column;
+        max-width: 100%;
+    }
+
+    .tutorial-thumb-wrap {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+    }
+
+    .tutorial-layout {
+        flex-direction: column-reverse;
+        gap: 1.5em;
+        padding: 1em;
+    }
+
+    .tutorial-instructions {
+        flex: unset;
+        width: 100%;
+    }
+
+    .tutorial-img {
+        max-height: 45vh;
+    }
+
+    /* zine cards mobile */
+    .zine-meta-row {
+        flex-wrap: wrap;
+        gap: 0.4em;
+    }
+
+    .zine-tag {
+        font-size: 0.7em;
     }
 
     /* about page — mobile */

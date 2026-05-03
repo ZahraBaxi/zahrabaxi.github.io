@@ -352,6 +352,85 @@
 
 
     // =========================
+    // TUTORIAL LIGHTBOX
+    // — split layout: instructions left, image right
+    // — triggered by clicking a .tutorial-card
+    // — images and steps stored in data attributes on the card
+    // =========================
+
+    function initTutorialLightbox() {
+        var cards = document.querySelectorAll(".tutorial-card");
+        if (!cards.length) return;
+
+        var overlay   = document.querySelector("#tutorial-overlay");
+        var closeBtn  = document.querySelector("#tutorial-close");
+        var prevBtn   = document.querySelector("#tutorial-prev");
+        var nextBtn   = document.querySelector("#tutorial-next");
+        var stepImg   = document.querySelector("#tutorial-img");
+        var stepText  = document.querySelector("#tutorial-step-text");
+        var stepNum   = document.querySelector("#tutorial-step-num");
+        var stepTotal = document.querySelector("#tutorial-step-total");
+
+        if (!overlay) return;
+
+        var images  = [];
+        var steps   = [];
+        var current = 0;
+
+        function updateStep() {
+            stepImg.src        = images[current];
+            stepText.textContent = steps[current];
+            stepNum.textContent  = current + 1;
+            prevBtn.disabled   = (current === 0);
+            nextBtn.disabled   = (current === images.length - 1);
+        }
+
+        function open(card) {
+            images  = JSON.parse(card.dataset.tutorialImages || "[]");
+            steps   = JSON.parse(card.dataset.tutorialSteps  || "[]");
+            if (!images.length) return;
+            current = 0;
+            stepTotal.textContent = images.length;
+            updateStep();
+            overlay.classList.add("active");
+            document.body.style.overflow = "hidden";
+        }
+
+        function close() {
+            overlay.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+
+        for (var i = 0; i < cards.length; i++) {
+            (function (card) {
+                card.addEventListener("click", function () { open(card); });
+            }(cards[i]));
+        }
+
+        closeBtn.addEventListener("click", close);
+
+        prevBtn.addEventListener("click", function () {
+            if (current > 0) { current--; updateStep(); }
+        });
+
+        nextBtn.addEventListener("click", function () {
+            if (current < images.length - 1) { current++; updateStep(); }
+        });
+
+        overlay.addEventListener("click", function (e) {
+            if (e.target === overlay) close();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            if (!overlay.classList.contains("active")) return;
+            if (e.key === "ArrowRight" && current < images.length - 1) { current++; updateStep(); }
+            if (e.key === "ArrowLeft"  && current > 0)                  { current--; updateStep(); }
+            if (e.key === "Escape") close();
+        });
+    }
+
+
+    // =========================
     // INIT
     // =========================
 
@@ -361,6 +440,7 @@
         initScrollTop();
         initContactForm();
         initBugReport();
+        initTutorialLightbox();
     });
 
 }());
