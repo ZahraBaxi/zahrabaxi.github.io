@@ -6,21 +6,26 @@
  *  last updated: May 2026
  *
  *  table of contents:
- *    1. root & variables
- *    2. reset & typography
- *    3. body
- *    4. header & nav
- *    5. homepage — blurb
- *    6. homepage — project grid
- *    7. project pages
- *    8. about page
- *    9. gallery & lightbox
- *   10. footer
- *   11. lit review project page
- *   12. scroll to top button
- *   13. bug report button & modal
- *   14. contact form
- *   15. media queries
+ *     1. root & variables
+ *     2. reset & typography
+ *     3. body
+ *     4. header & nav
+ *     5. homepage — blurb
+ *     6. homepage — project grid
+ *     7. project pages
+ *     8. about page
+ *     9. gallery & lightbox
+ *    10. footer
+ *    11. lit review project page
+ *        11a. tutorials dropdown
+ *        11b. zine gallery
+ *        11c. tutorial cards & lightbox
+ *    12. scroll to top button
+ *    13. bug report button & modal
+ *    14. contact form
+ *    15. media queries
+ *        15a. tablet (max-width: 1000px)
+ *        15b. mobile (max-width: 600px)
  * =========================================================
  */
 
@@ -641,23 +646,24 @@ footer {
     align-items: center;
     gap: 0.5em;
 }
- 
+
 footer p {
     text-align: center;
     font-size: 0.9em;
     color: var(--blackish);
 }
- 
 
-
-.footer-link:link, .footer-link:visited, .footer-link:active {
+.footer-link:link,
+.footer-link:visited,
+.footer-link:active {
     color: var(--blackish);
     text-decoration: none;
     border-bottom: 1px solid var(--blackish);
     transition: color 0.2s ease, border-color 0.2s ease;
 }
- 
-.footer-link:hover, .footer-link:focus {
+
+.footer-link:hover,
+.footer-link:focus {
     color: var(--accentblue);
     border-color: var(--accentblue);
 }
@@ -710,7 +716,9 @@ footer p {
     font-style: italic;
 }
 
-/* tutorials dropdown — always applied, not just mobile */
+
+/* ---- 11a. Tutorials Dropdown ---- */
+
 .tutorials-dropdown { margin-bottom: 3em; }
 
 .tutorials-summary {
@@ -722,11 +730,14 @@ footer p {
     transition: border-color 0.2s ease, background 0.2s ease;
     user-select: none;
 }
+
 .tutorials-summary::-webkit-details-marker { display: none; }
+
 .tutorials-summary:hover {
     border-color: var(--accentblue);
     background: rgba(31, 24, 255, 0.03);
 }
+
 .tutorials-summary:hover h2,
 .tutorials-summary:hover .tutorials-toggle-hint,
 .tutorials-summary:hover .tutorials-toggle-collapse { color: var(--accentblue); }
@@ -737,9 +748,10 @@ footer p {
     gap: 0.8em;
     margin-bottom: 0.3em;
 }
+
 .tutorials-summary-title h2 { margin-bottom: 0; transition: color 0.2s ease; }
 
-/* only one hint shows at a time */
+/* only one hint visible at a time */
 .tutorials-toggle-hint {
     font-size: 0.85em;
     opacity: 0.5;
@@ -747,6 +759,7 @@ footer p {
     transition: color 0.2s ease;
     display: inline;
 }
+
 .tutorials-toggle-collapse {
     font-size: 0.85em;
     opacity: 0.5;
@@ -754,6 +767,7 @@ footer p {
     transition: color 0.2s ease;
     display: none;
 }
+
 .tutorials-dropdown[open] .tutorials-toggle-hint { display: none; }
 .tutorials-dropdown[open] .tutorials-toggle-collapse { display: inline; }
 
@@ -763,6 +777,7 @@ footer p {
     border-bottom: none;
     background: rgba(31, 24, 255, 0.03);
 }
+
 .tutorials-dropdown[open] .tutorial-grid {
     border: 1px solid var(--blackish);
     border-top: none;
@@ -770,9 +785,12 @@ footer p {
     border-bottom-right-radius: 1em;
     padding: 2em 1.6em;
 }
+
 .tutorials-dropdown .section-subheading { margin-bottom: 0; }
 
-/* zine grid */
+
+/* ---- 11b. Zine Gallery ---- */
+
 #zine-gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -782,7 +800,7 @@ footer p {
 .zine-card {
     display: flex;
     flex-direction: column;
-    gap: 0em;
+    gap: 0;
     cursor: pointer;
 }
 
@@ -919,21 +937,20 @@ footer p {
     opacity: 0.65;
 }
 
-/* =========================
-   TUTORIALS
-========================= */
+
+/* ---- 11c. Tutorial Cards & Lightbox ---- */
+
+/* section border */
+.projectsection.tutorials-section {
+    border-top: 1px solid var(--blackish);
+    padding-top: 3em;
+}
 
 /* two-column grid of cards */
 .tutorial-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2.5em;
-}
-
-/* section border — matches the projectintro divider style */
-.projectsection.tutorials-section {
-    border-top: 1px solid var(--blackish);
-    padding-top: 3em;
 }
 
 /* tutorial card — thumb + info side by side */
@@ -1011,7 +1028,7 @@ footer p {
     opacity: 0.65;
 }
 
-/* tutorial lightbox overlay — split layout */
+/* tutorial lightbox — split layout: instructions left, image right */
 .tutorial-overlay {
     display: none;
     position: fixed;
@@ -1320,6 +1337,8 @@ footer p {
 /* =========================
    15. MEDIA QUERIES
 ========================= */
+
+/* ---- 15a. Tablet (max-width: 1000px) ---- */
 @media screen and (max-width: 1000px) {
     .projects {
         width: 90%;
@@ -1380,6 +1399,7 @@ footer p {
     }
 }
 
+/* ---- 15b. Mobile (max-width: 600px) ---- */
 @media screen and (max-width: 600px) {
     .projects {
         grid-template-columns: 1fr;
