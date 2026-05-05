@@ -16,9 +16,11 @@
         overlay.className = "lightbox-overlay";
         overlay.innerHTML = [
             '<button class="lightbox-close" aria-label="Close">✕</button>',
+            '<div class="lightbox-inner">',
             '<button class="lightbox-btn lightbox-prev" aria-label="Previous">&#9756;</button>',
             '<img class="lightbox-img" src="" alt="">',
             '<button class="lightbox-btn lightbox-next" aria-label="Next">&#9758;</button>',
+            '</div>',
             '<span class="lightbox-counter"></span>'
         ].join("");
         document.body.appendChild(overlay);
@@ -99,9 +101,11 @@
         overlay.className = "lightbox-overlay";
         overlay.innerHTML = [
             '<button class="lightbox-close" aria-label="Close">✕</button>',
+            '<div class="lightbox-inner">',
             '<button class="lightbox-btn lightbox-prev" aria-label="Previous">&#9756;</button>',
             '<img class="lightbox-img" src="" alt="">',
             '<button class="lightbox-btn lightbox-next" aria-label="Next">&#9758;</button>',
+            '</div>',
             '<span class="lightbox-counter"></span>'
         ].join("");
         document.body.appendChild(overlay);

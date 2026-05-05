@@ -556,41 +556,55 @@ i{
     inset: 0;
     background: rgba(6, 4, 45, 0.92);
     z-index: 1000;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 3em 1em 2.5em; /* top room for close btn, bottom for counter */
 }
 
 .lightbox-overlay.active {
     display: flex;
 }
 
+/* row: [prev] [image] [next] — arrows never overlap the image */
+.lightbox-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2em;
+    width: 100%;
+    max-width: 100vw;
+    flex: 1;
+    min-height: 0;
+}
+
 .lightbox-img {
-    max-height: 90vh;
-    max-width: 90vw;
+    max-height: 100%;
+    max-width: 100%;
     object-fit: contain;
+    flex: 1;
+    min-width: 0;
 }
 
 .lightbox-btn {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
+    flex-shrink: 0;
     background: none;
     border: none;
     color: var(--cream);
     font-size: 2.5em;
     cursor: pointer;
-    padding: 0.5em;
+    padding: 0.3em 0.5em;
     opacity: 0.7;
     transition: opacity 0.2s ease;
     font-family: "montreal";
+    line-height: 1;
+    /* no position:fixed — they sit in the flex row */
 }
 
 .lightbox-btn:hover { opacity: 1; }
-.lightbox-prev      { left: 1.5em; }
-.lightbox-next      { right: 1.5em; }
 
 .lightbox-close {
-    position: fixed;
+    position: absolute;
     top: 1.2em;
     right: 1.5em;
     background: none;
@@ -605,10 +619,8 @@ i{
 .lightbox-close:hover { opacity: 1; }
 
 .lightbox-counter {
-    position: fixed;
-    bottom: 1.5em;
-    left: 50%;
-    transform: translateX(-50%);
+    flex-shrink: 0;
+    margin-top: 0.8em;
     color: var(--cream);
     font-family: "montreal";
     font-size: 0.9em;
@@ -1325,14 +1337,65 @@ footer p {
         font-size: 2em;
     }
 
-    #zine-gallery {
-        grid-template-columns: 1fr;
+    /* project page on mobile */
+    .projectpage {
+        width: 92%;
     }
 
-    /* tutorial mobile — stack image on top, instructions below */
+    .projectintro h1 {
+        font-size: 1.9em;
+    }
+
+    .subtitle {
+        font-size: 1.05em;
+    }
+
+    .projectmeta {
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .projectsection p {
+        font-size: 1em;
+    }
+
+    /* zine gallery — single column */
+    #zine-gallery {
+        grid-template-columns: 1fr;
+        gap: 2em;
+    }
+
+    /* zine card — horizontal layout collapses to vertical on very small screens */
+    .zine-card {
+        flex-direction: column;
+    }
+
+    .zine-thumb-wrap {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        border-radius: 1em;
+    }
+
+    /* fold legend wraps nicely */
+    .fold-legend {
+        gap: 0.8em;
+    }
+
+    .fold-legend-label {
+        width: 100%;
+    }
+
+    /* tutorial grid — single column */
+    .tutorial-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5em;
+    }
+
+    /* tutorial card — stack image on top, instructions below */
     .tutorial-card {
         flex-direction: column;
         max-width: 100%;
+        gap: 1em;
     }
 
     .tutorial-thumb-wrap {
@@ -1340,6 +1403,7 @@ footer p {
         aspect-ratio: 4 / 3;
     }
 
+    /* tutorial lightbox — stack image above text */
     .tutorial-layout {
         flex-direction: column-reverse;
         gap: 1.5em;
@@ -1355,8 +1419,7 @@ footer p {
         max-height: 45vh;
     }
 
-
-      /* tutorials dropdown */
+    /* tutorials dropdown */
     .tutorials-dropdown { margin-bottom: 3em; }
     .tutorials-summary {
       list-style: none;
@@ -1386,8 +1449,15 @@ footer p {
       opacity: 0.5;
       font-style: italic;
       transition: color 0.2s ease;
+      display: inline;
     }
-    .tutorials-toggle-collapse { display: none; font-size: 0.85em; opacity: 0.5; font-style: italic; transition: color 0.2s ease; }
+    .tutorials-toggle-collapse {
+      font-size: 0.85em;
+      opacity: 0.5;
+      font-style: italic;
+      transition: color 0.2s ease;
+      display: none;
+    }
     .tutorials-dropdown[open] .tutorials-toggle-hint { display: none; }
     .tutorials-dropdown[open] .tutorials-toggle-collapse { display: inline; }
     .tutorials-summary:hover .tutorials-toggle-collapse { color: var(--accentblue); }
@@ -1406,9 +1476,32 @@ footer p {
     }
     .tutorials-dropdown .section-subheading { margin-bottom: 0; }
 
-    
 
-    /* zine cards mobile */
+    /* lightbox arrows: smaller + pull further inward so they don't overlap image */
+    .lightbox-btn {
+        font-size: 1.6em;
+        padding: 0.3em;
+    }
+
+    .lightbox-prev { left: 0.5em; }
+    .lightbox-next { right: 0.5em; }
+
+    .lightbox-img {
+        max-height: 80vh;
+        max-width: calc(100vw - 5em); /* narrow screens: more breathing room from arrows */
+    }
+
+    /* tutorials dropdown summary on mobile */
+    .tutorials-summary {
+        padding: 1em;
+    }
+
+    .tutorials-summary-title {
+        flex-wrap: wrap;
+        gap: 0.4em;
+    }
+
+    /* zine meta row */
     .zine-meta-row {
         flex-wrap: wrap;
         gap: 0.4em;
