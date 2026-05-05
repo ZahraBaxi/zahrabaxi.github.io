@@ -1355,6 +1355,59 @@ footer p {
         max-height: 45vh;
     }
 
+
+      /* tutorials dropdown */
+    .tutorials-dropdown { margin-bottom: 3em; }
+    .tutorials-summary {
+      list-style: none;
+      cursor: pointer;
+      border: 1px solid var(--blackish);
+      border-radius: 1em;
+      padding: 1.2em 1.6em;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      user-select: none;
+    }
+    .tutorials-summary::-webkit-details-marker { display: none; }
+    .tutorials-summary:hover {
+      border-color: var(--accentblue);
+      background: rgba(31, 24, 255, 0.03);
+    }
+    .tutorials-summary:hover h2,
+    .tutorials-summary:hover .tutorials-toggle-hint { color: var(--accentblue); }
+    .tutorials-summary-title {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8em;
+      margin-bottom: 0.3em;
+    }
+    .tutorials-summary-title h2 { margin-bottom: 0; transition: color 0.2s ease; }
+    .tutorials-toggle-hint {
+      font-size: 0.85em;
+      opacity: 0.5;
+      font-style: italic;
+      transition: color 0.2s ease;
+    }
+    .tutorials-toggle-collapse { display: none; font-size: 0.85em; opacity: 0.5; font-style: italic; transition: color 0.2s ease; }
+    .tutorials-dropdown[open] .tutorials-toggle-hint { display: none; }
+    .tutorials-dropdown[open] .tutorials-toggle-collapse { display: inline; }
+    .tutorials-summary:hover .tutorials-toggle-collapse { color: var(--accentblue); }
+    .tutorials-dropdown[open] .tutorials-summary {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: none;
+      background: rgba(31, 24, 255, 0.03);
+    }
+    .tutorials-dropdown[open] .tutorial-grid {
+      border: 1px solid var(--blackish);
+      border-top: none;
+      border-bottom-left-radius: 1em;
+      border-bottom-right-radius: 1em;
+      padding: 2em 1.6em;
+    }
+    .tutorials-dropdown .section-subheading { margin-bottom: 0; }
+
+    
+
     /* zine cards mobile */
     .zine-meta-row {
         flex-wrap: wrap;
