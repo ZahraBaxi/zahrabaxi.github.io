@@ -1,8 +1,7 @@
 (function () {
     "use strict";
 
-    console.log("partials.js loaded — header & footer incoming");
-    console.log("the nav is probably fine. probably.");
+    console.log("partials.js loaded");
 
 
     // =========================

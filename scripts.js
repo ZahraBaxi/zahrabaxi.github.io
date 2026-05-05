@@ -1,9 +1,7 @@
 (function () {
     "use strict";
 
-    console.log("scripts.js loaded — lightbox & zine gallery ready");
-    console.log("if you're reading this, hi!! :)");
-
+    console.log("scripts.js loaded");
 
     // =========================
     // LIGHTBOX
