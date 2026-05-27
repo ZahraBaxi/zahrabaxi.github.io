@@ -22,6 +22,25 @@
 <main class="projectpage">
     <div class="back-link"><a href="../index.html">← back</a></div>
 
+    <!-- PAGE TOC SIDEBAR -->
+    <nav class="page-toc" aria-label="Page contents">
+        <p class="toc-label">contents</p>
+        <ol class="toc-list">
+            <li><a href="#overview" class="toc-link">overview</a></li>
+            <li><a href="#the-basin" class="toc-link">the yolo basin</a></li>
+            <li><a href="#research" class="toc-link">research methods</a></li>
+            <li><a href="#influences" class="toc-link">influences</a></li>
+            <li><a href="#outputs" class="toc-link">design outputs</a></li>
+            <li><a href="#exhibition" class="toc-link">exhibition</a></li>
+            <li><a href="#timeline" class="toc-link">basin timeline</a></li>
+            <li><a href="#thanks" class="toc-link">thank you</a></li>
+            <li><a href="#colophon" class="toc-link">colophon</a></li>
+        </ol>
+        <div class="toc-progress">
+            <div class="toc-progress-bar" id="toc-progress-bar"></div>
+        </div>
+    </nav>
+
     <section class="projectintro">
         <h1>mfa thesis</h1>
         <p class="subtitle">designing for shared ecological understanding: the yolo basin</p>
@@ -37,7 +56,7 @@
     </section>
 
     <!-- OVERVIEW -->
-    <section class="projectsection">
+    <section class="projectsection" id="overview">
         <div class="exhibit-callout">
             <p class="exhibit-callout-label">↓ upcoming</p>
             <p class="exhibit-callout-main">The exhibit opens <strong>June 4th, 2026</strong>: 5:30–9pm at the <strong>Manetti Shrem Museum</strong>, UC Davis. Come see the work in person.</p>
@@ -53,7 +72,7 @@
     </section>
 
     <!-- THE BASIN -->
-    <section class="projectsection">
+    <section class="projectsection" id="the-basin">
         <h2>the yolo basin</h2>
          <figure>
             <img src="../images/projects/mfathesis/basin.png" alt="photo of the yolo basin">
@@ -69,7 +88,7 @@
     </section>
 
     <!-- RESEARCH -->
-    <section class="projectsection">
+    <section class="projectsection" id="research">
         <h2>research methods</h2>
         <p>Research for this project was conducted on site and through the literature. I spent time walking and photographing the basin across different seasons, mapping spatial and seasonal patterns, and collecting data from environmental research and monitoring projects. I also completed an extensive literature review on floodplain systems, migratory habitat, citizen science, and design communication, which became the foundation for the zine series.</p>
 
@@ -80,7 +99,7 @@
     </section>
 
     <!-- CASE STUDIES -->
-    <section class="projectsection">
+    <section class="projectsection" id="influences">
         <h2>influences</h2>
         <p>Three projects shaped how I thought about communicating ecological information to public audiences.</p>
         <figure>
@@ -102,7 +121,7 @@
     </section>
 
     <!-- OUTPUTS -->
-    <section class="projectsection">
+    <section class="projectsection" id="outputs">
         <h2>design outputs</h2>
 
         <h3>interactive website</h3>
@@ -179,7 +198,7 @@
     </section>
 
     <!-- EXHIBITION -->
-    <section class="projectsection">
+    <section class="projectsection" id="exhibition">
         <h2>exhibition</h2>
         <p class="project-note">Installation is underway. Photos from the process will be added here as the exhibit comes together: check back after June 4th for documentation of the final space.</p>
         <p>The exhibition is at the <strong>Manetti Shrem Museum at UC Davis</strong>, opening <strong>June 4th, 2026 from 5:30–9pm</strong>. It runs through June 20th. The centerpiece is a desk with a touchscreen monitor where visitors can explore the interactive website at their own pace. Above the desk is the bulletin board for visitors to learn more about the basin site itself.</p>
@@ -216,7 +235,7 @@
     </section>
 
     <!-- BASIN TIMELINE -->
-    <section class="projectsection basin-timeline-section">
+    <section class="projectsection basin-timeline-section" id="timeline">
         <h2>basin timeline</h2>
         <p>The Yolo Basin has a long history of flood, management, and ecological work. Key moments from 1851 to today, from the Great Flood to the 2025 Big Notch salmonid restoration project. Click on each event to learn more.</p>
 
@@ -401,13 +420,13 @@
     </section>
 
     <!-- REFLECTION -->
-    <section class="projectsection">
+    <section class="projectsection" id="thanks">
         <h2>thank you!</h2>
         <p>This project is meant to show that design can be a tool for making complex environmental systems easier to see, understand, and care about. It is an attempt to do that for a landscape that most people pass by without stopping. The Yolo Basin is not a dramatic place at first glance, but it is doing a lot of work, ecologically and infrastructurally, and most of that work is invisible to the people who live near it.</p>
         <p>The goal is not to teach people facts about the basin. It is to give them enough of an entry point that they start to notice it. A zine they read on the bus, a poster on their wall, a map they explore for ten minutes. Any of those is enough.</p>
     </setion>
 
-    <section class="projectsection colophon-section">
+    <section class="projectsection colophon-section" id="colophon">
         <h2>the colophon</h2>
         <p class="colophon-intro">A colophon is a note at the end of a publication that describes the materials, tools, & people involved in making it.</p>
 
@@ -841,6 +860,110 @@
             });
         });
     });
+})();
+</script>
+
+<!-- ===== PAGE TOC STYLES ===== -->
+<style>
+.page-toc {
+    position: fixed;
+    top: 50%;
+    right: 2em;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    z-index: 100;
+}
+
+.toc-label {
+    font-family: "montreal medium", "montreal", sans-serif;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.4;
+    margin: 0 0 0.2em 0;
+}
+
+.toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+}
+
+.toc-link {
+    font-family: "montreal", sans-serif;
+    font-size: 0.8em;
+    color: var(--blackish);
+    text-decoration: none;
+    opacity: 0.35;
+    display: block;
+    padding: 0.2em 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.toc-link:hover { opacity: 0.7; }
+.toc-link.toc-active { opacity: 1; font-family: "montreal medium", "montreal", sans-serif; }
+
+.toc-progress {
+    margin-top: 0.8em;
+    width: 2px;
+    height: 80px;
+    background: rgba(6, 4, 45, 0.1);
+    border-radius: 2px;
+    align-self: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.toc-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--blackish);
+    border-radius: 2px;
+    transition: height 0.1s linear;
+    height: 0%;
+}
+
+@media screen and (max-width: 1100px) {
+    .page-toc { display: none; }
+}
+</style>
+
+<script>
+(function () {
+    var links = document.querySelectorAll('.toc-link');
+    var bar = document.getElementById('toc-progress-bar');
+
+    var ids = Array.from(links).map(function (l) {
+        return l.getAttribute('href').slice(1);
+    });
+
+    function onScroll() {
+        // Progress bar
+        var scrolled = window.scrollY;
+        var total = document.body.scrollHeight - window.innerHeight;
+        if (bar) bar.style.height = Math.min(100, (scrolled / total) * 100) + '%';
+
+        // Active link
+        var current = ids[0];
+        ids.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el && el.getBoundingClientRect().top <= 120) current = id;
+        });
+        links.forEach(function (l) {
+            l.classList.toggle('toc-active', l.getAttribute('href') === '#' + current);
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 })();
 </script>
 
