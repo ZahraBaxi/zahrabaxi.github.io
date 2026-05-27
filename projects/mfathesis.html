@@ -572,15 +572,6 @@
     opacity: 0.7;
 }
 
-@media screen and (max-width: 600px) {
-    .install-image-grid {
-        grid-template-columns: 1fr;
-    }
-    .install-image-grid img {
-        height: 220px;
-    }
-}
-
 /* ===== END ADDITIONS ===== */
 
 .basin-timeline-section {
@@ -736,9 +727,6 @@
     margin-bottom: 0 !important;
 }
 
-@media screen and (max-width: 600px) {
-    .tl-tag { display: none; }
-}
 /* ===== COLOPHON ===== */
 .colophon-intro {
     font-size: 1em;
@@ -812,12 +800,6 @@
     margin-bottom: 1em !important;
 }
 
-@media screen and (max-width: 600px) {
-    .colophon-entry {
-        grid-template-columns: 1fr;
-        gap: 0.4em;
-    }
-}
 /* ===== END COLOPHON ===== */
 </style>
 
@@ -934,7 +916,49 @@
 @media screen and (max-width: 1100px) {
     .page-toc { display: none; }
 }
-</style>
+
+/* Mobile fixes */
+@media screen and (max-width: 700px) {
+    .install-image-grid {
+        grid-template-columns: 1fr;
+    }
+    .install-image-grid img {
+        height: 240px;
+    }
+    .exhibit-callout {
+        padding: 1em;
+    }
+    .exhibit-callout-main {
+        font-size: 1.05em;
+    }
+    .exhibit-callout-sub {
+        font-size: 1em;
+        opacity: 0.65;
+    }
+    .tl-filters {
+        gap: 0.4em;
+    }
+    .tl-filter {
+        font-size: 0.85em;
+        padding: 0.35em 0.75em;
+    }
+    .tl-header {
+        gap: 0.5em;
+        padding: 0.8em 0;
+    }
+    .colophon-entry {
+        grid-template-columns: 1fr;
+        gap: 0.4em;
+    }
+    .colophon-entry dt {
+        font-size: 0.85em;
+    }
+    .install-image-grid figcaption,
+    .colophon-entry dd,
+    .colophon-sources li {
+        font-size: 1em;
+    }
+}</style>
 
 <script>
 (function () {
