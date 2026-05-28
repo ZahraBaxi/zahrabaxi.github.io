@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zahra baxi - living with less</title>
+    <link rel="icon" type="image/png" href="../images/content/icon.png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+    <script src="../partials.js"></script>
+    <script src="../scripts.js"></script>
+
+    <style>
+        /* ── ACCESSIBILITY: WCAG AA contrast throughout ── */
+        :root {
+            --text-muted:   #4E4C68;
+            --text-faint:   #6A6880;
+            --text-source:  #5E5C76;
+            --border-blue:  rgba(31,24,255,0.22);
+            --fill-dim:     rgba(31,24,255,0.16);
+            --fill-bg:      rgba(6,4,45,0.08);
+        }
+
+        /* ── chapter nav pills ── */
+        .lwl-nav { display:flex; flex-wrap:wrap; gap:0.6em; margin-top:1.8em; }
+        .lwl-nav a {
+            font-family:"montreal medium"; font-size:0.9em;
+            text-decoration:none; color:var(--blackish);
+            border:1.5px solid rgba(6,4,45,0.32); border-radius:2em;
+            padding:0.45em 1.15em;
+            transition:color 0.2s, border-color 0.2s, background 0.2s;
+        }
+        .lwl-nav a:hover, .lwl-nav a:focus-visible {
+            color:var(--accentblue); border-color:var(--accentblue);
+            background:rgba(31,24,255,0.06); outline:none;
+        }
+        .lwl-nav a:focus-visible { box-shadow:0 0 0 3px rgba(31,24,255,0.28); }
+
+        /* ── chapter layout ── */
+        .lwl-chapter {
+            display:grid; grid-template-columns:1fr 1fr;
+            gap:5em; align-items:start;
+            padding:4em 0;
+            border-top:1px solid rgba(6,4,45,0.11);
+            scroll-margin-top:2em;
+        }
+        .lwl-chapter:nth-child(even) .lwl-chapter-text { order:2; }
+        .lwl-chapter:nth-child(even) .lwl-vis           { order:1; }
+
+        .lwl-num {
+            font-size:0.8em; letter-spacing:0.14em;
+            text-transform:uppercase; color:var(--text-faint);
+            margin-bottom:0.5em;
+        }
+        .lwl-chapter h2 {
+            font-family:"montreal medium"; font-size:2em;
+            line-height:1.1; margin-bottom:0.8em; color:var(--blackish);
+        }
+        .lwl-chapter h2 span { color:var(--accentblue); }
+        .lwl-chapter p {
+            font-size:1.1em; line-height:1.8;
+            color:#28264A; margin-bottom:1.1em;
+        }
+
+        /* ── tip list ── */
+        .lwl-tips { list-style:none; padding:0; margin-top:0.5em; display:flex; flex-direction:column; gap:0.8em; }
+        .lwl-tips li { display:flex; gap:0.75em; font-size:1.05em; line-height:1.65; color:#28264A; }
+        .lwl-tips li::before { content:"✱"; color:var(--accentblue); flex-shrink:0; margin-top:0.05em; }
+
+        /* ── vis shared ── */
+        .lwl-vis { position:sticky; top:2em; }
+        .lwl-vis-label {
+            font-family:"montreal medium"; font-size:0.92em;
+            text-transform:uppercase; letter-spacing:0.1em;
+            color:var(--text-muted); margin-bottom:0.5em;
+        }
+        .lwl-vis-hint { font-size:0.9em; color:var(--text-faint); margin-bottom:1.2em; }
+        .lwl-source { font-size:0.85em; color:var(--text-source); line-height:1.6; margin-top:1em; }
+        .lwl-source a { color:var(--text-source); text-underline-offset:2px; }
+        .lwl-source a:hover { color:var(--accentblue); }
+
+        /* ── stat cards ── */
+        .lwl-stats { display:flex; flex-direction:column; gap:0.9em; margin-bottom:1em; }
+        .lwl-stat {
+            border:1.5px solid var(--border-blue); border-radius:0.8em;
+            padding:1.1em 1.4em; background:rgba(31,24,255,0.03);
+            transition:border-color 0.2s, background 0.2s, transform 0.18s;
+            cursor:default;
+        }
+        .lwl-stat:hover { border-color:var(--accentblue); background:rgba(31,24,255,0.07); transform:translateY(-2px); }
+        .lwl-stat-num { font-family:"montreal medium"; font-size:2.6em; color:var(--accentblue); line-height:1; margin-bottom:0.2em; }
+        .lwl-stat-label { font-size:0.95em; line-height:1.55; color:var(--text-muted); }
+
+        /* ── legend ── */
+        .lwl-legend { display:flex; flex-direction:column; gap:0.55em; margin-top:1em; }
+        .lwl-legend-row { display:flex; align-items:center; gap:0.6em; font-size:0.94em; color:var(--text-muted); }
+        .lwl-legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+
+        /* ════════════════════════════════════════════
+           VIS 1 — WAFFLE CHART (fashion)
+        ════════════════════════════════════════════ */
+        .waffle-grid { display:flex; flex-wrap:wrap; gap:5px; position:relative; }
+        .waffle-cell {
+            width:22px; height:22px; border-radius:4px;
+            background:var(--fill-bg);
+            opacity:0; transform:scale(0.3);
+            transition:transform 0.12s ease, opacity 0.25s ease, filter 0.15s;
+            cursor:default;
+        }
+        .waffle-cell.on   { background:var(--accentblue); }
+        .waffle-cell.dim  { background:var(--fill-dim); }
+        .waffle-cell:hover { transform:scale(1.4) !important; filter:brightness(1.2); z-index:3; position:relative; }
+        .waffle-cell:focus-visible { outline:2px solid var(--accentblue); outline-offset:2px; border-radius:4px; }
+        .waffle-tooltip { display:none; } /* replaced by info panel */
+        .vis-info-panel {
+            min-height:2.8em;
+            margin-top:0.8em;
+            padding:0.7em 1em;
+            border-radius:0.5em;
+            background:rgba(31,24,255,0.05);
+            border:1.5px solid var(--border-blue);
+            font-size:0.9em; line-height:1.55; color:var(--text-muted);
+            transition:background 0.15s;
+        }
+
+        /* ════════════════════════════════════════════
+           VIS 2 — JAR FILL (fermentation)
+        ════════════════════════════════════════════ */
+        .jar-grid { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1.4em; margin-bottom:1.2em; }
+        .jar-item { display:flex; flex-direction:column; align-items:center; gap:0.6em; cursor:default; }
+        .jar-item:hover .jar-svg-wrap { transform:translateY(-4px); }
+        .jar-svg-wrap { transition:transform 0.2s ease; position:relative; }
+        .jar-label-top {
+            font-family:"montreal medium"; font-size:1em;
+            color:var(--blackish); text-align:center; line-height:1.3;
+        }
+        .jar-sublabel {
+            font-size:0.88em; color:var(--text-muted); text-align:center; line-height:1.35;
+        }
+        .jar-fill-fresh { fill:rgba(6,4,45,0.18); }
+        .jar-fill-ferment { fill:var(--accentblue); }
+        .jar-body { fill:none; stroke:rgba(6,4,45,0.25); stroke-width:2; }
+        .jar-lid  { fill:rgba(6,4,45,0.12); }
+        .jar-clip-rect { transition:height 1.2s cubic-bezier(.4,0,.2,1), y 1.2s cubic-bezier(.4,0,.2,1); }
+        /* jar info panel - same fixed style */
+        .jar-tooltip { display:none; } /* replaced by info panel below grid */
+
+        /* ════════════════════════════════════════════
+           VIS 3 — RACE TRACK (transport)
+        ════════════════════════════════════════════ */
+        .race-wrap { display:flex; flex-direction:column; gap:0; }
+        .race-header {
+            font-size:0.84em; color:var(--text-muted); margin-bottom:1.2em;
+            line-height:1.55; background:rgba(31,24,255,0.04);
+            border-left:3px solid var(--accentblue);
+            padding:0.8em 1em; border-radius:0 0.4em 0.4em 0;
+        }
+        .race-row {
+            display:grid; grid-template-columns:96px 1fr 68px;
+            align-items:center; gap:0.9em;
+            padding:0.65em 0; border-bottom:1px solid rgba(6,4,45,0.07);
+            cursor:default;
+            transition:background 0.15s;
+            border-radius:4px;
+        }
+        .race-row:last-child { border-bottom:none; }
+        .race-row:hover { background:rgba(31,24,255,0.04); }
+        .race-name { font-family:"montreal medium"; font-size:1em; color:var(--blackish); padding-left:4px; }
+        .race-track { height:38px; background:var(--fill-bg); border-radius:20px; position:relative; overflow:visible; }
+        .race-vehicle {
+            position:absolute; top:0; left:0; height:38px;
+            border-radius:20px; width:0;
+            transition:width 1.3s cubic-bezier(.4,0,.2,1);
+        }
+        .race-emoji {
+            font-size:1.25em; position:absolute; top:50%;
+            transform:translateY(-50%);
+            transition:left 1.3s cubic-bezier(.4,0,.2,1);
+            left:4px;
+            pointer-events:none;
+            z-index:2;
+            background:#fff;
+            border-radius:50%;
+            width:34px; height:34px;
+            display:flex; align-items:center; justify-content:center;
+            box-shadow:0 1px 5px rgba(0,0,0,0.18);
+            line-height:1;
+            flex-shrink:0;
+        }
+        .race-km {
+            font-family:"montreal medium"; font-size:1em;
+            color:var(--text-muted); text-align:right;
+            transition:color 0.2s;
+        }
+        .race-row:hover .race-km { color:var(--accentblue); }
+        .race-km small { display:block; font-family:"montreal"; font-size:0.8em; color:var(--text-faint); }
+
+        /* ════════════════════════════════════════════
+           VIS 4 — STACKED BLOCKS treemap (plastic)
+        ════════════════════════════════════════════ */
+        .treemap-wrap { position:relative; width:100%; cursor:default; }
+        .treemap-svg { display:block; width:100%; }
+        .treemap-cell {
+            cursor:pointer;
+            transition:filter 0.18s, opacity 0.18s;
+        }
+        .treemap-cell:hover { filter:brightness(1.15); }
+        .treemap-cell:focus-visible { outline:2.5px solid var(--blackish); outline-offset:1px; }
+        .treemap-tooltip {
+            position:absolute; background:var(--blackish); color:#fff;
+            font-size:0.82em; line-height:1.5; padding:0.6em 0.9em;
+            border-radius:0.5em; pointer-events:none; display:none; z-index:10; max-width:200px;
+        }
+        /* animate in on scroll */
+        .treemap-cell rect {
+            transform-origin:center bottom;
+            transform:scaleY(0); opacity:0;
+            transition:transform 0.6s cubic-bezier(.4,0,.2,1), opacity 0.4s ease;
+        }
+        .treemap-animate .treemap-cell rect { transform:scaleY(1); opacity:1; }
+
+        /* ════════════════════════════════════════════
+           VIS 5 — BULK COMPARE + SAVINGS COUNTER
+        ════════════════════════════════════════════ */
+        .lwl-compare { display:grid; grid-template-columns:1fr 1fr; gap:0.8em; }
+        .lwl-ccard {
+            border:1.5px solid rgba(6,4,45,0.14); border-radius:0.8em;
+            padding:1.2em 1.4em;
+            transition:border-color 0.2s, transform 0.18s, background 0.2s;
+        }
+        .lwl-ccard:hover { transform:translateY(-2px); }
+        .lwl-ccard.hi { border-color:var(--accentblue); background:rgba(31,24,255,0.04); }
+        .lwl-ccard.hi:hover { background:rgba(31,24,255,0.08); }
+        .lwl-ccard-label { font-size:0.78em; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:0.4em; }
+        .lwl-ccard-val { font-family:"montreal medium"; font-size:1.4em; margin-bottom:0.3em; }
+        .lwl-ccard.hi .lwl-ccard-val { color:var(--accentblue); }
+        .lwl-ccard:not(.hi) .lwl-ccard-val { color:var(--text-faint); }
+        .lwl-ccard-desc { font-size:0.86em; line-height:1.5; color:var(--text-muted); }
+
+        /* savings calculator */
+        .savings-wrap {
+            margin-top:1.8em; padding:1.4em;
+            border:1.5px solid var(--border-blue); border-radius:0.8em;
+            background:rgba(31,24,255,0.03);
+        }
+        .savings-title { font-family:"montreal medium"; font-size:0.82em; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); margin-bottom:1em; }
+        .savings-slider-row { display:flex; align-items:center; gap:0.8em; margin-bottom:0.7em; }
+        .savings-slider-label { font-size:0.86em; color:var(--blackish); min-width:130px; }
+        .savings-slider {
+            -webkit-appearance:none; appearance:none;
+            flex:1; height:4px; background:rgba(6,4,45,0.15); border-radius:2px; outline:none;
+            cursor:pointer;
+        }
+        .savings-slider::-webkit-slider-thumb {
+            -webkit-appearance:none; appearance:none;
+            width:16px; height:16px; border-radius:50%;
+            background:var(--accentblue); cursor:pointer;
+            border:2px solid var(--cream); box-shadow:0 1px 4px rgba(31,24,255,0.3);
+        }
+        .savings-slider:focus-visible { box-shadow:0 0 0 3px rgba(31,24,255,0.28); border-radius:2px; }
+        .savings-val { font-family:"montreal medium"; font-size:0.88em; color:var(--accentblue); min-width:30px; text-align:right; }
+        .savings-result {
+            margin-top:1em; padding:0.9em 1em;
+            background:rgba(31,24,255,0.07); border-radius:0.6em;
+            display:flex; gap:1.2em; align-items:center; flex-wrap:wrap;
+        }
+        .savings-number { font-family:"montreal medium"; font-size:2em; color:var(--accentblue); line-height:1; }
+        .savings-desc { font-size:0.86em; color:var(--text-muted); line-height:1.5; }
+
+        .lwl-bulk-tags { display:flex; flex-wrap:wrap; gap:0.45em; margin-top:0.4em; }
+        .lwl-bulk-tag {
+            font-size:0.84em; border:1.5px solid rgba(6,4,45,0.18); border-radius:2em;
+            padding:0.3em 0.85em; color:var(--blackish);
+            transition:border-color 0.18s, background 0.18s, color 0.18s, transform 0.14s;
+            cursor:default;
+        }
+        .lwl-bulk-tag:hover { border-color:var(--accentblue); background:rgba(31,24,255,0.06); color:var(--accentblue); transform:translateY(-1px); }
+        .lwl-bulk-tag.special { border-color:var(--accentblue); color:var(--accentblue); }
+
+        /* focus global */
+        [tabindex]:focus-visible, button:focus-visible, input:focus-visible {
+            outline:2.5px solid var(--accentblue); outline-offset:3px;
+        }
+
+        /* ════════════════════════════════════════════
+           MENDING GUIDE
+        ════════════════════════════════════════════ */
+        .mend-card-inner-grid {
+            display:grid;
+            grid-template-columns:120px 1fr;
+            gap:0;
+        }
+        .mend-img-slot {
+            width:120px;
+            background:rgba(31,24,255,0.05);
+            border-right:1.5px solid var(--border-blue);
+            display:flex; align-items:center; justify-content:center;
+            min-height:160px;
+            flex-shrink:0;
+        }
+        .mend-img-placeholder {
+            display:flex; flex-direction:column; align-items:center; gap:0.5em;
+            color:var(--text-faint); font-size:0.78em; text-align:center; padding:1em;
+            line-height:1.4;
+        }
+        .mend-img-placeholder svg { opacity:0.3; }
+        .mend-body { padding:1em 1.2em; }
+        .mend-name { font-family:"montreal medium"; font-size:1em; color:var(--blackish); margin-bottom:0.15em; }
+        .mend-also { font-size:0.78em; color:var(--text-faint); margin-bottom:0.55em; font-style:italic; }
+        .mend-meta { display:flex; flex-wrap:wrap; gap:0.35em; margin-bottom:0.65em; }
+        .mend-badge {
+            font-size:0.75em; padding:0.18em 0.65em;
+            border-radius:2em; border:1.5px solid rgba(6,4,45,0.15);
+            color:var(--text-muted);
+        }
+        .mend-badge.skill-beginner { border-color:rgba(31,24,255,0.3); color:var(--accentblue); background:rgba(31,24,255,0.06); }
+        .mend-badge.skill-intermediate { border-color:rgba(6,4,45,0.25); color:var(--text-muted); }
+        .mend-badge.skill-advanced { border-color:rgba(6,4,45,0.4); color:var(--blackish); }
+        .mend-desc { font-size:0.88em; line-height:1.6; color:#28264A; margin-bottom:0.7em; }
+        .mend-steps { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.35em; counter-reset:step; }
+        .mend-steps li { display:flex; gap:0.5em; font-size:0.84em; line-height:1.55; color:#28264A; }
+        .mend-steps li::before { content:counter(step); counter-increment:step; font-family:"montreal medium"; color:var(--accentblue); flex-shrink:0; min-width:1.1em; }
+
+        /* ════════════════════════════════════════════
+           VIS 6 — CUP DOT GRID
+        ════════════════════════════════════════════ */
+        .cup-vis-wrap { }
+        .cup-slider-row { display:flex; align-items:center; gap:0.8em; margin-bottom:1em; }
+        .cup-slider-label { font-size:0.86em; color:var(--blackish); min-width:160px; }
+        .cup-result-row { display:flex; gap:1.2em; margin-bottom:1.2em; flex-wrap:wrap; }
+        .cup-result-block { flex:1; min-width:100px; padding:1em 1.2em; border:1.5px solid var(--border-blue); border-radius:0.8em; background:rgba(31,24,255,0.03); }
+        .cup-big { font-family:"montreal medium"; font-size:2em; color:var(--accentblue); line-height:1; }
+        .cup-alt { color:var(--text-muted); }
+        .cup-big-label { font-size:0.82em; color:var(--text-faint); margin-top:0.3em; }
+        .cup-dot-grid { display:flex; flex-wrap:wrap; gap:4px; }
+        .cup-dot {
+            width:14px; height:14px; border-radius:50%;
+            background:var(--fill-bg); border:1px solid rgba(6,4,45,0.12);
+            transition:background 0.06s ease, transform 0.1s ease;
+            cursor:default;
+        }
+        .cup-dot.filled { background:var(--accentblue); border-color:var(--accentblue); }
+        .cup-dot:hover { transform:scale(1.4); z-index:2; position:relative; }
+
+        /* ════════════════════════════════════════════
+           VIS 7 — SCRATCH COMPARE
+        ════════════════════════════════════════════ */
+        .scratch-pkg-bar-wrap { margin:0.6em 0 1.2em; }
+        .scratch-pkg-row { display:flex; align-items:center; gap:0.7em; margin-bottom:0.5em; }
+        .scratch-pkg-label { font-size:0.84em; color:var(--blackish); min-width:80px; }
+        .scratch-pkg-track { flex:1; height:24px; background:var(--fill-bg); border-radius:12px; overflow:hidden; }
+        .scratch-pkg-fill { height:100%; border-radius:12px; background:var(--accentblue); transition:width 0.5s cubic-bezier(.4,0,.2,1); }
+        .scratch-pkg-fill.lo { background:rgba(6,4,45,0.15); }
+        .scratch-pkg-val { font-family:"montreal medium"; font-size:0.9em; color:var(--text-muted); min-width:55px; text-align:right; }
+
+        /* ════════════════════════════════════════════
+           VIS 8 — IMPACT GRID
+        ════════════════════════════════════════════ */
+        .impact-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.6em; }
+        .impact-cell {
+            padding:0.9em 1em; border-radius:0.7em;
+            border:1.5px solid var(--border-blue);
+            cursor:default;
+            transition:transform 0.15s, border-color 0.15s, background 0.15s;
+        }
+        .impact-cell:hover { transform:translateY(-2px); border-color:var(--accentblue); background:rgba(31,24,255,0.05); }
+        .impact-cell-label { font-family:"montreal medium"; font-size:0.9em; color:var(--blackish); margin-bottom:0.35em; }
+        .impact-bar-row { display:flex; align-items:center; gap:0.5em; }
+        .impact-bar-track { flex:1; height:6px; background:var(--fill-bg); border-radius:3px; overflow:hidden; }
+        .impact-bar-fill { height:100%; border-radius:3px; background:var(--accentblue); transition:width 0.6s cubic-bezier(.4,0,.2,1); }
+        .impact-effort-dot {
+            width:8px; height:8px; border-radius:50%; flex-shrink:0;
+            border:1.5px solid rgba(6,4,45,0.2);
+        }
+
+        /* ════════════════════════════════════════════
+           VIS 9 — FOOD WASTE CHAIN
+        ════════════════════════════════════════════ */
+        .fw-chain { display:flex; flex-direction:column; gap:0.5em; }
+        .fw-stage {
+            display:flex; align-items:center; gap:1em;
+            padding:0.75em 1em; border-radius:0.6em;
+            border:1.5px solid var(--border-blue);
+            cursor:pointer;
+            transition:border-color 0.15s, background 0.15s, transform 0.15s;
+        }
+        .fw-stage:hover, .fw-stage.active { border-color:var(--accentblue); background:rgba(31,24,255,0.05); transform:translateX(3px); }
+        .fw-stage-emoji { font-size:1.4em; flex-shrink:0; }
+        .fw-stage-label { font-family:"montreal medium"; font-size:0.92em; color:var(--blackish); flex:1; }
+        .fw-stage-pct { font-family:"montreal medium"; font-size:1.1em; color:var(--accentblue); }
+        .fw-bar-wrap { margin-top:0.3em; }
+        .fw-bar { height:5px; border-radius:3px; background:rgba(31,24,255,0.18); width:0; transition:width 0.5s cubic-bezier(.4,0,.2,1); }
+
+        @media (max-width:600px) {
+            .impact-grid { grid-template-columns:1fr; }
+            .cup-result-row { flex-direction:column; }
+        }
+
+        @media (max-width:1000px) {
+            .lwl-chapter { grid-template-columns:1fr; gap:2.5em; }
+            .lwl-chapter:nth-child(even) .lwl-chapter-text,
+            .lwl-chapter:nth-child(even) .lwl-vis { order:unset; }
+            .lwl-vis { position:static; }
+            .jar-grid { grid-template-columns:1fr 1fr; }
+        }
+        @media (max-width:600px) {
+            .lwl-chapter h2 { font-size:1.5em; }
+            .lwl-compare { grid-template-columns:1fr; }
+            .jar-grid { grid-template-columns:1fr 1fr; }
+            .race-row { grid-template-columns:72px 1fr 48px; }
+        }
+    </style>
+</head>
+
+<body>
+<div id="header"></div>
+
+<main class="projectpage">
+    <div class="back-link"><a href="../index.html">← back</a></div>
+
+    <!-- INTRO -->
+    <section class="projectintro">
+        <h1>living with less</h1>
+        <p class="subtitle">a personal field guide to zero-waste living</p>
+        <ul class="projectmeta">
+            <li><strong>type:</strong> ongoing personal project</li>
+            <li><strong>topics:</strong> fashion &amp; repair, fermentation, transportation, plastic-free swaps, bulk bins, reusables, cooking from scratch, zero-waste extremism, food waste</li>
+            <li><strong>context:</strong> personal values / zero-waste living</li>
+        </ul>
+        <p style="margin-top:1.5em; font-size:1.05em; line-height:1.8; max-width:620px; color:#28264A;">
+            This is an ongoing guide to zero-waste living — not the aspirational, perfectly-curated kind, but the actual kind, built around things I already do: fermenting vegetables, mending jeans, riding my bike, buying from the bulk bins. It's not about having an empty trash can. It's about asking what we actually need, and what happens to things when we're done with them.
+        </p>
+        <nav class="lwl-nav" aria-label="chapters">
+            <a href="#fashion">fashion &amp; repair</a>
+            <a href="#fermentation">fermentation</a>
+            <a href="#transportation">transportation</a>
+            <a href="#plastic">plastic-free swaps</a>
+            <a href="#bulk">bulk bins</a>
+            <a href="#reusables">reusables out</a>
+            <a href="#scratch">cooking from scratch</a>
+            <a href="#onejar">the one-jar method</a>
+            <a href="#foodwaste">food waste</a>
+        </nav>
+    </section>
+
+    <!-- ══ CHAPTER 1 — FASHION ══ -->
+    <div class="lwl-chapter" id="fashion">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 01</p>
+            <h2>fashion &amp; <span>repair</span></h2>
+            <p>I've been mending my own clothes for years — darning socks, patching jeans at the knee, embroidering over worn spots to turn them into something intentional. It started as frugality and turned into something I genuinely love doing. There's something quietly radical about choosing to fix instead of replace.</p>
+            <p>The numbers behind fast fashion are hard to sit with. Every year, 101 million tons of textile waste ends up in landfills globally. We're wearing our clothes 36% fewer times than we did in 2000, and less than 1% of clothing is recycled into new clothing. The industry accounts for 2–8% of global greenhouse gas emissions and 9% of the microplastic pollution reaching our oceans.</p>
+            <p>Mending isn't a perfect solution to a systemic problem, but it's a real one. Keeping a garment in use longer — through patching, darning, or embroidering — extends its life and keeps it out of the waste stream. And honestly, a visibly mended piece of clothing tells a story that a brand new one doesn't.</p>
+            <ul class="lwl-tips">
+                <li>Learn one mending technique at a time — sashiko, visible mending, or basic darning are great starting points</li>
+                <li>Buy secondhand first; thrift stores and clothing swaps beat anything new</li>
+                <li>Choose natural fibers (linen, wool, cotton) — they're more repairable and biodegradable</li>
+                <li>Avoid synthetic blends; they shed microplastics with every wash</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label" id="waffle-heading">what happens to 100 garments</p>
+            <p class="lwl-vis-hint">hover each square to explore</p>
+            <div style="position:relative;">
+                <div class="waffle-grid" id="fashion-waffle"
+                     role="img"
+                     aria-labelledby="waffle-heading"
+                     aria-description="1 recycled (dark blue), 14 donated or reused (light blue), 85 landfill or incineration (grey)"></div>
+                <div class="waffle-tooltip" id="waffle-tip" role="status" aria-live="polite"></div>
+            </div>
+            <div class="vis-info-panel" id="waffle-info">hover a square to learn more</div>
+            <div class="lwl-legend" style="margin-top:1.1em;">
+                <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:var(--accentblue)"></div> recycled into new clothing (&lt;1%)</div>
+                <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:var(--fill-dim)"></div> reused or donated (~14%)</div>
+                <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:var(--fill-bg); border:1px solid rgba(6,4,45,0.15);"></div> landfill or incineration (~85%)</div>
+            </div>
+            <div class="lwl-stats" style="margin-top:1.5em;">
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">−36%</div>
+                    <div class="lwl-stat-label">fewer times garments are worn before disposal compared to 2000 (Ellen MacArthur Foundation, 2017)</div>
+                </div>
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">92M</div>
+                    <div class="lwl-stat-label">tons of textile waste generated globally per year (UNEP, 2020)</div>
+                </div>
+            </div>
+
+            <!-- Mending guide -->
+            <div class="mending-guide" style="margin-top:1.8em;">
+                <p class="lwl-vis-label" style="margin-bottom:0.7em;">mending techniques — click to explore</p>
+                <div class="mend-tabs" id="mend-tabs" style="display:flex;flex-wrap:wrap;gap:0.4em;margin-bottom:1em;"></div>
+                <div class="mend-card" id="mend-card" style="
+                    border:1.5px solid var(--border-blue); border-radius:0.8em;
+                    overflow:hidden; background:rgba(31,24,255,0.02);
+                ">
+                    <div id="mend-card-inner">
+                        <p style="font-size:0.95em;color:var(--text-muted);line-height:1.6;">Select a technique above to see how it works.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="lwl-source">Sources: <a href="https://www.unep.org/resources/report/sustainability-and-circularity-textile-value-chain-global-roadmap" target="_blank" rel="noopener">UNEP (2020) Sustainability and Circularity in the Textile Value Chain ↗</a> · <a href="https://ellenmacarthurfoundation.org/a-new-textiles-economy" target="_blank" rel="noopener">Ellen MacArthur Foundation (2017) A New Textiles Economy ↗</a></p>
+        </div>
+    </div>
+
+    <!-- ══ CHAPTER 2 — FERMENTATION ══ -->
+    <div class="lwl-chapter" id="fermentation">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 02</p>
+            <h2>fermentation &amp; <span>preservation</span></h2>
+            <p>My kitchen counter usually has something going: a jar of pickles in brine, a sourdough starter that needs feeding, yogurt hanging in cheesecloth. Fermentation is one of the oldest food preservation methods humans have, and it turns out it's also one of the most practical tools for reducing waste at home.</p>
+            <p>When we cook, we tend to use only part of each ingredient — leaving peels, stems, and imperfect produce unused. We throw away roughly a quarter of what we buy. Fermentation gives those scraps a second life: cucumber ends become pickles, vegetable trimmings go into brine, overripe fruit becomes something new. It extends shelf life without any packaging, any refrigeration energy, and often actually increases the nutritional value of the food.</p>
+            <p>Making yogurt from scratch is simpler than it sounds: warm milk, add a spoonful of live yogurt, keep it warm for a few hours. No plastic tub, no foil lid, no drive to the store. A sourdough starter — just flour and water — ferments into something alive that can persist indefinitely. These aren't sacrifices — they're genuinely better versions of the things you already eat.</p>
+            <ul class="lwl-tips">
+                <li>Start with lacto-fermented pickles — just vegetables, salt, water, and a jar</li>
+                <li>A sourdough starter lives indefinitely on flour and water; no commercial yeast needed</li>
+                <li>Yogurt just needs milk and a few tablespoons of live-culture yogurt as a starter</li>
+                <li>Ferment imperfect or surplus produce before it goes bad</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">shelf life: fresh vs. fermented</p>
+            <p class="lwl-vis-hint">each jar fills to show relative shelf life — hover to compare</p>
+            <div class="jar-grid-wrap" style="position:relative;">
+                <div class="jar-grid" id="jar-grid" role="img" aria-label="Jar visualization comparing fresh vs fermented shelf life for cucumber, milk, cabbage, and sourdough starter"></div>
+                <div class="jar-tooltip" id="jar-tip" role="status" aria-live="polite"></div>
+            </div>
+            <div class="vis-info-panel" id="jar-info">hover a jar to compare shelf life</div>
+            <div class="lwl-legend" style="margin-top:0.6em;">
+                <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:rgba(6,4,45,0.18)"></div> fresh shelf life</div>
+                <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:var(--accentblue)"></div> fermented shelf life</div>
+            </div>
+            <p class="lwl-source">Sources: <a href="https://www.fao.org/platform-food-loss-waste/flw-data/en" target="_blank" rel="noopener">FAO Global Food Loss and Waste Data ↗</a> · <a href="https://www.sciencedirect.com/science/article/pii/S0924224420307081" target="_blank" rel="noopener">Dimidi et al. (2019) Fermented Foods: Definitions, Characteristics, and Shelf Life, Nutrients ↗</a></p>
+        </div>
+    </div>
+
+    <!-- ══ CHAPTER 3 — TRANSPORTATION ══ -->
+    <div class="lwl-chapter" id="transportation">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 03</p>
+            <h2>getting <span>around</span></h2>
+            <p>Davis is one of the most bikeable cities in the country, which makes this one almost embarrassingly easy here. I bike everywhere — to campus, to the farmers market, to the grocery store. I also volunteer as a bike mechanic at the Bike Garage, which means I spend time helping people keep their existing bikes running instead of replacing them.</p>
+            <p>That repair piece matters as much as the riding piece. A bike that gets maintained and fixed when something breaks stays out of the waste stream. The most sustainable vehicle is the one that already exists and keeps working.</p>
+            <p>The environmental math on cycling is stark. Cyclists have 84% lower lifecycle carbon emissions than non-cyclists. Replacing even one car trip per day with cycling for 200 days a year cuts your mobility-related emissions by roughly half a ton annually.</p>
+            <ul class="lwl-tips">
+                <li>Learn basic bike maintenance — fixing a flat, adjusting brakes, lubricating a chain — so small problems don't sideline you</li>
+                <li>Find your local bike co-op for tools, parts, and community</li>
+                <li>For longer or loaded trips, cargo bikes and e-bikes make car-free living more practical</li>
+                <li>Combine biking with transit for longer distances</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">how far can you go on 1 lb of CO₂?</p>
+            <p class="lwl-vis-hint">same emissions budget — very different distances</p>
+            <div class="race-wrap" id="race-chart" role="img" aria-label="Race track comparison: on 1 lb of CO₂, a bicycle travels 29 miles, bus 7 miles, electric car 12 miles, gas car 3 miles"></div>
+            <div class="lwl-stats" style="margin-top:1.2em;">
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">84%</div>
+                    <div class="lwl-stat-label">lower lifecycle CO₂ emissions for regular cyclists vs. non-cyclists (European Cyclists' Federation, 2011)</div>
+                </div>
+            </div>
+            <p class="lwl-source">Sources: CO₂ figures from <a href="https://ourworldindata.org/travel-carbon-footprint" target="_blank" rel="noopener">Our World in Data — Travel Carbon Footprint ↗</a> (citing Ege Ulusal et al., 2019); lifecycle emissions from <a href="https://ecf.com/resources/reports/benefits-cycling" target="_blank" rel="noopener">European Cyclists' Federation (2011) Cycle More Often to Cool Down the Planet ↗</a></p>
+        </div>
+    </div>
+
+    <!-- ══ CHAPTER 4 — PLASTIC-FREE ══ -->
+    <div class="lwl-chapter" id="plastic">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 04</p>
+            <h2>plastic-free <span>swaps</span></h2>
+            <p>Going plastic-free isn't about purity. 91% of plastic waste isn't recycled — the recycling system as most of us know it mostly doesn't work. The only reliable option is to bring less plastic home in the first place.</p>
+            <p>Some swaps are obvious and easy: a reusable water bottle, a tote bag, a bar of shampoo instead of a plastic bottle. Others take a little habit-building: bringing containers to the deli counter, choosing glass jars over plastic tubs, skipping pre-packaged produce in favor of loose. Over 40% of all plastic waste comes from packaging — meaning the problem largely isn't with what we do after we have it, it's with how much comes in the door.</p>
+            <ul class="lwl-tips">
+                <li>Bar soap, shampoo bars, and conditioner bars eliminate a whole category of plastic</li>
+                <li>Beeswax wraps replace cling film for covering food</li>
+                <li>Cloth produce bags instead of plastic ones at the grocery store</li>
+                <li>Concentrated cleaning tablets in a glass spray bottle instead of plastic jugs</li>
+                <li>Bring your own container to delis, bakeries, takeout spots — most places will fill them</li>
+                <li>Choose paper, glass, or metal packaging when plastic isn't avoidable</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">plastic waste by source</p>
+            <p class="lwl-vis-hint">hover any slice to explore — size reflects share</p>
+
+            <!-- Unique radial donut pie chart -->
+            <div class="pie-wrap" id="pie-wrap" style="position:relative; width:100%;">
+                <svg id="pie-svg" viewBox="0 0 280 280" style="display:block;width:100%;max-width:280px;margin:0 auto;" role="img" aria-label="Donut chart of plastic waste sources: packaging 40%, other goods 17%, construction 16%, electronics 16%, textiles 11%">
+                    <defs>
+                        <filter id="pie-shadow">
+                            <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(31,24,255,0.18)"/>
+                        </filter>
+                    </defs>
+                    <!-- rings and slices built by JS -->
+                    <g id="pie-slices" transform="translate(140,140)"></g>
+                    <!-- center text -->
+                    <text id="pie-center-pct" x="140" y="130" text-anchor="middle" font-family="montreal medium" font-size="30" fill="var(--accentblue)" opacity="0">40%</text>
+                    <text id="pie-center-label" x="140" y="152" text-anchor="middle" font-family="montreal" font-size="11" fill="var(--text-muted)" opacity="0">packaging</text>
+                    <text id="pie-center-default" x="140" y="145" text-anchor="middle" font-family="montreal medium" font-size="12" fill="var(--text-faint)">plastic waste</text>
+                </svg>
+            </div>
+            <div class="vis-info-panel" id="pie-info">hover a slice to see its description</div>
+            <div id="pie-legend" class="lwl-legend" style="margin-top:0.9em;"></div>
+
+            <!-- Interactive swap explorer -->
+            <div class="swap-explorer" id="swap-explorer" style="margin-top:1.6em;">
+                <p class="lwl-vis-label" style="margin-bottom:0.7em;">swap explorer — click a category</p>
+                <div class="swap-tabs" id="swap-tabs" style="display:flex;flex-wrap:wrap;gap:0.4em;margin-bottom:1em;"></div>
+                <div class="swap-card" id="swap-card" style="
+                    border:1.5px solid var(--border-blue); border-radius:0.8em;
+                    padding:1.2em 1.4em; background:rgba(31,24,255,0.03);
+                    min-height:100px; transition:opacity 0.2s;
+                ">
+                    <div id="swap-card-inner">
+                        <p style="font-size:0.95em;color:var(--text-muted);line-height:1.6;">Select a plastic source above to see swaps you can make.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lwl-stats" style="margin-top:1.2em;">
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">91%</div>
+                    <div class="lwl-stat-label">of all plastic ever produced has never been recycled (Geyer et al., Science Advances, 2017)</div>
+                </div>
+            </div>
+            <p class="lwl-source">Sources: <a href="https://www.oecd.org/en/publications/global-plastics-outlook_de747aef-en.html" target="_blank" rel="noopener">OECD (2022) Global Plastics Outlook ↗</a> · <a href="https://www.science.org/doi/10.1126/sciadv.1700782" target="_blank" rel="noopener">Geyer et al. (2017) Production, use, and fate of all plastics ever made, Science Advances ↗</a></p>
+        </div>
+    </div>
+
+    <!-- ══ CHAPTER 5 — BULK BINS ══ -->
+    <div class="lwl-chapter" id="bulk">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 05</p>
+            <h2>the bulk <span>aisle</span></h2>
+            <p>The bulk aisle is one of the simplest and most underused tools for reducing packaging waste. Grains, legumes, nuts, flours, spices, oats, coffee — things most of us buy in plastic bags every week — are available packaged in nothing, as long as you bring your own container.</p>
+            <p>It also changes how you shop. Buying bulk means buying exactly what you need — no more, no less. You're less likely to overbuy and let things go bad. Refilling the same jars over and over is genuinely satisfying in a way that tearing open a new plastic bag isn't.</p>
+            <p>Davis has good options: the Davis Food Co-op has an extensive bulk section, and the farmers market is a great source for local produce without packaging. Once you get into the habit of bringing jars, it becomes automatic.</p>
+            <ul class="lwl-tips">
+                <li>Bring clean glass jars or cloth bags — weigh them empty first (taring) so you're not charged for the container</li>
+                <li>Stock up on staples: oats, lentils, rice, flour, nuts, dried fruit, spices</li>
+                <li>Buy only what you'll actually use — the goal is less waste, not more stockpiling</li>
+                <li>Support stores that maintain bulk sections; it signals demand</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">packaged vs. bulk</p>
+            <div class="lwl-compare">
+                <div class="lwl-ccard" tabindex="0">
+                    <div class="lwl-ccard-label">packaged</div>
+                    <div class="lwl-ccard-val">fixed</div>
+                    <div class="lwl-ccard-desc">set quantity, often more than you need, plastic or multi-layer packaging, new every time</div>
+                </div>
+                <div class="lwl-ccard hi" tabindex="0">
+                    <div class="lwl-ccard-label">bulk</div>
+                    <div class="lwl-ccard-val">your jar</div>
+                    <div class="lwl-ccard-desc">exactly what you need, zero new packaging, refilled indefinitely, usually cheaper per unit</div>
+                </div>
+            </div>
+            <div class="savings-wrap" aria-label="Packaging waste calculator">
+                <p class="savings-title">your annual packaging avoided</p>
+                <div class="savings-slider-row">
+                    <label class="savings-slider-label" for="slider-items">items bought in bulk</label>
+                    <input type="range" class="savings-slider" id="slider-items" min="1" max="20" value="6" aria-valuemin="1" aria-valuemax="20" aria-valuenow="6">
+                    <span class="savings-val" id="val-items">6</span>
+                </div>
+                <div class="savings-slider-row">
+                    <label class="savings-slider-label" for="slider-freq">times per month</label>
+                    <input type="range" class="savings-slider" id="slider-freq" min="1" max="8" value="3" aria-valuemin="1" aria-valuemax="8" aria-valuenow="3">
+                    <span class="savings-val" id="val-freq">3</span>
+                </div>
+                <div class="savings-result">
+                    <div class="savings-number" id="savings-bags" aria-live="polite">216</div>
+                    <div class="savings-desc">plastic bags or containers<br>kept out of circulation per year</div>
+                </div>
+            </div>
+            <p class="lwl-vis-label" style="margin-top:1.8em;">commonly available in bulk</p>
+            <div class="lwl-bulk-tags">
+                <span class="lwl-bulk-tag" tabindex="0">oats</span>
+                <span class="lwl-bulk-tag" tabindex="0">lentils</span>
+                <span class="lwl-bulk-tag" tabindex="0">rice</span>
+                <span class="lwl-bulk-tag" tabindex="0">quinoa</span>
+                <span class="lwl-bulk-tag" tabindex="0">almonds</span>
+                <span class="lwl-bulk-tag" tabindex="0">flour</span>
+                <span class="lwl-bulk-tag" tabindex="0">spices</span>
+                <span class="lwl-bulk-tag" tabindex="0">coffee</span>
+                <span class="lwl-bulk-tag" tabindex="0">dried fruit</span>
+                <span class="lwl-bulk-tag" tabindex="0">tea</span>
+                <span class="lwl-bulk-tag" tabindex="0">chickpeas</span>
+                <span class="lwl-bulk-tag" tabindex="0">seeds</span>
+                <span class="lwl-bulk-tag special" tabindex="0">+ soap &amp; shampoo (some stores)</span>
+            </div>
+            <p class="lwl-source" style="margin-top:1em;">Davis Food Co-op has one of the largest bulk sections locally.</p>
+        </div>
+    </div>
+
+    <!-- ══ CHAPTER 6 — REUSABLES OUT ══ -->
+    <div class="lwl-chapter" id="reusables">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 06</p>
+            <h2>reusables <span>out</span></h2>
+            <p>Bringing your own container to a restaurant or coffee shop still feels weird to some people. It shouldn't. Disposable foodservice packaging is one of the largest single-use plastic categories — cups, lids, clamshells, bags — and most of it is not recyclable because it's contaminated with food. It goes straight to landfill.</p>
+            <p>In most places, all you have to do is ask. Cafes will usually fill a travel mug. A lot of restaurants will pack your leftovers in a container you bring. Some cities now have ordinances requiring them to accept customer containers. The barrier is mostly just the moment of asking.</p>
+            <p>In the US, 50 billion disposable coffee cups are thrown away each year. Coffee cups look like paper but are lined with polyethylene — that lining makes them non-recyclable and non-compostable in most facilities. A travel mug used daily for a year replaces 365 of them.</p>
+            <ul class="lwl-tips">
+                <li>Keep a travel mug and a container in your bag — the habit only works if they're with you</li>
+                <li>Ask before assuming a place won't accommodate — most will</li>
+                <li>For leftovers: a wide-mouth glass jar or a lightweight stainless container works for almost anything</li>
+                <li>Some cities (like Berkeley, CA) have passed ordinances requiring foodservice businesses to accept clean customer containers</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">one daily coffee cup — lifetime impact</p>
+            <p class="lwl-vis-hint">drag the slider to see cups accumulate over years</p>
+            <div class="cup-vis-wrap">
+                <div class="cup-slider-row">
+                    <label class="cup-slider-label" for="cup-years">years of daily coffee</label>
+                    <input type="range" class="savings-slider" id="cup-years" min="1" max="20" value="5"
+                           aria-valuemin="1" aria-valuemax="20" aria-valuenow="5">
+                    <span class="savings-val" id="cup-years-val">5</span>
+                </div>
+                <div class="cup-result-row">
+                    <div class="cup-result-block">
+                        <div class="cup-big" id="cup-count">1,825</div>
+                        <div class="cup-big-label">disposable cups</div>
+                    </div>
+                    <div class="cup-result-block">
+                        <div class="cup-big cup-alt" id="cup-kg">5.5</div>
+                        <div class="cup-big-label">lbs plastic lining</div>
+                    </div>
+                </div>
+                <div class="cup-grid-wrap">
+                    <div id="cup-grid" class="cup-dot-grid" aria-label="Cup accumulation visualization"></div>
+                </div>
+                <div class="lwl-legend" style="margin-top:0.7em;">
+                    <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:var(--accentblue)"></div> disposable cup (each dot = 10 cups)</div>
+                    <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:rgba(6,4,45,0.1); border:1px solid rgba(6,4,45,0.2)"></div> not yet used</div>
+                </div>
+            </div>
+            <div class="lwl-stats" style="margin-top:1.2em;">
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">50B</div>
+                    <div class="lwl-stat-label">disposable coffee cups thrown away per year in the US — most are not recyclable due to plastic lining (NRDC, 2020)</div>
+                </div>
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">~0.1oz</div>
+                    <div class="lwl-stat-label">polyethylene plastic lining in each disposable cup (~3g) — not removable, makes the cup non-recyclable and non-compostable in most facilities</div>
+                </div>
+            </div>
+            <p class="lwl-source">Sources: <a href="https://www.nrdc.org/resources/single-use-plastics-101" target="_blank" rel="noopener">NRDC (2020) Single-Use Plastics 101 ↗</a> · <a href="https://www.oecd.org/en/publications/global-plastics-outlook_de747aef-en.html" target="_blank" rel="noopener">OECD (2022) Global Plastics Outlook ↗</a></p>
+        </div>
+    </div>
+
+    <!-- ══ CHAPTER 7 — COOKING FROM SCRATCH ══ -->
+    <div class="lwl-chapter" id="scratch">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 07</p>
+            <h2>cooking from <span>scratch</span></h2>
+            <p>Most of the packaging I was throwing away used to come from food. Not from big-ticket items but from the small things — the yogurt tub, the bag of granola, the can of soup, the plastic-wrapped block of tofu. Processing and packaging food accounts for around 29% of all food system greenhouse gas emissions. The packaging often outlasts the food by decades.</p>
+            <p>Making things from scratch isn't the same as making everything from scratch. I'm not growing my own wheat. But yogurt from milk, granola from oats, hummus from dried chickpeas, stock from vegetable scraps — these take 20 minutes or less and replace a category of purchased-and-packaged products entirely. Dried pulses instead of canned ones cut packaging and are usually cheaper. Making your own bread eliminates the plastic bag.</p>
+            <p>The packaging math is significant but the food waste math might be bigger. Cooking from base ingredients means you use exactly what you need. Nothing comes pre-portioned for someone else's idea of a serving.</p>
+            <ul class="lwl-tips">
+                <li>Dried beans: soak overnight, simmer for an hour — far cheaper and less packaging than canned</li>
+                <li>Vegetable scrap stock: save onion skins, carrot tops, celery ends in a freezer bag and simmer when full</li>
+                <li>Granola: oats, oil, maple syrup, nuts — 25 minutes, no bag</li>
+                <li>Homemade yogurt stores for 2 weeks and makes more than any tub you'd buy</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">packaging per meal: scratch vs. packaged</p>
+            <p class="lwl-vis-hint">click a meal to compare packaging footprint</p>
+            <div class="scratch-tabs" id="scratch-tabs" style="display:flex;flex-wrap:wrap;gap:0.4em;margin-bottom:1em;"></div>
+            <div class="scratch-compare-card" id="scratch-card"
+                 style="border:1.5px solid var(--border-blue);border-radius:0.8em;padding:1.4em;background:rgba(31,24,255,0.02);min-height:120px;">
+                <div id="scratch-card-inner">
+                    <p style="font-size:0.95em;color:var(--text-muted);">Select a meal above to compare.</p>
+                </div>
+            </div>
+            <div class="lwl-stats" style="margin-top:1.2em;">
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">29%</div>
+                    <div class="lwl-stat-label">of food system greenhouse gas emissions come from processing and packaging food (IPCC AR6, 2022)</div>
+                </div>
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">40%</div>
+                    <div class="lwl-stat-label">of food packaging in the US is single-use plastic with no viable end-of-life recycling path (EPA, 2021)</div>
+                </div>
+            </div>
+            <p class="lwl-source">Sources: <a href="https://www.ipcc.ch/report/ar6/wg3/" target="_blank" rel="noopener">IPCC AR6 Working Group III (2022) ↗</a> · <a href="https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/containers-and-packaging-product-specific-data" target="_blank" rel="noopener">US EPA (2021) Containers and Packaging ↗</a></p>
+        </div>
+    </div>
+
+    <!-- ══ CHAPTER 8 — ONE-JAR METHOD ══ -->
+    <div class="lwl-chapter" id="onejar">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 08</p>
+            <h2>the <span>one-jar</span> method</h2>
+            <p>There's a corner of zero-waste culture built around keeping an entire year's trash in a single mason jar. If you've spent any time in these spaces online, you've seen it: the photo, the jar, the pristine kitchen. Lauren Singer, Bea Johnson — the people who made this famous are real and their practices are real. It's also a genuinely extreme approach that works for very few people.</p>
+            <p>My honest take: it's not a useful target. It treats a systemic packaging problem as a matter of individual perfection, and it sets up a standard most people will fail immediately and quit. A person who reduces their waste by 60% and keeps at it is doing more than someone who achieves the jar for six months and burns out.</p>
+            <p>What the jar method gets right is making waste visible. When you have to look at what you throw away, you make different decisions. That part is genuinely useful — not as a competition but as attention. I keep a small tray where my non-recyclable waste goes. I don't weigh it, I don't Instagram it, but I do look at it.</p>
+            <p>The things that make the biggest difference are not about willpower or aesthetics. They're about systems: what you buy, where you shop, how your home is set up. The jar is a metric. The habits are the point.</p>
+            <ul class="lwl-tips">
+                <li>Make your waste visible without making it a performance — a tray or small bin for landfill-only items is enough</li>
+                <li>Focus on categories, not totals: which type of waste dominates? Start there</li>
+                <li>Perfection as a goal causes abandonment — consistency matters more</li>
+                <li>A 60% reduction maintained over years beats a 100% reduction abandoned after three months</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">what actually makes the biggest difference</p>
+            <p class="lwl-vis-hint">impact vs. effort — based on lifecycle analysis</p>
+            <div class="impact-grid" id="impact-grid"></div>
+            <div class="vis-info-panel" id="impact-info" style="margin-top:0.8em;">hover an action to see why</div>
+            <div style="margin-top:1.2em; padding:1em 1.2em; border-radius:0.7em; background:rgba(31,24,255,0.04); border:1.5px solid var(--border-blue);">
+                <p style="font-size:0.9em; line-height:1.65; color:var(--text-muted); margin:0;">
+                    <strong style="font-family:'montreal medium'; color:var(--blackish);">on the jar:</strong> The zero-waste movement's own researchers note that individual action is most effective when it targets high-impact behaviors (diet, transport, energy) rather than low-impact visibility metrics. Keeping a jar of trash is a useful reminder — it's not the goal.
+                </p>
+            </div>
+            <div class="lwl-stats" style="margin-top:1.2em;">
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">70%</div>
+                    <div class="lwl-stat-label">of municipal solid waste in the US could be reduced through behavior change in purchasing, eating, and transport — not through sorting and recycling (EPA, 2021)</div>
+                </div>
+            </div>
+            <p class="lwl-source">Sources: <a href="https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/national-overview-facts-and-figures-materials" target="_blank" rel="noopener">US EPA (2021) National Overview: Facts and Figures on Materials ↗</a> · <a href="https://doi.org/10.1088/1748-9326/aa7541" target="_blank" rel="noopener">Wynes & Nicholas (2017) The climate mitigation gap, Environmental Research Letters ↗</a></p>
+        </div>
+    </div>
+
+    <!-- ══ CHAPTER 9 — FOOD WASTE ══ -->
+    <div class="lwl-chapter" id="foodwaste">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 09</p>
+            <h2>food <span>waste</span></h2>
+            <p>If food waste were a country, it would be the third-largest emitter of greenhouse gases on the planet, after the US and China. Around a third of all food produced globally never gets eaten. A lot of that happens at the household level — things bought with intention and then forgotten in the back of the fridge.</p>
+            <p>Food waste in landfill is particularly bad because organic matter decomposes anaerobically there, producing methane — a greenhouse gas roughly 80 times more potent than CO₂ over 20 years. Keeping food out of landfill matters even after you've already wasted it.</p>
+            <p>At home, the most effective interventions are boring: meal planning, using up before buying more, understanding what "best by" dates actually mean (spoiler: almost nothing except quality), and learning to cook with whatever's about to turn. Fermentation helps here too — it's a preservation method that turns imminent food waste into something shelf-stable.</p>
+            <ul class="lwl-tips">
+                <li>"Best by" dates indicate peak quality, not safety — most foods are fine well past them</li>
+                <li>First in, first out: put new groceries behind older ones</li>
+                <li>A weekly "use it up" meal from whatever needs to go prevents most fridge waste</li>
+                <li>Compost what you can't use — even backyard compost is significantly better than landfill</li>
+                <li>Freeze anything approaching its limit — bread, fruit, cooked grains, meat</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">where food waste happens</p>
+            <p class="lwl-vis-hint">click a stage to see what's lost and why</p>
+            <div class="fw-chain" id="fw-chain" role="img" aria-label="Food waste by supply chain stage"></div>
+            <div class="vis-info-panel" id="fw-info" style="margin-top:0.8em;">click a stage to learn more</div>
+            <div class="lwl-stats" style="margin-top:1.2em;">
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">1/3</div>
+                    <div class="lwl-stat-label">of all food produced globally is lost or wasted — equivalent to 1.4 billion tons per year (FAO, 2019)</div>
+                </div>
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">8–10%</div>
+                    <div class="lwl-stat-label">of global greenhouse gas emissions are linked to food that is produced but not eaten (IPCC AR6, 2022)</div>
+                </div>
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">80×</div>
+                    <div class="lwl-stat-label">more potent than CO₂ over 20 years: methane released when food rots in landfill (IPCC, 2021)</div>
+                </div>
+            </div>
+            <p class="lwl-source">Sources: <a href="https://www.fao.org/platform-food-loss-waste/flw-data/en" target="_blank" rel="noopener">FAO (2019) The State of Food and Agriculture ↗</a> · <a href="https://www.ipcc.ch/report/ar6/wg3/" target="_blank" rel="noopener">IPCC AR6 WG3 (2022) ↗</a> · <a href="https://www.epa.gov/sustainable-management-food/sustainable-management-food-basics" target="_blank" rel="noopener">US EPA Sustainable Food Management ↗</a></p>
+        </div>
+    </div>
+</main>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">packaged vs. bulk</p>
+            <div class="lwl-compare">
+                <div class="lwl-ccard" tabindex="0">
+                    <div class="lwl-ccard-label">packaged</div>
+                    <div class="lwl-ccard-val">fixed</div>
+                    <div class="lwl-ccard-desc">set quantity, often more than you need, plastic or multi-layer packaging, new every time</div>
+                </div>
+                <div class="lwl-ccard hi" tabindex="0">
+                    <div class="lwl-ccard-label">bulk</div>
+                    <div class="lwl-ccard-val">your jar</div>
+                    <div class="lwl-ccard-desc">exactly what you need, zero new packaging, refilled indefinitely, usually cheaper per unit</div>
+                </div>
+            </div>
+
+            <!-- Savings calculator -->
+            <div class="savings-wrap" aria-label="Packaging waste calculator">
+                <p class="savings-title">your annual packaging avoided</p>
+                <div class="savings-slider-row">
+                    <label class="savings-slider-label" for="slider-items">items bought in bulk</label>
+                    <input type="range" class="savings-slider" id="slider-items" min="1" max="20" value="6" aria-valuemin="1" aria-valuemax="20" aria-valuenow="6">
+                    <span class="savings-val" id="val-items">6</span>
+                </div>
+                <div class="savings-slider-row">
+                    <label class="savings-slider-label" for="slider-freq">times per month</label>
+                    <input type="range" class="savings-slider" id="slider-freq" min="1" max="8" value="3" aria-valuemin="1" aria-valuemax="8" aria-valuenow="3">
+                    <span class="savings-val" id="val-freq">3</span>
+                </div>
+                <div class="savings-result">
+                    <div class="savings-number" id="savings-bags" aria-live="polite">216</div>
+                    <div class="savings-desc">plastic bags or containers<br>kept out of circulation per year</div>
+                </div>
+            </div>
+
+            <p class="lwl-vis-label" style="margin-top:1.8em;">commonly available in bulk</p>
+            <div class="lwl-bulk-tags">
+                <span class="lwl-bulk-tag" tabindex="0">oats</span>
+                <span class="lwl-bulk-tag" tabindex="0">lentils</span>
+                <span class="lwl-bulk-tag" tabindex="0">rice</span>
+                <span class="lwl-bulk-tag" tabindex="0">quinoa</span>
+                <span class="lwl-bulk-tag" tabindex="0">almonds</span>
+                <span class="lwl-bulk-tag" tabindex="0">flour</span>
+                <span class="lwl-bulk-tag" tabindex="0">spices</span>
+                <span class="lwl-bulk-tag" tabindex="0">coffee</span>
+                <span class="lwl-bulk-tag" tabindex="0">dried fruit</span>
+                <span class="lwl-bulk-tag" tabindex="0">tea</span>
+                <span class="lwl-bulk-tag" tabindex="0">chickpeas</span>
+                <span class="lwl-bulk-tag" tabindex="0">seeds</span>
+                <span class="lwl-bulk-tag special" tabindex="0">+ soap &amp; shampoo (some stores)</span>
+            </div>
+            <p class="lwl-source" style="margin-top:1em;">Davis Food Co-op has one of the largest bulk sections locally.</p>
+        </div>
+    </div>
+</main>
+
+<!-- BUG REPORT MODAL -->
+<div class="modal-overlay" id="bug-modal-overlay">
+    <div class="modal">
+        <button class="modal-close" id="bug-modal-close" aria-label="Close">✕</button>
+        <h2 class="modal-title">🐛 report a bug</h2>
+        <p class="modal-subtitle">spotted something broken, wrong, or inaccessible? let me know and i'll fix it!</p>
+        <div id="bug-form-area">
+            <div class="form-row">
+                <label for="bug-page">where did you see it?</label>
+                <input type="text" id="bug-page" placeholder="e.g. about page, lit review project...">
+            </div>
+            <div class="form-row">
+                <label for="bug-description">what happened?</label>
+                <textarea id="bug-description" rows="4" placeholder="describe the bug, what you saw, what you expected..."></textarea>
+            </div>
+            <div class="form-row">
+                <label for="bug-email">your email <span style="color:var(--text-muted)">(optional, if you want a reply)</span></label>
+                <input type="email" id="bug-email" placeholder="your@email.com" autocomplete="email">
+            </div>
+            <button class="form-submit" id="bug-submit">submit report ↗</button>
+            <p class="form-status" id="bug-status"></p>
+            <p>thank you for helping me make my website a better place!</p>
+        </div>
+    </div>
+</div>
+
+<div id="footer"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // ═══════════════════════════════════════
+    //  VIS 1 — WAFFLE CHART
+    // ═══════════════════════════════════════
+    (function() {
+        var waffle = document.getElementById("fashion-waffle");
+        var tip = document.getElementById("waffle-tip");
+        if (!waffle) return;
+
+        var cells = [];
+        var specs = [
+            { cls:"on",  n:1,  msg:"Just 1 in 100 garments is recycled into new clothing — less than 1%." },
+            { cls:"dim", n:14, msg:"These ~14 garments are donated, resold, or reused — but most still end up discarded within a year." },
+            { cls:"",    n:85, msg:"85 out of 100 garments end up in landfill or incineration." }
+        ];
+        specs.forEach(function(s) {
+            for (var i = 0; i < s.n; i++) {
+                var el = document.createElement("div");
+                el.className = "waffle-cell" + (s.cls ? " " + s.cls : "");
+                el.setAttribute("tabindex", "0");
+                el.setAttribute("aria-label", s.msg);
+                el.dataset.msg = s.msg;
+                waffle.appendChild(el);
+                cells.push(el);
+            }
+        });
+
+        var obs = new IntersectionObserver(function(entries) {
+            if (!entries[0].isIntersecting) return;
+            cells.forEach(function(c, i) {
+                setTimeout(function() {
+                    c.style.opacity = "1";
+                    c.style.transform = "scale(1)";
+                }, i * 9);
+            });
+            obs.disconnect();
+        }, { threshold: 0.2 });
+        obs.observe(waffle);
+
+        var wrapEl = waffle.parentElement;
+        var infoPanel = document.getElementById("waffle-info");
+        waffle.addEventListener("mousemove", function(e) {
+            var cell = e.target.closest(".waffle-cell");
+            if (!cell) return;
+            if (infoPanel) infoPanel.textContent = cell.dataset.msg;
+        });
+        waffle.addEventListener("mouseleave", function() {
+            if (infoPanel) infoPanel.textContent = "hover a square to learn more";
+        });
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  VIS 2 — JAR FILL CHART
+    // ═══════════════════════════════════════
+    (function() {
+        var grid = document.getElementById("jar-grid");
+        var tip  = document.getElementById("jar-tip");
+        if (!grid) return;
+
+        // freshPct and fermentPct are relative fill heights (% of jar height)
+        var data = [
+            { name:"cucumber", freshPct:5,  fermentPct:55, freshLabel:"~1 week fresh", fermentLabel:"months as pickles",         detail:"Cucumbers go from 1 week in the fridge to months of shelf life once lacto-fermented in brine." },
+            { name:"milk",     freshPct:7,  fermentPct:42, freshLabel:"1–2 weeks",     fermentLabel:"weeks as yogurt",           detail:"Milk lasts 1–2 weeks but transforms into yogurt or kefir with several weeks of shelf life." },
+            { name:"cabbage",  freshPct:10, fermentPct:75, freshLabel:"~2 weeks",      fermentLabel:"1+ year as sauerkraut",     detail:"Cabbage keeps 2 weeks raw. As sauerkraut or kimchi, it's shelf-stable for a year or more." },
+            { name:"sourdough", freshPct:22, fermentPct:92, freshLabel:"active 1–2 wks", fermentLabel:"indefinitely (fed)",  detail:"A sourdough starter made from just flour and water can live indefinitely when fed regularly — no commercial yeast ever needed." }
+        ];
+
+        var W = 52, H = 100; // jar svg dimensions
+        var bodyTop = 14, bodyBot = H - 4, bodyH = bodyBot - bodyTop;
+
+        data.forEach(function(d) {
+            var wrap = document.createElement("div");
+            wrap.className = "jar-item";
+            wrap.setAttribute("tabindex", "0");
+            wrap.setAttribute("aria-label", d.name + ": " + d.freshLabel + " fresh, " + d.fermentLabel + " fermented. " + d.detail);
+
+            // Two jars side by side in a small sub-grid
+            var svgWrap = document.createElement("div");
+            svgWrap.className = "jar-svg-wrap";
+            svgWrap.style.cssText = "display:flex;gap:6px;align-items:flex-end;";
+
+            function makeJar(fillPct, isFerment) {
+                var ns = "http://www.w3.org/2000/svg";
+                var svg = document.createElementNS(ns, "svg");
+                svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+                svg.setAttribute("width", "58");
+                svg.setAttribute("height", "108");
+
+                // clip path
+                var uid = "jclip-" + d.name + (isFerment ? "f" : "n");
+                var defs = document.createElementNS(ns, "defs");
+                var cp = document.createElementNS(ns, "clipPath");
+                cp.setAttribute("id", uid);
+                var cr = document.createElementNS(ns, "rect");
+                var fillH = Math.round((fillPct / 100) * bodyH);
+                var fillY = bodyBot - fillH;
+                cr.setAttribute("x", "3");
+                cr.setAttribute("y", String(fillY));
+                cr.setAttribute("width", String(W - 6));
+                cr.setAttribute("height", String(fillH));
+                cr.setAttribute("rx", "3");
+                cr.classList.add("jar-clip-rect");
+                cr.dataset.fillH = fillH;
+                cr.dataset.fillY = fillY;
+                cp.appendChild(cr);
+                defs.appendChild(cp);
+                svg.appendChild(defs);
+
+                // jar body background (empty glass look)
+                var bg = document.createElementNS(ns, "rect");
+                bg.setAttribute("x","3"); bg.setAttribute("y", String(bodyTop));
+                bg.setAttribute("width", String(W-6)); bg.setAttribute("height", String(bodyH));
+                bg.setAttribute("rx","4"); bg.setAttribute("fill","rgba(6,4,45,0.05)");
+                svg.appendChild(bg);
+
+                // fill
+                var fill = document.createElementNS(ns, "rect");
+                fill.setAttribute("x","3"); fill.setAttribute("y", String(bodyTop));
+                fill.setAttribute("width", String(W-6)); fill.setAttribute("height", String(bodyH));
+                fill.setAttribute("rx","4");
+                fill.setAttribute("fill", isFerment ? "var(--accentblue)" : "rgba(6,4,45,0.18)");
+                fill.setAttribute("clip-path", "url(#" + uid + ")");
+                fill.style.opacity = "0.9";
+                svg.appendChild(fill);
+
+                // jar outline
+                var outline = document.createElementNS(ns, "rect");
+                outline.setAttribute("x","3"); outline.setAttribute("y", String(bodyTop));
+                outline.setAttribute("width", String(W-6)); outline.setAttribute("height", String(bodyH));
+                outline.setAttribute("rx","4"); outline.setAttribute("fill","none");
+                outline.setAttribute("stroke","rgba(6,4,45,0.22)"); outline.setAttribute("stroke-width","1.5");
+                svg.appendChild(outline);
+
+                // lid
+                var lid = document.createElementNS(ns, "rect");
+                lid.setAttribute("x","7"); lid.setAttribute("y","6");
+                lid.setAttribute("width", String(W-14)); lid.setAttribute("height","10");
+                lid.setAttribute("rx","3");
+                lid.setAttribute("fill", isFerment ? "rgba(31,24,255,0.3)" : "rgba(6,4,45,0.15)");
+                svg.appendChild(lid);
+
+                // percentage text
+                var pctTxt = document.createElementNS(ns, "text");
+                pctTxt.setAttribute("x", String(W/2));
+                pctTxt.setAttribute("y", String(bodyTop + 14));
+                pctTxt.setAttribute("text-anchor","middle");
+                pctTxt.setAttribute("font-family","montreal medium");
+                pctTxt.setAttribute("font-size","10");
+                pctTxt.setAttribute("fill", fillPct > 15 ? (isFerment ? "rgba(255,255,255,0.9)" : "rgba(6,4,45,0.6)") : "rgba(6,4,45,0.5)");
+                pctTxt.textContent = fillPct + "%";
+                svg.appendChild(pctTxt);
+
+                return { svg:svg, clipRect:cr, fillH:fillH, fillY:fillY };
+            }
+
+            var freshJar  = makeJar(0, false);
+            var ferJar    = makeJar(0, true);
+            svgWrap.appendChild(freshJar.svg);
+            svgWrap.appendChild(ferJar.svg);
+            wrap.appendChild(svgWrap);
+
+            var lbl = document.createElement("div");
+            lbl.className = "jar-label-top";
+            lbl.textContent = d.name;
+            wrap.appendChild(lbl);
+
+            var sublbl = document.createElement("div");
+            sublbl.className = "jar-sublabel";
+            sublbl.innerHTML = d.freshLabel + "<br>→ " + d.fermentLabel;
+            wrap.appendChild(sublbl);
+
+            grid.appendChild(wrap);
+
+            // store refs for animation
+            wrap._freshClip  = freshJar.clipRect;
+            wrap._ferClip    = ferJar.clipRect;
+            wrap._freshData  = d;
+            wrap._freshFillH = Math.round((d.freshPct  / 100) * bodyH);
+            wrap._freshFillY = bodyBot - Math.round((d.freshPct  / 100) * bodyH);
+            wrap._ferFillH   = Math.round((d.fermentPct / 100) * bodyH);
+            wrap._ferFillY   = bodyBot - Math.round((d.fermentPct / 100) * bodyH);
+
+            // info panel
+            var jarInfo = document.getElementById("jar-info");
+            wrap.addEventListener("mouseenter", function() {
+                if (jarInfo) jarInfo.innerHTML = "<strong>" + d.name + "</strong> — " + d.freshLabel + " fresh → " + d.fermentLabel + " fermented. " + d.detail;
+            });
+            wrap.addEventListener("mouseleave", function() {
+                if (jarInfo) jarInfo.textContent = "hover a jar to compare shelf life";
+            });
+            wrap.addEventListener("focus", function() {
+                if (jarInfo) jarInfo.innerHTML = "<strong>" + d.name + "</strong> — " + d.detail;
+            });
+            wrap.addEventListener("blur", function() {
+                if (jarInfo) jarInfo.textContent = "hover a jar to compare shelf life";
+            });
+        });
+
+        // Animate in on scroll
+        var items = grid.querySelectorAll(".jar-item");
+        var jarObs = new IntersectionObserver(function(entries) {
+            if (!entries[0].isIntersecting) return;
+            items.forEach(function(item, idx) {
+                setTimeout(function() {
+                    item._freshClip.style.transition = "height 1.1s cubic-bezier(.4,0,.2,1), y 1.1s cubic-bezier(.4,0,.2,1)";
+                    item._ferClip.style.transition   = "height 1.2s cubic-bezier(.4,0,.2,1) 0.15s, y 1.2s cubic-bezier(.4,0,.2,1) 0.15s";
+                    item._freshClip.setAttribute("height", String(item._freshFillH));
+                    item._freshClip.setAttribute("y",      String(item._freshFillY));
+                    item._ferClip.setAttribute("height",   String(item._ferFillH));
+                    item._ferClip.setAttribute("y",        String(item._ferFillY));
+                    // also update pct text
+                    var txts = item.querySelectorAll("text");
+                    if (txts[0]) txts[0].textContent = item._freshData.freshPct + "%";
+                    if (txts[1]) txts[1].textContent = item._freshData.fermentPct + "%";
+                }, idx * 120);
+            });
+            jarObs.disconnect();
+        }, { threshold: 0.25 });
+        jarObs.observe(grid);
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  VIS 3 — RACE TRACK
+    // ═══════════════════════════════════════
+    (function() {
+        var wrap = document.getElementById("race-chart");
+        if (!wrap) return;
+
+        // gCO2 per passenger-km from Our World in Data (2019 figures)
+        var vehicles = [
+            { name:"bicycle",      emoji:"🚲", co2:21,  color:"var(--accentblue)" },
+            { name:"bus",          emoji:"🚌", co2:89,  color:"rgba(31,24,255,0.45)" },
+            { name:"electric car", emoji:"⚡",  co2:53,  color:"rgba(6,4,45,0.3)" },
+            { name:"gas car",      emoji:"🚗", co2:192, color:"rgba(6,4,45,0.22)" }
+        ];
+        var maxKm = (1000 / vehicles[0].co2) * 0.621371; // bicycle is best, in miles
+
+        var header = document.createElement("div");
+        header.className = "race-header";
+        header.innerHTML = "Given a budget of <strong>1 lb of CO₂</strong>, each vehicle gets you a different distance. The bicycle goes <strong>" + Math.round(maxKm) + " miles</strong> — the gas car goes about 3.";
+        wrap.appendChild(header);
+
+        vehicles.forEach(function(v) {
+            var km = (1000 / v.co2) * 0.621371;
+            var pct = (km / maxKm) * 100;
+
+            var row = document.createElement("div");
+            row.className = "race-row";
+            row.setAttribute("tabindex","0");
+            row.setAttribute("aria-label", v.name + ": " + Math.round(km) + " mi on 1 lb CO₂ (" + Math.round(v.co2 * 1.609) + "g per mi)");
+
+            var nameEl = document.createElement("div");
+            nameEl.className = "race-name";
+            nameEl.textContent = v.name;
+
+            var track = document.createElement("div");
+            track.className = "race-track";
+
+            var bar = document.createElement("div");
+            bar.className = "race-vehicle";
+            bar.style.background = v.color;
+            bar.dataset.pct = pct;
+
+            // emoji starts at left:0, animates to tip of bar
+            var emojiEl = document.createElement("span");
+            emojiEl.className = "race-emoji";
+            emojiEl.textContent = v.emoji;
+            emojiEl.dataset.pct = pct;
+            emojiEl.style.left = "4px";
+
+            track.appendChild(bar);
+            track.appendChild(emojiEl);
+
+            var kmEl = document.createElement("div");
+            kmEl.className = "race-km";
+            kmEl.innerHTML = Math.round(km) + " mi<small>" + Math.round(v.co2 * 1.609) + "g/mi</small>";
+
+            row.appendChild(nameEl);
+            row.appendChild(track);
+            row.appendChild(kmEl);
+            wrap.appendChild(row);
+        });
+
+        var raceObs = new IntersectionObserver(function(entries) {
+            if (!entries[0].isIntersecting) return;
+            var rows = wrap.querySelectorAll(".race-row");
+            rows.forEach(function(row, idx) {
+                setTimeout(function() {
+                    var bar = row.querySelector(".race-vehicle");
+                    var em  = row.querySelector(".race-emoji");
+                    var trackEl = row.querySelector(".race-track");
+                    var trackW  = trackEl.offsetWidth;
+                    var pctNum  = parseFloat(bar.dataset.pct);
+                    var targetPx = (trackW * pctNum / 100);
+
+                    // bar grows from left to right
+                    bar.style.width = pctNum + "%";
+
+                    // emoji rides from left edge to the tip of the bar
+                    // offset by ~18px so it sits just past the bar end
+                    em.style.transition = "left 1.3s cubic-bezier(.4,0,.2,1)";
+                    em.style.left = Math.min(Math.max(targetPx - 20, 4), trackW - 28) + "px";
+                }, idx * 80);
+            });
+            raceObs.disconnect();
+        }, { threshold: 0.3 });
+        raceObs.observe(wrap);
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  VIS 4 — DONUT PIE CHART + SWAP EXPLORER
+    // ═══════════════════════════════════════
+    (function() {
+        var slicesG  = document.getElementById("pie-slices");
+        var legEl    = document.getElementById("pie-legend");
+        var pieInfo  = document.getElementById("pie-info");
+        var pieSvg   = document.getElementById("pie-svg");
+        var pWrap    = document.getElementById("pie-wrap");
+        var centerPct   = document.getElementById("pie-center-pct");
+        var centerLbl   = document.getElementById("pie-center-label");
+        var centerDef   = document.getElementById("pie-center-default");
+        var tabsEl   = document.getElementById("swap-tabs");
+        var cardInner= document.getElementById("swap-card-inner");
+        if (!slicesG) return;
+
+        var data = [
+            {
+                label:"packaging", pct:40,
+                color:"var(--accentblue)", hex:"#1F18FF",
+                desc:"Bags, bottles, containers, wrappers. The single largest plastic waste stream — and the most avoidable.",
+                swaps:[
+                    { from:"plastic water bottles", to:"reusable stainless or glass bottle" },
+                    { from:"cling film", to:"beeswax wraps or a plate on top" },
+                    { from:"plastic produce bags", to:"cloth mesh bags" },
+                    { from:"shampoo/body wash bottles", to:"shampoo bars and solid soap" },
+                    { from:"plastic cleaning spray jugs", to:"concentrated tablets in a glass bottle" }
+                ]
+            },
+            {
+                label:"other goods", pct:17,
+                color:"rgba(31,24,255,0.55)", hex:"#6f6bff",
+                desc:"Furniture, toys, household items, sports equipment.",
+                swaps:[
+                    { from:"plastic kitchen utensils", to:"wood or stainless steel" },
+                    { from:"plastic food storage", to:"glass jars and beeswax wraps" },
+                    { from:"plastic straws", to:"metal, glass, or bamboo straws" },
+                    { from:"cheap plastic toys", to:"secondhand or wood toys" }
+                ]
+            },
+            {
+                label:"construction", pct:16,
+                color:"rgba(6,4,45,0.38)", hex:"#464466",
+                desc:"Pipes, insulation, window frames, flooring.",
+                swaps:[
+                    { from:"plastic flooring (vinyl)", to:"cork, hardwood, or tile" },
+                    { from:"plastic blinds", to:"bamboo or linen blinds" },
+                    { from:"plastic storage bins", to:"wicker baskets or wooden crates" }
+                ]
+            },
+            {
+                label:"electronics", pct:16,
+                color:"rgba(6,4,45,0.22)", hex:"#807e8e",
+                desc:"Circuit boards, casings, cables, packaging for devices.",
+                swaps:[
+                    { from:"buying new devices", to:"repair first, buy refurbished second" },
+                    { from:"plastic cable ties", to:"velcro or fabric cable ties" },
+                    { from:"single-use batteries", to:"rechargeable NiMH batteries" }
+                ]
+            },
+            {
+                label:"textiles", pct:11,
+                color:"rgba(31,24,255,0.72)", hex:"#4d48ff",
+                desc:"Synthetic fabrics like polyester and nylon shed microplastics with every wash.",
+                swaps:[
+                    { from:"polyester / nylon clothing", to:"linen, wool, or organic cotton" },
+                    { from:"synthetic fleece", to:"wool or recycled wool fleece" },
+                    { from:"fast fashion purchases", to:"secondhand + mend what you own" },
+                    { from:"dryer sheets", to:"wool dryer balls" }
+                ]
+            }
+        ];
+
+        var R_outer = 108, R_inner = 62;
+        var total = data.reduce(function(s, d) { return s + d.pct; }, 0);
+        var startAngle = -Math.PI / 2; // start at top
+        var GAP = 0.025; // gap between slices in radians
+
+        var sliceEls = [];
+
+        data.forEach(function(d, i) {
+            var angle = (d.pct / total) * Math.PI * 2;
+            var a1 = startAngle + GAP / 2;
+            var a2 = startAngle + angle - GAP / 2;
+            startAngle += angle;
+
+            // Build arc path
+            function arcPath(r1, r2, a1, a2) {
+                var x1 = Math.cos(a1) * r2, y1 = Math.sin(a1) * r2;
+                var x2 = Math.cos(a2) * r2, y2 = Math.sin(a2) * r2;
+                var x3 = Math.cos(a2) * r1, y3 = Math.sin(a2) * r1;
+                var x4 = Math.cos(a1) * r1, y4 = Math.sin(a1) * r1;
+                var large = (a2 - a1) > Math.PI ? 1 : 0;
+                return [
+                    "M", x1, y1,
+                    "A", r2, r2, 0, large, 1, x2, y2,
+                    "L", x3, y3,
+                    "A", r1, r1, 0, large, 0, x4, y4,
+                    "Z"
+                ].join(" ");
+            }
+
+            var midAngle = (a1 + a2) / 2;
+
+            var ns = "http://www.w3.org/2000/svg";
+            var g = document.createElementNS(ns, "g");
+            g.setAttribute("tabindex","0");
+            g.setAttribute("role","button");
+            g.setAttribute("aria-label", d.label + ": " + d.pct + "% — " + d.desc);
+            g.style.cursor = "pointer";
+            g.style.outline = "none";
+
+            var path = document.createElementNS(ns, "path");
+            path.setAttribute("d", arcPath(R_inner, R_outer, a1, a2));
+            path.setAttribute("fill", d.color);
+            path.setAttribute("opacity","0");
+            path.style.transformOrigin = "0 0";
+            path.style.transition = "opacity 0.5s ease, transform 0.2s ease, filter 0.2s";
+
+            // small label line + dot at midpoint of outer edge
+            var lx = Math.cos(midAngle) * (R_outer + 14);
+            var ly = Math.sin(midAngle) * (R_outer + 14);
+            var dotX = Math.cos(midAngle) * (R_outer + 4);
+            var dotY = Math.sin(midAngle) * (R_outer + 4);
+
+            g.appendChild(path);
+            slicesG.appendChild(g);
+
+            // hover / focus
+            function activate() {
+                path.style.filter = "brightness(1.15) drop-shadow(0 0 8px " + d.hex + "55)";
+                path.style.transform = "translate(" + (Math.cos(midAngle)*5) + "px," + (Math.sin(midAngle)*5) + "px)";
+                centerPct.textContent = d.pct + "%";
+                centerLbl.textContent = d.label;
+                centerPct.setAttribute("opacity","1");
+                centerLbl.setAttribute("opacity","1");
+                centerDef.setAttribute("opacity","0");
+            }
+            function deactivate() {
+                path.style.filter = "";
+                path.style.transform = "";
+                centerPct.setAttribute("opacity","0");
+                centerLbl.setAttribute("opacity","0");
+                centerDef.setAttribute("opacity","1");
+            }
+
+            g.addEventListener("mouseenter", function(e) {
+                activate();
+                if (pieInfo) pieInfo.innerHTML = "<strong>" + d.label + "</strong> — " + d.pct + "% &nbsp;·&nbsp; " + d.desc;
+            });
+            g.addEventListener("mouseleave", function() { deactivate(); if (pieInfo) pieInfo.textContent = "hover a slice to see its description"; });
+            g.addEventListener("focus", function() { activate(); if (pieInfo) pieInfo.innerHTML = "<strong>" + d.label + "</strong> — " + d.pct + "% &nbsp;·&nbsp; " + d.desc; });
+            g.addEventListener("blur", function() { deactivate(); if (pieInfo) pieInfo.textContent = "hover a slice to see its description"; });
+            g.addEventListener("click", function() { selectTab(i); });
+            g.addEventListener("keydown", function(e) { if (e.key==="Enter"||e.key===" ") selectTab(i); });
+
+            sliceEls.push({ g:g, path:path, d:d, midAngle:midAngle });
+
+            // legend
+            var row = document.createElement("div");
+            row.className = "lwl-legend-row";
+            row.style.cursor = "pointer";
+            row.innerHTML = '<div class="lwl-legend-dot" style="background:' + d.color + '"></div><span>' + d.label + ' (' + d.pct + '%)</span>';
+            row.addEventListener("click", function() { selectTab(i); });
+            legEl.appendChild(row);
+        });
+
+        // Animate in on scroll
+        var pieObs = new IntersectionObserver(function(entries) {
+            if (!entries[0].isIntersecting) return;
+            sliceEls.forEach(function(s, i) {
+                setTimeout(function() {
+                    s.path.style.opacity = "1";
+                }, i * 100 + 100);
+            });
+            pieObs.disconnect();
+        }, { threshold: 0.2 });
+        pieObs.observe(pieSvg);
+
+        // ─── Swap Explorer ───
+        var activeTab = null;
+        data.forEach(function(d, i) {
+            var btn = document.createElement("button");
+            btn.className = "lwl-bulk-tag";
+            btn.style.cssText = "border:none;background:none;cursor:pointer;font-family:inherit;";
+            btn.textContent = d.label;
+            btn.addEventListener("click", function() { selectTab(i); });
+            tabsEl.appendChild(btn);
+        });
+
+        function selectTab(idx) {
+            activeTab = idx;
+            var d = data[idx];
+            // style tabs
+            Array.from(tabsEl.children).forEach(function(btn, i) {
+                if (i === idx) {
+                    btn.style.borderColor = "var(--accentblue)";
+                    btn.style.color = "var(--accentblue)";
+                    btn.style.background = "rgba(31,24,255,0.08)";
+                } else {
+                    btn.style.borderColor = "";
+                    btn.style.color = "";
+                    btn.style.background = "";
+                }
+            });
+            // build card
+            var html = '<p style="font-family:\'montreal medium\';font-size:1em;color:var(--blackish);margin-bottom:0.8em;">' + d.label + ' swaps</p>';
+            html += '<div style="display:flex;flex-direction:column;gap:0.6em;">';
+            d.swaps.forEach(function(sw) {
+                html += '<div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0.5em;align-items:center;font-size:0.9em;line-height:1.4;">';
+                html += '<div style="color:var(--text-muted);text-decoration:line-through;text-align:right;">' + sw.from + '</div>';
+                html += '<div style="color:var(--accentblue);font-size:1.1em;font-family:\'montreal medium\';">→</div>';
+                html += '<div style="color:var(--blackish);">' + sw.to + '</div>';
+                html += '</div>';
+            });
+            html += '</div>';
+            cardInner.style.opacity = "0";
+            setTimeout(function() {
+                cardInner.innerHTML = html;
+                cardInner.style.transition = "opacity 0.2s";
+                cardInner.style.opacity = "1";
+            }, 150);
+        }
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  MENDING GUIDE
+    // ═══════════════════════════════════════
+    (function() {
+        var tabsEl    = document.getElementById("mend-tabs");
+        var cardInner = document.getElementById("mend-card-inner");
+        var mendCard  = document.getElementById("mend-card");
+        if (!tabsEl) return;
+
+        var techniques = [
+            {
+                name: "darning",
+                also: "also called: Swiss darning, needle weaving",
+                skill: "beginner",
+                time: "20–60 min",
+                best: "knits, wool socks, sweaters",
+                desc: "Darning rebuilds worn-through or thinning fabric by weaving new thread across the gap. The result is a dense woven patch that's stronger than the original. Traditionally done over a darning mushroom or an egg to keep the fabric taut.",
+                steps: [
+                    "Hold the worn area over a darning mushroom, light bulb, or your hand to create gentle tension",
+                    "Thread a needle with matching yarn or thread — wool on wool, cotton on cotton",
+                    "Stitch a grid of parallel rows across the hole, extending a few mm into sound fabric on all sides",
+                    "Weave perpendicular rows over and under the first, filling the gap completely",
+                    "Finish by anchoring the thread ends into the surrounding fabric"
+                ]
+            },
+            {
+                name: "sashiko",
+                also: "also called: Japanese running stitch, boro reinforcement",
+                skill: "beginner",
+                time: "1–3 hrs",
+                best: "denim, linen, cotton, any flat woven fabric",
+                desc: "Sashiko is a Japanese folk embroidery using simple running stitches in geometric patterns. Originally used to reinforce and layer worn fabric (boro), it's now embraced as visible mending — turning repairs into decoration. White thread on indigo denim is the classic look.",
+                steps: [
+                    "Transfer a geometric pattern (hishi, seigaiha, shippo, or simple grid) onto the fabric with a water-soluble pen",
+                    "Thread a sashiko needle with sashiko thread or thick embroidery floss — don't knot the end",
+                    "Work running stitches along the marked lines, keeping stitch length and spacing even (aim for 5–7mm)",
+                    "At corners and intersections, make sure stitches don't cross — they should stop and restart",
+                    "Dampen to remove pen marks; the fabric will slightly pucker — this is correct"
+                ]
+            },
+            {
+                name: "patching",
+                also: "also called: appliqué patch, iron-on, sew-on patch",
+                skill: "beginner",
+                time: "15–45 min",
+                best: "denim, canvas, heavy cotton",
+                desc: "Patching places a piece of new fabric over a hole or worn area — either on the outside (decorative patch) or the inside (reinforcing patch). Inside patches are structural; outside patches are visible mending. Combining both gives you the strongest repair.",
+                steps: [
+                    "Cut a patch slightly larger than the damaged area — round the corners so they don't peel",
+                    "For an inside patch: pin or iron-on interfacing to the inside of the garment behind the hole",
+                    "For an outside patch: position the patch over the damage and pin in place",
+                    "Stitch around the patch edge by machine (straight or zigzag stitch) or by hand with a running stitch",
+                    "Optional: add decorative stitching over the patch edge to secure and embellish"
+                ]
+            },
+            {
+                name: "visible mending",
+                also: "also called: boro, kintsugi-inspired repair",
+                skill: "beginner",
+                time: "varies",
+                best: "any garment",
+                desc: "Visible mending is less a specific technique and more a philosophy: repairs are made with contrasting thread, bright patches, or decorative stitching so the repair history of a garment becomes part of its design. Inspired by the Japanese boro tradition and kintsugi pottery. The mend is the point.",
+                steps: [
+                    "Assess the damage: is it a hole, a tear, a thin spot, or a fray?",
+                    "Choose a contrasting or complementary thread/patch color — lean into the visibility",
+                    "Select your technique: darning, sashiko, patch, or embroidery overlay depending on damage type",
+                    "Work the repair with intention — uneven, handmade stitching is part of the aesthetic",
+                    "Consider adding embroidery around the repair to integrate it into the garment's visual story"
+                ]
+            },
+            {
+                name: "embroidery overlay",
+                also: "also called: stitch-over repair",
+                skill: "beginner–intermediate",
+                time: "1–4 hrs",
+                best: "thin spots, small holes, surface stains",
+                desc: "When fabric is worn thin or stained but not fully holed, dense embroidery stitches worked over the area reinforce it while covering the damage. Satin stitch, stem stitch, and French knots are all common choices. Great for turning a worn elbow or knee into something intentional.",
+                steps: [
+                    "Stabilize the area from the inside with a small iron-on interfacing patch if needed",
+                    "Transfer your design (a leaf, flower, geometric shape) over the worn spot",
+                    "Work dense embroidery over the damage using satin stitch, stem stitch, or seed stitch",
+                    "Layer stitches to fully cover the worn area — don't leave gaps",
+                    "Secure all thread ends on the inside with a few anchor stitches"
+                ]
+            },
+            {
+                name: "reweaving",
+                also: "also called: invisible reweaving, French reweaving",
+                skill: "advanced",
+                time: "2–8 hrs",
+                best: "fine wool, suiting, tailored garments",
+                desc: "Reweaving reconstructs damaged fabric by harvesting threads from a hidden seam allowance and weaving them back into the damaged area following the original structure exactly. When done well it's nearly invisible. Used professionally on wool suits and tailored pieces.",
+                steps: [
+                    "Harvest matching threads from a hidden seam, hem, or inside facing of the same garment",
+                    "Using a needle and magnification, study the weave structure around the damage",
+                    "Thread a fine needle and reintroduce warp threads across the hole, anchoring into sound fabric",
+                    "Weave weft threads over and under the new warp, exactly following the original pattern",
+                    "Press flat with a damp cloth; the repair becomes nearly invisible"
+                ]
+            },
+            {
+                name: "seam repair",
+                also: "also called: seam resewing, re-seaming",
+                skill: "beginner",
+                time: "5–20 min",
+                best: "jeans, jackets, shirts — any sewn seam",
+                desc: "Seams are the most common failure point in clothing — especially high-stress areas like the crotch seam of jeans or armhole seams of jackets. Re-seaming is the simplest and most useful repair skill: open the failed seam, trim frayed edges, and sew it shut again.",
+                steps: [
+                    "Examine where the seam has opened: if the thread broke, you can re-sew; if the fabric tore, you'll need to patch first",
+                    "Trim any loose or frayed threads from both seam edges",
+                    "Pin the seam closed, matching the original seam line",
+                    "Sew by hand with a backstitch (strongest hand stitch) or by machine with a straight stitch",
+                    "For jeans crotch seams: use a strong thread (upholstery or jeans thread) and a ¼\" seam allowance"
+                ]
+            },
+            {
+                name: "collar / cuff turn",
+                also: "also called: collar turning, refacing",
+                skill: "intermediate",
+                time: "1–2 hrs",
+                best: "dress shirts, work shirts with worn collar edges",
+                desc: "Shirt collars wear fastest at the fold. Before the era of disposable fashion, collars were detachable precisely so they could be turned or replaced. Turning a collar means carefully detaching it, flipping it 180°, and reattaching so the unworn underside becomes the new top.",
+                steps: [
+                    "Use a seam ripper to carefully detach the collar from the collar band, noting how it was originally attached",
+                    "Remove any interfacing that is worn or delaminated; replace with fresh interfacing if needed",
+                    "Flip the collar so the unworn inner face becomes the outer face",
+                    "Pin the collar back to the collar band, matching original notches and seam lines",
+                    "Topstitch neatly around the collar edge to resecure, matching original stitching"
+                ]
+            },
+            {
+                name: "felting",
+                also: "also called: wet felting, needle felting repair",
+                skill: "beginner",
+                time: "15–30 min",
+                best: "wool sweaters, wool coats, feltable knits",
+                desc: "Wool fibers felt when agitated with moisture and friction (wet felting) or when stabbed repeatedly with a barbed needle (needle felting). Either method can be used to fill holes in wool garments by bonding new fiber into the damaged area — it's invisible, soft, and permanent.",
+                steps: [
+                    "For needle felting: pull a small amount of matching wool roving and lay it over the hole",
+                    "Using a barbed felting needle, stab repeatedly through the roving into the fabric",
+                    "Continue until the fibers are densely matted and bonded to the surrounding fabric",
+                    "Build up layers gradually — thin layers felt more evenly than thick ones",
+                    "Finish by smoothing the surface with a few angled needle strokes"
+                ]
+            },
+            {
+                name: "zipper replacement",
+                also: "also called: zip repair, re-zipping",
+                skill: "intermediate",
+                time: "30–90 min",
+                best: "jeans, jackets, bags, boots",
+                desc: "A failed zipper often means a garment gets discarded, but zipper replacement is very learnable. Zippers fail in three main ways: the pull breaks off (easy fix), the teeth separate at the bottom (use a stop repair), or the whole zipper tape fails (needs full replacement).",
+                steps: [
+                    "Identify the failure: missing pull, bottom stop failure, or full zipper failure",
+                    "For a missing pull: use a safety pin temporarily; then source a replacement pull and thread it back on",
+                    "For bottom separation: use needle-nose pliers to crimp a new bottom stop below the last good tooth",
+                    "For full replacement: seam-rip the old zipper tape out carefully, noting original seam placement",
+                    "Pin new zipper tape in place and sew by machine using a zipper foot, matching original topstitching"
+                ]
+            }
+        ];
+
+        // Build tabs
+        techniques.forEach(function(t, i) {
+            var btn = document.createElement("button");
+            btn.className = "lwl-bulk-tag";
+            btn.style.cssText = "border-color:rgba(6,4,45,0.18);background:none;cursor:pointer;font-family:inherit;font-size:0.84em;padding:0.3em 0.85em;border-radius:2em;border-width:1.5px;border-style:solid;color:var(--blackish);transition:all 0.15s;";
+            btn.textContent = t.name;
+            btn.addEventListener("click", function() { selectMend(i); });
+            tabsEl.appendChild(btn);
+        });
+
+        function selectMend(idx) {
+            var t = techniques[idx];
+            // style tabs
+            Array.from(tabsEl.children).forEach(function(btn, i) {
+                if (i === idx) {
+                    btn.style.borderColor = "var(--accentblue)";
+                    btn.style.color = "var(--accentblue)";
+                    btn.style.background = "rgba(31,24,255,0.08)";
+                } else {
+                    btn.style.borderColor = "rgba(6,4,45,0.18)";
+                    btn.style.color = "var(--blackish)";
+                    btn.style.background = "none";
+                }
+            });
+
+            // Build compact 2-col card
+            var html = '<div class="mend-card-inner-grid">';
+
+            // left: image placeholder
+            html += '<div class="mend-img-slot">';
+            html += '<div class="mend-img-placeholder">';
+            html += '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
+            html += '<span>add photo</span>';
+            html += '</div>';
+            html += '</div>';
+
+            // right: info
+            html += '<div class="mend-body">';
+            html += '<div class="mend-name">' + t.name + '</div>';
+            html += '<div class="mend-also">' + t.also + '</div>';
+            html += '<div class="mend-meta">';
+            html += '<span class="mend-badge skill-' + t.skill.split('–')[0] + '">' + t.skill + '</span>';
+            html += '<span class="mend-badge">⏱ ' + t.time + '</span>';
+            html += '</div>';
+            html += '<div class="mend-desc">' + t.desc + '</div>';
+            html += '<ol class="mend-steps">';
+            t.steps.forEach(function(s) { html += '<li>' + s + '</li>'; });
+            html += '</ol>';
+            html += '</div>';
+            html += '</div>';
+
+            cardInner.style.opacity = "0";
+            setTimeout(function() {
+                cardInner.innerHTML = html;
+                cardInner.style.padding = "0";
+                cardInner.style.transition = "opacity 0.2s";
+                cardInner.style.opacity = "1";
+            }, 150);
+        }
+
+        // open first by default
+        selectMend(0);
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  VIS 6 — CUP DOT GRID
+    // ═══════════════════════════════════════
+    (function() {
+        var slider = document.getElementById("cup-years");
+        var yearVal = document.getElementById("cup-years-val");
+        var countEl = document.getElementById("cup-count");
+        var kgEl = document.getElementById("cup-kg");
+        var grid = document.getElementById("cup-grid");
+        if (!slider) return;
+        var TOTAL_DOTS = 200; // 200 dots × 10 cups each = 2000 max (for ~5.5yr)
+
+        // build dots
+        for (var i = 0; i < TOTAL_DOTS; i++) {
+            var d = document.createElement("div");
+            d.className = "cup-dot";
+            d.setAttribute("tabindex","0");
+            grid.appendChild(d);
+        }
+
+        function update() {
+            var yrs = parseInt(slider.value);
+            var cups = yrs * 365;
+            var filled = Math.min(TOTAL_DOTS, Math.round(cups / 10));
+            var kg = (cups * 0.003 * 2.205).toFixed(2);
+            yearVal.textContent = yrs;
+            countEl.textContent = cups.toLocaleString();
+            kgEl.textContent = kg;
+            slider.setAttribute("aria-valuenow", yrs);
+            var dots = grid.querySelectorAll(".cup-dot");
+            dots.forEach(function(d, i) {
+                d.classList.toggle("filled", i < filled);
+                d.setAttribute("aria-label", i < filled ? "cup used" : "cup not yet counted");
+            });
+        }
+
+        slider.addEventListener("input", update);
+        update();
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  VIS 7 — SCRATCH COMPARE
+    // ═══════════════════════════════════════
+    (function() {
+        var tabsEl = document.getElementById("scratch-tabs");
+        var cardInner = document.getElementById("scratch-card-inner");
+        if (!tabsEl) return;
+
+        var meals = [
+            {
+                name: "yogurt",
+                packaged: { label:"store-bought (1 lb tub)", pkgs:["1× plastic tub", "1× foil lid", "1× cardboard sleeve"], score:3 },
+                scratch:  { label:"homemade from milk", pkgs:["reusable glass jar", "1× milk carton (shared with other uses)"], score:0.5 },
+                note:"A 1 lb tub of yogurt uses 3 pieces of packaging every ~5 days. A batch of homemade yogurt from 1 quart of milk makes about 1.75 lbs and stores in a reused jar."
+            },
+            {
+                name: "granola",
+                packaged: { label:"packaged bag (14 oz)", pkgs:["1× plastic-lined bag (non-recyclable)"], score:2 },
+                scratch:  { label:"homemade from bulk oats", pkgs:["bulk oats in your own jar", "bulk nuts in your own jar"], score:0 },
+                note:"Most granola bags are multi-layer plastic/foil laminates that cannot be recycled. Homemade from bulk bins uses no new packaging."
+            },
+            {
+                name: "hummus",
+                packaged: { label:"store-bought tub (9 oz)", pkgs:["1× plastic tub", "1× plastic lid", "1× label"], score:3 },
+                scratch:  { label:"from dried chickpeas", pkgs:["bulk chickpeas in jar", "bulk tahini or glass jar tahini"], score:0.5 },
+                note:"A can of chickpeas adds a steel can. Dried chickpeas from bulk bins add nothing. A food processor and 10 minutes replaces a tub of hummus."
+            },
+            {
+                name: "bread",
+                packaged: { label:"sandwich loaf", pkgs:["1× plastic bag", "1× twist tie or clip"], score:2 },
+                scratch:  { label:"homemade (no-knead)", pkgs:["bulk flour in jar", "stored in cloth bag or beeswax wrap"], score:0 },
+                note:"A standard sandwich loaf comes in a plastic bag that cannot be recycled in most curbside programs due to film plastic restrictions."
+            },
+            {
+                name: "stock",
+                packaged: { label:"carton or can", pkgs:["1× Tetra Pak or 1× steel can", "1× plastic cap"], score:2 },
+                scratch:  { label:"from vegetable scraps", pkgs:["scraps that would have been thrown away — no new inputs"], score:0 },
+                note:"Vegetable scrap stock costs nothing, uses no packaging, and turns kitchen waste into a useful ingredient. Save scraps in a freezer bag for a few weeks."
+            }
+        ];
+
+        meals.forEach(function(m, i) {
+            var btn = document.createElement("button");
+            btn.className = "lwl-bulk-tag";
+            btn.style.cssText = "border-color:rgba(6,4,45,0.18);background:none;cursor:pointer;font-family:inherit;font-size:0.84em;padding:0.3em 0.85em;border-radius:2em;border-width:1.5px;border-style:solid;color:var(--blackish);transition:all 0.15s;";
+            btn.textContent = m.name;
+            btn.addEventListener("click", function() { selectMeal(i); });
+            tabsEl.appendChild(btn);
+        });
+
+        function barHTML(score, maxScore) {
+            var pct = Math.round((score / maxScore) * 100);
+            var isLow = score < 1;
+            return '<div class="scratch-pkg-track"><div class="scratch-pkg-fill' + (isLow ? ' lo' : '') + '" style="width:' + pct + '%"></div></div>';
+        }
+
+        function selectMeal(idx) {
+            var m = meals[idx];
+            Array.from(tabsEl.children).forEach(function(btn, i) {
+                if (i === idx) { btn.style.borderColor="var(--accentblue)"; btn.style.color="var(--accentblue)"; btn.style.background="rgba(31,24,255,0.08)"; }
+                else { btn.style.borderColor="rgba(6,4,45,0.18)"; btn.style.color="var(--blackish)"; btn.style.background="none"; }
+            });
+            var maxScore = 3;
+            var html = '<div style="margin-bottom:0.9em;">';
+            html += '<div class="scratch-pkg-row"><span class="scratch-pkg-label">packaged</span>' + barHTML(m.packaged.score, maxScore) + '<span class="scratch-pkg-val">' + m.packaged.pkgs.length + ' pkg</span></div>';
+            html += '<div style="font-size:0.78em;color:var(--text-faint);margin:-0.2em 0 0.6em 88px;">' + m.packaged.label + ': ' + m.packaged.pkgs.join(", ") + '</div>';
+            html += '<div class="scratch-pkg-row"><span class="scratch-pkg-label">from scratch</span>' + barHTML(m.scratch.score, maxScore) + '<span class="scratch-pkg-val">' + (m.scratch.score < 1 ? "~0 pkg" : m.scratch.pkgs.length + " pkg") + '</span></div>';
+            html += '<div style="font-size:0.78em;color:var(--text-faint);margin:-0.2em 0 0 88px;">' + m.scratch.label + ': ' + m.scratch.pkgs.join(", ") + '</div>';
+            html += '</div>';
+            html += '<p style="font-size:0.88em;line-height:1.6;color:var(--text-muted);margin:0;padding:0.8em;background:rgba(31,24,255,0.04);border-radius:0.5em;border-left:2px solid var(--accentblue);">' + m.note + '</p>';
+
+            cardInner.style.opacity = "0";
+            setTimeout(function() {
+                cardInner.innerHTML = html;
+                cardInner.style.transition = "opacity 0.2s";
+                cardInner.style.opacity = "1";
+            }, 120);
+        }
+        selectMeal(0);
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  VIS 8 — IMPACT GRID (one-jar chapter)
+    // ═══════════════════════════════════════
+    (function() {
+        var grid = document.getElementById("impact-grid");
+        var infoEl = document.getElementById("impact-info");
+        if (!grid) return;
+
+        var actions = [
+            { label:"eat less meat", impact:85, effort:40, desc:"Diet change (especially reducing beef) is one of the highest-impact individual actions. Beef produces ~120 lbs CO₂e per pound of food vs ~2 lbs for legumes. (Poore & Nemecek, Science, 2018)" },
+            { label:"go car-free or car-lite", impact:78, effort:55, desc:"Transportation is the largest source of US GHG emissions. Switching one car trip per day to cycling saves ~0.5 tonne CO₂/year. (Our World in Data, 2022)" },
+            { label:"fly less", impact:72, effort:35, desc:"A single transatlantic flight produces more CO₂ than a month of other activities combined. (Wynes & Nicholas, ERL, 2017)" },
+            { label:"buy less, buy used", impact:55, effort:30, desc:"The production phase of consumer goods accounts for most of their lifecycle emissions. Secondhand purchasing bypasses this entirely. (WRAP, 2017)" },
+            { label:"switch to renewable energy", impact:65, effort:25, desc:"Switching to a renewable electricity provider or installing solar is high-impact and, once done, requires no ongoing effort. (Project Drawdown, 2020)" },
+            { label:"compost food waste", impact:40, effort:25, desc:"Diverting food from landfill prevents methane emission. Municipal compost programs have lower barriers than home composting. (EPA, 2021)" },
+            { label:"use reusable bags/cups", impact:12, effort:10, desc:"High visibility, low impact. A cotton tote needs to be used 131 times to break even with a plastic bag. Useful, but not where the leverage is. (Danish EPA, 2018)" },
+            { label:"recycle correctly", impact:18, effort:15, desc:"Recycling matters at scale, but contamination rates mean much of what we put in bins isn't recycled. Reducing first is more reliable. (Geyer et al., 2017)" },
+        ];
+
+        actions.forEach(function(a) {
+            var cell = document.createElement("div");
+            cell.className = "impact-cell";
+            cell.setAttribute("tabindex","0");
+            cell.innerHTML =
+                '<div class="impact-cell-label">' + a.label + '</div>' +
+                '<div class="impact-bar-row">' +
+                    '<span style="font-size:0.75em;color:var(--text-faint);min-width:36px;">impact</span>' +
+                    '<div class="impact-bar-track"><div class="impact-bar-fill" style="width:' + a.impact + '%"></div></div>' +
+                    '<span style="font-size:0.78em;font-family:\'montreal medium\';color:var(--accentblue);min-width:30px;text-align:right;">' + a.impact + '%</span>' +
+                '</div>';
+
+            function show() { infoEl.textContent = a.desc; }
+            cell.addEventListener("mouseenter", show);
+            cell.addEventListener("focus", show);
+            cell.addEventListener("mouseleave", function() { infoEl.textContent = "hover an action to see why"; });
+            grid.appendChild(cell);
+        });
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  VIS 9 — FOOD WASTE CHAIN
+    // ═══════════════════════════════════════
+    (function() {
+        var chainEl = document.getElementById("fw-chain");
+        var infoEl  = document.getElementById("fw-info");
+        if (!chainEl) return;
+
+        var stages = [
+            { emoji:"🌾", label:"production & agriculture", pct:33, desc:"33% of food loss occurs at the farm: unharvested crops, culled produce that doesn't meet cosmetic standards, spoilage before transport. (FAO, 2019)" },
+            { emoji:"🚚", label:"transport & storage", pct:22, desc:"22% is lost in the supply chain: temperature failures, damage in transit, inadequate storage infrastructure especially in lower-income regions. (FAO, 2019)" },
+            { emoji:"🏪", label:"retail & food service", pct:19, desc:"19% is wasted at the retail and restaurant level: overstocking, portion sizes, expiration date policies that discard safe food. (ReFED, 2021)" },
+            { emoji:"🏠", label:"household", pct:26, desc:"26% happens at home. In the US, the average household wastes about $1,500 of food per year. This is where individual behavior has the most direct leverage. (ReFED, 2021; USDA, 2020)" },
+        ];
+
+        var active = null;
+        stages.forEach(function(s, i) {
+            var row = document.createElement("div");
+            row.className = "fw-stage";
+            row.setAttribute("tabindex","0");
+            row.setAttribute("role","button");
+            row.innerHTML =
+                '<span class="fw-stage-emoji">' + s.emoji + '</span>' +
+                '<span class="fw-stage-label">' + s.label + '</span>' +
+                '<span class="fw-stage-pct">' + s.pct + '%</span>';
+
+            function activate() {
+                chainEl.querySelectorAll(".fw-stage").forEach(function(r) { r.classList.remove("active"); });
+                row.classList.add("active");
+                infoEl.textContent = s.desc;
+                active = i;
+            }
+            row.addEventListener("click", activate);
+            row.addEventListener("keydown", function(e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); } });
+            chainEl.appendChild(row);
+        });
+
+        // activate first by default
+        chainEl.querySelector(".fw-stage").click();
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  VIS 5 — SAVINGS CALCULATOR
+    // ═══════════════════════════════════════
+    (function() {
+        var sliderItems = document.getElementById("slider-items");
+        var sliderFreq  = document.getElementById("slider-freq");
+        var valItems    = document.getElementById("val-items");
+        var valFreq     = document.getElementById("val-freq");
+        var result      = document.getElementById("savings-bags");
+        if (!sliderItems) return;
+
+        function update() {
+            var items = parseInt(sliderItems.value);
+            var freq  = parseInt(sliderFreq.value);
+            var bags  = items * freq * 12;
+            valItems.textContent = items;
+            valFreq.textContent  = freq;
+            sliderItems.setAttribute("aria-valuenow", items);
+            sliderFreq.setAttribute("aria-valuenow", freq);
+            // animate number
+            var current = parseInt(result.textContent.replace(/,/g,"")) || 0;
+            var steps = 20;
+            var diff  = bags - current;
+            var step  = 0;
+            clearInterval(result._interval);
+            result._interval = setInterval(function() {
+                step++;
+                var val = Math.round(current + diff * (step / steps));
+                result.textContent = val.toLocaleString();
+                if (step >= steps) { result.textContent = bags.toLocaleString(); clearInterval(result._interval); }
+            }, 20);
+        }
+        sliderItems.addEventListener("input", update);
+        sliderFreq.addEventListener("input", update);
+        update();
+    })();
+
+});
+</script>
+
+</body>
+</html>
