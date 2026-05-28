@@ -1116,7 +1116,6 @@
             <p class="lwl-vis-label">what actually makes the biggest difference</p>
             <p class="lwl-vis-hint">impact vs. effort - based on lifecycle analysis</p>
             <div class="impact-grid" id="impact-grid"></div>
-            <div class="vis-info-panel" id="impact-info" style="margin-top:0.8em;">hover an action to see why</div>
             <div style="margin-top:1.2em; padding:1em 1.2em; border-radius:0.7em; background:rgba(31,24,255,0.04); border:1.5px solid var(--border-blue);">
                 <p style="font-size:0.9em; line-height:1.65; color:var(--text-muted); margin:0;">
                     <strong style="font-family:'montreal medium'; color:var(--blackish);">on the jar:</strong> The zero-waste movement's own researchers note that individual action is most effective when it targets high-impact behaviors (diet, transport, energy) rather than low-impact visibility metrics. Keeping a jar of trash is a useful reminder - it's not the goal.
@@ -2006,7 +2005,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // ═══════════════════════════════════════
     (function() {
         var grid = document.getElementById("impact-grid");
-        var infoEl = document.getElementById("impact-info");
         if (!grid) return;
 
         var actions = [
@@ -2032,10 +2030,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     '<span style="font-size:0.78em;font-family:\'montreal medium\';color:var(--accentblue);min-width:30px;text-align:right;">' + a.impact + '%</span>' +
                 '</div>';
 
-            function show() { infoEl.textContent = a.desc; }
-            cell.addEventListener("mouseenter", show);
-            cell.addEventListener("focus", show);
-            cell.addEventListener("mouseleave", function() { infoEl.textContent = "hover an action to see why"; });
+            cell.addEventListener("mouseenter", function(e) { window._showTip(a.desc, e); });
+            cell.addEventListener("mousemove",  function(e) { window._moveTip(e); });
+            cell.addEventListener("mouseleave", function()  { window._hideTip(); });
+            cell.addEventListener("focus",      function(e) { window._showTip(a.desc, e); });
+            cell.addEventListener("blur",       function()  { window._hideTip(); });
             grid.appendChild(cell);
         });
     })();
