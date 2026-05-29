@@ -101,17 +101,16 @@
         ════════════════════════════════════════════ */
         .waffle-grid { display:flex; flex-wrap:wrap; gap:5px; position:relative; }
         .waffle-cell {
-            width:22px; height:22px; border-radius:4px;
-            background:var(--fill-bg);
+            width:22px; height:22px; border-radius:5px;
+            background:rgba(6,4,45,0.11);
             opacity:0; transform:scale(0.3);
-            transition:transform 0.12s ease, opacity 0.25s ease, filter 0.15s;
+            transition:transform 0.15s ease, opacity 0.25s ease, filter 0.15s, box-shadow 0.15s;
             cursor:default;
         }
-        .waffle-cell.on   { background:var(--accentblue); }
+        .waffle-cell.on   { background:var(--accentblue); box-shadow:0 0 0 1.5px rgba(31,24,255,0.35); }
         .waffle-cell.dim  { background:var(--fill-dim); }
-        .waffle-cell:hover { transform:scale(1.4) !important; filter:brightness(1.2); z-index:3; position:relative; }
         .waffle-cell:focus-visible { outline:2px solid var(--accentblue); outline-offset:2px; border-radius:4px; }
-        .waffle-tooltip { display:none; } /* replaced by info panel */
+        .waffle-tooltip { display:none; } /* replaced by callout panel */
         .vis-info-panel {
             min-height:2.8em;
             margin-top:0.8em;
@@ -260,12 +259,83 @@
         .savings-slider:focus-visible { box-shadow:0 0 0 3px rgba(31,24,255,0.28); border-radius:2px; }
         .savings-val { font-family:"montreal medium"; font-size:0.88em; color:var(--accentblue); min-width:30px; text-align:right; }
         .savings-result {
-            margin-top:1em; padding:0.9em 1em;
-            background:rgba(31,24,255,0.07); border-radius:0.6em;
-            display:flex; gap:1.2em; align-items:center; flex-wrap:wrap;
+            margin-top:1.2em;
         }
         .savings-number { font-family:"montreal medium"; font-size:2em; color:var(--accentblue); line-height:1; }
         .savings-desc { font-size:0.86em; color:var(--text-muted); line-height:1.5; }
+
+        /* filled slider track */
+        .savings-slider-track-wrap { flex:1; position:relative; height:20px; display:flex; align-items:center; }
+        .savings-slider-track-bg {
+            position:absolute; left:0; right:0; height:5px;
+            background:rgba(6,4,45,0.12); border-radius:3px; pointer-events:none;
+        }
+        .savings-slider-track-fill {
+            position:absolute; left:0; height:5px;
+            background:var(--accentblue); border-radius:3px;
+            pointer-events:none; transition:width 0.08s linear;
+        }
+        .savings-slider.styled {
+            position:relative; z-index:1;
+            flex:1; height:20px; background:transparent;
+            -webkit-appearance:none; appearance:none;
+            outline:none; cursor:pointer; margin:0;
+        }
+        .savings-slider.styled::-webkit-slider-thumb {
+            -webkit-appearance:none; appearance:none;
+            width:18px; height:18px; border-radius:50%;
+            background:#fff; cursor:pointer;
+            border:2.5px solid var(--accentblue);
+            box-shadow:0 1px 6px rgba(31,24,255,0.25);
+            transition:transform 0.12s, box-shadow 0.12s;
+        }
+        .savings-slider.styled::-webkit-slider-thumb:hover,
+        .savings-slider.styled:active::-webkit-slider-thumb {
+            transform:scale(1.2);
+            box-shadow:0 2px 10px rgba(31,24,255,0.35);
+        }
+        .savings-slider.styled::-moz-range-thumb {
+            width:18px; height:18px; border-radius:50%;
+            background:#fff; cursor:pointer;
+            border:2.5px solid var(--accentblue);
+            box-shadow:0 1px 6px rgba(31,24,255,0.25);
+        }
+
+        /* bag grid */
+        .savings-bag-row {
+            margin-top:1em;
+            padding:1em 1em 0.8em;
+            border:1.5px solid var(--border-blue);
+            border-radius:0.8em;
+            background:rgba(31,24,255,0.02);
+        }
+        .savings-count-row {
+            display:flex; align-items:baseline; gap:0.45em; margin-bottom:0.7em;
+        }
+        .savings-count-num {
+            font-family:"montreal medium"; font-size:2.2em;
+            color:var(--accentblue); line-height:1;
+            transition:transform 0.1s ease;
+        }
+        .savings-count-num.pop { transform:scale(1.12); }
+        .savings-count-label {
+            font-size:0.88em; color:var(--text-muted); line-height:1.4;
+        }
+        .savings-bag-grid {
+            display:flex; flex-wrap:wrap; gap:4px; margin-bottom:0.6em;
+        }
+        .savings-bag {
+            font-size:13px; line-height:1;
+            opacity:0.12;
+            transition:opacity 0.08s ease, transform 0.1s ease;
+            cursor:default;
+        }
+        .savings-bag.active { opacity:1; }
+        .savings-bag.active:hover { transform:scale(1.3); }
+        .savings-context {
+            font-size:0.8em; color:var(--text-faint); border-top:1px solid rgba(6,4,45,0.07);
+            padding-top:0.6em; margin-top:0.2em; line-height:1.5;
+        }
 
         .lwl-bulk-tags { display:flex; flex-wrap:wrap; gap:0.45em; margin-top:0.4em; }
         .lwl-bulk-tag {
@@ -655,6 +725,17 @@
             .jar-grid { grid-template-columns:1fr 1fr; }
             .race-row { grid-template-columns:72px 1fr 48px; }
         }
+        /* ════════════════════════════════════════════
+           VIS 10 — PROTEIN CHART & VIS 11 — DAIRY CHART
+        ════════════════════════════════════════════ */
+        .lwl-bar-chart { display:flex; flex-direction:column; gap:0.55em; }
+        .lwl-bar-row { display:flex; align-items:center; gap:0.7em; cursor:default; }
+        .lwl-bar-name { font-size:0.88em; color:var(--text-muted); min-width:120px; text-align:right; flex-shrink:0; }
+        .lwl-bar-track { flex:1; height:22px; background:var(--fill-bg); border-radius:4px; overflow:hidden; position:relative; }
+        .lwl-bar-fill  { height:100%; border-radius:4px; transition:width 1s cubic-bezier(.4,0,.2,1); width:0; }
+        .lwl-bar-val   { font-size:0.82em; font-family:"montreal medium"; color:var(--text-faint); min-width:52px; }
+        .lwl-bar-row:hover .lwl-bar-name { color:var(--accentblue); }
+        .lwl-bar-row:hover .lwl-bar-fill  { filter:brightness(1.12); }
     </style>
 </head>
 
@@ -685,6 +766,8 @@
             <a href="#plastic">plastic-free swaps</a>
             <a href="#fashion">fashion &amp; repair</a>
             <a href="#transportation">transportation</a>
+            <a href="#plantbased">going plant-based</a>
+            <a href="#dairy">ethical dairy</a>
             <a href="#onejar">the one-jar method</a>
         </nav>
     </section>
@@ -694,7 +777,7 @@
         <div class="lwl-chapter-text">
             <p class="lwl-num">chapter 01</p>
             <h2>food <span>waste</span></h2>
-            <p>If food waste were a country, it would be the third-largest emitter of greenhouse gases on the planet, after the US and China. Around a third of all food produced globally never gets eaten. A lot of that happens at the household level - things bought with intention and then forgotten in the back of the fridge.</p>
+            <p>Around a third of all food produced globally never gets eaten — and a surprising share of that happens not at farms or in transit, but at home. Things bought with intention and forgotten in the back of the fridge. A head of lettuce that didn't make it. Leftovers that seemed like a good idea on Tuesday.</p>
             <p>Food waste in landfill is particularly bad because organic matter decomposes anaerobically there, producing methane - a greenhouse gas roughly 80 times more potent than CO₂ over 20 years. Keeping food out of landfill matters even after you've already wasted it.</p>
             <p>At home, the most effective interventions are boring: meal planning, using up before buying more, understanding what "best by" dates actually mean (spoiler: almost nothing except quality), and learning to cook with whatever's about to turn. Fermentation helps here too - it's a preservation method that turns imminent food waste into something shelf-stable.</p>
             <ul class="lwl-tips">
@@ -709,7 +792,7 @@
             <p class="lwl-vis-label">where food waste happens</p>
             <p class="lwl-vis-hint">click a stage to see what's lost and why</p>
             <div class="fw-chain" id="fw-chain" role="img" aria-label="Food waste by supply chain stage"></div>
-            <div class="vis-info-panel" id="fw-info" style="margin-top:0.8em;">click a stage to learn more</div>
+
             <div class="lwl-stats" style="margin-top:1.2em;">
                 <div class="lwl-stat" tabindex="0">
                     <div class="lwl-stat-num">1/3</div>
@@ -749,7 +832,7 @@
                 <div class="jar-grid" id="jar-grid" role="img" aria-label="Jar visualization comparing fresh vs fermented shelf life for cucumber, milk, cabbage, and sourdough starter"></div>
                 <div class="jar-tooltip" id="jar-tip" role="status" aria-live="polite"></div>
             </div>
-            <div class="vis-info-panel" id="jar-info">hover a jar to compare shelf life</div>
+
             <div class="lwl-legend" style="margin-top:0.6em;">
                 <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:rgba(6,4,45,0.18)"></div> fresh shelf life</div>
                 <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:var(--accentblue)"></div> fermented shelf life</div>
@@ -842,19 +925,36 @@
                 <!-- Savings calculator -->
                 <div class="savings-wrap" aria-label="Packaging waste calculator">
                     <p class="savings-title">your annual packaging avoided</p>
+
                     <div class="savings-slider-row">
                         <label class="savings-slider-label" for="slider-items">items bought in bulk</label>
-                        <input type="range" class="savings-slider" id="slider-items" min="1" max="20" value="6" aria-valuemin="1" aria-valuemax="20" aria-valuenow="6">
+                        <div class="savings-slider-track-wrap">
+                            <div class="savings-slider-track-bg"></div>
+                            <div class="savings-slider-track-fill" id="track-fill-items" style="width:25%"></div>
+                            <input type="range" class="savings-slider styled" id="slider-items" min="1" max="20" value="6" aria-valuemin="1" aria-valuemax="20" aria-valuenow="6">
+                        </div>
                         <span class="savings-val" id="val-items">6</span>
                     </div>
+
                     <div class="savings-slider-row">
                         <label class="savings-slider-label" for="slider-freq">times per month</label>
-                        <input type="range" class="savings-slider" id="slider-freq" min="1" max="8" value="3" aria-valuemin="1" aria-valuemax="8" aria-valuenow="3">
+                        <div class="savings-slider-track-wrap">
+                            <div class="savings-slider-track-bg"></div>
+                            <div class="savings-slider-track-fill" id="track-fill-freq" style="width:28%"></div>
+                            <input type="range" class="savings-slider styled" id="slider-freq" min="1" max="8" value="3" aria-valuemin="1" aria-valuemax="8" aria-valuenow="3">
+                        </div>
                         <span class="savings-val" id="val-freq">3</span>
                     </div>
+
                     <div class="savings-result">
-                        <div class="savings-number" id="savings-bags" aria-live="polite">216</div>
-                        <div class="savings-desc">plastic bags or containers<br>kept out of circulation per year</div>
+                        <div class="savings-bag-row">
+                            <div class="savings-count-row">
+                                <div class="savings-count-num" id="savings-bags" aria-live="polite">216</div>
+                                <div class="savings-count-label">plastic bags &amp; containers<br>kept out of circulation this year</div>
+                            </div>
+                            <div class="savings-bag-grid" id="savings-bag-grid"></div>
+                            <div class="savings-context" id="savings-context">that's about 4 bags a week never made</div>
+                        </div>
                     </div>
                 </div>
 
@@ -986,7 +1086,7 @@
                     <text id="pie-center-default" x="140" y="145" text-anchor="middle" font-family="montreal medium" font-size="12" fill="var(--text-faint)">plastic waste</text>
                 </svg>
             </div>
-            <div class="vis-info-panel" id="pie-info">hover a slice to see its description</div>
+
             <div id="pie-legend" class="lwl-legend" style="margin-top:0.9em;"></div>
 
             <!-- Interactive swap explorer -->
@@ -1030,20 +1130,52 @@
             </ul>
         </div>
         <div class="lwl-vis">
-            <p class="lwl-vis-label" id="waffle-heading">what happens to 100 garments</p>
-            <p class="lwl-vis-hint">hover each square to explore</p>
-            <div style="position:relative;">
+            <p class="lwl-vis-label" id="waffle-heading">out of every 100 garments made</p>
+            <p class="lwl-vis-hint">hover to see where each ends up</p>
+
+            <!-- Waffle chart with group labels -->
+            <div class="waffle-vis-wrap" style="position:relative;">
+                <!-- Group annotation labels, positioned by JS -->
+                <div id="waffle-annotations" style="position:relative; margin-bottom:0.5em;">
+                    <div class="waffle-group-label" id="wlbl-landfill" style="color:rgba(6,4,45,0.38); font-size:0.82em; font-family:'montreal medium'; letter-spacing:0.04em;">
+                        85 → landfill or burned
+                    </div>
+                </div>
                 <div class="waffle-grid" id="fashion-waffle"
                      role="img"
                      aria-labelledby="waffle-heading"
-                     aria-description="1 recycled (dark blue), 14 donated or reused (light blue), 85 landfill or incineration (grey)"></div>
+                     aria-description="85 to landfill or incineration (grey), 14 donated or reused (light blue), 1 recycled into new clothing (dark blue)"></div>
                 <div class="waffle-tooltip" id="waffle-tip" role="status" aria-live="polite"></div>
+
+                <!-- Highlighted callout that appears below -->
+                <div id="waffle-hover-callout" style="
+                    margin-top:1em;
+                    padding:0.75em 1em;
+                    border-radius:0.6em;
+                    background:rgba(31,24,255,0.05);
+                    border:1.5px solid var(--border-blue);
+                    font-size:0.9em; line-height:1.6; color:var(--text-muted);
+                    min-height:3.2em;
+                    transition:background 0.15s;
+                ">
+                    <span id="waffle-callout-text">hover a square to learn more</span>
+                </div>
             </div>
-            <div class="vis-info-panel" id="waffle-info">hover a square to learn more</div>
-            <div class="lwl-legend" style="margin-top:1.1em;">
-                <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:var(--accentblue)"></div> recycled into new clothing (&lt;1%)</div>
-                <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:var(--fill-dim)"></div> reused or donated (~14%)</div>
-                <div class="lwl-legend-row"><div class="lwl-legend-dot" style="background:var(--fill-bg); border:1px solid rgba(6,4,45,0.15);"></div> landfill or incineration (~85%)</div>
+
+            <!-- Redesigned legend as inline stat badges -->
+            <div style="display:flex; flex-wrap:wrap; gap:0.6em; margin-top:1.2em;">
+                <div class="waffle-badge" style="display:flex;align-items:center;gap:0.5em;padding:0.45em 0.9em;border-radius:2em;border:1.5px solid rgba(6,4,45,0.14);background:rgba(6,4,45,0.04);">
+                    <div style="width:10px;height:10px;border-radius:50%;background:var(--fill-bg);border:1px solid rgba(6,4,45,0.2);flex-shrink:0;"></div>
+                    <span style="font-size:0.85em;color:var(--text-muted);">85% — landfill or incinerated</span>
+                </div>
+                <div class="waffle-badge" style="display:flex;align-items:center;gap:0.5em;padding:0.45em 0.9em;border-radius:2em;border:1.5px solid rgba(31,24,255,0.22);background:rgba(31,24,255,0.04);">
+                    <div style="width:10px;height:10px;border-radius:50%;background:var(--fill-dim);flex-shrink:0;"></div>
+                    <span style="font-size:0.85em;color:var(--text-muted);">14% — donated or reused</span>
+                </div>
+                <div class="waffle-badge" style="display:flex;align-items:center;gap:0.5em;padding:0.45em 0.9em;border-radius:2em;border:1.5px solid var(--accentblue);background:rgba(31,24,255,0.06);">
+                    <div style="width:10px;height:10px;border-radius:50%;background:var(--accentblue);flex-shrink:0;"></div>
+                    <span style="font-size:0.85em;color:var(--accentblue);font-family:'montreal medium';">1% — actually recycled</span>
+                </div>
             </div>
             <div class="lwl-stats" style="margin-top:1.5em;">
                 <div class="lwl-stat" tabindex="0">
@@ -1096,6 +1228,85 @@
         </div>
     </div>
 
+    <!-- ══ CHAPTER 10 — PLANT-BASED ══ -->
+    <div class="lwl-chapter" id="plantbased">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 10</p>
+            <h2>going <span>plant-based</span></h2>
+            <p>I'm not vegan. I eat dairy, I eat eggs, I occasionally eat fish. But the data on meat — particularly beef — is hard to argue with, and I think it's worth being honest about that even if your own diet doesn't fully reflect it.</p>
+            <p>Food production is responsible for around 26% of global greenhouse gas emissions. Of that, animal agriculture accounts for the majority — and within that, beef is dramatically worse than everything else. A kilogram of beef produces about 60kg of CO₂ equivalent. A kilogram of lentils produces less than 1kg. That's not a marginal difference.</p>
+            <p>The mechanism isn't just methane from livestock (though that's significant). It's also land use: beef requires about 20 times more land per gram of protein than plant proteins. A lot of that land comes from deforestation, which has its own emissions footprint on top of the animal's.</p>
+            <p>Going fully vegan has the single largest individual dietary impact. But the data also shows that reducing meat — especially beef — even partially, even inconsistently, makes a real difference. Replacing beef with chicken halves the emissions. Replacing it with legumes cuts them by 90%. Vegetarianism is meaningfully better than omnivory. Veganism is meaningfully better than vegetarianism. These aren't equivalent steps, but they're all real ones.</p>
+            <ul class="lwl-tips">
+                <li>Beef is the highest-impact swap to make — chicken or pork produce roughly 3–6× less CO₂ per kg</li>
+                <li>Dairy has a significant footprint too, but it varies a lot by production method — more on that next chapter</li>
+                <li>"Flexitarian" patterns (mostly plant-based with occasional meat) cut diet emissions by 50–70% vs. average omnivory</li>
+                <li>Legumes — lentils, beans, chickpeas — are the most efficient protein source by almost every measure</li>
+                <li>Lamb and mutton are second only to beef; pork and poultry are significantly lower</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">CO₂e per 100g of protein</p>
+            <p class="lwl-vis-hint">hover a bar to see the source and context</p>
+            <div id="protein-chart" style="width:100%;"></div>
+            <div class="lwl-stats" style="margin-top:1.2em;">
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">26%</div>
+                    <div class="lwl-stat-label">of global greenhouse gas emissions come from food production — more than all transportation combined (Poore & Nemecek, Science, 2018)</div>
+                </div>
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">57%</div>
+                    <div class="lwl-stat-label">of food's total emissions come from animal products, which provide only 18% of global calories (Poore & Nemecek, 2018)</div>
+                </div>
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">50–73%</div>
+                    <div class="lwl-stat-label">reduction in diet-related emissions from switching to a vegan diet vs. a high-meat diet (Oxford University, Scarborough et al., 2023)</div>
+                </div>
+            </div>
+            <p class="lwl-source">Sources: <a href="https://www.science.org/doi/10.1126/science.aaq0216" target="_blank" rel="noopener">Poore & Nemecek, Science (2018) — Reducing food's environmental impacts ↗</a> · <a href="https://www.nature.com/articles/s43016-023-00795-w" target="_blank" rel="noopener">Scarborough et al., Nature Food (2023) — Vegans, vegetarians, fish-eaters and meat-eaters in the UK ↗</a> · <a href="https://ourworldindata.org/environmental-impacts-of-food" target="_blank" rel="noopener">Our World in Data — Environmental impacts of food ↗</a></p>
+        </div>
+    </div>
+
+    <!-- ══ CHAPTER 11 — ETHICAL DAIRY ══ -->
+    <div class="lwl-chapter" id="dairy">
+        <div class="lwl-chapter-text">
+            <p class="lwl-num">chapter 11</p>
+            <h2>ethical <span>dairy</span></h2>
+            <p>If you're going to eat dairy, the production method and the packaging both matter — and they're more different than the uniform carton in most refrigerators suggests.</p>
+            <p>I use Straus Family Creamery milk. It comes in returnable glass bottles — you pay a deposit, return the bottle, it gets washed and refilled. That loop has been running since 1994. A single glass bottle replaces roughly 30 single-use plastic or carton containers over its life. The creamery is also certified organic and operates a methane digester that converts cow waste into electricity — they've been carbon-neutral on that metric since 2004.</p>
+            <p>The broader picture on dairy is complex. Even the most sustainably-run dairy operation produces more emissions per gram of protein than most plant alternatives. But within dairy, the variance is real: organic and pasture-based systems tend to produce lower emissions per litre than intensive confinement systems, have better animal welfare outcomes, and don't use preventive antibiotics — which matters for antibiotic resistance at a population level.</p>
+            <p>The packaging issue is separate from the farming issue, but both are worth paying attention to. Most milk cartons are composite materials — plastic, paperboard, aluminum — that are technically recyclable almost nowhere. Glass is infinitely recyclable, and in a closed-loop returnable system, the carbon cost of the bottle is amortized across all its trips.</p>
+            <ul class="lwl-tips">
+                <li>Returnable glass bottles are the lowest-packaging option for dairy — look for local creameries that offer them</li>
+                <li>Organic certification restricts preventive antibiotics and synthetic hormones, both worth caring about</li>
+                <li>Pasture-raised dairy has meaningfully better welfare outcomes than confinement systems</li>
+                <li>Most milk cartons (Tetra Pak etc.) are not recycled in most US municipalities despite the chasing arrows</li>
+                <li>If you're reducing dairy, oat milk has the lowest land and water footprint of the main alternatives</li>
+            </ul>
+        </div>
+        <div class="lwl-vis">
+            <p class="lwl-vis-label">milk packaging: lifecycle CO₂ per litre delivered</p>
+            <p class="lwl-vis-hint">hover a bar — assumes 30 trips for returnable glass</p>
+            <div id="dairy-chart" style="width:100%;"></div>
+            <div style="margin-top:1em; padding:1em 1.2em; border-radius:0.7em; background:rgba(31,24,255,0.04); border:1.5px solid var(--border-blue);">
+                <p style="font-size:0.9em; line-height:1.65; color:var(--text-muted); margin:0;">
+                    <strong style="font-family:'montreal medium'; color:var(--blackish);">straus family creamery:</strong> certified organic since 1994, carbon-neutral methane digester since 2004, glass returnable since launch. Bottles are washed and refilled on a closed loop — the deposit system is what makes it work.
+                </p>
+            </div>
+            <div class="lwl-stats" style="margin-top:1.2em;">
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">~30×</div>
+                    <div class="lwl-stat-label">trips a returnable glass bottle makes before end-of-life, amortizing its higher initial production cost (Franklin Associates, lifecycle analysis for dairy packaging)</div>
+                </div>
+                <div class="lwl-stat" tabindex="0">
+                    <div class="lwl-stat-num">&lt;1%</div>
+                    <div class="lwl-stat-label">of Tetra Pak-style composite cartons are recycled in US municipal programs — most go to landfill despite recyclability claims (As You Sow, 2020)</div>
+                </div>
+            </div>
+            <p class="lwl-source">Sources: <a href="https://www.strausfamilycreamery.com/sustainability" target="_blank" rel="noopener">Straus Family Creamery — Sustainability ↗</a> · <a href="https://www.sciencedirect.com/science/article/pii/S0959652620310192" target="_blank" rel="noopener">Accorsi et al., J. Cleaner Production (2020) — Reusable vs. disposable packaging for milk ↗</a> · <a href="https://www.asyousow.org/plastic-pollution" target="_blank" rel="noopener">As You Sow — Plastic Pollution (2020) ↗</a></p>
+        </div>
+    </div>
+
     <!-- ══ CHAPTER 09 — ONE-JAR METHOD ══ -->
     <div class="lwl-chapter" id="onejar">
         <div class="lwl-chapter-text">
@@ -1116,6 +1327,7 @@
             <p class="lwl-vis-label">what actually makes the biggest difference</p>
             <p class="lwl-vis-hint">impact vs. effort - based on lifecycle analysis</p>
             <div class="impact-grid" id="impact-grid"></div>
+
             <div style="margin-top:1.2em; padding:1em 1.2em; border-radius:0.7em; background:rgba(31,24,255,0.04); border:1.5px solid var(--border-blue);">
                 <p style="font-size:0.9em; line-height:1.65; color:var(--text-muted); margin:0;">
                     <strong style="font-family:'montreal medium'; color:var(--blackish);">on the jar:</strong> The zero-waste movement's own researchers note that individual action is most effective when it targets high-impact behaviors (diet, transport, energy) rather than low-impact visibility metrics. Keeping a jar of trash is a useful reminder - it's not the goal.
@@ -1191,54 +1403,142 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     // ═══════════════════════════════════════
-    //  VIS 1 — WAFFLE CHART
+    //  VIS 1 — WAFFLE CHART (fashion)
     // ═══════════════════════════════════════
     (function() {
         var waffle = document.getElementById("fashion-waffle");
-        var tip = document.getElementById("waffle-tip");
+        var calloutText = document.getElementById("waffle-callout-text");
         if (!waffle) return;
 
-        var cells = [];
+        // Order: landfill first (most impactful visually), then reused, then recycled
+        // This means the viewer sees a sea of grey before the tiny blue pops of hope
         var specs = [
-            { cls:"on",  n:1,  msg:"Just 1 in 100 garments is recycled into new clothing - less than 1%." },
-            { cls:"dim", n:14, msg:"These ~14 garments are donated, resold, or reused - but most still end up discarded within a year." },
-            { cls:"",    n:85, msg:"85 out of 100 garments end up in landfill or incineration." }
+            {
+                cls: "",
+                n: 85,
+                color: "rgba(6,4,45,0.11)",
+                hoverColor: "rgba(6,4,45,0.28)",
+                callout: "85 out of 100 garments end up in landfill or incinerated — often within years of being made. Synthetic fabrics can take 200+ years to break down.",
+                groupLabel: "landfill / incinerated"
+            },
+            {
+                cls: "dim",
+                n: 14,
+                color: "var(--fill-dim)",
+                hoverColor: "rgba(31,24,255,0.5)",
+                callout: "Around 14 garments get donated or resold — but most are still discarded within a year. The secondhand market is overwhelmed. Buying less is more effective than donating more.",
+                groupLabel: "donated or reused"
+            },
+            {
+                cls: "on",
+                n: 1,
+                color: "var(--accentblue)",
+                hoverColor: "var(--accentblue)",
+                callout: "Just 1 in 100 garments is actually recycled into new clothing — less than 1%. Most 'recyclable' textile programs shred fabric into insulation or industrial rags, not new clothes.",
+                groupLabel: "recycled into new clothing"
+            }
         ];
+
+        var cells = [];
+        var cellSpecs = [];
+
         specs.forEach(function(s) {
             for (var i = 0; i < s.n; i++) {
                 var el = document.createElement("div");
                 el.className = "waffle-cell" + (s.cls ? " " + s.cls : "");
                 el.setAttribute("tabindex", "0");
-                el.setAttribute("aria-label", s.msg);
-                el.dataset.msg = s.msg;
+                el.setAttribute("aria-label", s.callout);
+                el.dataset.callout = s.callout;
+                el.dataset.group = s.groupLabel;
                 waffle.appendChild(el);
                 cells.push(el);
+                cellSpecs.push(s);
             }
         });
 
+        // Animate in on scroll — landfill cells first, then reused, then recycled
+        // The recycled cell gets a little extra pop
         var obs = new IntersectionObserver(function(entries) {
             if (!entries[0].isIntersecting) return;
-            cells.forEach(function(c, i) {
+
+            // Phase 1: landfill cells fill in quickly (0–85)
+            cells.slice(0, 85).forEach(function(c, i) {
                 setTimeout(function() {
                     c.style.opacity = "1";
                     c.style.transform = "scale(1)";
-                }, i * 9);
+                }, i * 7);
             });
+
+            // Phase 2: donated cells appear after a pause (85–99)
+            cells.slice(85, 99).forEach(function(c, i) {
+                setTimeout(function() {
+                    c.style.opacity = "1";
+                    c.style.transform = "scale(1)";
+                }, 85 * 7 + 120 + i * 30);
+            });
+
+            // Phase 3: the single recycled cell pops in last with extra emphasis
+            setTimeout(function() {
+                var last = cells[99];
+                last.style.opacity = "1";
+                last.style.transform = "scale(1.5)";
+                setTimeout(function() {
+                    last.style.transform = "scale(1)";
+                }, 300);
+            }, 85 * 7 + 120 + 14 * 30 + 200);
+
             obs.disconnect();
         }, { threshold: 0.2 });
         obs.observe(waffle);
 
-        var wrapEl = waffle.parentElement;
-        var infoPanel = document.getElementById("waffle-info");
+        // Hover: highlight entire group, show callout
+        function highlightGroup(spec) {
+            cells.forEach(function(c, i) {
+                if (cellSpecs[i] === spec) {
+                    c.style.transform = "scale(1.18)";
+                    c.style.filter = "brightness(1.3)";
+                    c.style.zIndex = "3";
+                } else {
+                    c.style.opacity = "0.35";
+                }
+            });
+        }
+
+        function resetCells() {
+            cells.forEach(function(c) {
+                c.style.transform = "";
+                c.style.filter = "";
+                c.style.opacity = "1";
+                c.style.zIndex = "";
+            });
+        }
+
         waffle.addEventListener("mousemove", function(e) {
             var cell = e.target.closest(".waffle-cell");
-            if (!cell) return;
-            if (infoPanel) infoPanel.textContent = cell.dataset.msg;
-            window._showTip(cell.dataset.msg, e);
+            if (!cell) { resetCells(); calloutText.textContent = "hover a square to learn more"; return; }
+            var idx = cells.indexOf(cell);
+            if (idx < 0) return;
+            var spec = cellSpecs[idx];
+            highlightGroup(spec);
+            calloutText.innerHTML = "<strong style='font-family:montreal medium;color:var(--blackish)'>" + spec.groupLabel + "</strong><br>" + spec.callout;
         });
+
         waffle.addEventListener("mouseleave", function() {
-            if (infoPanel) infoPanel.textContent = "hover a square to learn more";
-            window._hideTip();
+            resetCells();
+            calloutText.textContent = "hover a square to learn more";
+        });
+
+        // keyboard accessibility
+        cells.forEach(function(c, i) {
+            c.addEventListener("focus", function() {
+                var spec = cellSpecs[i];
+                highlightGroup(spec);
+                calloutText.innerHTML = "<strong style='font-family:montreal medium;color:var(--blackish)'>" + spec.groupLabel + "</strong><br>" + spec.callout;
+            });
+            c.addEventListener("blur", function() {
+                resetCells();
+                calloutText.textContent = "hover a square to learn more";
+            });
         });
     })();
 
@@ -1375,19 +1675,13 @@ document.addEventListener("DOMContentLoaded", function () {
             wrap._ferFillY   = bodyBot - Math.round((d.fermentPct / 100) * bodyH);
 
             // info panel
-            var jarInfo = document.getElementById("jar-info");
-            wrap.addEventListener("mouseenter", function() {
-                if (jarInfo) jarInfo.innerHTML = "<strong>" + d.name + "</strong> - " + d.freshLabel + " fresh → " + d.fermentLabel + " fermented. " + d.detail;
+            wrap.addEventListener("mouseenter", function(e) {
+                window._showTip(d.name + " — " + d.freshLabel + " fresh → " + d.fermentLabel + " fermented. " + d.detail, e);
             });
-            wrap.addEventListener("mouseleave", function() {
-                if (jarInfo) jarInfo.textContent = "hover a jar to compare shelf life";
-            });
-            wrap.addEventListener("focus", function() {
-                if (jarInfo) jarInfo.innerHTML = "<strong>" + d.name + "</strong> - " + d.detail;
-            });
-            wrap.addEventListener("blur", function() {
-                if (jarInfo) jarInfo.textContent = "hover a jar to compare shelf life";
-            });
+            wrap.addEventListener("mousemove",  function(e) { window._moveTip(e); });
+            wrap.addEventListener("mouseleave", function()  { window._hideTip(); });
+            wrap.addEventListener("focus",      function(e) { window._showTip(d.detail, e); });
+            wrap.addEventListener("blur",       function()  { window._hideTip(); });
         });
 
         // Animate in on scroll
@@ -1509,7 +1803,6 @@ document.addEventListener("DOMContentLoaded", function () {
     (function() {
         var slicesG  = document.getElementById("pie-slices");
         var legEl    = document.getElementById("pie-legend");
-        var pieInfo  = document.getElementById("pie-info");
         var pieSvg   = document.getElementById("pie-svg");
         var pWrap    = document.getElementById("pie-wrap");
         var centerPct   = document.getElementById("pie-center-pct");
@@ -1651,11 +1944,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             g.addEventListener("mouseenter", function(e) {
                 activate();
-                if (pieInfo) pieInfo.innerHTML = "<strong>" + d.label + "</strong> - " + d.pct + "% &nbsp;·&nbsp; " + d.desc;
+                window._showTip("<strong>" + d.label + "</strong> — " + d.pct + "% · " + d.desc, e);
             });
-            g.addEventListener("mouseleave", function() { deactivate(); if (pieInfo) pieInfo.textContent = "hover a slice to see its description"; });
-            g.addEventListener("focus", function() { activate(); if (pieInfo) pieInfo.innerHTML = "<strong>" + d.label + "</strong> - " + d.pct + "% &nbsp;·&nbsp; " + d.desc; });
-            g.addEventListener("blur", function() { deactivate(); if (pieInfo) pieInfo.textContent = "hover a slice to see its description"; });
+            g.addEventListener("mousemove",  function(e) { window._moveTip(e); });
+            g.addEventListener("mouseleave", function() { deactivate(); window._hideTip(); });
+            g.addEventListener("focus", function(e) { activate(); window._showTip("<strong>" + d.label + "</strong> — " + d.pct + "% · " + d.desc, e); });
+            g.addEventListener("blur", function() { deactivate(); window._hideTip(); });
             g.addEventListener("click", function() { selectTab(i); });
             g.addEventListener("keydown", function(e) { if (e.key==="Enter"||e.key===" ") selectTab(i); });
 
@@ -2045,7 +2339,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // ═══════════════════════════════════════
     (function() {
         var chainEl = document.getElementById("fw-chain");
-        var infoEl  = document.getElementById("fw-info");
         if (!chainEl) return;
 
         var stages = [
@@ -2066,14 +2359,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 '<span class="fw-stage-label">' + s.label + '</span>' +
                 '<span class="fw-stage-pct">' + s.pct + '%</span>';
 
-            function activate() {
+            function activate(e) {
                 chainEl.querySelectorAll(".fw-stage").forEach(function(r) { r.classList.remove("active"); });
                 row.classList.add("active");
-                infoEl.textContent = s.desc;
                 active = i;
+                window._showTip(s.desc, e);
             }
             row.addEventListener("click", activate);
-            row.addEventListener("keydown", function(e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); } });
+            row.addEventListener("mouseenter", function(e) { window._showTip(s.desc, e); });
+            row.addEventListener("mousemove",  function(e) { window._moveTip(e); });
+            row.addEventListener("mouseleave", function()  { window._hideTip(); });
+            row.addEventListener("focus",      function(e) { window._showTip(s.desc, e); });
+            row.addEventListener("blur",       function()  { window._hideTip(); });
+            row.addEventListener("keydown", function(e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(e); } });
             chainEl.appendChild(row);
         });
 
@@ -2094,7 +2392,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var hideTimer;
         window._showTip = function(text, e) {
             clearTimeout(hideTimer);
-            tip.textContent = text;
+            tip.innerHTML = text;
             tip.classList.add("visible");
             _moveTip(e);
         };
@@ -2183,37 +2481,211 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     (function() {
-        var sliderItems = document.getElementById("slider-items");
-        var sliderFreq  = document.getElementById("slider-freq");
-        var valItems    = document.getElementById("val-items");
-        var valFreq     = document.getElementById("val-freq");
-        var result      = document.getElementById("savings-bags");
-        if (!sliderItems) return;
+        var sliderItems   = document.getElementById("slider-items");
+        var sliderFreq    = document.getElementById("slider-freq");
+        var valItems      = document.getElementById("val-items");
+        var valFreq       = document.getElementById("val-freq");
+        var result        = document.getElementById("savings-bags");
+        var bagGrid       = document.getElementById("savings-bag-grid");
+        var contextEl     = document.getElementById("savings-context");
+        var trackItems    = document.getElementById("track-fill-items");
+        var trackFreq     = document.getElementById("track-fill-freq");
+        if (!sliderItems || !bagGrid) return;
+
+        // Build a fixed grid of 240 bag cells (max possible: 20 items × 8/mo × 12 = 1920, cap display at 240 dots = each dot = 8 bags)
+        var TOTAL_DOTS = 120;
+        var bags = [];
+        for (var i = 0; i < TOTAL_DOTS; i++) {
+            var b = document.createElement("span");
+            b.className = "savings-bag";
+            b.textContent = "🛍";
+            b.setAttribute("aria-hidden", "true");
+            bagGrid.appendChild(b);
+            bags.push(b);
+        }
+
+        var currentBags = 216;
+        var animInterval;
+
+        function getContext(n) {
+            var perWeek = (n / 52).toFixed(1);
+            if (n < 50)  return "a small but real dent — every bag counts";
+            if (n < 150) return "that's roughly " + perWeek + " bags a week never made";
+            if (n < 300) return Math.round(n / 52) + " bags a week that never existed — not bad";
+            if (n < 600) return "more than one bag a day, every day, all year";
+            if (n < 1000) return "that's " + Math.round(n / 52) + " bags a week — a whole shelf of plastic, gone";
+            return Math.round(n / 365) + " bags a day. At this point you're running a small operation";
+        }
+
+        function updateTrack(slider, trackEl) {
+            var min = parseFloat(slider.min);
+            var max = parseFloat(slider.max);
+            var val = parseFloat(slider.value);
+            var pct = ((val - min) / (max - min)) * 100;
+            trackEl.style.width = pct + "%";
+        }
 
         function update() {
             var items = parseInt(sliderItems.value);
             var freq  = parseInt(sliderFreq.value);
-            var bags  = items * freq * 12;
+            var total = items * freq * 12;
+
             valItems.textContent = items;
             valFreq.textContent  = freq;
             sliderItems.setAttribute("aria-valuenow", items);
-            sliderFreq.setAttribute("aria-valuenow", freq);
+            sliderFreq.setAttribute("aria-valuenow",  freq);
+
+            updateTrack(sliderItems, trackItems);
+            updateTrack(sliderFreq,  trackFreq);
+
+            // each dot represents ceil(maxBags / TOTAL_DOTS) bags
+            var maxBags = 20 * 8 * 12; // 1920
+            var bagsPerDot = maxBags / TOTAL_DOTS; // 16
+            var activeDots = Math.round(total / bagsPerDot);
+
+            bags.forEach(function(b, i) {
+                var shouldBeActive = i < activeDots;
+                if (shouldBeActive && !b.classList.contains("active")) {
+                    setTimeout(function() { b.classList.add("active"); }, i * 2);
+                } else if (!shouldBeActive && b.classList.contains("active")) {
+                    b.classList.remove("active");
+                }
+            });
+
+            contextEl.textContent = getContext(total);
+
             // animate number
-            var current = parseInt(result.textContent.replace(/,/g,"")) || 0;
-            var steps = 20;
-            var diff  = bags - current;
+            var from = currentBags;
+            var to   = total;
+            currentBags = total;
+            var steps = 18;
             var step  = 0;
-            clearInterval(result._interval);
-            result._interval = setInterval(function() {
+            clearInterval(animInterval);
+            animInterval = setInterval(function() {
                 step++;
-                var val = Math.round(current + diff * (step / steps));
+                var val = Math.round(from + (to - from) * (step / steps));
                 result.textContent = val.toLocaleString();
-                if (step >= steps) { result.textContent = bags.toLocaleString(); clearInterval(result._interval); }
-            }, 20);
+                if (step >= steps) {
+                    result.textContent = to.toLocaleString();
+                    clearInterval(animInterval);
+                    result.classList.add("pop");
+                    setTimeout(function() { result.classList.remove("pop"); }, 150);
+                }
+            }, 18);
         }
+
         sliderItems.addEventListener("input", update);
         sliderFreq.addEventListener("input", update);
         update();
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  VIS 10 — PROTEIN CO₂ BAR CHART
+    // ═══════════════════════════════════════
+    (function() {
+        var el = document.getElementById("protein-chart");
+        if (!el) return;
+
+        // kg CO₂e per 100g protein — Poore & Nemecek (2018), Our World in Data
+        var items = [
+            { name:"beef (avg)",      val:49.9, color:"var(--accentblue)",       tip:"49.9 kg CO₂e per 100g protein. Cattle produce methane through enteric fermentation, and beef requires far more land than any other protein. (Poore & Nemecek, Science 2018)" },
+            { name:"lamb & mutton",   val:20.0, color:"rgba(31,24,255,0.72)",    tip:"20.0 kg CO₂e per 100g protein. Second only to beef — sheep also produce significant methane, and lamb systems tend to be pasture-based with high land use. (Poore & Nemecek, 2018)" },
+            { name:"farmed prawns",   val:18.2, color:"rgba(31,24,255,0.55)",    tip:"18.2 kg CO₂e per 100g protein. Prawn farming is land-intensive and often involves mangrove destruction, which releases enormous stored carbon. (Poore & Nemecek, 2018)" },
+            { name:"cheese",          val:10.8, color:"rgba(31,24,255,0.4)",     tip:"10.8 kg CO₂e per 100g protein. Dairy footprint concentrated — it takes ~10L of milk to make 1kg of cheese. Production method varies significantly. (Poore & Nemecek, 2018)" },
+            { name:"pork",            val: 7.6, color:"rgba(6,4,45,0.38)",       tip:"7.6 kg CO₂e per 100g protein. Significantly lower than beef or lamb — pigs don't produce methane through ruminant digestion. (Poore & Nemecek, 2018)" },
+            { name:"poultry",         val: 5.7, color:"rgba(6,4,45,0.3)",        tip:"5.7 kg CO₂e per 100g protein. Lowest-emission meat by a wide margin. Still around 6× higher than legumes per gram of protein. (Poore & Nemecek, 2018)" },
+            { name:"eggs",            val: 4.2, color:"rgba(6,4,45,0.23)",       tip:"4.2 kg CO₂e per 100g protein. One of the more efficient animal proteins. Better feed conversion than meat, no enteric methane. (Poore & Nemecek, 2018)" },
+            { name:"milk (dairy)",    val: 3.2, color:"rgba(6,4,45,0.17)",       tip:"3.2 kg CO₂e per 100g protein. Lower than most animal products by weight, but typically consumed in larger volumes. Production method matters. (Poore & Nemecek, 2018)" },
+            { name:"tofu",            val: 2.0, color:"rgba(6,4,45,0.12)",       tip:"2.0 kg CO₂e per 100g protein. Much lower than animal sources. Soy has a larger footprint than other legumes but still dramatically less than meat. (Poore & Nemecek, 2018)" },
+            { name:"lentils",         val: 0.9, color:"rgba(6,4,45,0.08)",       tip:"0.9 kg CO₂e per 100g protein. One of the lowest-emission proteins. Legumes fix atmospheric nitrogen, reducing synthetic fertiliser needs. (Poore & Nemecek, 2018)" },
+            { name:"peas",            val: 0.4, color:"rgba(6,4,45,0.05)",       tip:"0.4 kg CO₂e per 100g protein. The lowest-emission protein source in the Poore & Nemecek dataset. Also very low water use. (Poore & Nemecek, 2018)" },
+        ];
+
+        var max = items[0].val;
+        var chart = document.createElement("div");
+        chart.className = "lwl-bar-chart";
+
+        items.forEach(function(item) {
+            var pct = (item.val / max) * 100;
+            var row = document.createElement("div");
+            row.className = "lwl-bar-row";
+            row.setAttribute("tabindex","0");
+            row.innerHTML =
+                '<span class="lwl-bar-name">' + item.name + '</span>' +
+                '<div class="lwl-bar-track"><div class="lwl-bar-fill" data-pct="' + pct + '" style="background:' + item.color + ';width:0%"></div></div>' +
+                '<span class="lwl-bar-val">' + item.val + ' kg</span>';
+
+            row.addEventListener("mouseenter", function(e) { window._showTip(item.tip, e); });
+            row.addEventListener("mousemove",  function(e) { window._moveTip(e); });
+            row.addEventListener("mouseleave", function()  { window._hideTip(); });
+            row.addEventListener("focus",      function(e) { window._showTip(item.tip, e); });
+            row.addEventListener("blur",       function()  { window._hideTip(); });
+            chart.appendChild(row);
+        });
+
+        el.appendChild(chart);
+
+        var obs = new IntersectionObserver(function(entries) {
+            if (!entries[0].isIntersecting) return;
+            chart.querySelectorAll(".lwl-bar-fill").forEach(function(bar, i) {
+                setTimeout(function() { bar.style.width = bar.dataset.pct + "%"; }, i * 60);
+            });
+            obs.disconnect();
+        }, { threshold: 0.2 });
+        obs.observe(el);
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  VIS 11 — DAIRY PACKAGING CHART
+    // ═══════════════════════════════════════
+    (function() {
+        var el = document.getElementById("dairy-chart");
+        if (!el) return;
+
+        // g CO₂e per litre of milk delivered, packaging contribution only
+        // Sources: Accorsi et al. J. Cleaner Production (2020); Franklin Associates (2010);
+        // Tetra Pak EPD (2021); As You Sow (2020)
+        var items = [
+            { name:"glass (single-use)",      val:520, color:"rgba(31,24,255,0.35)",   tip:"~520g CO₂e/litre if single-use. Glass has a high production footprint — this is why single-use glass is actually worse than plastic. The calculus flips entirely in a returnable system. (Accorsi et al., J. Cleaner Production, 2020)" },
+            { name:"HDPE plastic jug",        val:180, color:"var(--accentblue)",       tip:"~180g CO₂e/litre. HDPE is produced from fossil fuels. About 30% of food-grade HDPE is actually recycled in the US — better than cartons, but still mostly single use. (Franklin Associates, 2010; EPA)" },
+            { name:"Tetra Pak carton",        val:155, color:"rgba(31,24,255,0.65)",    tip:"~155g CO₂e/litre. Lower production emissions than HDPE, but the composite construction (paper + plastic + aluminum) means almost no US municipalities can recycle it. Most goes to landfill. (Tetra Pak EPD, 2021; As You Sow, 2020)" },
+            { name:"glass (returnable, 30×)", val: 40, color:"rgba(6,4,45,0.13)",       tip:"~40g CO₂e/litre over 30 trips. The initial glass production cost (~1,200g CO₂e per bottle) divides across all return trips, and each wash cycle adds ~30g. This is the Straus model. (Accorsi et al., 2020)" },
+        ];
+
+        var max = Math.max.apply(null, items.map(function(i) { return i.val; }));
+        var chart = document.createElement("div");
+        chart.className = "lwl-bar-chart";
+
+        items.forEach(function(item) {
+            var pct = (item.val / max) * 100;
+            var row = document.createElement("div");
+            row.className = "lwl-bar-row";
+            row.setAttribute("tabindex","0");
+            row.innerHTML =
+                '<span class="lwl-bar-name">' + item.name + '</span>' +
+                '<div class="lwl-bar-track"><div class="lwl-bar-fill" data-pct="' + pct + '" style="background:' + item.color + ';width:0%"></div></div>' +
+                '<span class="lwl-bar-val">' + item.val + 'g</span>';
+
+            row.addEventListener("mouseenter", function(e) { window._showTip(item.tip, e); });
+            row.addEventListener("mousemove",  function(e) { window._moveTip(e); });
+            row.addEventListener("mouseleave", function()  { window._hideTip(); });
+            row.addEventListener("focus",      function(e) { window._showTip(item.tip, e); });
+            row.addEventListener("blur",       function()  { window._hideTip(); });
+            chart.appendChild(row);
+        });
+
+        el.appendChild(chart);
+
+        var obs = new IntersectionObserver(function(entries) {
+            if (!entries[0].isIntersecting) return;
+            chart.querySelectorAll(".lwl-bar-fill").forEach(function(bar, i) {
+                setTimeout(function() { bar.style.width = bar.dataset.pct + "%"; }, i * 80);
+            });
+            obs.disconnect();
+        }, { threshold: 0.2 });
+        obs.observe(el);
     })();
 
 });
