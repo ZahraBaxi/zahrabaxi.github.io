@@ -10,6 +10,7 @@
     <script src="../partials.js"></script>
     <script src="../scripts.js"></script>
 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
     <style>
         /* ── ACCESSIBILITY: WCAG AA contrast throughout ── */
         :root {
@@ -736,6 +737,307 @@
         .lwl-bar-val   { font-size:0.82em; font-family:"montreal medium"; color:var(--text-faint); min-width:52px; }
         .lwl-bar-row:hover .lwl-bar-name { color:var(--accentblue); }
         .lwl-bar-row:hover .lwl-bar-fill  { filter:brightness(1.12); }
+
+        /* ════════════════════════════════════════════
+           ENHANCED VISUAL DESIGN LAYER
+        ════════════════════════════════════════════ */
+
+        /* ── Scroll-reveal base state ── */
+        .lwl-chapter {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+        }
+        .lwl-chapter.lwl-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Chapter number: giant ghosted background numeral ── */
+        .lwl-chapter-text { position: relative; }
+        .lwl-num {
+            position: relative;
+            z-index: 1;
+        }
+        .lwl-chapter-text::before {
+            content: attr(data-chnum);
+            position: absolute;
+            top: -0.25em;
+            left: -0.15em;
+            font-family: "montreal medium", sans-serif;
+            font-size: 7.5em;
+            line-height: 1;
+            color: rgba(31,24,255,0.045);
+            pointer-events: none;
+            z-index: 0;
+            letter-spacing: -0.04em;
+            user-select: none;
+        }
+        .lwl-chapter h2, .lwl-chapter p, .lwl-tips, .lwl-num {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Chapter positioning ── */
+        .lwl-chapter {
+            position: relative;
+        }
+
+        /* ── Tip list: staggered slide-in ── */
+        .lwl-tips li {
+            opacity: 0;
+            transform: translateX(-12px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+        }
+        .lwl-chapter.lwl-visible .lwl-tips li:nth-child(1) { transition-delay: 0.18s; opacity:1; transform:none; }
+        .lwl-chapter.lwl-visible .lwl-tips li:nth-child(2) { transition-delay: 0.28s; opacity:1; transform:none; }
+        .lwl-chapter.lwl-visible .lwl-tips li:nth-child(3) { transition-delay: 0.38s; opacity:1; transform:none; }
+        .lwl-chapter.lwl-visible .lwl-tips li:nth-child(4) { transition-delay: 0.48s; opacity:1; transform:none; }
+        .lwl-chapter.lwl-visible .lwl-tips li:nth-child(5) { transition-delay: 0.58s; opacity:1; transform:none; }
+        .lwl-chapter.lwl-visible .lwl-tips li:nth-child(6) { transition-delay: 0.68s; opacity:1; transform:none; }
+
+        /* ── Stat cards: pop-in on reveal ── */
+        .lwl-stat {
+            opacity: 0;
+            transform: translateY(14px) scale(0.97);
+            transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.2s, background 0.2s;
+        }
+        .lwl-chapter.lwl-visible .lwl-stat:nth-child(1) { transition-delay: 0.15s; opacity:1; transform:none; }
+        .lwl-chapter.lwl-visible .lwl-stat:nth-child(2) { transition-delay: 0.28s; opacity:1; transform:none; }
+        .lwl-chapter.lwl-visible .lwl-stat:nth-child(3) { transition-delay: 0.41s; opacity:1; transform:none; }
+
+        /* ── Stat number: bold blue gradient ── */
+        .lwl-stat-num {
+            background: linear-gradient(135deg, var(--accentblue) 0%, rgba(31,24,255,0.55) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── Chapter h2: highlight span with underline ── */
+        .lwl-chapter h2 span {
+            position: relative;
+            display: inline-block;
+        }
+        .lwl-chapter h2 span::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -1px;
+            width: 100%; height: 2px;
+            background: var(--accentblue);
+            border-radius: 1px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.55s cubic-bezier(.4,0,.2,1) 0.4s;
+        }
+        .lwl-chapter.lwl-visible h2 span::after {
+            transform: scaleX(1);
+        }
+
+        /* ── Chapter separator: stylised horizontal rule ── */
+        .lwl-chapter {
+            border-top: none;
+            padding-top: 4.5em;
+            padding-bottom: 4.5em;
+        }
+        .lwl-chapter + .lwl-chapter {
+            border-top: none;
+        }
+
+        /* separator between chapters */
+        .lwl-chapter-sep {
+            display: flex;
+            align-items: center;
+            gap: 1.2em;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease 0.1s;
+        }
+        .lwl-chapter-sep.lwl-visible { opacity: 1; }
+        .lwl-chapter-sep::before,
+        .lwl-chapter-sep::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(31,24,255,0.08), rgba(31,24,255,0.22), rgba(31,24,255,0.08));
+        }
+        .lwl-chapter-sep-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: rgba(31,24,255,0.28);
+            flex-shrink: 0;
+        }
+
+        /* ── Vis panel: slide-in from right ── */
+        .lwl-vis {
+            opacity: 0;
+            transform: translateX(22px);
+            transition: opacity 0.7s cubic-bezier(.4,0,.2,1) 0.15s, transform 0.7s cubic-bezier(.4,0,.2,1) 0.15s;
+        }
+        .lwl-chapter.lwl-visible .lwl-vis {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* Even chapters: vis slides from left */
+        .lwl-chapter:nth-child(even) .lwl-vis {
+            transform: translateX(-22px);
+        }
+        .lwl-chapter.lwl-visible:nth-child(even) .lwl-vis {
+            transform: translateX(0);
+        }
+
+        /* ── Vis label: subtle overline decoration ── */
+        .lwl-vis-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5em;
+        }
+        .lwl-vis-label::before {
+            content: '';
+            display: inline-block;
+            width: 18px; height: 2px;
+            background: var(--accentblue);
+            border-radius: 1px;
+            flex-shrink: 0;
+        }
+
+        /* ── Source links: refined ── */
+        .lwl-source {
+            padding: 0.6em 0;
+            border-top: 1px solid rgba(6,4,45,0.07);
+            margin-top: 1.2em;
+        }
+
+        /* ── Tips: refined asterisk marker ── */
+        .lwl-tips li::before {
+            content: "→";
+            font-size: 0.9em;
+            margin-top: 0.12em;
+        }
+
+        /* ── Ambient background: subtle noise texture on main ── */
+        main.projectpage {
+            position: relative;
+        }
+        main.projectpage::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            mix-blend-mode: multiply;
+        }
+        main.projectpage > * { position: relative; z-index: 1; }
+
+        /* ── Chapter text: slightly larger leading ── */
+        .lwl-chapter p { letter-spacing: 0.005em; }
+
+        /* ── Inline callout quote block ── */
+        .lwl-callout {
+            margin: 1.4em 0 0.6em;
+            padding: 1em 1.4em;
+            border-left: 3px solid var(--accentblue);
+            background: rgba(31,24,255,0.04);
+            border-radius: 0 0.6em 0.6em 0;
+            font-family: "montreal medium", sans-serif;
+            font-size: 1.05em;
+            line-height: 1.65;
+            color: var(--blackish);
+        }
+
+        /* ── Chapter vis label: small badge dot ── */
+        .lwl-vis-hint {
+            display: flex;
+            align-items: center;
+            gap: 0.45em;
+            font-style: italic;
+        }
+        .lwl-vis-hint::before {
+            content: '';
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: rgba(31,24,255,0.35);
+            flex-shrink: 0;
+        }
+
+        /* ── Progress indicator: reading stripe on left edge ── */
+        .lwl-reading-stripe {
+            position: fixed;
+            left: 0; top: 0;
+            width: 3px;
+            height: 0%;
+            background: linear-gradient(180deg, var(--accentblue) 0%, rgba(31,24,255,0.35) 100%);
+            z-index: 999;
+            border-radius: 0 2px 2px 0;
+            transition: height 0.1s linear;
+        }
+        /* ── Bulk Finder ── */
+        .bulk-finder-input-row {
+            display: flex; gap: 0.5em; margin-bottom: 0.5em;
+        }
+        .bulk-finder-input {
+            flex: 1; padding: 0.6em 0.9em;
+            border: 1.5px solid rgba(6,4,45,0.18); border-radius: 0.5em;
+            font-family: inherit; font-size: 0.95em; color: var(--blackish);
+            background: #fff; outline: none;
+            transition: border-color 0.18s, box-shadow 0.18s;
+        }
+        .bulk-finder-input:focus {
+            border-color: var(--accentblue);
+            box-shadow: 0 0 0 3px rgba(31,24,255,0.12);
+        }
+        .bulk-finder-btn {
+            padding: 0.6em 1.2em;
+            background: var(--accentblue); color: #fff;
+            border: none; border-radius: 0.5em;
+            font-family: "montreal medium", sans-serif; font-size: 0.9em;
+            cursor: pointer; transition: opacity 0.15s, transform 0.12s;
+        }
+        .bulk-finder-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+        .bulk-finder-btn:disabled { opacity: 0.45; cursor: default; transform: none; }
+        .bulk-finder-status {
+            font-size: 0.88em; color: var(--text-faint); min-height: 1.4em;
+            font-style: italic;
+        }
+        .bulk-results-list {
+            display: flex; flex-direction: column; gap: 0.6em; margin-top: 0.9em;
+        }
+        .bulk-result-card {
+            padding: 0.85em 1.1em;
+            border: 1.5px solid rgba(6,4,45,0.12); border-radius: 0.65em;
+            background: rgba(31,24,255,0.02);
+            transition: border-color 0.18s, background 0.18s, transform 0.15s;
+            cursor: pointer;
+        }
+        .bulk-result-card:hover, .bulk-result-card.active {
+            border-color: var(--accentblue);
+            background: rgba(31,24,255,0.05);
+            transform: translateX(3px);
+        }
+        .bulk-result-name {
+            font-family: "montreal medium", sans-serif; font-size: 0.97em;
+            color: var(--blackish); margin-bottom: 0.2em;
+        }
+        .bulk-result-addr {
+            font-size: 0.84em; color: var(--text-muted); line-height: 1.4;
+        }
+        .bulk-result-dist {
+            font-size: 0.8em; color: var(--accentblue);
+            font-family: "montreal medium", sans-serif; margin-top: 0.25em;
+        }
+        /* Leaflet overrides to match minimal theme */
+        .bulk-map-themed .leaflet-tile-pane { filter: grayscale(1) contrast(0.88) brightness(1.08); }
+        .leaflet-popup-content-wrapper {
+            border-radius: 0.5em !important;
+            box-shadow: 0 4px 16px rgba(6,4,45,0.14) !important;
+            font-family: inherit !important;
+            font-size: 0.88em !important;
+        }
+        .leaflet-popup-tip { display: none !important; }
     </style>
 </head>
 
@@ -790,7 +1092,7 @@
         </div>
         <div class="lwl-vis">
             <p class="lwl-vis-label">where food waste happens</p>
-            <p class="lwl-vis-hint">click a stage to see what's lost and why</p>
+            <p class="lwl-vis-hint">hover a stage to see what's lost and why</p>
             <div class="fw-chain" id="fw-chain" role="img" aria-label="Food waste by supply chain stage"></div>
 
             <div class="lwl-stats" style="margin-top:1.2em;">
@@ -858,7 +1160,7 @@
         </div>
         <div class="lwl-vis">
             <p class="lwl-vis-label">packaging per meal: scratch vs. packaged</p>
-            <p class="lwl-vis-hint">click a meal to compare packaging footprint</p>
+            <p class="lwl-vis-hint">hover a meal to compare packaging footprint</p>
             <div class="scratch-tabs" id="scratch-tabs" style="display:flex;flex-wrap:wrap;gap:0.4em;margin-bottom:1em;"></div>
             <div class="scratch-compare-card" id="scratch-card"
                  style="border:1.5px solid var(--border-blue);border-radius:0.8em;padding:1.4em;background:rgba(31,24,255,0.02);min-height:120px;">
@@ -989,6 +1291,22 @@
                 </div>
 
             </div>
+
+            <!-- ── Bulk Bin Finder ── -->
+            <div class="bulk-finder" id="bulk-finder">
+                <p class="lwl-vis-label" style="margin-top:1.6em; margin-bottom:0.4em;">find bulk bins near you</p>
+                <p class="lwl-vis-hint" style="margin-bottom:0.9em;">enter your city or zip code</p>
+                <div class="bulk-finder-input-row">
+                    <input type="text" id="bulk-location-input" class="bulk-finder-input" placeholder="e.g. Oakland, CA or 94612" autocomplete="off" aria-label="Your city or zip code">
+                    <button class="bulk-finder-btn" id="bulk-finder-btn">search</button>
+                </div>
+                <div class="bulk-finder-status" id="bulk-finder-status" aria-live="polite"></div>
+                <div id="bulk-map-wrap" style="display:none;">
+                    <div id="bulk-map" style="width:100%; height:300px; border-radius:0.7em; overflow:hidden; margin-top:1em; border:1.5px solid var(--border-blue);"></div>
+                    <div class="bulk-results-list" id="bulk-results-list"></div>
+                </div>
+            </div>
+
             <p class="lwl-source" style="margin-top:1em;">Davis Food Co-op has one of the largest bulk sections locally.</p>
         </div>
     </div>
@@ -1091,7 +1409,7 @@
 
             <!-- Interactive swap explorer -->
             <div class="swap-explorer" id="swap-explorer" style="margin-top:1.6em;">
-                <p class="lwl-vis-label" style="margin-bottom:0.7em;">swap explorer - click a category</p>
+                <p class="lwl-vis-label" style="margin-bottom:0.7em;">swap explorer - hover a category</p>
                 <div class="swap-tabs" id="swap-tabs" style="display:flex;flex-wrap:wrap;gap:0.4em;margin-bottom:1em;"></div>
                 <div class="swap-card" id="swap-card" style="
                     border:1.5px solid var(--border-blue); border-radius:0.8em;
@@ -1234,6 +1552,9 @@
             <p class="lwl-num">chapter 10</p>
             <h2>going <span>plant-based</span></h2>
             <p>I'm not vegan. I eat dairy, I eat eggs, I occasionally eat fish. But the data on meat — particularly beef — is hard to argue with, and I think it's worth being honest about that even if your own diet doesn't fully reflect it.</p>
+            <p>Eggs are worth their own note. The carbon footprint is relatively low, but the welfare picture varies enormously depending on what you're actually buying. "Cage-free" in the US means no battery cages — it doesn't mean outdoor access, meaningful space, or anything resembling natural behavior. Most cage-free hens still live in densely packed barns. "Free-range" requires outdoor access but the legal definition is loose enough that a small door to a concrete patch counts.</p>
+            <p>Vital Farms is the brand most people reach for as the ethical option, and their marketing leans hard into pasture-raised imagery. The reality has been more complicated: investigations and former employees have documented overcrowded barns, hens with little to no actual pasture access, and a gap between the pastoral branding and conditions on the ground. The orange yolk — often cited as proof of a good diet — is achievable with feed additives like marigold extract regardless of whether the bird ever saw grass. Yolk color alone is not welfare evidence.</p>
+            <p>The most meaningful labels for eggs are "certified humane pasture-raised" (at least 108 sq ft per bird outdoors) or buying from a local farm where you can actually see how the animals live. Small local farms at farmers markets are often the most transparent option and usually the most honest.</p>
             <p>Food production is responsible for around 26% of global greenhouse gas emissions. Of that, animal agriculture accounts for the majority — and within that, beef is dramatically worse than everything else. A kilogram of beef produces about 60kg of CO₂ equivalent. A kilogram of lentils produces less than 1kg. That's not a marginal difference.</p>
             <p>The mechanism isn't just methane from livestock (though that's significant). It's also land use: beef requires about 20 times more land per gram of protein than plant proteins. A lot of that land comes from deforestation, which has its own emissions footprint on top of the animal's.</p>
             <p>Going fully vegan has the single largest individual dietary impact. But the data also shows that reducing meat — especially beef — even partially, even inconsistently, makes a real difference. Replacing beef with chicken halves the emissions. Replacing it with legumes cuts them by 90%. Vegetarianism is meaningfully better than omnivory. Veganism is meaningfully better than vegetarianism. These aren't equivalent steps, but they're all real ones.</p>
@@ -1243,6 +1564,8 @@
                 <li>"Flexitarian" patterns (mostly plant-based with occasional meat) cut diet emissions by 50–70% vs. average omnivory</li>
                 <li>Legumes — lentils, beans, chickpeas — are the most efficient protein source by almost every measure</li>
                 <li>Lamb and mutton are second only to beef; pork and poultry are significantly lower</li>
+                <li>"Cage-free" and "free-range" eggs are weak labels — look for "certified humane pasture-raised" or buy from a local farm you can actually ask questions of</li>
+                <li>Orange yolks can be produced with feed additives regardless of welfare conditions — don't use yolk color as a proxy for ethical sourcing</li>
             </ul>
         </div>
         <div class="lwl-vis">
@@ -1272,14 +1595,16 @@
         <div class="lwl-chapter-text">
             <p class="lwl-num">chapter 11</p>
             <h2>ethical <span>dairy</span></h2>
-            <p>If you're going to eat dairy, the production method and the packaging both matter — and they're more different than the uniform carton in most refrigerators suggests.</p>
-            <p>I use Straus Family Creamery milk. It comes in returnable glass bottles — you pay a deposit, return the bottle, it gets washed and refilled. That loop has been running since 1994. A single glass bottle replaces roughly 30 single-use plastic or carton containers over its life. The creamery is also certified organic and operates a methane digester that converts cow waste into electricity — they've been carbon-neutral on that metric since 2004.</p>
-            <p>The broader picture on dairy is complex. Even the most sustainably-run dairy operation produces more emissions per gram of protein than most plant alternatives. But within dairy, the variance is real: organic and pasture-based systems tend to produce lower emissions per litre than intensive confinement systems, have better animal welfare outcomes, and don't use preventive antibiotics — which matters for antibiotic resistance at a population level.</p>
-            <p>The packaging issue is separate from the farming issue, but both are worth paying attention to. Most milk cartons are composite materials — plastic, paperboard, aluminum — that are technically recyclable almost nowhere. Glass is infinitely recyclable, and in a closed-loop returnable system, the carbon cost of the bottle is amortized across all its trips.</p>
+            <p>If you're going to eat dairy, the production method and the packaging both matter — and they're more different than the uniform carton in most refrigerators suggests. Animal welfare is part of this too, and it's not a minor footnote.</p>
+            <p>Most conventional dairy in the US comes from confined animal feeding operations (CAFOs), where cows spend their lives indoors on concrete, never on pasture. Cows in these systems are typically kept in a near-continuous cycle of pregnancy to maintain milk production, and calves are separated from their mothers within hours of birth — a practice documented to cause significant distress to both. Preventive antibiotics are routine, contributing to antibiotic resistance at a population level.</p>
+            <p>Pasture-based and organic systems are meaningfully different. Cows on pasture can express natural behaviors — grazing, moving, social interaction. Organic certification in the US requires outdoor access and prohibits preventive antibiotics and synthetic hormones. It doesn't guarantee perfect conditions, but it's a real floor.</p>
+            <p>I use Straus Family Creamery milk. It comes in returnable glass bottles — you pay a deposit, return the bottle, it gets washed and refilled. The cows are pasture-raised on a certified organic family farm in West Marin. A single glass bottle replaces roughly 30 single-use containers over its life, and the creamery has operated a methane digester since 2004.</p>
+            <p>The packaging issue and the welfare issue are separate, but both are real. You can have ethical farming in bad packaging and bad farming in a glass bottle. Worth paying attention to both.</p>
             <ul class="lwl-tips">
-                <li>Returnable glass bottles are the lowest-packaging option for dairy — look for local creameries that offer them</li>
-                <li>Organic certification restricts preventive antibiotics and synthetic hormones, both worth caring about</li>
-                <li>Pasture-raised dairy has meaningfully better welfare outcomes than confinement systems</li>
+                <li>Look for "pasture-raised" specifically — it has more welfare meaning than "free-range" or "natural," which have loose definitions</li>
+                <li>Certified organic prohibits preventive antibiotics and synthetic hormones, and requires outdoor access</li>
+                <li>Conventional dairy CAFOs: cows are typically confined indoors, calves separated at birth, pregnancy continuous — worth knowing what you're buying into</li>
+                <li>Returnable glass bottles are the lowest-packaging option — look for local creameries that offer them</li>
                 <li>Most milk cartons (Tetra Pak etc.) are not recycled in most US municipalities despite the chasing arrows</li>
                 <li>If you're reducing dairy, oat milk has the lowest land and water footprint of the main alternatives</li>
             </ul>
@@ -2686,6 +3011,266 @@ document.addEventListener("DOMContentLoaded", function () {
             obs.disconnect();
         }, { threshold: 0.2 });
         obs.observe(el);
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  ENHANCED VISUAL: Scroll reveals, chapter separators,
+    //  ghost numerals, reading stripe
+    // ═══════════════════════════════════════
+    (function() {
+
+        // 1. Reading progress stripe
+        var stripe = document.createElement("div");
+        stripe.className = "lwl-reading-stripe";
+        document.body.appendChild(stripe);
+        function updateStripe() {
+            var scrollTop = window.scrollY || document.documentElement.scrollTop;
+            var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            stripe.style.height = pct + "%";
+        }
+        window.addEventListener("scroll", updateStripe, { passive: true });
+        updateStripe();
+
+        // 2. Ghost chapter numerals — stamp data-chnum onto each .lwl-chapter-text
+        var chapterTexts = document.querySelectorAll(".lwl-chapter-text");
+        chapterTexts.forEach(function(ct) {
+            var numEl = ct.querySelector(".lwl-num");
+            if (!numEl) return;
+            var raw = numEl.textContent || "";
+            var match = raw.match(/\d+/);
+            ct.setAttribute("data-chnum", match ? match[0] : "");
+        });
+
+        // 3. Insert styled separators between chapters
+        var chapters = document.querySelectorAll(".lwl-chapter");
+        chapters.forEach(function(ch, i) {
+            if (i === 0) return;
+            var sep = document.createElement("div");
+            sep.className = "lwl-chapter-sep";
+            sep.innerHTML = '<div class="lwl-chapter-sep-dot"></div><div class="lwl-chapter-sep-dot"></div><div class="lwl-chapter-sep-dot"></div>';
+            ch.parentNode.insertBefore(sep, ch);
+        });
+
+        // 4. Scroll-reveal: chapters + separators
+        var revealTargets = document.querySelectorAll(".lwl-chapter, .lwl-chapter-sep");
+        var revealObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("lwl-visible");
+                    revealObs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.06, rootMargin: "0px 0px -40px 0px" });
+        revealTargets.forEach(function(el) { revealObs.observe(el); });
+
+        // 5. Subtle parallax on ghost numeral via CSS custom property
+        var styleEl = document.createElement("style");
+        styleEl.textContent = ".lwl-chapter-text::before { transform: translateY(var(--ghost-offset, 0px)); }";
+        document.head.appendChild(styleEl);
+
+        var lastScrollY = -1;
+        function parallaxNums() {
+            var sy = window.scrollY;
+            if (sy !== lastScrollY) {
+                lastScrollY = sy;
+                chapterTexts.forEach(function(ct) {
+                    var rect = ct.getBoundingClientRect();
+                    var mid = rect.top + rect.height / 2;
+                    var offset = ((mid - window.innerHeight / 2) * 0.035).toFixed(1);
+                    ct.style.setProperty("--ghost-offset", offset + "px");
+                });
+            }
+            requestAnimationFrame(parallaxNums);
+        }
+        requestAnimationFrame(parallaxNums);
+
+    })();
+
+
+    // ═══════════════════════════════════════
+    //  BULK BIN FINDER
+    // ═══════════════════════════════════════
+    (function() {
+        var input  = document.getElementById("bulk-location-input");
+        var btn    = document.getElementById("bulk-finder-btn");
+        var status = document.getElementById("bulk-finder-status");
+        var mapWrap = document.getElementById("bulk-map-wrap");
+        var resultsList = document.getElementById("bulk-results-list");
+        if (!input || !btn) return;
+
+        var leafletScript = document.createElement("script");
+        leafletScript.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        document.head.appendChild(leafletScript);
+
+        var map = null;
+        var markers = [];
+
+        function geocode(query, cb) {
+            fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&q=" + encodeURIComponent(query))
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (!data || !data.length) { cb(null); return; }
+                    cb({ lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon), display: data[0].display_name });
+                })
+                .catch(function() { cb(null); });
+        }
+
+        function searchOverpass(lat, lon, cb) {
+            // Query OSM for bulk/zero-waste/co-op grocery stores within ~5km
+            var radius = 5000;
+            var query = [
+                "[out:json][timeout:15];",
+                "(",
+                "  node[\"shop\"=\"zero_waste\"](around:" + radius + "," + lat + "," + lon + ");",
+                "  node[\"bulk_purchase\"=\"yes\"](around:" + radius + "," + lat + "," + lon + ");",
+                "  node[\"shop\"=\"grocery\"][\"bulk_purchase\"=\"yes\"](around:" + radius + "," + lat + "," + lon + ");",
+                "  node[\"shop\"=\"food_co-op\"](around:" + radius + "," + lat + "," + lon + ");",
+                "  node[\"shop\"=\"organic\"][\"bulk_purchase\"](around:" + radius + "," + lat + "," + lon + ");",
+                "  way[\"shop\"=\"zero_waste\"](around:" + radius + "," + lat + "," + lon + ");",
+                "  way[\"bulk_purchase\"=\"yes\"](around:" + radius + "," + lat + "," + lon + ");",
+                "  way[\"shop\"=\"food_co-op\"](around:" + radius + "," + lat + "," + lon + ");",
+                ");",
+                "out center;"
+            ].join("\n");
+
+            fetch("https://overpass-api.de/api/interpreter", {
+                method: "POST",
+                body: "data=" + encodeURIComponent(query)
+            })
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                var results = (data.elements || []).map(function(el) {
+                    var elLat = el.lat || (el.center && el.center.lat);
+                    var elLon = el.lon || (el.center && el.center.lon);
+                    var tags = el.tags || {};
+                    var dist = haversine(lat, lon, elLat, elLon);
+                    return {
+                        name: tags.name || tags.brand || "Bulk / Zero-waste Store",
+                        addr: [tags["addr:housenumber"], tags["addr:street"], tags["addr:city"]].filter(Boolean).join(" ") || tags["addr:full"] || "",
+                        lat: elLat, lon: elLon,
+                        dist: dist
+                    };
+                }).filter(function(r) { return r.lat && r.lon; });
+
+                // Sort by distance
+                results.sort(function(a, b) { return a.dist - b.dist; });
+                cb(results.slice(0, 8));
+            })
+            .catch(function() { cb([]); });
+        }
+
+        function haversine(lat1, lon1, lat2, lon2) {
+            var R = 3958.8; // miles
+            var dLat = (lat2 - lat1) * Math.PI / 180;
+            var dLon = (lon2 - lon1) * Math.PI / 180;
+            var a = Math.sin(dLat/2)*Math.sin(dLat/2) +
+                    Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*
+                    Math.sin(dLon/2)*Math.sin(dLon/2);
+            return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        }
+
+        function initMap(lat, lon) {
+            if (!window.L) return setTimeout(function() { initMap(lat, lon); }, 200);
+            if (map) { map.remove(); map = null; markers = []; }
+            mapWrap.style.display = "block";
+            map = window.L.map("bulk-map", { zoomControl: true, scrollWheelZoom: false })
+                          .setView([lat, lon], 13);
+            window.L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                attribution: "© OpenStreetMap contributors"
+            }).addTo(map);
+            document.getElementById("bulk-map").classList.add("bulk-map-themed");
+
+            // User location pin
+            var userIcon = window.L.divIcon({
+                html: '<div style="width:12px;height:12px;border-radius:50%;background:var(--accentblue);border:2.5px solid #fff;box-shadow:0 1px 6px rgba(31,24,255,0.4);"></div>',
+                className: "", iconSize: [12,12], iconAnchor: [6,6]
+            });
+            window.L.marker([lat, lon], { icon: userIcon }).addTo(map)
+                   .bindPopup("<strong>your location</strong>");
+        }
+
+        function addMarkers(results) {
+            if (!window.L || !map) return;
+            markers.forEach(function(m) { map.removeLayer(m); });
+            markers = [];
+            results.forEach(function(r, i) {
+                var icon = window.L.divIcon({
+                    html: '<div style="width:10px;height:10px;border-radius:50%;background:rgba(6,4,45,0.65);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2);"></div>',
+                    className: "", iconSize: [10,10], iconAnchor: [5,5]
+                });
+                var m = window.L.marker([r.lat, r.lon], { icon: icon }).addTo(map);
+                m.bindPopup("<strong>" + r.name + "</strong>" + (r.addr ? "<br><span style='color:#6A6880;font-size:0.9em;'>" + r.addr + "</span>" : ""));
+                markers.push(m);
+
+                // Clicking card opens popup
+                var card = document.getElementById("bulk-card-" + i);
+                if (card) {
+                    card.addEventListener("click", function() {
+                        document.querySelectorAll(".bulk-result-card").forEach(function(c) { c.classList.remove("active"); });
+                        card.classList.add("active");
+                        map.setView([r.lat, r.lon], 15);
+                        m.openPopup();
+                    });
+                }
+            });
+
+            if (results.length) {
+                var bounds = markers.map(function(m) { return m.getLatLng(); });
+                map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 });
+            }
+        }
+
+        function renderResults(results, locationName) {
+            resultsList.innerHTML = "";
+            if (!results.length) {
+                resultsList.innerHTML = '<p style="font-size:0.88em;color:var(--text-faint);font-style:italic;margin-top:0.5em;">no bulk stores found in OSM data for this area — try searching for your co-op or natural grocery directly, or check <a href="https://www.litterless.com/wheretoshop" target="_blank" rel="noopener" style="color:var(--accentblue);">litterless.com/wheretoshop</a></p>';
+                return;
+            }
+            results.forEach(function(r, i) {
+                var card = document.createElement("div");
+                card.className = "bulk-result-card";
+                card.id = "bulk-card-" + i;
+                card.innerHTML =
+                    '<div class="bulk-result-name">' + r.name + '</div>' +
+                    (r.addr ? '<div class="bulk-result-addr">' + r.addr + '</div>' : '') +
+                    '<div class="bulk-result-dist">' + r.dist.toFixed(1) + ' mi away</div>';
+                resultsList.appendChild(card);
+            });
+        }
+
+        function doSearch() {
+            var query = input.value.trim();
+            if (!query) return;
+            btn.disabled = true;
+            status.textContent = "locating…";
+            resultsList.innerHTML = "";
+
+            geocode(query, function(loc) {
+                if (!loc) {
+                    status.textContent = "couldn't find that location — try a city name or zip code";
+                    btn.disabled = false;
+                    return;
+                }
+                status.textContent = "searching for bulk stores near " + query + "…";
+                initMap(loc.lat, loc.lon);
+
+                searchOverpass(loc.lat, loc.lon, function(results) {
+                    btn.disabled = false;
+                    if (results.length) {
+                        status.textContent = results.length + " store" + (results.length > 1 ? "s" : "") + " found near " + query;
+                    } else {
+                        status.textContent = "searched near " + query;
+                    }
+                    renderResults(results, query);
+                    setTimeout(function() { addMarkers(results); }, 300);
+                });
+            });
+        }
+
+        btn.addEventListener("click", doSearch);
+        input.addEventListener("keydown", function(e) { if (e.key === "Enter") doSearch(); });
     })();
 
 });
