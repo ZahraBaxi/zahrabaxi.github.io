@@ -1643,10 +1643,14 @@ footer p {
         max-height: 80vh;
     }
 
-    /* lightbox — shrink arrows so they don't eat image space */
+    /* lightbox — hide arrows on touch devices, swipe handles navigation */
     .lightbox-btn {
-        font-size: 1.6em;
-        padding: 0.2em 0.3em;
+        display: none;
+    }
+
+    /* let the image fill the full width now that arrows are gone */
+    .lightbox-inner {
+        padding: 0 0.5em;
     }
 
     /* contact form */
