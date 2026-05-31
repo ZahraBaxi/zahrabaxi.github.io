@@ -40,11 +40,13 @@
         overlay.innerHTML = [
             '<button class="lightbox-close" aria-label="Close">✕</button>',
             '<div class="lightbox-inner">',
-            '<button class="lightbox-btn lightbox-prev" aria-label="Previous">&#9756;</button>',
             '<img class="lightbox-img" src="" alt="">',
+            '<div class="lightbox-controls">',
+            '<button class="lightbox-btn lightbox-prev" aria-label="Previous">&#9756;</button>',
+            '<span class="lightbox-counter"></span>',
             '<button class="lightbox-btn lightbox-next" aria-label="Next">&#9758;</button>',
             '</div>',
-            '<span class="lightbox-counter"></span>'
+            '</div>'
         ].join("");
         document.body.appendChild(overlay);
 
@@ -127,11 +129,13 @@
         overlay.innerHTML = [
             '<button class="lightbox-close" aria-label="Close">✕</button>',
             '<div class="lightbox-inner">',
-            '<button class="lightbox-btn lightbox-prev" aria-label="Previous">&#9756;</button>',
             '<img class="lightbox-img" src="" alt="">',
+            '<div class="lightbox-controls">',
+            '<button class="lightbox-btn lightbox-prev" aria-label="Previous">&#9756;</button>',
+            '<span class="lightbox-counter"></span>',
             '<button class="lightbox-btn lightbox-next" aria-label="Next">&#9758;</button>',
             '</div>',
-            '<span class="lightbox-counter"></span>'
+            '</div>'
         ].join("");
         document.body.appendChild(overlay);
 
