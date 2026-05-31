@@ -1636,6 +1636,19 @@ footer p {
         font-size: 0.85em;
     }
 
+    /* gallery — full-width images on mobile instead of fixed 90vh height */
+    .gallery img {
+        height: auto;
+        width: 100%;
+        max-height: 80vh;
+    }
+
+    /* lightbox — shrink arrows so they don't eat image space */
+    .lightbox-btn {
+        font-size: 1.6em;
+        padding: 0.2em 0.3em;
+    }
+
     /* contact form */
     .contact-form-wrap {
         max-width: 100%;

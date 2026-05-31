@@ -8,6 +8,29 @@
     // used on project gallery pages
     // =========================
 
+    // =========================
+    // SWIPE HELPER
+    // attaches touchstart/touchend to an element;
+    // calls onLeft (swipe left → next) or onRight (swipe right → prev)
+    // =========================
+
+    function addSwipe(el, onLeft, onRight) {
+        var startX = null;
+        el.addEventListener("touchstart", function (e) {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+        el.addEventListener("touchend", function (e) {
+            if (startX === null) return;
+            var dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) > 40) {
+                if (dx < 0) onLeft();
+                else        onRight();
+            }
+            startX = null;
+        }, { passive: true });
+    }
+
+
     function initLightbox() {
         var galleries = document.querySelectorAll(".gallery");
         if (!galleries.length) return;
@@ -85,6 +108,8 @@
             if (e.key === "ArrowLeft")  show(current - 1);
             if (e.key === "Escape")     close();
         });
+
+        addSwipe(overlay, function () { show(current + 1); }, function () { show(current - 1); });
     }
 
 
@@ -165,6 +190,8 @@
             if (e.key === "ArrowLeft")  show(current - 1);
             if (e.key === "Escape")     close();
         });
+
+        addSwipe(overlay, function () { show(current + 1); }, function () { show(current - 1); });
     }
 
 
