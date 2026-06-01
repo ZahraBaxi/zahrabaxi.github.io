@@ -40,7 +40,9 @@
         overlay.innerHTML = [
             '<button class="lightbox-close" aria-label="Close">✕</button>',
             '<div class="lightbox-inner">',
+            '<div class="lightbox-img-wrap">',
             '<img class="lightbox-img" src="" alt="">',
+            '</div>',
             '<div class="lightbox-controls">',
             '<button class="lightbox-btn lightbox-prev" aria-label="Previous">&#9756;</button>',
             '<span class="lightbox-counter"></span>',
@@ -131,7 +133,9 @@
         overlay.innerHTML = [
             '<button class="lightbox-close" aria-label="Close">✕</button>',
             '<div class="lightbox-inner">',
+            '<div class="lightbox-img-wrap">',
             '<img class="lightbox-img" src="" alt="">',
+            '</div>',
             '<div class="lightbox-controls">',
             '<button class="lightbox-btn lightbox-prev" aria-label="Previous">&#9756;</button>',
             '<span class="lightbox-counter"></span>',

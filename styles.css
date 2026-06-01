@@ -595,11 +595,21 @@ i{
     min-height: 0;
 }
 
+.lightbox-img-wrap {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
 .lightbox-img {
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
-    flex: 1;
+    display: block;
     min-height: 0;
     min-width: 0;
 }
@@ -1728,11 +1738,11 @@ footer p {
     transition: opacity 0.2s ease;
 }
 
-.lightbox-inner {
+.lightbox-img-wrap {
     position: relative;
 }
 
-.lightbox-inner::after {
+.lightbox-img-wrap::after {
     content: "loading...";
     position: absolute;
     top: 50%;
@@ -1747,6 +1757,6 @@ footer p {
     transition: opacity 0.15s ease;
 }
 
-.lightbox-inner:has(.lightbox-loading)::after {
+.lightbox-img-wrap:has(.lightbox-loading)::after {
     opacity: 0.5;
 }
