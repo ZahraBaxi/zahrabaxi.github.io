@@ -603,6 +603,26 @@ i{
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    position: relative;
+}
+
+.lightbox-img-wrap::after {
+    content: "loading...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "montreal", sans-serif;
+    font-size: 0.85em;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.lightbox-img-wrap:has(.lightbox-loading)::after {
+    opacity: 0.5;
 }
 
 .lightbox-img {
@@ -612,6 +632,11 @@ i{
     display: block;
     min-height: 0;
     min-width: 0;
+    transition: opacity 0.15s ease;
+}
+
+.lightbox-img.lightbox-loading {
+    opacity: 0.15;
 }
 
 .lightbox-btn {
@@ -1675,9 +1700,7 @@ footer p {
         gap: 0.8em;
     }
 
-    .lightbox-img {
-        flex: unset;
-        width: 100%;
+    .lightbox-img-wrap {
         max-height: 65vh;
     }
 
@@ -1723,40 +1746,4 @@ footer p {
     nav ul li a {
         font-size: 1em;
     }
-}
-
-/* =========================
-   LIGHTBOX LOADING STATE
-   ========================= */
-
-.lightbox-img.lightbox-loading {
-    opacity: 0.15;
-    transition: opacity 0.15s ease;
-}
-
-.lightbox-img {
-    transition: opacity 0.2s ease;
-}
-
-.lightbox-img-wrap {
-    position: relative;
-}
-
-.lightbox-img-wrap::after {
-    content: "loading...";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: "montreal", sans-serif;
-    font-size: 0.85em;
-    letter-spacing: 0.08em;
-    color: var(--cream);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease;
-}
-
-.lightbox-img-wrap:has(.lightbox-loading)::after {
-    opacity: 0.5;
 }
