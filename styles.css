@@ -1714,3 +1714,39 @@ footer p {
         font-size: 1em;
     }
 }
+
+/* =========================
+   LIGHTBOX LOADING STATE
+   ========================= */
+
+.lightbox-img.lightbox-loading {
+    opacity: 0.15;
+    transition: opacity 0.15s ease;
+}
+
+.lightbox-img {
+    transition: opacity 0.2s ease;
+}
+
+.lightbox-inner {
+    position: relative;
+}
+
+.lightbox-inner::after {
+    content: "loading...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "montreal", sans-serif;
+    font-size: 0.85em;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.lightbox-inner:has(.lightbox-loading)::after {
+    opacity: 0.5;
+}

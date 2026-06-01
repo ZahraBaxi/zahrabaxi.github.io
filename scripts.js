@@ -57,9 +57,11 @@
 
         function show(index) {
             current = (index + images.length) % images.length;
+            img.classList.add("lightbox-loading");
             img.src = images[current].src;
             img.alt = images[current].alt;
             counter.textContent = (current + 1) + " / " + images.length;
+            img.onload = function () { img.classList.remove("lightbox-loading"); };
         }
 
         function open(galleryImgs, index) {
@@ -146,8 +148,10 @@
 
         function show(index) {
             current = (index + images.length) % images.length;
+            img.classList.add("lightbox-loading");
             img.src = images[current];
             counter.textContent = (current + 1) + " / " + images.length;
+            img.onload = function () { img.classList.remove("lightbox-loading"); };
         }
 
         function open(srcs, index) {
