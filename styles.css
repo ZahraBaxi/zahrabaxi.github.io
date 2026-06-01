@@ -595,48 +595,14 @@ i{
     min-height: 0;
 }
 
-.lightbox-img-wrap {
-    flex: 1;
-    min-height: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative;
-}
-
-.lightbox-img-wrap::after {
-    content: "loading...";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: "montreal", sans-serif;
-    font-size: 0.85em;
-    letter-spacing: 0.08em;
-    color: var(--cream);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.15s ease;
-}
-
-.lightbox-img-wrap:has(.lightbox-loading)::after {
-    opacity: 0.5;
-}
-
 .lightbox-img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
     display: block;
-    min-height: 0;
-    min-width: 0;
-    transition: opacity 0.15s ease;
-}
-
-.lightbox-img.lightbox-loading {
-    opacity: 0.15;
+    max-width: 90vw;
+    max-height: 75vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 .lightbox-btn {
@@ -1700,8 +1666,9 @@ footer p {
         gap: 0.8em;
     }
 
-    .lightbox-img-wrap {
-        max-height: 65vh;
+    .lightbox-img {
+        max-width: 92vw;
+        max-height: 60vh;
     }
 
     .lightbox-controls {
@@ -1746,4 +1713,40 @@ footer p {
     nav ul li a {
         font-size: 1em;
     }
+}
+
+/* =========================
+   LIGHTBOX LOADING STATE
+   ========================= */
+
+.lightbox-img.lightbox-loading {
+    opacity: 0.15;
+    transition: opacity 0.15s ease;
+}
+
+.lightbox-img {
+    transition: opacity 0.2s ease;
+}
+
+.lightbox-inner {
+    position: relative;
+}
+
+.lightbox-inner::after {
+    content: "loading...";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "montreal", sans-serif;
+    font-size: 0.85em;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.lightbox-inner:has(.lightbox-loading)::after {
+    opacity: 0.5;
 }
