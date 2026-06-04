@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
     <!-- root pages -->
     <url>
@@ -9,6 +10,10 @@
     </url>
     <url>
         <loc>https://www.zahrabaxi.com/about.html</loc>
+        <image:image>
+            <image:loc>https://www.zahrabaxi.com/images/content/zahrabaxiprofile.png</image:loc>
+            <image:title>Zahra Baxi – Profile Photo</image:title>
+        </image:image>
         <lastmod>2026-05-01</lastmod>
         <priority>0.9</priority>
     </url>
@@ -36,7 +41,15 @@
     <!-- project pages -->
     <url>
         <loc>https://www.zahrabaxi.com/projects/mfathesis.html</loc>
-        <lastmod>2026-05-01</lastmod>
+        <image:image>
+            <image:loc>https://www.zahrabaxi.com/images/projects/mfathesis/zahrabaxi_californiatrailsandgreenways.png</image:loc>
+            <image:title>Zahra Baxi Presenting at the California Trails and Greenways Conference 2026</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://www.zahrabaxi.com/images/projects/mfathesis/zahrabaxi_finalpresentation.JPG</image:loc>
+            <image:title>Zahra Baxi – MFA Thesis Final Presentation Review</image:title>
+        </image:image>
+        <lastmod>2026-06-04</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
