@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zahra baxi - interactive media</title>
+
+    <link rel="icon" type="image/png" href="../images/content/icon.png">
+
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+    <script src="../partials.js"></script>
+    <script src="../scripts.js"></script>
+</head>
+
+<body>
+
+<!-- =========================
+HEADER 
+========================= -->
+<div id="header"></div>
+
+<!-- =========================
+PROJECT INTRO
+========================= -->
+<main class="projectpage">
+    <div class="back-link"><a href="../index.html">← back</a></div>
+
+    <section class="projectintro">
+        <h1>interactive media studios</h1>
+        <p class="subtitle">student, then teacher — three years building on the web with html, css, and javascript</p>
+
+        <ul class="projectmeta">
+            <li><strong>role:</strong> student → teaching assistant</li>
+            <li><strong>courses:</strong> DES 117, 157A, 157B — UC Davis</li>
+            <li><strong>tools:</strong> html/css, javascript, figma</li>
+            <li><strong>timeline:</strong> 2024 – 2026</li>
+        </ul>
+    </section>
+
+<!-- =========================
+PROJECT STORY
+========================= -->
+
+    <section class="projectsection">
+        <h2>overview</h2>
+        <p>
+            DES 117, 157A, and 157B are UC Davis's core interactive media sequence — covering web fundamentals,
+            front-end development, and experience design. I took the full sequence as a student, then returned
+            as a TA for all three courses. That double perspective — knowing the curriculum from both sides —
+            shaped how I approached teaching: I could anticipate where students got stuck and help them push
+            past the "it's working but I don't know why" stage toward actual understanding.
+        </p>
+        <p>
+            Below are three projects from my time as a student, each representing a different moment in
+            learning the medium.
+        </p>
+    </section>
+
+    <!-- ========================= -->
+    <!-- PROJECT 1: WISP           -->
+    <!-- ========================= -->
+
+    <section class="projectsection">
+        <h2>wisp — browser rpg</h2>
+        <p class="subtitle" style="margin-top: -0.5rem; margin-bottom: 1.5rem; opacity: 0.6;">DES 157A · final project</p>
+
+        <figure>
+            <img src="../images/projects/interactivemedia/gameonhome.png" alt="Wisp game interface showing character selection and dice combat">
+            <figcaption>character selection and combat interface — wisp, 2025</figcaption>
+        </figure>
+
+        <p>
+            Wisp is a browser-based RPG built entirely in HTML, CSS, and vanilla JavaScript. Players choose
+            a character class — knight, rogue, or mage — and enter turn-based dice combat against a wisp
+            enemy. Each character has a different stat profile, and dice rolls trigger healing, shielding,
+            or damage events.
+        </p>
+        <p>
+            The challenge was managing game state without any framework: tracking HP, turn order, and
+            win/loss conditions through plain JS. The pixel-style GIFs, background music, and ambient
+            sound were all created or sourced and integrated manually. The modal-based rules overlay and
+            character selection screen were designed to feel like a real game UI despite being pure HTML.
+        </p>
+
+        <figure>
+            <img src="../images/projects/interactivemedia/gameongameplay.png" alt="Wisp mid-combat showing dice roll result and HP bars">
+            <figcaption>mid-combat state with dice result and health display</figcaption>
+        </figure>
+
+        <p>
+            This project was the first time I treated a web page as a <em>system</em> rather than a document —
+            something with internal state that changes in response to user actions.
+        </p>
+
+        <p><a href="https://zbaxi-dav.github.io/des157a/gameon/final/index.html" target="_blank">→ play wisp live ↗</a></p>
+    </section>
+
+    <!-- ========================= -->
+    <!-- PROJECT 2: GATHER         -->
+    <!-- ========================= -->
+
+    <section class="projectsection">
+        <h2>gather — interactive cookbook</h2>
+        <p class="subtitle" style="margin-top: -0.5rem; margin-bottom: 1.5rem; opacity: 0.6;">DES 157A · every picture tells a story</p>
+
+        <figure>
+            <img src="../images/projects/interactivemedia/everypicturehome.png" alt="Gather's illustrated dining table with clickable dishes">
+            <figcaption>the gathering table — illustrated entry point for seven recipes</figcaption>
+        </figure>
+
+        <p>
+            Gather is a digital cookbook about food as a love language. The entry point is a hand-assembled
+            illustration of a dining table; clicking any dish opens a modal with a recipe and a personal
+            story behind it. An ambient music toggle sits unobtrusively in the corner.
+        </p>
+        <p>
+            The project was framed around the "every picture tells a story" brief — the constraint being that
+            a single image should carry the whole narrative entry point. The table illustration does that:
+            you understand the concept before reading a word. Each recipe modal includes both a written story
+            and full instructions, because food without context is just a list of ingredients.
+        </p>
+
+        <figure>
+            <img src="../images/projects/interactivemedia/everypicturerecipe.png" alt="Gather recipe modal showing Naani's Chai with story and instructions">
+            <figcaption>recipe modal — story and instructions side by side</figcaption>
+        </figure>
+        <figure>
+            <img src="../images/projects/interactivemedia/everypictureabout.png" alt="Gather recipe modal showing Naani's Chai with story and instructions">
+            <figcaption>about page featuring sherman hall, my cooperative house at berkeley where i learned how to cook for gathering</figcaption>
+        </figure>
+
+        <p>
+            The seven dishes each have a personal narrative — from beignets learned from a Café du Monde mix
+            to Naani's chai made by color, not timer. The design had to feel warm and domestic without being
+            precious, which shaped every typography and layout decision.
+        </p>
+
+        <p><a href="https://zbaxi-dav.github.io/des157a/everypicture/final/index.html" target="_blank">→ visit gather live ↗</a></p>
+    </section>
+
+    <!-- ========================= -->
+    <!-- PROJECT 3: MAGIC 8 BALL   -->
+    <!-- ========================= -->
+
+    <section class="projectsection">
+        <h2>magic 8 ball — css-only experiment</h2>
+        <p class="subtitle" style="margin-top: -0.5rem; margin-bottom: 1.5rem; opacity: 0.6;">DES 157A · experiment 2 · before event listeners</p>
+
+        <figure>
+            <img src="../images/projects/interactivemedia/magic8ball.png" alt="Magic 8 Ball experiment showing CSS-driven interaction">
+            <figcaption>experiment 2 — built before learning javascript event listeners</figcaption>
+        </figure>
+
+        <p>
+            This experiment was built at the point in the course before we'd learned JavaScript event listeners —
+            meaning all interactivity had to be driven through CSS alone: <code>:hover</code>, <code>:checked</code>,
+            the checkbox hack, and sibling selectors. The magic 8 ball responds to user input entirely through
+            CSS state.
+        </p>
+        <p>
+            Looking back, this constraint was one of the most useful exercises in the sequence. It forced a
+            precise understanding of what CSS <em>can</em> do, and made the introduction of JS event listeners
+            immediately legible — you understood the gap you were filling.
+        </p>
+
+        <p><a href="https://zbaxi-dav.github.io/des157a/exp/exp2.html" target="_blank">→ try the magic 8 ball ↗</a></p>
+    </section>
+
+    <!-- ========================= -->
+    <!-- TA SECTION                -->
+    <!-- ========================= -->
+
+    <section class="projectsection">
+        <h2>teaching assistant — DES 117, 157A, 157B</h2>
+
+        <p>
+            After completing the sequence, I TAed all three courses across multiple quarters. My responsibilities
+            included running critique sessions, holding office hours, grading, and supporting students during
+            in-class work time. I also helped develop assignment rubrics and contributed feedback on how
+            projects were scoped.
+        </p>
+        <p>
+            Teaching this curriculum reinforced something I'd only half-understood as a student: the hardest
+            part of learning to build for the web isn't the syntax — it's developing intuition for <em>why</em>
+            something isn't working. A lot of my office hours were less about fixing code and more about
+            teaching debugging as a method: read the error, isolate the variable, check your assumptions.
+        </p>
+        <p>
+            Being close to the student experience — having recently been in the same seat — made it easier
+            to meet people where they were. I knew which parts of the DOM felt arbitrary, which CSS properties
+            never behaved the way you expected, and which projects tended to spiral in scope. That knowledge
+            made me a more useful TA than I could have been otherwise.
+        </p>
+    </section>
+
+</main>
+
+<!-- BUG REPORT MODAL -->
+<div class="modal-overlay" id="bug-modal-overlay">
+    <div class="modal">
+        <button class="modal-close" id="bug-modal-close" aria-label="Close">✕</button>
+        <h2 class="modal-title">🐛 report a bug</h2>
+        <p class="modal-subtitle">spotted something broken, wrong, or inaccessible? let me know and i'll fix it!</p>
+        <div id="bug-form-area">
+            <div class="form-row">
+                <label for="bug-page">where did you see it?</label>
+                <input type="text" id="bug-page" placeholder="e.g. about page, lit review project...">
+            </div>
+            <div class="form-row">
+                <label for="bug-description">what happened?</label>
+                <textarea id="bug-description" rows="4" placeholder="describe the bug, what you saw, what you expected..."></textarea>
+            </div>
+            <div class="form-row">
+                <label for="bug-email">your email <span style="opacity:0.5;">(optional, if you want a reply)</span></label>
+                <input type="email" id="bug-email" placeholder="your@email.com" autocomplete="email">
+            </div>
+            <button class="form-submit" id="bug-submit">submit report ↗</button>
+            <p class="form-status" id="bug-status"></p>
+            <p>thank you for helping me make my website a better place!</p>
+        </div>
+    </div>
+</div>
+
+<!-- =========================
+FOOTER
+========================= -->
+<div id="footer"></div>
+
+</body>
+</html>
