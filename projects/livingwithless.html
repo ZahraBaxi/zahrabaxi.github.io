@@ -22,6 +22,16 @@
             --fill-bg:      rgba(6,4,45,0.08);
         }
 
+        /* override base projectintro for this page */
+        .lwl-intro-overhauled.projectintro {
+            padding: 4em 0 3em;
+            border-bottom: 1px solid var(--blackish);
+            margin-bottom: 4em;
+        }
+        .lwl-intro-overhauled.projectintro h1 {
+            /* overridden by lwl-intro-h1 */
+        }
+
         /* ── chapter nav pills ── */
         .lwl-nav { display:flex; flex-wrap:wrap; gap:0.6em; margin-top:1.8em; }
         .lwl-nav a {
@@ -240,8 +250,8 @@
         /* savings calculator */
         .savings-wrap {
             margin-top:1.8em; padding:1.4em;
-            border:1.5px solid var(--border-blue); border-radius:0.8em;
-            background:rgba(31,24,255,0.03);
+            border:1.5px solid rgba(6,4,45,0.1); border-radius:0.8em;
+            background:transparent;
         }
         .savings-title { font-family:"montreal medium"; font-size:0.82em; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted); margin-bottom:1em; }
         .savings-slider-row { display:flex; align-items:center; gap:0.8em; margin-bottom:0.7em; }
@@ -323,16 +333,21 @@
             font-size:0.88em; color:var(--text-muted); line-height:1.4;
         }
         .savings-bag-grid {
-            display:flex; flex-wrap:wrap; gap:4px; margin-bottom:0.6em;
+            display:grid;
+            grid-template-columns:repeat(20, 1fr);
+            gap:2px;
+            margin-bottom:0.6em;
         }
         .savings-bag {
-            font-size:13px; line-height:1;
+            font-size:11px; line-height:1;
+            width:100%; aspect-ratio:1;
+            display:flex; align-items:center; justify-content:center;
             opacity:0.12;
             transition:opacity 0.08s ease, transform 0.1s ease;
             cursor:default;
         }
         .savings-bag.active { opacity:1; }
-        .savings-bag.active:hover { transform:scale(1.3); }
+        .savings-bag.active:hover { transform:scale(1.25); }
         .savings-context {
             font-size:0.8em; color:var(--text-faint); border-top:1px solid rgba(6,4,45,0.07);
             padding-top:0.6em; margin-top:0.2em; line-height:1.5;
@@ -964,6 +979,74 @@
             flex-shrink: 0;
         }
 
+        /* ── Drop cap on first paragraph of each chapter ── */
+        .lwl-chapter-text > p:not(.lwl-num):first-of-type::first-letter {
+            font-family: "montreal medium", sans-serif;
+            font-size: 3.2em;
+            line-height: 0.78;
+            float: left;
+            margin-right: 0.1em;
+            margin-top: 0.08em;
+            color: var(--accentblue);
+        }
+
+        /* ── Pull quote / breakout stat ── */
+        .lwl-pull {
+            margin: 1.6em 0 1.2em;
+            padding: 1.1em 1.5em;
+            border-left: 3px solid var(--accentblue);
+            background: rgba(31,24,255,0.035);
+            border-radius: 0 0.65em 0.65em 0;
+            font-family: "montreal medium", sans-serif;
+            font-size: 1.08em;
+            line-height: 1.55;
+            color: var(--blackish);
+            position: relative;
+        }
+        .lwl-pull strong {
+            display: block;
+            font-size: 1.9em;
+            color: var(--accentblue);
+            line-height: 1;
+            margin-bottom: 0.25em;
+            font-family: "montreal medium", sans-serif;
+        }
+
+        /* ── Chapter accent line under heading ── */
+        .lwl-chapter h2 {
+            padding-bottom: 0.55em;
+            border-bottom: 1.5px solid rgba(6,4,45,0.08);
+            margin-bottom: 1em;
+        }
+
+        /* ── Tips section: give it a bit of a card feel ── */
+        .lwl-tips {
+            background: rgba(6,4,45,0.025);
+            border-radius: 0.75em;
+            padding: 1em 1.2em 1em 1em;
+            margin-top: 1.2em;
+        }
+        .lwl-tips::before {
+            content: "practical steps";
+            display: block;
+            font-size: 0.72em;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-faint);
+            margin-bottom: 0.7em;
+        }
+
+        /* ── Chapter eyebrow: add chapter count out of total ── */
+        .lwl-num::after {
+            content: " of 11";
+            opacity: 0.45;
+        }
+
+        /* ── Reduce paragraph spacing slightly inside chapters ── */
+        .lwl-chapter-text > p:not(.lwl-num) {
+            margin-bottom: 0.85em;
+        }
+
         /* ── Progress indicator: reading stripe on left edge ── */
         .lwl-reading-stripe {
             position: fixed;
@@ -1038,6 +1121,135 @@
             font-size: 0.88em !important;
         }
         .leaflet-popup-tip { display: none !important; }
+        /* ════════════════════════════════════════════
+           INTRO OVERHAUL
+        ════════════════════════════════════════════ */
+        .lwl-intro-overhauled {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5em;
+            align-items: start;
+            padding: 4em 0 3em;
+            border-bottom: 1px solid var(--blackish);
+            margin-bottom: 4em;
+        }
+        .lwl-intro-title-block {
+            position: sticky;
+            top: 2em;
+        }
+        .lwl-intro-eyebrow {
+            font-size: 0.8em;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            margin-bottom: 0.6em;
+        }
+        .lwl-intro-h1 {
+            font-family: "montreal medium", sans-serif;
+            font-size: clamp(4em, 8vw, 6.5em) !important;
+            line-height: 0.9 !important;
+            letter-spacing: -0.02em;
+            color: var(--blackish);
+            margin-bottom: 0.6em !important;
+        }
+        .lwl-intro-hook {
+            display: flex;
+            align-items: baseline;
+            gap: 0.2em;
+            margin-top: 1em;
+            padding-top: 1em;
+            border-top: 1.5px solid rgba(6,4,45,0.1);
+        }
+        .lwl-intro-hook-num {
+            font-family: "montreal medium", sans-serif;
+            font-size: 3.5em;
+            color: var(--accentblue);
+            line-height: 1;
+            min-width: 2ch;
+        }
+        .lwl-intro-hook-label {
+            font-size: 0.95em;
+            line-height: 1.4;
+            color: var(--text-muted);
+            max-width: 160px;
+        }
+        .lwl-intro-body {
+            padding-top: 1em;
+        }
+        .lwl-intro-desc {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #28264A;
+            margin-bottom: 2em;
+        }
+        @media (max-width: 760px) {
+            .lwl-intro-overhauled { grid-template-columns: 1fr; gap: 2em; }
+            .lwl-intro-title-block { position: static; }
+            .lwl-intro-h1 { font-size: 3.5em !important; }
+        }
+
+        /* ════════════════════════════════════════════
+           INTERSTITIAL BREAKS
+        ════════════════════════════════════════════ */
+        .lwl-interstitial {
+            margin: 3em -4vw;
+            padding: 2.8em 4vw;
+            background: var(--blackish);
+            display: flex;
+            align-items: center;
+            gap: 1.5em;
+            overflow: hidden;
+            position: relative;
+        }
+        .lwl-interstitial::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(31,24,255,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .lwl-interstitial-label {
+            font-size: 0.72em;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            white-space: nowrap;
+        }
+        .lwl-interstitial-text {
+            font-family: "montreal medium", sans-serif;
+            font-size: clamp(1.6em, 3.5vw, 2.8em);
+            color: #fff;
+            line-height: 1;
+            flex: 1;
+        }
+        .lwl-interstitial-sub {
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+            letter-spacing: 0.06em;
+        }
+
+        /* ════════════════════════════════════════════
+           SCROLL REVEAL
+        ════════════════════════════════════════════ */
+        .lwl-chapter {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.4,0,.2,1);
+        }
+        .lwl-chapter.lwl-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .lwl-interstitial {
+            opacity: 0;
+            transform: translateX(-16px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .lwl-interstitial.lwl-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
     </style>
 </head>
 
@@ -1048,30 +1260,38 @@
     <div class="back-link"><a href="../index.html">← back</a></div>
 
     <!-- INTRO -->
-    <section class="projectintro">
-        <h1>living with less</h1>
-        <p class="subtitle">a personal field guide to zero-waste living</p>
-        <ul class="projectmeta">
-            <li><strong>type:</strong> ongoing personal project</li>
-            <li><strong>topics:</strong> food waste, fermentation &amp; preservation, cooking from scratch, bulk bins, reusables out, plastic-free swaps, fashion &amp; repair, transportation, zero-waste extremism</li>
-            <li><strong>context:</strong> personal values / zero-waste living</li>
-        </ul>
-        <p style="margin-top:1.5em; font-size:1.05em; line-height:1.8; max-width:620px; color:#28264A;">
-            This is an ongoing guide to zero-waste living - not the aspirational, perfectly-curated kind, but the actual kind, built around things I already do: fermenting vegetables, mending jeans, riding my bike, buying from the bulk bins. It's not about having an empty trash can. It's about asking what we actually need, and what happens to things when we're done with them.
-        </p>
-        <nav class="lwl-nav" aria-label="chapters">
-            <a href="#foodwaste">food waste</a>
-            <a href="#fermentation">fermentation</a>
-            <a href="#scratch">cooking from scratch</a>
-            <a href="#bulk">bulk bins</a>
-            <a href="#reusables">reusables out</a>
-            <a href="#plastic">plastic-free swaps</a>
-            <a href="#fashion">fashion &amp; repair</a>
-            <a href="#transportation">transportation</a>
-            <a href="#plantbased">going plant-based</a>
-            <a href="#dairy">ethical dairy</a>
-            <a href="#onejar">the one-jar method</a>
-        </nav>
+    <section class="projectintro lwl-intro-overhauled">
+        <div class="lwl-intro-title-block">
+            <p class="lwl-intro-eyebrow">a personal field guide</p>
+            <h1 class="lwl-intro-h1">living<br>with<br>less</h1>
+            <div class="lwl-intro-hook">
+                <span class="lwl-intro-hook-num" id="lwl-hook-num">0</span>
+                <span class="lwl-intro-hook-label">% of plastic ever<br>produced has been recycled</span>
+            </div>
+        </div>
+        <div class="lwl-intro-body">
+            <p class="lwl-intro-desc">
+                This is an ongoing guide to zero-waste living — not the aspirational, perfectly-curated kind, but the actual kind, built around things I already do: fermenting vegetables, mending jeans, riding my bike, buying from the bulk bins. It's not about having an empty trash can. It's about asking what we actually need, and what happens to things when we're done with them.
+            </p>
+            <nav class="lwl-nav" aria-label="chapters">
+                <a href="#foodwaste">food waste</a>
+                <a href="#fermentation">fermentation</a>
+                <a href="#scratch">cooking from scratch</a>
+                <a href="#bulk">bulk bins</a>
+                <a href="#reusables">reusables out</a>
+                <a href="#plastic">plastic-free swaps</a>
+                <a href="#fashion">fashion &amp; repair</a>
+                <a href="#transportation">transportation</a>
+                <a href="#plantbased">going plant-based</a>
+                <a href="#dairy">ethical dairy</a>
+                <a href="#onejar">the one-jar method</a>
+            </nav>
+            <ul class="projectmeta">
+                <li><strong>type:</strong> ongoing personal project</li>
+                <li><strong>topics:</strong> food, kitchen, fashion, transport, diet, philosophy</li>
+                <li><strong>context:</strong> personal values / zero-waste living</li>
+            </ul>
+        </div>
     </section>
 
     <!-- ══ CHAPTER 01 — FOOD WASTE ══ -->
@@ -1080,8 +1300,11 @@
             <p class="lwl-num">chapter 01</p>
             <h2>food <span>waste</span></h2>
             <p>Around a third of all food produced globally never gets eaten — and a surprising share of that happens not at farms or in transit, but at home. Things bought with intention and forgotten in the back of the fridge. A head of lettuce that didn't make it. Leftovers that seemed like a good idea on Tuesday.</p>
-            <p>Food waste in landfill is particularly bad because organic matter decomposes anaerobically there, producing methane - a greenhouse gas roughly 80 times more potent than CO₂ over 20 years. Keeping food out of landfill matters even after you've already wasted it.</p>
-            <p>At home, the most effective interventions are boring: meal planning, using up before buying more, understanding what "best by" dates actually mean (spoiler: almost nothing except quality), and learning to cook with whatever's about to turn. Fermentation helps here too - it's a preservation method that turns imminent food waste into something shelf-stable.</p>
+            <div class="lwl-pull">
+                <strong>80×</strong>
+                more potent than CO₂ over 20 years: that's methane from food rotting in landfill. Keeping food out of the bin matters even after you've already wasted it.
+            </div>
+            <p>At home, the most effective interventions are boring: meal planning, using up before buying more, understanding what "best by" dates actually mean (spoiler: almost nothing except quality), and learning to cook with whatever's about to turn. Fermentation helps here too.</p>
             <ul class="lwl-tips">
                 <li>"Best by" dates indicate peak quality, not safety - most foods are fine well past them</li>
                 <li>First in, first out: put new groceries behind older ones</li>
@@ -1118,8 +1341,11 @@
             <p class="lwl-num">chapter 02</p>
             <h2>fermentation &amp; <span>preservation</span></h2>
             <p>My kitchen counter usually has something going: a jar of pickles in brine, a sourdough starter that needs feeding, yogurt hanging in cheesecloth. Fermentation is one of the oldest food preservation methods humans have, and it turns out it's also one of the most practical tools for reducing waste at home.</p>
-            <p>When we cook, we tend to use only part of each ingredient - leaving peels, stems, and imperfect produce unused. We throw away roughly a quarter of what we buy. Fermentation gives those scraps a second life: cucumber ends become pickles, vegetable trimmings go into brine, overripe fruit becomes something new. It extends shelf life without any packaging, any refrigeration energy, and often actually increases the nutritional value of the food.</p>
-            <p>Making yogurt from scratch is simpler than it sounds: warm milk, add a spoonful of live yogurt, keep it warm for a few hours. No plastic tub, no foil lid, no drive to the store. A sourdough starter - just flour and water - eliminates the need for commercial yeast packets entirely. It does require regular feeding, but what you get is a living culture that works indefinitely and comes in zero packaging. These aren't sacrifices - they're genuinely better versions of the things you already eat.</p>
+            <p>When we cook, we tend to use only part of each ingredient — leaving peels, stems, and imperfect produce unused. Fermentation gives those scraps a second life: cucumber ends become pickles, vegetable trimmings go into brine, overripe fruit becomes something new. It extends shelf life without any packaging and often increases the nutritional value of the food.</p>
+            <div class="lwl-pull">
+                Making yogurt from scratch is simpler than it sounds: warm milk, add a spoonful of live yogurt, keep it warm for a few hours. <strong style="font-size:1em;display:inline;color:var(--accentblue);font-family:'montreal medium';">no plastic tub. no foil lid. no drive to the store.</strong>
+            </div>
+            <p>A sourdough starter — just flour and water — eliminates commercial yeast packets entirely. It needs regular feeding but works indefinitely and comes in zero packaging. These aren't sacrifices. They're genuinely better versions of the things you already eat.</p>
             <ul class="lwl-tips">
                 <li>Start with lacto-fermented pickles - just vegetables, salt, water, and a jar</li>
                 <li>A sourdough starter replaces commercial yeast packets permanently - it needs regular feeding but produces zero packaging</li>
@@ -1149,8 +1375,12 @@
             <p class="lwl-num">chapter 03</p>
             <h2>cooking from <span>scratch</span></h2>
             <p>Most of the packaging I was throwing away used to come from food. Not from big-ticket items but from the small things - the yogurt tub, the bag of granola, the can of soup, the plastic-wrapped block of tofu. Processing and packaging food accounts for around 29% of all food system greenhouse gas emissions. The packaging often outlasts the food by decades.</p>
-            <p>Making things from scratch isn't the same as making everything from scratch. I'm not growing my own wheat. But yogurt from milk, granola from oats, hummus from dried chickpeas, stock from vegetable scraps - these take 20 minutes or less and replace a category of purchased-and-packaged products entirely. Dried pulses instead of canned ones cut packaging and are usually cheaper. Making your own bread eliminates the plastic bag.</p>
-            <p>The packaging math is significant but the food waste math might be bigger. Cooking from base ingredients means you use exactly what you need. Nothing comes pre-portioned for someone else's idea of a serving.</p>
+            <p>Making things from scratch isn't the same as making everything from scratch. But yogurt from milk, granola from oats, hummus from dried chickpeas, stock from vegetable scraps — these take 20 minutes or less and replace a whole category of purchased-and-packaged products.</p>
+            <div class="lwl-pull">
+                <strong>29%</strong>
+                of food system greenhouse gas emissions come from processing and packaging. The packaging often outlasts the food by decades.
+            </div>
+            <p>Cooking from base ingredients also means you use exactly what you need. Nothing comes pre-portioned for someone else's idea of a serving.</p>
             <ul class="lwl-tips">
                 <li>Dried beans: soak overnight, simmer for an hour - far cheaper and less packaging than canned</li>
                 <li>Vegetable scrap stock: save onion skins, carrot tops, celery ends in a freezer bag and simmer when full</li>
@@ -1160,7 +1390,7 @@
         </div>
         <div class="lwl-vis">
             <p class="lwl-vis-label">packaging per meal: scratch vs. packaged</p>
-            <p class="lwl-vis-hint">hover a meal to compare packaging footprint</p>
+            <p class="lwl-vis-hint">click a meal to compare packaging footprint</p>
             <div class="scratch-tabs" id="scratch-tabs" style="display:flex;flex-wrap:wrap;gap:0.4em;margin-bottom:1em;"></div>
             <div class="scratch-compare-card" id="scratch-card"
                  style="border:1.5px solid var(--border-blue);border-radius:0.8em;padding:1.4em;background:rgba(31,24,255,0.02);min-height:120px;">
@@ -1294,21 +1524,41 @@
 
             <!-- ── Bulk Bin Finder ── -->
             <div class="bulk-finder" id="bulk-finder">
-                <p class="lwl-vis-label" style="margin-top:1.6em; margin-bottom:0.4em;">find bulk bins near you</p>
-                <p class="lwl-vis-hint" style="margin-bottom:0.9em;">enter your city or zip code</p>
-                <div class="bulk-finder-input-row">
-                    <input type="text" id="bulk-location-input" class="bulk-finder-input" placeholder="e.g. Oakland, CA or 94612" autocomplete="off" aria-label="Your city or zip code">
-                    <button class="bulk-finder-btn" id="bulk-finder-btn">search</button>
+                <p class="lwl-vis-label" style="margin-top:1.6em; margin-bottom:0.5em;">bulk stores near davis</p>
+                <div style="display:flex;flex-direction:column;gap:0.55em;margin-bottom:1em;">
+                    <div class="bulk-result-card" style="cursor:auto;">
+                        <div class="bulk-result-name">Davis Food Co-op</div>
+                        <div class="bulk-result-addr">620 G St, Davis, CA 95616</div>
+                        <div class="bulk-result-dist" style="color:var(--text-muted);font-family:'montreal';">extensive bulk section — grains, legumes, nuts, coffee, spices, oils, liquid soap</div>
+                    </div>
+                    <div class="bulk-result-card" style="cursor:auto;">
+                        <div class="bulk-result-name">Nugget Markets (Davis)</div>
+                        <div class="bulk-result-addr">1414 E Covell Blvd, Davis, CA 95616</div>
+                        <div class="bulk-result-dist" style="color:var(--text-muted);font-family:'montreal';">bulk bins for grains, granola, nuts, dried fruit, some spices</div>
+                    </div>
+                    <div class="bulk-result-card" style="cursor:auto;">
+                        <div class="bulk-result-name">Sacramento Natural Foods Co-op</div>
+                        <div class="bulk-result-addr">2820 R St, Sacramento, CA 95816</div>
+                        <div class="bulk-result-dist" style="color:var(--text-muted);font-family:'montreal';">large bulk section, ~20 min drive — good for specialty items not at the Davis Co-op</div>
+                    </div>
+                    <div class="bulk-result-card" style="cursor:auto;">
+                        <div class="bulk-result-name">Davis Farmers Market</div>
+                        <div class="bulk-result-addr">Central Park, 4th &amp; C St — Sat 8am–1pm, Wed 8am–1pm</div>
+                        <div class="bulk-result-dist" style="color:var(--text-muted);font-family:'montreal';">local produce without packaging; bring your own bags and containers</div>
+                    </div>
                 </div>
-                <div class="bulk-finder-status" id="bulk-finder-status" aria-live="polite"></div>
-                <div id="bulk-map-wrap" style="display:none;">
-                    <div id="bulk-map" style="width:100%; height:300px; border-radius:0.7em; overflow:hidden; margin-top:1em; border:1.5px solid var(--border-blue);"></div>
-                    <div class="bulk-results-list" id="bulk-results-list"></div>
-                </div>
+                <p style="font-size:0.85em;color:var(--text-faint);line-height:1.6;">
+                    looking outside the davis area? <a href="https://app.zerowastehome.com/" target="_blank" rel="noopener" style="color:var(--accentblue);text-underline-offset:2px;">app.zerowastehome.com ↗</a> is a community-maintained bulk finder map with locations worldwide.
+                </p>
             </div>
-
-            <p class="lwl-source" style="margin-top:1em;">Davis Food Co-op has one of the largest bulk sections locally.</p>
         </div>
+    </div>
+
+    <!-- ══ INTERSTITIAL: out in the world ══ -->
+    <div class="lwl-interstitial">
+        <span class="lwl-interstitial-label">next</span>
+        <p class="lwl-interstitial-text">out in the world</p>
+        <span class="lwl-interstitial-sub">chapters 05 – 06</span>
     </div>
 
     <!-- ══ CHAPTER 05 — REUSABLES OUT ══ -->
@@ -1432,14 +1682,24 @@
         </div>
     </div>
 
+    <!-- ══ INTERSTITIAL: what you wear and how you move ══ -->
+    <div class="lwl-interstitial">
+        <span class="lwl-interstitial-label">next</span>
+        <p class="lwl-interstitial-text">what you wear &amp; how you move</p>
+        <span class="lwl-interstitial-sub">chapters 07 – 08</span>
+    </div>
+
     <!-- ══ CHAPTER 07 — FASHION ══ -->
     <div class="lwl-chapter" id="fashion">
         <div class="lwl-chapter-text">
             <p class="lwl-num">chapter 07</p>
             <h2>fashion &amp; <span>repair</span></h2>
             <p>I've been mending my own clothes for years - darning socks, patching jeans at the knee, embroidering over worn spots to turn them into something intentional. It started as frugality and turned into something I genuinely love doing. There's something quietly radical about choosing to fix instead of replace.</p>
-            <p>The numbers behind fast fashion are hard to sit with. Every year, 101 million tons of textile waste ends up in landfills globally. We're wearing our clothes 36% fewer times than we did in 2000, and less than 1% of clothing is recycled into new clothing. The industry accounts for 2–8% of global greenhouse gas emissions and 9% of the microplastic pollution reaching our oceans.</p>
-            <p>Mending isn't a perfect solution to a systemic problem, but it's a real one. Keeping a garment in use longer - through patching, darning, or embroidering - extends its life and keeps it out of the waste stream. And honestly, a visibly mended piece of clothing tells a story that a brand new one doesn't.</p>
+            <div class="lwl-pull">
+                <strong>101M tons</strong>
+                of textile waste end up in landfills globally every year. We're wearing clothes 36% fewer times than we did in 2000 — and less than 1% is recycled into new clothing.
+            </div>
+            <p>Mending isn't a perfect solution to a systemic problem, but it's a real one. A visibly mended piece of clothing tells a story that a brand new one doesn't.</p>
             <ul class="lwl-tips">
                 <li>Learn one mending technique at a time - sashiko, visible mending, or basic darning are great starting points</li>
                 <li>Buy secondhand first; thrift stores and clothing swaps beat anything new</li>
@@ -1546,6 +1806,13 @@
         </div>
     </div>
 
+    <!-- ══ INTERSTITIAL: what you eat ══ -->
+    <div class="lwl-interstitial">
+        <span class="lwl-interstitial-label">next</span>
+        <p class="lwl-interstitial-text">what you eat</p>
+        <span class="lwl-interstitial-sub">chapters 09 – 11</span>
+    </div>
+
     <!-- ══ CHAPTER 10 — PLANT-BASED ══ -->
     <div class="lwl-chapter" id="plantbased">
         <div class="lwl-chapter-text">
@@ -1596,9 +1863,10 @@
             <p class="lwl-num">chapter 11</p>
             <h2>ethical <span>dairy</span></h2>
             <p>If you're going to eat dairy, the production method and the packaging both matter — and they're more different than the uniform carton in most refrigerators suggests. Animal welfare is part of this too, and it's not a minor footnote.</p>
-            <p>Most conventional dairy in the US comes from confined animal feeding operations (CAFOs), where cows spend their lives indoors on concrete, never on pasture. Cows in these systems are typically kept in a near-continuous cycle of pregnancy to maintain milk production, and calves are separated from their mothers within hours of birth — a practice documented to cause significant distress to both. Preventive antibiotics are routine, contributing to antibiotic resistance at a population level.</p>
-            <p>Pasture-based and organic systems are meaningfully different. Cows on pasture can express natural behaviors — grazing, moving, social interaction. Organic certification in the US requires outdoor access and prohibits preventive antibiotics and synthetic hormones. It doesn't guarantee perfect conditions, but it's a real floor.</p>
-            <p>I use Straus Family Creamery milk. It comes in returnable glass bottles — you pay a deposit, return the bottle, it gets washed and refilled. The cows are pasture-raised on a certified organic family farm in West Marin. A single glass bottle replaces roughly 30 single-use containers over its life, and the creamery has operated a methane digester since 2004.</p>
+            <p>Most conventional dairy in the US comes from confined animal feeding operations where cows spend their lives indoors, kept in a near-continuous cycle of pregnancy. Calves are separated from their mothers within hours of birth. Preventive antibiotics are routine.</p>
+            <div class="lwl-pull">
+                I use Straus Family Creamery milk — returnable glass bottles, pasture-raised cows, certified organic since 1994. <strong style="display:inline;font-size:1em;color:var(--accentblue);font-family:'montreal medium';">one bottle replaces ~30 single-use containers.</strong>
+            </div>
             <p>The packaging issue and the welfare issue are separate, but both are real. You can have ethical farming in bad packaging and bad farming in a glass bottle. Worth paying attention to both.</p>
             <ul class="lwl-tips">
                 <li>Look for "pasture-raised" specifically — it has more welfare meaning than "free-range" or "natural," which have loose definitions</li>
@@ -1638,9 +1906,11 @@
             <p class="lwl-num">chapter 09</p>
             <h2>the <span>one-jar</span> method</h2>
             <p>There's a corner of zero-waste culture built around keeping an entire year's trash in a single mason jar. If you've spent any time in these spaces online, you've seen it: the photo, the jar, the pristine kitchen. Lauren Singer, Bea Johnson - the people who made this famous are real and their practices are real. It's also a genuinely extreme approach that works for very few people.</p>
-            <p>My honest take: it's not a useful target. It treats a systemic packaging problem as a matter of individual perfection, and it sets up a standard most people will fail immediately and quit. A person who reduces their waste by 60% and keeps at it is doing more than someone who achieves the jar for six months and burns out.</p>
-            <p>What the jar method gets right is making waste visible. When you have to look at what you throw away, you make different decisions. That part is genuinely useful - not as a competition but as attention. I keep a small tray where my non-recyclable waste goes. I don't weigh it, I don't Instagram it, but I do look at it.</p>
-            <p>The things that make the biggest difference are not about willpower or aesthetics. They're about systems: what you buy, where you shop, how your home is set up. The jar is a metric. The habits are the point.</p>
+            <div class="lwl-pull">
+                A person who reduces their waste by 60% and keeps at it is doing more than someone who achieves the jar for six months and burns out.
+            </div>
+            <p>What the jar method gets right is making waste visible. When you have to look at what you throw away, you make different decisions. I keep a small tray where my non-recyclable waste goes. I don't weigh it, I don't Instagram it, but I do look at it.</p>
+            <p>The things that make the biggest difference aren't about willpower or aesthetics. They're about systems: what you buy, where you shop, how your home is set up. The jar is a metric. The habits are the point.</p>
             <ul class="lwl-tips">
                 <li>Make your waste visible without making it a performance - a tray or small bin for landfill-only items is enough</li>
                 <li>Focus on categories, not totals: which type of waste dominates? Start there</li>
@@ -1726,6 +1996,42 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
+    // ═══════════════════════════════════════
+    //  INTRO — count up "91%" on load
+    // ═══════════════════════════════════════
+    (function() {
+        var el = document.getElementById("lwl-hook-num");
+        if (!el) return;
+        var target = 91;
+        var duration = 1400;
+        var start = null;
+        function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / duration, 1);
+            var ease = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(ease * target);
+            if (p < 1) requestAnimationFrame(step);
+        }
+        setTimeout(function() { requestAnimationFrame(step); }, 300);
+    })();
+
+    // ═══════════════════════════════════════
+    //  SCROLL REVEAL — chapters + interstitials
+    // ═══════════════════════════════════════
+    (function() {
+        var items = document.querySelectorAll(".lwl-chapter, .lwl-interstitial");
+        if (!items.length) return;
+        var obs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("lwl-visible");
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+        items.forEach(function(el) { obs.observe(el); });
+    })();
 
     // ═══════════════════════════════════════
     //  VIS 1 — WAFFLE CHART (fashion)
