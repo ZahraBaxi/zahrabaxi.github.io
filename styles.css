@@ -368,23 +368,11 @@ figcaption {
     display: block;
 }
 
-/* uniform aspect ratio per group so every image in the row matches */
-.imagesidebyside.riso-group figure img {
-    aspect-ratio: 11 / 17; /* tabloid poster proportions */
-    object-fit: cover;
-    object-position: center;
-}
 
 .imagesidebyside.hoop-group figure img {
     aspect-ratio: 1 / 1;
     object-fit: cover;
 }
-
-/* smaller intro hoop */
-.hoop-intro {
-    max-width: 45%;
-}
-
 
 
 /* =========================
@@ -502,7 +490,7 @@ figcaption {
 }
 .profilepic {
     width: 45%;
-    aspect-ratio: 2094 / 1220;
+    /* aspect-ratio: 2094 / 1220; */
     object-fit: cover;
     object-position: center;
     border-radius: 1.5em;
