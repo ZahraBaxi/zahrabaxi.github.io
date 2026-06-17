@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zahra baxi - title</title>
+
+    <link rel="icon" type="image/png" href="../images/content/icon.png">
+
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+    <script src="../partials.js"></script>
+     <script src="../scripts.js"></script>
+</head>
+
+<body>
+
+<!-- =========================
+HEADER 
+========================= -->
+<div id="header"></div>
+
+<!-- =========================
+PROJECT INTRO
+========================= -->
+<main class="projectpage">
+    <div class="back-link"><a href="../index.html">← back</a></div>
+
+    <section class="projectintro">
+        <h1>open:grounds</h1>
+        <p class="subtitle">a citizen map of shared resources / davis, ca</p>
+
+        <ul class="projectmeta">
+            <li><strong>role:</strong> designer, developer</li>
+            <li><strong>timeline:</strong> ongoing / summer 2025 design sprint</li>
+            <li><strong>tools:</strong> html/css, javascript, leaflet.js</li>
+            <li><strong>context:</strong> self-initiated / open access / accessibility</li>
+        </ul>
+        <br>
+        <p><a href="https://opengrounds.github.io/davis/" target="_blank" rel="noopener">visit open:grounds davis ↗</a></p>
+    </section>
+
+<!-- =========================
+PROJECT STORY
+========================= -->
+
+    <section class="projectsection">
+        <h2>overview</h2>
+        <p>
+            open:grounds is a self-directed summer design challenge i decided to create after noticing a gap in accessible community mapping tools. each challenge focuses on one project, worked through in multiple sprints, built around that gap in accessibility and community infrastructure. the work lives at <a href="https://opengrounds.github.io" target="_blank" rel="noopener">opengrounds.github.io ↗</a>, a central project directory where each challenge gets its own space as it goes live.
+        </p>
+        <p>
+            the first challenge is a citizen-built map of shared, free, and mutual-aid resources in davis, ca, now live at <a href="https://opengrounds.github.io/davis/" target="_blank" rel="noopener">opengrounds.github.io/davis ↗</a>. i built this project due to the dealing with the mess of multiple maps and links trying to find one common need, free or low-cost resources. i'm a bit of a scrappy indivdual i'd say, i'm always in love with community focused initatives, citizen collaborated resources, and staying on a budget.the first project that made me fall in love with collaborative mapping was <a href="https://fallingfruit.org" target="_blank" rel="noopener">falling fruit</a> which allows users to contribute and update information about fruiting trees around the world. i dived into finding more resrouces like these. i learned about buy nothing groups, community fridges, and mutual aid networks but couldn't find a single place to access all of them. i wanted to make something that made it easier for people to find and connect with these resources, and also contribute to them if they want to, one central hub for all these resouces so you didn't have to search through multiple sources! i think this project achieves just that!
+        </p>
+    </section>
+
+    <section class="projectsection">
+        <h2>the project directory</h2>
+        <a href="https://opengrounds.github.io" target="_blank" rel="noopener">opengrounds.github.io ↗</a>
+
+        <figure>
+            <img src="../images/projects/openground/hub.png" alt="the opengrounds main page showing four project nodes as houses on a grid">
+            <figcaption>opengrounds.github.io, each project appears as a house node. davis is fully built and live; the others are outlined and in progress</figcaption>
+        </figure>
+
+        <p>
+            the main page is designed to grow alongside the work. each project appears as a house on an interactive grid, connected by dashed lines. the davis map house is fully illustrated and clickable. the others are drawn as outlines with scaffolding and dashed strokes, visually communicating that they're under construction. as sprints finish, houses get built out.
+        </p>
+        <p>
+            it's meant to feel like a neighborhood in progress, not a portfolio grid.
+        </p>
+    </section>
+
+    <section class="projectsection">
+        <h2>challenge 01: davis map</h2>
+        <a href="https://opengrounds.github.io/davis/" target="_blank" rel="noopener">opengrounds.github.io/davis ↗</a>.
+
+        <figure>
+            <img src="../images/projects/openground/interface.png" alt="the open:grounds interface showing sidebar filters and map view">
+            <figcaption>the davis map at desktop width, sidebar and map view side by side</figcaption>
+        </figure>
+
+        <p>
+            davis has more shared resources than most people realize. community fridges, free pantries, tool libraries, little free libraries, foraging spots, farmers markets, mutual aid networks. they exist all over town but they're scattered across instagram accounts, facebook groups, and word of mouth. resource access isn't just about whether something exists. it's about whether people can find it.
+        </p>
+        <p>
+            the map covers sixteen resource types, each with its own color, filterable by both type and values (free, donation-based, volunteer-run, indie/local, and so on). the sidebar is resizable so users can weigh the list or the map depending on how they want to navigate. data is drawn from freedge, openstreetmap, falling fruit, the davis food co-op, edible campus ucd, and community submissions.
+        </p>
+
+        <figure>
+            <img src="../images/projects/openground/categories.png" alt="the full grid of sixteen category buttons in the submission form">
+            <figcaption>the sixteen resource categories as they appear in the submission form</figcaption>
+        </figure>
+
+        <p>
+            anyone can submit a place. the form asks for a name, type, values, location, a short description, and an optional link. submissions go through a review before going live. the "suggest a correction" flow is equally lightweight, covering wrong location, permanently closed, and outdated info.
+        </p>
+
+        <figure>
+            <img src="../images/projects/openground/correction.png" alt="the suggest a correction form modal">
+            <figcaption>suggest a correction</figcaption>
+        </figure>
+
+        <figure>
+            <img src="../images/projects/openground/mobile.png" alt="the open:grounds interface on mobile showing the bottom tab bar">
+            <figcaption>on mobile, the layout collapses into a tabbed bottom sheet with map, filter, and list views</figcaption>
+        </figure>
+    </section>
+
+    <section class="projectsection">
+        <h2>davis commons</h2>
+
+        <figure>
+            <img src="../images/projects/openground/commons.png" alt="the davis commons modal panel listing community resources">
+            <figcaption>the davis commons panel</figcaption>
+        </figure>
+
+        <p>
+            not everything fits as a map pin. Resources like the Buy Nothing Davis, Falling Fruit foraging data, DCTV public access TV, KDRT and KDVS community radio all sit in a separate "davis commons" panel alongside the map. These are a curated list of things that are part of the shared fabric of the town but live in different places and formats.
+        </p>
+    </section>
+
+    <section class="projectsection">
+        <h2>closeup</h2>
+
+        <figure>
+            <img src="../images/projects/openground/closeup.png" alt="close up of the map showing clustered markers across davis">
+            <figcaption>markers across davis, clustered by resource type</figcaption>
+        </figure>
+    </section>
+
+</main>
+
+
+        <!-- BUG REPORT MODAL -->
+    <div class="modal-overlay" id="bug-modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="bug-modal-close" aria-label="Close">✕</button>
+            <h2 class="modal-title">🐛 report a bug</h2>
+            <p class="modal-subtitle">spotted something broken, wrong, or inaccessible? let me know and i'll fix it!</p>
+            <div id="bug-form-area">
+                <div class="form-row">
+                    <label for="bug-page">where did you see it?</label>
+                    <input type="text" id="bug-page" placeholder="e.g. about page, lit review project...">
+                </div>
+                <div class="form-row">
+                    <label for="bug-description">what happened?</label>
+                    <textarea id="bug-description" rows="4" placeholder="describe the bug, what you saw, what you expected..."></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="bug-email">your email <span style="opacity:0.5;">(optional, if you want a reply)</span></label>
+                    <input type="email" id="bug-email" placeholder="your@email.com" autocomplete="email">
+                </div>
+                <button class="form-submit" id="bug-submit">submit report ↗</button>
+                <p class="form-status" id="bug-status"></p>
+
+                <p>thank you for helping me make my website a better place!</p>
+            </div>
+        </div>
+    </div>
+
+
+<!-- =========================
+FOOTER
+========================= -->
+<div id="footer"></div>
+
+</body>
+</html>
