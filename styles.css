@@ -26,6 +26,7 @@
  *    15. media queries
  *        15a. tablet (max-width: 1000px)
  *        15b. mobile (max-width: 600px)
+ *    16. accessibility page
  * =========================================================
  */
 
@@ -38,6 +39,7 @@
     --blackish:   #06042D;
     --accentblue: #1F18FF;
     --cream:      #F5F2E8;
+    --progress:   #8A5A00;
 }
 
 
@@ -1761,4 +1763,197 @@ footer p {
 
 .lightbox-inner:has(.lightbox-loading)::after {
     opacity: 0.5;
+}
+
+
+
+/* =========================
+   16. ACCESSIBILITY PAGE
+========================= */
+
+/* visible focus ring for keyboard users, site-wide */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--accentblue);
+    outline-offset: 3px;
+    border-radius: 0.2em;
+}
+
+/* ---- jump-to-section nav ---- */
+.a11y-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7em;
+    margin-bottom: 3.5em;
+}
+
+.a11y-toc a {
+    font-family: "montreal medium";
+    font-size: 0.9em;
+    text-decoration: none;
+    color: var(--blackish);
+    border: 1px solid var(--blackish);
+    border-radius: 2em;
+    padding: 0.45em 1.1em;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.a11y-toc a:hover,
+.a11y-toc a:focus-visible {
+    color: var(--accentblue);
+    border-color: var(--accentblue);
+    background: rgba(31, 24, 255, 0.05);
+}
+
+/* ---- test method cards ---- */
+.a11y-method-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.a11y-method-card {
+    border: 1px solid rgba(6, 4, 45, 0.2);
+    border-radius: 1.2em;
+    padding: 1.4em;
+    transition: border-color 0.2s ease;
+}
+
+.a11y-method-card:hover {
+    border-color: var(--blackish);
+}
+
+.a11y-method-card h3 {
+    font-size: 1.05em;
+}
+
+.a11y-method-card p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 0;
+    opacity: 0.85;
+}
+
+.a11y-method-note {
+    font-size: 0.95em;
+    font-style: italic;
+    opacity: 0.65;
+    max-width: 700px;
+}
+
+/* ---- section hint ---- */
+.a11y-section-hint {
+    font-size: 0.9em;
+    opacity: 0.55;
+    font-style: italic;
+    margin-bottom: 1.2em !important;
+}
+
+/* ---- checklist ---- */
+.a11y-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9em;
+    max-width: 700px;
+}
+
+.a11y-check-item {
+    border: 1px solid rgba(6, 4, 45, 0.2);
+    border-left: 3px solid var(--accentblue);
+    border-radius: 0.9em;
+    padding: 1.3em 1.5em;
+    transition: border-color 0.2s ease;
+}
+
+.a11y-check-item:hover {
+    border-color: rgba(6, 4, 45, 0.35);
+    border-left-color: var(--accentblue);
+}
+
+.a11y-check-item--gap {
+    border-left-color: var(--progress);
+}
+
+.a11y-check-item--gap:hover {
+    border-left-color: var(--progress);
+}
+
+.a11y-check-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    margin-bottom: 0.6em;
+}
+
+.a11y-check-header h3 {
+    font-size: 1.05em;
+    margin-bottom: 0;
+}
+
+.a11y-status-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    font-size: 0.85em;
+    font-family: "montreal medium";
+    flex-shrink: 0;
+    color: var(--cream);
+}
+
+.a11y-status-done {
+    background: var(--accentblue);
+}
+
+.a11y-status-progress {
+    background: var(--progress);
+}
+
+.a11y-check-item p {
+    font-size: 1em;
+    line-height: 1.7;
+    margin-bottom: 0;
+    opacity: 0.85;
+}
+
+/* reduced motion: respect user preference */
+@media (prefers-reduced-motion: reduce) {
+    .a11y-toc a,
+    .a11y-method-card,
+    .a11y-check-item {
+        transition: none;
+    }
+}
+
+/* ---- responsive: tablet ---- */
+@media screen and (max-width: 1000px) {
+    .a11y-method-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---- responsive: mobile ---- */
+@media screen and (max-width: 600px) {
+    .a11y-toc {
+        gap: 0.5em;
+    }
+
+    .a11y-toc a {
+        font-size: 0.85em;
+        padding: 0.4em 0.9em;
+    }
+
+    .a11y-check-header {
+        gap: 0.6em;
+    }
+
+    .a11y-check-header h3 {
+        font-size: 1em;
+    }
 }
