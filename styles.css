@@ -1783,14 +1783,16 @@ textarea:focus-visible {
 }
 
 /* ---- jump-to-section nav ---- */
-.a11y-toc {
+.a11y-toc,
+.pill-links {
     display: flex;
     flex-wrap: wrap;
     gap: 0.7em;
     margin-bottom: 3.5em;
 }
 
-.a11y-toc a {
+.a11y-toc a,
+.pill-links a {
     font-family: "montreal medium";
     font-size: 0.9em;
     text-decoration: none;
@@ -1802,7 +1804,9 @@ textarea:focus-visible {
 }
 
 .a11y-toc a:hover,
-.a11y-toc a:focus-visible {
+.a11y-toc a:focus-visible,
+.pill-links a:hover,
+.pill-links a:focus-visible {
     color: var(--accentblue);
     border-color: var(--accentblue);
     background: rgba(31, 24, 255, 0.05);

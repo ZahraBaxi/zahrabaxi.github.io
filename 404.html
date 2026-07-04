@@ -6,119 +6,57 @@
     <title>404 — zahra baxi</title>
     <link rel="icon" type="image/png" href="/images/content/icon.png">
     <link rel="stylesheet" href="/styles.css">
+    <script src="/scripts.js"></script>
     <script src="/partials.js" defer></script>
-    <style>
-        .fourohfour-wrap {
-            position: relative;
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 4em 1em;
-            overflow: hidden;
-        }
-
-        .fourohfour-bg {
-            position: absolute;
-            font-family: "montreal medium";
-            font-size: clamp(12em, 38vw, 28em);
-            line-height: 1;
-            letter-spacing: -0.04em;
-            color: var(--blackish);
-            opacity: 0.04;
-            user-select: none;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-
-        .fourohfour-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.3em;
-        }
-
-        .fourohfour-number {
-            font-family: "montreal medium";
-            color: var(--accentblue);
-            font-size: clamp(3em, 10vw, 7em);
-            line-height: 1;
-            letter-spacing: -0.03em;
-        }
-
-        .fourohfour-label {
-            font-family: "montreal medium";
-            font-size: 1.2em;
-            margin-top: 0.3em;
-        }
-
-        .fourohfour-note {
-            font-size: 1em;
-            line-height: 1.7;
-            max-width: 380px;
-            opacity: 0.6;
-            margin: 0.8em 0 2em;
-        }
-
-        .fourohfour-links {
-            display: flex;
-            gap: 1.5em;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .fourohfour-links a {
-            font-family: "montreal medium";
-            font-size: 0.95em;
-            color: var(--blackish);
-            text-decoration: none;
-            border-bottom: 1px solid var(--blackish);
-            padding-bottom: 1px;
-            transition: color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .fourohfour-links a:hover {
-            color: var(--accentblue);
-            border-color: var(--accentblue);
-        }
-
-        .fourohfour-stamp {
-            font-family: "montreal";
-            font-size: 0.75em;
-            opacity: 0.25;
-            margin-top: 3em;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-    </style>
 </head>
 <body>
     <div id="header"></div>
-
     <main>
-        <div class="fourohfour-wrap">
-            <span class="fourohfour-bg" aria-hidden="true">404</span>
+        <div class="projectpage">
 
-            <div class="fourohfour-content">
-                <div class="fourohfour-number">WHOOPSIE!</div>
-                <p class="fourohfour-label">page not found.</p>
-                <p class="fourohfour-note">whatever you were looking for either moved, never existed, or escaped into the void. happens to the best of us.</p>
+            <div class="back-link"><a href="/index.html">←</a></div>
 
-                <div class="fourohfour-links">
-                    <a href="/index.html">← back home</a>
-                    <a href="/about.html">about me</a>
-                    <a href="/thelitreviewproject.html">lit review project</a>
-                    <a href="/sitemap.html">full site map</a>
-                </div>
-
-                <!-- <p class="fourohfour-stamp">error 404 · zahrabaxi.com</p> -->
+            <div class="projectintro">
+                <h1>404</h1>
+                <p class="subtitle">page not found. whatever you were looking for either moved, got renamed, or never existed in the first place.</p>
             </div>
+
+            <div class="projectsection">
+                <nav class="pill-links" aria-label="helpful links">
+                    <a href="/index.html">back home</a>
+                    <a href="/about.html">about page</a>
+                    <a href="/sitemap.html">full site map</a>
+                </nav>
+            </div>
+
         </div>
     </main>
+
+    <!-- BUG REPORT MODAL -->
+    <div class="modal-overlay" id="bug-modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="bug-modal-close" aria-label="Close">✕</button>
+            <h2 class="modal-title">🐛 report a bug</h2>
+            <p class="modal-subtitle">spotted something broken, wrong, or inaccessible? let me know and i'll fix it!</p>
+            <div id="bug-form-area">
+                <div class="form-row">
+                    <label for="bug-page">where did you see it?</label>
+                    <input type="text" id="bug-page" placeholder="e.g. about page, lit review project...">
+                </div>
+                <div class="form-row">
+                    <label for="bug-description">what happened?</label>
+                    <textarea id="bug-description" rows="4" placeholder="describe the bug, what you saw, what you expected..."></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="bug-email">your email <span style="opacity:0.5;">(optional, if you want a reply)</span></label>
+                    <input type="email" id="bug-email" placeholder="your@email.com" autocomplete="email">
+                </div>
+                <button class="form-submit" id="bug-submit">submit report ↗</button>
+                <p class="form-status" id="bug-status"></p>
+                <p>thank you for helping me make my website a better place!</p>
+            </div>
+        </div>
+    </div>
 
     <div id="footer"></div>
 </body>
