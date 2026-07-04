@@ -654,7 +654,7 @@
     font-size: 0.78em;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    opacity: 0.5;
+    opacity: 0.65;
     margin-bottom: 0.5em !important;
 }
 
@@ -666,7 +666,7 @@
 
 .exhibit-callout-sub {
     font-size: 0.9em;
-    opacity: 0.65;
+    opacity: 0.75;
     margin-bottom: 0 !important;
 }
 
@@ -706,7 +706,7 @@
 
 /* ===== EXHIBIT CALLOUT CLOSED STATE ===== */
 .exhibit-callout--closed {
-    opacity: 0.6;
+    background: rgba(6, 4, 45, 0.06);
     border-left-color: var(--blackish, #06042d);
 }
 
@@ -729,7 +729,7 @@
     font-size: 0.78em;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    opacity: 0.45;
+    opacity: 0.65;
     font-style: normal;
 }
 
@@ -744,7 +744,7 @@
     font-size: 0.78em;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    opacity: 0.45;
+    opacity: 0.65;
     margin-bottom: 0.75em !important;
 }
 
@@ -763,7 +763,7 @@
 
 .thesis-cover-meta {
     font-size: 0.82em;
-    opacity: 0.4;
+    opacity: 0.65;
     margin-bottom: 1.5em !important;
 }
 
@@ -803,7 +803,7 @@
 
 .thesis-copyright {
     font-size: 0.78em;
-    color: rgba(6, 4, 45, 0.45);
+    color: rgba(6, 4, 45, 0.65);
     line-height: 1.5;
     margin-top: 0 !important;
 }
@@ -831,7 +831,7 @@
     font-size: 0.78em;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    opacity: 0.4;
+    opacity: 0.65;
     margin-bottom: 0.6em !important;
 }
 
@@ -863,7 +863,7 @@
     border-radius: 2em;
     padding: 0.35em 1em;
     cursor: pointer;
-    opacity: 0.5;
+    opacity: 0.7;
     transition: opacity 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
@@ -1028,7 +1028,7 @@
     text-transform: uppercase;
     letter-spacing: 0.07em;
     padding-top: 0.2em;
-    opacity: 0.5;
+    opacity: 0.65;
 }
 
 .colophon-entry dd {
@@ -1119,7 +1119,7 @@
 .gallery-label {
     font-style: italic;
     font-size: 0.8em;
-    opacity: 0.55;
+    opacity: 0.7;
     margin: 2em 0 0.6em;
     letter-spacing: 0.03em;
 }
@@ -1176,38 +1176,51 @@
     border-radius: 2em;
     padding: 0.35em 1em;
     cursor: pointer;
-    opacity: 0.55;
+    opacity: 0.75;
     transition: opacity 0.2s;
 }
 .img-gallery-btn:hover { opacity: 1; }
 
 .img-gallery-counter {
     font-size: 0.82em;
-    opacity: 0.45;
+    opacity: 0.65;
     font-family: "montreal", sans-serif;
     min-width: 3em;
 }
 
 .img-gallery-dots {
     display: flex;
-    gap: 0.4em;
+    gap: 0.2em;
     margin-top: 0.7em;
     flex-wrap: wrap;
 }
 
 .img-gallery-dot {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.img-gallery-dot::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background: var(--blackish);
     opacity: 0.2;
-    border: none;
-    padding: 0;
-    cursor: pointer;
+    transform: translate(-50%, -50%);
     transition: opacity 0.2s;
 }
-.img-gallery-dot.active { opacity: 0.7; }
-.img-gallery-dot:hover { opacity: 0.5; }
+
+.img-gallery-dot.active::before { opacity: 0.7; }
+.img-gallery-dot:hover::before { opacity: 0.5; }
 </style>
 
 <script>
@@ -1393,7 +1406,7 @@
     }
     .exhibit-callout-sub {
         font-size: 1em;
-        opacity: 0.65;
+        opacity: 0.75;
     }
     .tl-filters {
         gap: 0.4em;

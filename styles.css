@@ -456,7 +456,7 @@ figcaption {
 
 .about-meta{
     font-size: 0.99em;
-    opacity: 0.7;
+    color: rgba(6, 4, 45, 0.7);
 }
 
 .about-meta a {
@@ -782,7 +782,7 @@ footer p {
 /* only one hint visible at a time */
 .tutorials-toggle-hint {
     font-size: 0.85em;
-    opacity: 0.5;
+    opacity: 0.7;
     font-style: italic;
     transition: color 0.2s ease;
     display: inline;
@@ -790,7 +790,7 @@ footer p {
 
 .tutorials-toggle-collapse {
     font-size: 0.85em;
-    opacity: 0.5;
+    opacity: 0.7;
     font-style: italic;
     transition: color 0.2s ease;
     display: none;

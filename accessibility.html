@@ -28,10 +28,18 @@
             </div>
 
             <div class="projectsection">
+                <h2>how i test</h2>
+                <p>I run <a href="https://developer.chrome.com/docs/lighthouse" target="_blank" rel="noopener" class="about-link">Lighthouse accessibility audits ↗</a> on pages as I build them. As of this update, every page checked scores 100.</p>
+                <p>I test critical flows with VoiceOver, navigating without a mouse to hear how images, buttons, and forms actually get announced, not just whether they technically have labels.</p>
+                <p>I also do manual keyboard-only passes (tab, shift+tab, enter) to catch things automated tools miss, like the clickable blank space issue noted below.</p>
+            </div>
+
+            <div class="projectsection">
                 <h2>what's in place</h2>
                 <p>Semantic HTML throughout: headings, landmarks, & lists used properly rather than just for style.</p>
                 <p>All images have alt text. Decorative images are marked as such. These help with screen reader navigation.</p>
-                <p>Keyboard navigation is supported. Most interactive elements like the lightbox and nav are reachable and operable without a mouse. (It still has some quirks as of right now.)</p>
+                <p>Keyboard navigation is supported. Interactive elements like the lightbox and nav are reachable and operable without a mouse, including fixing an earlier issue where blank space could register as a clickable area.</p>
+                <p>ARIA labels are in place on icon-only buttons and links.</p>
                 <p>Color contrast between text and background meets AA ratio requirements.</p>
                 <p>The site is responsive and readable on mobile without horizontal scrolling.</p>
             </div>
@@ -39,16 +47,14 @@
             <div class="projectsection">
                 <h2>known gaps</h2>
                 <p>I aim to have alt tags within images be more descriptive to provide better context for screen reader users.</p>
-                <p>Some mouse functions and keyboard interactions need improvement. In some views there is no set trapping, which means you could be on a blank space and have a "clickable" area.</p>
-                <p>PDF downloads (zines) are not screen-reader accessible. This is a harder problem given the format as the aim is to allow print accesibility (anybody can have their own copy of the zine), I'm thinking through how to handle it. If you have any ideas let me know.</p>                
-                <p>I plan to add ARIA labels on icon-only buttons and links.</p>
+                <p>PDF downloads (zines) are not screen-reader accessible. This is a harder problem given the format as the aim is to allow print accesibility (anybody can have their own copy of the zine), I'm thinking through how to handle it. If you have any ideas let me know.</p>
             </div>
 
             <div class="projectsection">
                 <h2>found something?</h2>
                 <p>If you run into an accessibility issue on this site, please let me know. Click the bug button on the right side of the screen to report it. I take these seriously and will fix it as soon as possible.</p>
             </div>
-        <p>this statement was last updated on May 1st 2026</p>
+        <p>this statement was last updated on July 4th 2026</p>
         </div>
     </main>
 
