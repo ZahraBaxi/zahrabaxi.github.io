@@ -24,23 +24,24 @@
 
             <div class="projectsection">
                 <h2>the goal</h2>
-                <p>Accessibility is something I care about as a designer and researcher. This site aims to meet <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener" class="about-link">WCAG 2.1 AA ↗</a> standards where possible. It is an ongoing process, this pages tells you the current state on where this site stands.</p>
+                <p>Accessibility is something I care about as a designer and researcher. This site aims to meet <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener" class="about-link">WCAG 2.1 AA ↗</a> standards where possible (WCAG is the most widely used accessibility standard for the web, and AA is the middle tier most sites and laws expect). It is an ongoing process, this page tells you the current state on where this site stands.</p>
             </div>
 
             <div class="projectsection">
                 <h2>how i test</h2>
-                <p>I run <a href="https://developer.chrome.com/docs/lighthouse" target="_blank" rel="noopener" class="about-link">Lighthouse accessibility audits ↗</a> on pages as I build them. As of this update, every page checked scores 100.</p>
-                <p>I test critical flows with VoiceOver, navigating without a mouse to hear how images, buttons, and forms actually get announced, not just whether they technically have labels.</p>
-                <p>I also do manual keyboard-only passes (tab, shift+tab, enter) to catch things automated tools miss, like the clickable blank space issue noted below.</p>
+                <p>I run <a href="https://developer.chrome.com/docs/lighthouse" target="_blank" rel="noopener" class="about-link">Lighthouse accessibility audits ↗</a> on pages as I build them. Lighthouse is a free tool built into Chrome that scans a page and flags common issues, like text that's too low-contrast to read or elements missing labels. Every page on this site currently scores 100.</p>
+                <p>I also test critical flows with VoiceOver, the screen reader built into Mac and iPhone, navigating without a mouse to hear how images, buttons, and forms actually get announced out loud, not just whether they technically have labels attached. This catches things automated tools can't, since a label can exist and still be confusing or redundant when you actually hear it.</p>
+                <p>I do manual keyboard-only passes too (tab, shift+tab, enter, no mouse at all) to catch things automated tools miss, like an earlier issue where empty space on the page could accidentally register as a clickable area.</p>
+                <p>This has already caught real things, like low-contrast text and a mislabeled icon, both since fixed.</p>
             </div>
 
             <div class="projectsection">
                 <h2>what's in place</h2>
-                <p>Semantic HTML throughout: headings, landmarks, & lists used properly rather than just for style.</p>
-                <p>All images have alt text. Decorative images are marked as such. These help with screen reader navigation.</p>
+                <p><a href="https://developer.mozilla.org/en-US/docs/Glossary/Semantics" target="_blank" rel="noopener" class="about-link">Semantic HTML ↗</a> throughout: headings, landmarks, & lists used properly rather than just for style. This helps screen readers understand the structure of a page instead of just reading it top to bottom as one long block.</p>
+                <p>All images have alt text (a short written description a screen reader can read aloud in place of the image). Decorative images that don't add meaning are marked as such, so screen readers skip over them instead of announcing something meaningless.</p>
                 <p>Keyboard navigation is supported. Interactive elements like the lightbox and nav are reachable and operable without a mouse, including fixing an earlier issue where blank space could register as a clickable area.</p>
-                <p>ARIA labels are in place on icon-only buttons and links.</p>
-                <p>Color contrast between text and background meets AA ratio requirements.</p>
+                <p><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label" target="_blank" rel="noopener" class="about-link">ARIA labels ↗</a> (extra bits of text that describe an element to a screen reader when the visible design alone isn't enough, like an icon-only button) are in place on icon-only buttons and links, and are checked for accuracy rather than just present for the sake of it.</p>
+                <p>Color contrast between text and background meets <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank" rel="noopener" class="about-link">AA ratio requirements ↗</a>, meaning there's enough difference between text and background color for people with low vision or color blindness to read comfortably.</p>
                 <p>The site is responsive and readable on mobile without horizontal scrolling.</p>
             </div>
 
