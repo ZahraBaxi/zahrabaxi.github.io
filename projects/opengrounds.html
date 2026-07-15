@@ -47,10 +47,13 @@ PROJECT STORY
     <section class="projectsection">
         <h2>overview</h2>
         <p>
-            open:grounds is a self-directed summer design challenge i decided to create after noticing a gap in accessible community mapping tools. each challenge focuses on one project, worked through in multiple sprints, built around that gap in accessibility and community infrastructure. the work lives at <a href="https://opengrounds.github.io" target="_blank" rel="noopener">opengrounds.github.io ↗</a>, a central project directory where each challenge gets its own space as it goes live.
+            open:grounds is a self-directed 2026 summer design challenge i decided to create after noticing a gap in accessible community mapping tools. each challenge focuses on one project, worked through in multiple sprints, built around that gap in accessibility and community infrastructure. the work lives at <a href="https://opengrounds.github.io" target="_blank" rel="noopener">opengrounds.github.io ↗</a>, a central project directory where each challenge gets its own space as it goes live.
         </p>
         <p>
-            the first challenge is a citizen-built map of shared, free, and mutual-aid resources in davis, ca, now live at <a href="https://opengrounds.github.io/davis-commons/" target="_blank" rel="noopener">opengrounds.github.io/davis-commons ↗</a>. i built this project due to the dealing with the mess of multiple maps and links trying to find one common need, free or low-cost resources. i'm a bit of a scrappy indivdual i'd say, i'm always in love with community focused initatives, citizen collaborated resources, and staying on a budget.the first project that made me fall in love with collaborative mapping was <a href="https://fallingfruit.org" target="_blank" rel="noopener">falling fruit ↗</a> which allows users to contribute and update information about fruiting trees around the world. i dived into finding more resrouces like these. i learned about buy nothing groups, community fridges, and mutual aid networks but couldn't find a single place to access all of them. i wanted to make something that made it easier for people to find and connect with these resources, and also contribute to them if they want to, one central hub for all these resouces so you didn't have to search through multiple sources! i think this project achieves just that!
+            the project that started it all was my idea of creating a citizen-built map of shared, free, and mutual-aid resources for davis, calfornia. that project is now live at <a href="https://opengrounds.github.io/davis-commons/" target="_blank" rel="noopener">opengrounds.github.io/davis-commons ↗</a>. i built this project due to the dealing with the mess of multiple maps and links trying to find one common need, free or low-cost resources. i am a bit of a scrappy indivdual i'd say. i am always in love with community focused initatives, citizen collaborated resources, and staying thrifty and on a budget. the first project that made me fall in love with collaborative mapping was <a href="https://fallingfruit.org" target="_blank" rel="noopener">falling fruit ↗</a> which allows users to contribute and update information about fruiting trees around the world. it was from this collaborative mapping project that i dived into finding more citizen science and community built platforms. i learned about buy nothing groups, community fridges, and mutual aid networks but couldn't find a single place to access all of them, most often to find them involved already being in the know. i wanted to make something that made it easier for people to find and connect with these resources, and also contribute to them if they want to, one central hub for all these resouces so you didn't have to search through multiple sources! i think this project achieves just that!
+        </p>
+        <p>
+            and of course like with every project i've ever done, i branched out into so many other ideas and possibilies. since this is a self-directed challenge, i had the freedom to divulge into these possibilities and didn't hold back. this project has so many directions it can go into and i am so excited to see where it goes, even in the future past this summer. below you'll find a summary of each project that is so far being worked on and a link to the live project. i hope you enjoy exploring them as much as i enjoyed building them! 
         </p>
     </section>
 
@@ -64,7 +67,7 @@ PROJECT STORY
         </figure>
 
         <p>
-            the main page is designed to grow alongside the work. each project appears as a house on an interactive grid, connected by dashed lines. the davis map house is fully illustrated and clickable. the others are drawn as outlines with scaffolding and dashed strokes, visually communicating that they're under construction. as sprints finish, houses get built out. it's like a neighborhood of projects, each with its own story and character, but all part of the same community.
+            to me this project is like a neighborhood, so many unique projects and ideas can be built and explored, but they all share a common goal of accessibility and community. the main page is designed to be a hub for all the projects, with each project appearing as a house node on a grid. if the site is live it looks like a fully built house, if its being built is partially colored and constructed. showing the project in progress and this layout helps users can easily navigate between projects and see how they all connect to the larger goal of open:grounds even if they're not fully realized yet, it evens gives people a chance to see how they can be involved if they have knowledge in a subject being developed.
         </p>
     </section>
 
@@ -75,6 +78,11 @@ PROJECT STORY
         <figure>
             <img src="../images/projects/openground/interface.png" alt="the open:grounds interface showing sidebar filters and map view">
             <figcaption>the davis map at desktop width, sidebar and map view side by side</figcaption>
+        </figure>
+
+        <figure>
+            <img src="../images/projects/openground/closeup.png" alt="close up of the map showing clustered markers across davis">
+            <figcaption>markers across davis, clustered by resource type</figcaption>
         </figure>
 
         <p>
@@ -113,17 +121,70 @@ PROJECT STORY
         </figure>
 
         <p>
-            not everything fits as a map pin. Resources like the Buy Nothing Davis, Falling Fruit foraging data, DCTV public access TV, KDRT and KDVS community radio all sit in a separate "davis commons" panel alongside the map. These are a curated list of things that are part of the shared fabric of the town but live in different places and formats.
+            not everything fits as a map pin. Resources like the Buy Nothing Davis, Falling Fruit foraging data, DCTV public access TV, KDRT and KDVS community radio all sit in a separate "community links" panel alongside the map. These are a curated list of things that are part of the shared fabric of the town but live in different places and formats.
         </p>
     </section>
 
     <section class="projectsection">
-        <h2>closeup</h2>
+        <h2>management and maintenance</h2>
+        <p>
+            now i'm sure your first questions is "how do i maintain this?", well thanks for asking your question because lets dive into that as it's an important question indeed! the project is built on a static site hosted on github pages, with data stored in a parse server (back4app). this means that the map and its data can be updated without needing to redeploy the entire site. the submission and correction forms are connected to the parse server, allowing for easy management of user contributions. now the main thing that i wanted to tackle (which i feel odd to admit was my first time ever creating as a web-designer) was creating a design system that can be maintained by someone other than me, someone who has zero coding experience. i wanted to make sure that the project could be maintained by anyone, even if they didn't have a background in web development. as a result i've created an admin page that isn't linked but i'll show you a bit of what it looks like here. the admin page allows for easy management of submissions, corrections, and community links. it also provides a way to update the map and its data without needing to touch the codebase and lets users edit and manage the content for any errors. this is a crucial aspect of the project, as it ensures that the map remains up-to-date and relevant for the community.
+        </p>
+        <figure>
+            <img src="../images/projects/openground/btsdavis1.png" alt="behind the scenes admin page">
+            <figcaption>the home page of the admin page</figcaption>
+        </figure>
+        <p>
+            the admin page shows a list of all pending submissions first then lets you see any currently existing data, correction submissions, and allows me to quickly edit and manage any static data that is on the map. this is a crucial aspect of the project, as it ensures that the map remains up-to-date and relevant for the community. 
+        </p>
+        <figure>
+            <img src="../images/projects/openground/btsdavis2.png" alt="behind the scenes admin page showing a pending submission ready to be pushed live">
+            <figcaption>the new davis library was a pending task to add from a community member! this allows me to redrag the coordinates to update the location if it shows up in the wrong place and edit any information, in this case i added more about what ammentites would be added</figcaption>
+        </figure>
+        <figure>
+            <img src="../images/projects/openground/btsdavis3.png" alt="a list of corrections submitted by users">
+            <figcaption>the corrections submissions, one which is pending review</figcaption>
+        </figure>
+        <p>
+            the admin page also allows for easy management of user contributions to currently existing data, making it simple to approve or reject corrections, then links the data point its that is referenced. here we see some corrections that have been submitted by users, one of which is pending review. this allows me to quickly see what needs to be addressed and make any necessary changes to the data. it links the data point that is referenced based on finding matching keywords, then links the manual data tab where i scroll down to find the data point and make any necessary changes based on the feedback. 
+        </p>
+        <figure>
+            <img src="../images/projects/openground/datajs.png" alt="the file itself that contains all the data points for the map">
+            <figcaption>the data.js file containing all the data points for the map, i mean who would want to edit that by hand?</figcaption>
+        </figure>
+       <p>
+         above is my current problem at hand, and the reason why i realized i needed to really create this admin page. even i myself want nothing to do with keeping this file update!!!
+       </p>
+        <figure>
+            <img src="../images/projects/openground/btsdavis5.png" alt="the manual data tab showing a list of all data points and their details">
+            <figcaption>the manual data tab showing a list of all data points and their details</figcaption>
+        </figure>
+        <p>
+            since the site is hosted on github and there are some more static data points orginally added these need to be manually copied and pasted so the site fetches the currently available data and lets you edit the copy and paste the fully document back in the admin page also allows for easy management of user contributions, making it simple to approve or reject submissions and corrections.
+        </p>
 
         <figure>
-            <img src="../images/projects/openground/closeup.png" alt="close up of the map showing clustered markers across davis">
-            <figcaption>markers across davis, clustered by resource type</figcaption>
+            <img src="../images/projects/openground/btsdavis4.png" alt="all the submissions of locations in one area.">
+            <figcaption>all the submissions of locations in one area</figcaption>
         </figure>
+        <p>
+            here we see all the location submissions in one area, its a great way to see what is being submitted and what the davis community has an interest in!
+        </p>
+
+        <figure>
+            <img src="../images/projects/openground/btscoordinates.png" alt="a coordinate interface">
+            <figcaption>a coordinate interface for adjusting locations</figcaption>
+        </figure>
+        <p> 
+            lastly for the davis commons project itself, and something that i can use for future projects, is a coordinate interface that allows me to adjust the coordinates of any location that is submitted. the main project takes addresses and fetches them for coordinates to place on the map, if there are no coordinates given by a user. sometimes however these coordinates are wrong, and to fetch so many of them it makes the website load forrrrever! while the admin page allows me to edit coordinates and drag on the interface itself, this was more helpful for any preadded data points that were already on the map with the data.js file. it also proved helpful for future projects that were not linked to the davis commons admin page. it goes through the same process of allowing you to input an address then fetches the coordinates, but then allows me to drag the coordinate to a better spot, then lets me copy and paste the coordinates to my data.js file since it looks a mess as you saw before.
+        </p>
+    </section>
+
+    <section class="projectsection">
+        <h2>more coming soon!</h2>
+        <p>
+            as i said this project is ongoing and there are so many more ideas and possibilities to explore. i am excited to continue developing open:grounds and see where it goes in the future. stay tuned for more updates and new projects! i'm currently working on a blog that will provide updates as well on the project and its progress, as well as a place for community members to share their own experiences and stories related to shared resources and community building. check out the blog here: <a href="https://opengrounds.github.io/blog/" target="_blank" rel="noopener noreferrer">open:grounds blog ↗</a>. i hope to create a space where people can connect, learn, and contribute to the open:grounds community. if you're interested in getting involved or have any ideas for future projects, please reach out! i'm always looking for collaborators and contributors who share the same passion for accessibility and community.
+        </p>
     </section>
 
 </main>
