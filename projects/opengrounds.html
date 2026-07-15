@@ -26,6 +26,22 @@ PROJECT INTRO
 <main class="projectpage">
     <div class="back-link"><a href="../index.html">← back</a></div>
 
+    <!-- PAGE TOC SIDEBAR -->
+    <nav class="page-toc" aria-label="Page contents">
+        <p class="toc-label">contents</p>
+        <ol class="toc-list">
+            <li><a href="#overview" class="toc-link">overview</a></li>
+            <li><a href="#directory" class="toc-link">project directory</a></li>
+            <li><a href="#davis-map" class="toc-link">challenge 01: davis map</a></li>
+            <li><a href="#davis-commons" class="toc-link">davis commons</a></li>
+            <li><a href="#maintenance" class="toc-link">management + maintenance</a></li>
+            <li><a href="#coming-soon" class="toc-link">more coming soon</a></li>
+        </ol>
+        <div class="toc-progress">
+            <div class="toc-progress-bar" id="toc-progress-bar"></div>
+        </div>
+    </nav>
+
     <section class="projectintro">
         <h1>open:grounds</h1>
         <p class="subtitle">a citizen map of shared resources / davis, ca</p>
@@ -44,7 +60,7 @@ PROJECT INTRO
 PROJECT STORY
 ========================= -->
 
-    <section class="projectsection">
+    <section class="projectsection" id="overview">
         <h2>overview</h2>
         <p>
             open:grounds is a self-directed 2026 summer design challenge i decided to create after noticing a gap in accessible community mapping tools. each challenge focuses on one project, worked through in multiple sprints, built around that gap in accessibility and community infrastructure. the work lives at <a href="https://opengrounds.github.io" target="_blank" rel="noopener">opengrounds.github.io ↗</a>, a central project directory where each challenge gets its own space as it goes live.
@@ -57,7 +73,7 @@ PROJECT STORY
         </p>
     </section>
 
-    <section class="projectsection">
+    <section class="projectsection" id="directory">
         <h2>the project directory</h2>
         <a href="https://opengrounds.github.io" target="_blank" rel="noopener">opengrounds.github.io ↗</a>
 
@@ -71,7 +87,7 @@ PROJECT STORY
         </p>
     </section>
 
-    <section class="projectsection">
+    <section class="projectsection" id="davis-map">
         <h2>challenge 01: davis map</h2>
         <a href="https://opengrounds.github.io/davis-commons/" target="_blank" rel="noopener">opengrounds.github.io/davis-commons ↗</a>.
 
@@ -112,7 +128,7 @@ PROJECT STORY
         </figure>
     </section>
 
-    <section class="projectsection">
+    <section class="projectsection" id="davis-commons">
         <h2>davis commons</h2>
 
         <figure>
@@ -125,7 +141,7 @@ PROJECT STORY
         </p>
     </section>
 
-    <section class="projectsection">
+    <section class="projectsection" id="maintenance">
         <h2>management and maintenance</h2>
         <p>
             now i'm sure your first questions is "how do i maintain this?", well thanks for asking your question because lets dive into that as it's an important question indeed! the project is built on a static site hosted on github pages, with data stored in a parse server (back4app). this means that the map and its data can be updated without needing to redeploy the entire site. the submission and correction forms are connected to the parse server, allowing for easy management of user contributions. now the main thing that i wanted to tackle (which i feel odd to admit was my first time ever creating as a web-designer) was creating a design system that can be maintained by someone other than me, someone who has zero coding experience. i wanted to make sure that the project could be maintained by anyone, even if they didn't have a background in web development. as a result i've created an admin page that isn't linked but i'll show you a bit of what it looks like here. the admin page allows for easy management of submissions, corrections, and community links. it also provides a way to update the map and its data without needing to touch the codebase and lets users edit and manage the content for any errors. this is a crucial aspect of the project, as it ensures that the map remains up-to-date and relevant for the community.
@@ -180,7 +196,7 @@ PROJECT STORY
         </p>
     </section>
 
-    <section class="projectsection">
+    <section class="projectsection" id="coming-soon">
         <h2>more coming soon!</h2>
         <p>
             as i said this project is ongoing and there are so many more ideas and possibilities to explore. i am excited to continue developing open:grounds and see where it goes in the future. stay tuned for more updates and new projects! i'm currently working on a blog that will provide updates as well on the project and its progress, as well as a place for community members to share their own experiences and stories related to shared resources and community building. check out the blog here: <a href="https://opengrounds.github.io/blog/" target="_blank" rel="noopener noreferrer">open:grounds blog ↗</a>. i hope to create a space where people can connect, learn, and contribute to the open:grounds community. if you're interested in getting involved or have any ideas for future projects, please reach out! i'm always looking for collaborators and contributors who share the same passion for accessibility and community.
@@ -222,6 +238,110 @@ PROJECT STORY
 FOOTER
 ========================= -->
 <div id="footer"></div>
+
+<!-- ===== PAGE TOC STYLES ===== -->
+<style>
+.page-toc {
+    position: fixed;
+    top: 50%;
+    right: 2em;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    z-index: 100;
+}
+
+.toc-label {
+    font-family: "montreal medium", "montreal", sans-serif;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.4;
+    margin: 0 0 0.2em 0;
+}
+
+.toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+}
+
+.toc-link {
+    font-family: "montreal", sans-serif;
+    font-size: 0.8em;
+    color: var(--blackish);
+    text-decoration: none;
+    opacity: 0.35;
+    display: block;
+    padding: 0.2em 0;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.toc-link:hover { opacity: 0.7; }
+.toc-link.toc-active { opacity: 1; font-family: "montreal medium", "montreal", sans-serif; }
+
+.toc-progress {
+    margin-top: 0.8em;
+    width: 2px;
+    height: 80px;
+    background: rgba(6, 4, 45, 0.1);
+    border-radius: 2px;
+    align-self: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.toc-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--blackish);
+    border-radius: 2px;
+    transition: height 0.1s linear;
+    height: 0%;
+}
+
+@media screen and (max-width: 1100px) {
+    .page-toc { display: none; }
+}
+</style>
+
+<script>
+(function () {
+    var links = document.querySelectorAll('.toc-link');
+    var bar = document.getElementById('toc-progress-bar');
+
+    var ids = Array.from(links).map(function (l) {
+        return l.getAttribute('href').slice(1);
+    });
+
+    function onScroll() {
+        // Progress bar
+        var scrolled = window.scrollY;
+        var total = document.body.scrollHeight - window.innerHeight;
+        if (bar) bar.style.height = Math.min(100, (scrolled / total) * 100) + '%';
+
+        // Active link
+        var current = ids[0];
+        ids.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el && el.getBoundingClientRect().top <= 120) current = id;
+        });
+        links.forEach(function (l) {
+            l.classList.toggle('toc-active', l.getAttribute('href') === '#' + current);
+        });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+})();
+</script>
 
 </body>
 </html>
