@@ -391,6 +391,77 @@
 
 
     // =========================
+    // IMAGE LOADING STATES
+    // applies a shimmer placeholder and fade-in to every image inside
+    // <main>, so slow connections show a clear "still loading" signal
+    // instead of blank space. also runs a thin progress bar at the
+    // top of the page while images are still coming in
+    // =========================
+
+    function initImageLoadingStates() {
+        var images = document.querySelectorAll("main img");
+        if (!images.length) return;
+
+        var bar = document.createElement("div");
+        bar.id = "page-load-bar";
+        bar.innerHTML = '<span class="page-load-label">loading images...</span>';
+        document.body.appendChild(bar);
+
+        var total = images.length;
+        var loaded = 0;
+
+        function finishBar() {
+            bar.style.width = "100%";
+            setTimeout(function () {
+                bar.classList.add("done");
+            }, 250);
+        }
+
+        function tick() {
+            loaded++;
+            var pct = Math.round((loaded / total) * 100);
+            bar.style.width = pct + "%";
+            if (loaded >= total) finishBar();
+        }
+
+        function setupImage(img) {
+            // already loaded from cache, nothing to show
+            if (img.complete && img.naturalWidth !== 0) {
+                tick();
+                return;
+            }
+
+            img.classList.add("img-loading");
+
+            // reserve some visible space for images that don't already
+            // have a fixed height set by their layout (like the gallery
+            // or project thumbnails do)
+            if (!img.style.height && img.offsetHeight === 0) {
+                img.classList.add("img-loading-noheight");
+            }
+
+            function ready() {
+                img.classList.remove("img-loading", "img-loading-noheight");
+                img.classList.add("img-ready");
+                img.removeEventListener("load", ready);
+                img.removeEventListener("error", ready);
+                tick();
+            }
+
+            img.addEventListener("load", ready);
+            img.addEventListener("error", ready);
+        }
+
+        for (var i = 0; i < images.length; i++) {
+            setupImage(images[i]);
+        }
+
+        // if every image was already cached, hide the bar right away
+        if (loaded >= total) finishBar();
+    }
+
+
+    // =========================
     // TUTORIAL LIGHTBOX
     // — split layout: instructions left, image right
     // — triggered by clicking a .tutorial-card
@@ -474,6 +545,7 @@
     // =========================
 
     document.addEventListener("DOMContentLoaded", function () {
+        initImageLoadingStates();
         initLightbox();
         initZineLightbox();
         initScrollTop();

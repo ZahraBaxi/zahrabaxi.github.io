@@ -26,7 +26,8 @@
  *    15. media queries
  *        15a. tablet (max-width: 1000px)
  *        15b. mobile (max-width: 600px)
- *    16. accessibility page
+ *    16. image loading states
+ *    17. accessibility page
  * =========================================================
  */
 
@@ -1768,7 +1769,81 @@ footer p {
 
 
 /* =========================
-   16. ACCESSIBILITY PAGE
+   16. IMAGE LOADING STATES
+   global shimmer + fade-in for images inside <main>, plus a thin
+   progress bar at the top of the page while images load
+========================= */
+
+main img.img-loading {
+    background: linear-gradient(100deg,
+        rgba(6, 4, 45, 0.04) 30%,
+        rgba(6, 4, 45, 0.11) 45%,
+        rgba(6, 4, 45, 0.04) 60%);
+    background-size: 250% 100%;
+    animation: img-shimmer 1.6s ease-in-out infinite;
+}
+
+main img.img-loading-noheight {
+    min-height: 12em;
+    width: 100%;
+}
+
+main img.img-ready {
+    animation: none;
+    background: none;
+    opacity: 0;
+    animation: img-fade-in 0.4s ease forwards;
+}
+
+@keyframes img-shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -50% 0; }
+}
+
+@keyframes img-fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    main img.img-loading,
+    main img.img-ready {
+        animation: none;
+    }
+}
+
+#page-load-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--accentblue);
+    z-index: 2000;
+    transition: width 0.3s ease, opacity 0.4s ease 0.2s;
+}
+
+#page-load-bar.done {
+    opacity: 0;
+}
+
+.page-load-label {
+    position: fixed;
+    top: 0.6em;
+    right: 1em;
+    font-family: "montreal", sans-serif;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    color: var(--accentblue);
+    background: var(--cream);
+    padding: 0.2em 0.6em;
+    border-radius: 1em;
+}
+
+
+
+/* =========================
+   17. ACCESSIBILITY PAGE
 ========================= */
 
 /* visible focus ring for keyboard users, site-wide */
