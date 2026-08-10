@@ -206,6 +206,42 @@
 
 
     // =========================
+    // PROJECT FILTER
+    // — homepage filter bar (product & interface / campaigns & communication /
+    //   physical & prototyping / visual & documentary)
+    // — non-matching projects fade and move down, nothing is hidden
+    // — projects can carry more than one category in data-category
+    // =========================
+
+    function initProjectFilter() {
+        var bar = document.querySelector(".filter-bar");
+        if (!bar) return;
+
+        var buttons = bar.querySelectorAll(".filter-btn");
+        var cards = document.querySelectorAll(".projectcontainer[data-category]");
+
+        buttons.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                buttons.forEach(function (b) {
+                    b.classList.remove("active");
+                    b.setAttribute("aria-pressed", "false");
+                });
+                btn.classList.add("active");
+                btn.setAttribute("aria-pressed", "true");
+
+                var filter = btn.getAttribute("data-filter");
+
+                cards.forEach(function (card) {
+                    var cats = (card.getAttribute("data-category") || "").split(" ");
+                    var match = filter === "all" || cats.indexOf(filter) !== -1;
+                    card.classList.toggle("is-faded", !match);
+                });
+            });
+        });
+    }
+
+
+    // =========================
     // SCROLL TO TOP
     // — injects a small fixed button that appears after scrolling down
     // — only shows up if the page is actually taller than the viewport
@@ -548,6 +584,7 @@
         initImageLoadingStates();
         initLightbox();
         initZineLightbox();
+        initProjectFilter();
         initScrollTop();
         initContactForm();
         initBugReport();

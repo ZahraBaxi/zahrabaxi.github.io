@@ -29,7 +29,35 @@
             })
             .then(function (data) {
                 document.querySelector("#footer").innerHTML = data;
+                initFooterExtras();
             });
+    }
+
+
+    // =========================
+    // FOOTER EXTRAS
+    // — fills in the "last updated" date from the page's own file
+    // — makes the "back to top" link scroll smoothly
+    // =========================
+
+    function initFooterExtras() {
+        var updated = document.querySelector("#footer-updated");
+        if (updated) {
+            var d = new Date(document.lastModified);
+            updated.textContent = d.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+            });
+        }
+
+        var backToTop = document.querySelector(".footer-backtotop");
+        if (backToTop) {
+            backToTop.addEventListener("click", function (e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
     }
 
 

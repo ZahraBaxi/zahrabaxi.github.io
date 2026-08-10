@@ -16,14 +16,21 @@
     <div id="header"></div>
     <main>
         <div class = "blurb">
-            <p><span style="font-family: 'montreal medium'; color: var(--accentblue);">hi!  &#128075; i’m zahra! </span>i'm a product designer working across interactive design, social responsibility, &amp; planet-centered design. 
-            <!-- <br>i focus on designing multidisciplinary interactive experiences that make complex spaces, infrastructures, and communities easier to understand and engage with. -->
-        </p>
+            <p><span style="font-family: 'montreal medium'; color: var(--accentblue);">hi!  &#128075; i’m zahra! </span>i'm a product designer based in sacramento, working across interactive design, social responsibility &amp; planet-centered design.</p>
+            <p class="blurb-subtext">filter projects by focus below.</p>
+        </div>
+
+        <div class="filter-bar" role="group" aria-label="filter projects by skill area">
+            <button class="filter-btn active" data-filter="all" aria-pressed="true">all work</button>
+            <button class="filter-btn" data-filter="product" aria-pressed="false">product &amp; interface</button>
+            <button class="filter-btn" data-filter="campaign" aria-pressed="false">campaigns &amp; communication</button>
+            <button class="filter-btn" data-filter="physical" aria-pressed="false">physical &amp; prototyping</button>
+            <button class="filter-btn" data-filter="visual" aria-pressed="false">visual &amp; documentary</button>
         </div>
 
         <div class="projects">
             <!-- OPEN:GROUNDS -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="product">
                 <a href="projects/opengrounds.html" class="project">
                     <img src="images/mainboxes/opengrounds.png" alt="screenshot of project open:grounds" class="projectimage">
                     <h2 class="projecttitle">open:grounds</h2>
@@ -35,7 +42,7 @@
             </div>
 
             <!-- MFA THESIS -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="campaign">
                 <a href="projects/mfathesis.html" class="project">
                     <img src="images/mainboxes/mfathesis.png" alt="screenshot of project mfa thesis" class="projectimage">
                     <h2 class="projecttitle">mfa thesis</h2>
@@ -47,7 +54,7 @@
             </div>
 
             <!-- LIT REVIEW PROJECT -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="campaign physical">
                 <a href="thelitreviewproject.html" class="project">
                     <img src="images/mainboxes/litreviewproj.jpg" alt="screenshot of project the lit review project" class="projectimage">
                     <h2 class="projecttitle">the lit review project</h2>
@@ -59,7 +66,7 @@
             </div>
 
             <!-- STEBBINS COLD CANYON -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="campaign physical">
                 <a href="projects/stebbins.html" class="project">
                     <img src="images/mainboxes/stebbins.JPG" alt="heat awareness campaign at stebbins cold canyon reserve" class="projectimage">
                     <h2 class="projecttitle">stebbins cold canyon</h2>
@@ -71,7 +78,7 @@
             </div>
 
             <!-- WILDS OF CALIFORNIA -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="physical">
                 <a href="projects/wildsofcalifornia.html" class="project">
                     <img src="images/mainboxes/wilds.png" alt="screenshot of project wilds of california" class="projectimage">
                     <h2 class="projecttitle">wilds of california</h2>
@@ -83,7 +90,7 @@
             </div>
 
             <!--MODULAR PLANTERS -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="physical">
                 <a href="projects/modularplanters.html" class="project">
                     <img src="images/mainboxes/planter.jpg" alt="screenshot of project modular planters" class="projectimage">
                     <h2 class="projecttitle">modular planters</h2>
@@ -95,7 +102,7 @@
             </div>
 
             <!-- ON SAN PABLO -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="visual">
                 <a href="projects/onsanpablo.html" class="project">
                     <img src="images/mainboxes/onsanpablo.jpg" alt="screenshot of project on san pablo" class="projectimage">
                     <h2 class="projecttitle">on san pablo</h2>
@@ -107,7 +114,7 @@
             </div>
 
             <!-- KP DESIGN CHALLENGE -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="product">
                 <a href="projects/kpdesignchallenge.html" class="project">
                     <img src="images/mainboxes/kpdesignchallenge.png" alt="tile for kp design challenge project" class="projectimage">
                     <h2 class="projecttitle">kp design challenge</h2>
@@ -119,7 +126,7 @@
             </div>
 
             <!-- THE BAY -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="visual">
                 <a href="projects/thebay.html" class="project">
                     <img src="images/mainboxes/thebay.png" alt="screenshot of project the bay" class="projectimage">
                     <h2 class="projecttitle">the bay</h2>
@@ -131,7 +138,7 @@
             </div>
 
             <!-- ANALOG PHOTOGRAPHY -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="visual">
                 <a href="projects/photography.html" class="project">
                     <img src="images/mainboxes/analogphotos.jpeg" alt="screenshot of project analog photography" class="projectimage">
                     <h2 class="projecttitle">analog photography</h2>
@@ -143,7 +150,7 @@
             </div>
 
             <!-- NEONICHE -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="product">
                 <a href="projects/neoniche.html" class="project">
                     <img src="images/mainboxes/neoniche.png" alt="screenshot of project 1" class="projectimage">
                     <h2 class="projecttitle">neoniche</h2>
@@ -155,7 +162,7 @@
             </div>
 
             <!-- HOWDY COWBOY JOE -->
-            <div class="projectcontainer">
+            <div class="projectcontainer" data-category="product">
                 <a href="projects/howdycowboyjoe.html" class="project">
                     <img src="images/mainboxes/cowboyjoe.png" alt="screenshot of project howdy cowboy joe" class="projectimage">
                     <h2 class="projecttitle">howdy cowboy joe</h2>

@@ -172,6 +172,64 @@ nav ul li a:focus {
     line-height: 1.5;
 }
 
+.blurb-subtext {
+    font-size: 1em;
+    opacity: 0.6;
+    margin-top: 0.5em;
+    line-height: 1.5;
+}
+
+.blurb p.blurb-subtext {
+    font-size: 1em;
+}
+
+
+
+/* =========================
+   5b. HOMEPAGE — FILTER BAR
+========================= */
+.filter-bar {
+    width: 80%;
+    margin: 0 auto 1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6em;
+}
+
+.filter-btn {
+    font-family: "montreal medium";
+    font-size: 0.9em;
+    padding: 0.55em 1.1em;
+    border-radius: 999px;
+    border: 1.5px solid var(--accentblue);
+    background: transparent;
+    color: var(--accentblue);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--accentblue);
+    color: var(--cream);
+}
+
+.projectcontainer {
+    order: 0;
+}
+
+.projectcontainer.is-faded {
+    order: 1;
+    opacity: 0.35;
+}
+
+.projectcontainer.is-faded:hover {
+    opacity: 0.7;
+}
+
 
 
 /* =========================
@@ -190,6 +248,7 @@ nav ul li a:focus {
     display: flex;
     flex-direction: column;
     gap: 1em;
+    transition: opacity 0.25s ease;
 }
 
 .project {
@@ -492,13 +551,13 @@ figcaption {
     display: block;
 }
 .profilepic {
-    width: 45%;
-    /* aspect-ratio: 2094 / 1220; */
+    float: left;
+    width: 400px;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     object-position: center;
     border-radius: 1.5em;
-    display: block;
-    margin-bottom: 2.5em;
+    margin: 0 2.5em 1.5em 0;
 }
 
 .social-icons {
@@ -671,11 +730,97 @@ i{
 footer {
     width: 80%;
     margin: 0 auto;
-    padding: 2em 0;
+    padding: 4em 0 2em;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr;
+    gap: 3em;
+    padding-bottom: 1.5em;
+}
+
+.footer-acknowledgement {
+    min-width: 0;
+}
+
+.footer-mark {
+    font-size: 1.1em;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.6em;
+    color: var(--accentblue);
+}
+
+.footer-acknowledgement p:not(.footer-mark) {
+    text-align: left;
+    font-size: 0.9em;
+    line-height: 1.6;
+    opacity: 0.75;
+    max-width: 32em;
+}
+
+.footer-madeby {
+    text-align: left;
+    margin-top: 0.4em;
+    opacity: 0.55;
+    font-size: 0.85em;
+}
+
+.footer-col {
+    min-width: 0;
+}
+
+.footer-col-title {
+    font-family: "montreal medium";
+    font-size: 0.8em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: left;
+    opacity: 0.5;
+    margin-bottom: 0.8em;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
+    gap: 0.6em;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 0.5em;
+    justify-content: space-between;
+    gap: 1em;
+    padding-top: 1.5em;
+    border-top: 1px solid rgba(6, 4, 45, 0.15);
+}
+
+.footer-bottom p {
+    text-align: left;
+    font-size: 0.85em;
+    opacity: 0.6;
+    margin: 0;
+}
+
+.footer-backtotop {
+    font-family: "montreal medium";
+    font-size: 0.85em;
+    color: var(--accentblue);
+    text-decoration: none;
+    border: 1.5px solid var(--accentblue);
+    border-radius: 999px;
+    padding: 0.5em 1.1em;
+    transition: background 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+}
+
+.footer-backtotop:hover {
+    background: var(--accentblue);
+    color: var(--cream);
 }
 
 footer p {
@@ -697,6 +842,18 @@ footer p {
 .footer-link:focus {
     color: var(--accentblue);
     border-color: var(--accentblue);
+}
+
+@media screen and (max-width: 700px) {
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 2em;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 
@@ -1455,7 +1612,8 @@ footer p {
     }
 
     .profilepic {
-        width: 65%;
+        /* width: 220px; */
+        margin: 0 1.5em 1em 0;
     }
 
     .about-item.has-media {
@@ -1611,8 +1769,10 @@ footer p {
     }
 
     .profilepic {
+        float: none;
         width: 100%;
         aspect-ratio: 16 / 9;
+        margin: 0 0 1.5em 0;
     }
 
     .aboutsection {
