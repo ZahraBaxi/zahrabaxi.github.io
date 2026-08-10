@@ -395,6 +395,30 @@ nav ul li a:focus {
     margin-bottom: 1.5em;
 }
 
+.colophon-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.colophon-list li {
+    font-size: 1.1em;
+    line-height: 1.75;
+    padding-left: 1.2em;
+    position: relative;
+}
+
+.colophon-list li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    opacity: 0.5;
+    font-size: 1.3em;
+}
+
 figure {
     margin: 2em 0;
 }
@@ -552,7 +576,7 @@ figcaption {
 }
 .profilepic {
     float: left;
-    width: 400px;
+    width: 300px;
     aspect-ratio: 3 / 4;
     object-fit: cover;
     object-position: center;
@@ -735,7 +759,7 @@ footer {
 
 .footer-top {
     display: grid;
-    grid-template-columns: 2fr 0.8fr 0.8fr 0.8fr;
+    grid-template-columns: 1.8fr 1fr 1fr 1fr;
     gap: 3em;
     padding-bottom: 1.5em;
 }
@@ -745,6 +769,7 @@ footer {
 }
 
 .footer-mark {
+    text-align: left;
     font-size: 1.1em;
     letter-spacing: 0.05em;
     margin-bottom: 0.6em;
@@ -1612,7 +1637,7 @@ footer p {
     }
 
     .profilepic {
-        /* width: 220px; */
+        width: 220px;
         margin: 0 1.5em 1em 0;
     }
 
