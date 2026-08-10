@@ -224,6 +224,7 @@ nav ul li a:focus {
 .projectcontainer.is-faded {
     order: 1;
     opacity: 0.35;
+    transform: scale(0.97);
 }
 
 .projectcontainer.is-faded:hover {
@@ -238,6 +239,7 @@ nav ul li a:focus {
 .projects {
     width: 80%;
     margin: 0 auto;
+    scroll-margin-top: 2em;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 3em;
@@ -248,7 +250,7 @@ nav ul li a:focus {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project {
@@ -574,14 +576,26 @@ figcaption {
     border-radius: 1.2em;
     display: block;
 }
-.profilepic {
+.profilepic-figure {
     float: left;
-    width: 300px;
+    width: 350px;
+    margin: 0 1.5em 0.6em 0;
+}
+
+.profilepic {
+    width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
     object-position: center;
     border-radius: 1.5em;
-    margin: 0 2.5em 1.5em 0;
+    display: block;
+}
+
+.photo-credit {
+    text-align: left;
+    font-size: 0.8em;
+    opacity: 0.5;
+    margin-top: 0.5em;
 }
 
 .social-icons {
@@ -758,13 +772,21 @@ footer {
 }
 
 .footer-top {
-    display: grid;
-    grid-template-columns: 1.8fr 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 3em;
     padding-bottom: 1.5em;
 }
 
+.footer-nav-groups {
+    display: flex;
+    gap: 2.5em;
+    margin-left: auto;
+}
+
 .footer-acknowledgement {
+    flex: 1 1 320px;
     min-width: 0;
 }
 
@@ -792,6 +814,7 @@ footer {
 }
 
 .footer-col {
+    flex: 0 0 auto;
     min-width: 0;
 }
 
@@ -871,8 +894,14 @@ footer p {
 
 @media screen and (max-width: 700px) {
     .footer-top {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: 2em;
+    }
+
+    .footer-nav-groups {
+        flex-direction: column;
+        gap: 2em;
+        margin-left: 0;
     }
 
     .footer-bottom {
@@ -1636,7 +1665,7 @@ footer p {
         width: 90%;
     }
 
-    .profilepic {
+    .profilepic-figure {
         width: 220px;
         margin: 0 1.5em 1em 0;
     }
@@ -1793,11 +1822,14 @@ footer p {
         font-size: 1.8em;
     }
 
-    .profilepic {
+    .profilepic-figure {
         float: none;
         width: 100%;
-        aspect-ratio: 16 / 9;
         margin: 0 0 1.5em 0;
+    }
+
+    .profilepic {
+        aspect-ratio: 16 / 9;
     }
 
     .aboutsection {

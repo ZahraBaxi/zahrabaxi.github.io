@@ -218,7 +218,8 @@
         if (!bar) return;
 
         var buttons = bar.querySelectorAll(".filter-btn");
-        var cards = document.querySelectorAll(".projectcontainer[data-category]");
+        var cards   = document.querySelectorAll(".projectcontainer[data-category]");
+        var grid    = document.querySelector(".projects");
 
         buttons.forEach(function (btn) {
             btn.addEventListener("click", function () {
@@ -236,6 +237,10 @@
                     var match = filter === "all" || cats.indexOf(filter) !== -1;
                     card.classList.toggle("is-faded", !match);
                 });
+
+                if (grid) {
+                    grid.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
             });
         });
     }
