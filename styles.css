@@ -768,7 +768,8 @@ i{
 footer {
     width: 80%;
     margin: 0 auto;
-    padding: 4em 0 2em;
+    padding: 3em 0 2em;
+    border-top: 1px solid rgba(6, 4, 45, 0.15);
 }
 
 .footer-top {
@@ -844,7 +845,6 @@ footer {
     justify-content: space-between;
     gap: 1em;
     padding-top: 1.5em;
-    border-top: 1px solid rgba(6, 4, 45, 0.15);
 }
 
 .footer-bottom p {
