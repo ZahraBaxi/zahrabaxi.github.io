@@ -11,7 +11,7 @@
     <url>
         <loc>https://www.zahrabaxi.com/about.html</loc>
         <image:image>
-            <image:loc>https://www.zahrabaxi.com/images/content/zahra-baxi.jpeg</image:loc>
+            <image:loc>https://www.zahrabaxi.com/images/content/zahra-baxi.jpg</image:loc>
             <image:title>Zahra Baxi – Profile Photo</image:title>
         </image:image>
         <lastmod>2026-06-26</lastmod>
@@ -36,6 +36,13 @@
         <loc>https://www.zahrabaxi.com/disclaimers.html</loc>
         <lastmod>2026-06-26</lastmod>
         <priority>0.4</priority>
+    </url>
+
+    <!-- audio & video pages -->
+    <url>
+        <loc>https://www.zahrabaxi.com/audiovisual/kdrt-2026-08-13.html</loc>
+        <lastmod>2026-08-14</lastmod>
+        <priority>0.5</priority>
     </url>
 
     <!-- project pages -->
@@ -98,11 +105,6 @@
     </url>
     <url>
         <loc>https://www.zahrabaxi.com/projects/howdycowboyjoe.html</loc>
-        <lastmod>2026-06-26</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.zahrabaxi.com/projects/zoomredesign.html</loc>
         <lastmod>2026-06-26</lastmod>
         <priority>0.7</priority>
     </url>

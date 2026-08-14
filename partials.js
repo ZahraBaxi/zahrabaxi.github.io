@@ -11,8 +11,9 @@
     // =========================
 
     function loadPartials() {
-        var isProjectPage = window.location.pathname.indexOf("/projects/") !== -1;
-        var prefix = isProjectPage ? "../" : "";
+        var path = window.location.pathname;
+        var isSubfolderPage = path.indexOf("/projects/") !== -1 || path.indexOf("/audiovisual/") !== -1;
+        var prefix = isSubfolderPage ? "../" : "";
 
         fetch(prefix + "partials/header.html")
             .then(function (response) {

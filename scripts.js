@@ -247,6 +247,65 @@
 
 
     // =========================
+    // KDRT PLAYER
+    // — custom-styled audio player, replaces native browser controls
+    // — only runs on pages that actually have the player
+    // =========================
+
+    function initKdrtPlayer() {
+        var audio = document.getElementById("kdrt-audio");
+        if (!audio) return;
+
+        var playBtn   = document.getElementById("kdrt-play-btn");
+        var playIcon  = playBtn.querySelector(".kdrt-play-icon");
+        var seek      = document.getElementById("kdrt-seek");
+        var currentEl = document.getElementById("kdrt-current");
+        var durationEl = document.getElementById("kdrt-duration");
+
+        function formatTime(seconds) {
+            if (!isFinite(seconds)) return "0:00";
+            var m = Math.floor(seconds / 60);
+            var s = Math.floor(seconds % 60);
+            return m + ":" + (s < 10 ? "0" : "") + s;
+        }
+
+        playBtn.addEventListener("click", function () {
+            if (audio.paused) {
+                audio.play();
+                playIcon.textContent = "⏸";
+                playBtn.setAttribute("aria-label", "pause");
+            } else {
+                audio.pause();
+                playIcon.textContent = "▶";
+                playBtn.setAttribute("aria-label", "play");
+            }
+        });
+
+        audio.addEventListener("loadedmetadata", function () {
+            durationEl.textContent = formatTime(audio.duration);
+        });
+
+        audio.addEventListener("timeupdate", function () {
+            currentEl.textContent = formatTime(audio.currentTime);
+            if (audio.duration) {
+                seek.value = (audio.currentTime / audio.duration) * 100;
+            }
+        });
+
+        audio.addEventListener("ended", function () {
+            playIcon.textContent = "▶";
+            playBtn.setAttribute("aria-label", "play");
+        });
+
+        seek.addEventListener("input", function () {
+            if (audio.duration) {
+                audio.currentTime = (seek.value / 100) * audio.duration;
+            }
+        });
+    }
+
+
+    // =========================
     // SCROLL TO TOP
     // — injects a small fixed button that appears after scrolling down
     // — only shows up if the page is actually taller than the viewport
@@ -590,6 +649,7 @@
         initLightbox();
         initZineLightbox();
         initProjectFilter();
+        initKdrtPlayer();
         initScrollTop();
         initContactForm();
         initBugReport();

@@ -385,6 +385,74 @@ nav ul li a:focus {
     max-width: 700px;
 }
 
+.kdrt-player-card {
+    background: var(--cream);
+    border: 1.5px solid var(--accentblue);
+    border-radius: 1.5em;
+    padding: 1.2em 1.5em;
+    margin-bottom: 1em;
+}
+
+.kdrt-player {
+    display: flex;
+    align-items: center;
+    gap: 1.2em;
+}
+
+.kdrt-play-btn {
+    flex: 0 0 auto;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    border: none;
+    background: var(--accentblue);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1em;
+    transition: transform 0.15s ease;
+}
+
+.kdrt-play-btn:hover {
+    transform: scale(1.06);
+}
+
+.kdrt-play-icon {
+    display: block;
+    /* nudge the play triangle to look visually centered */
+    margin-left: 2px;
+}
+
+.kdrt-player-main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.kdrt-seek {
+    width: 100%;
+    accent-color: var(--accentblue);
+    height: 4px;
+    cursor: pointer;
+}
+
+.kdrt-time {
+    font-family: "montreal";
+    font-size: 0.85em;
+    opacity: 0.65;
+}
+
+.kdrt-note {
+    font-size: 0.9em;
+    opacity: 0.7;
+    line-height: 1.6;
+    margin-bottom: 1.2em;
+}
+
 .projectsection h2 {
     font-family: "montreal medium";
     margin-bottom: 0.8em;

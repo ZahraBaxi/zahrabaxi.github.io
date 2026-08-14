@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yolo backyard bulletin — zahra baxi</title>
+    <link rel="icon" type="image/png" href="../images/content/icon.png">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+    <script src="../scripts.js"></script>
+    <script src="../partials.js" defer></script>
+</head>
+<body>
+    <div id="header"></div>
+    <main>
+        <div class="projectpage">
+
+            <div class="back-link"><a href="../about.html">← back</a></div>
+
+            <div class="projectintro">
+                <h1>yolo backyard bulletin</h1>
+                <p class="subtitle">a guest appearance on KDRT 95.7 FM, Davis, August 13, 2026.</p>
+            </div>
+
+            <div class="projectsection">
+                <h2>listen</h2>
+                <div class="kdrt-player-card">
+                    <div class="kdrt-player" id="kdrt-player">
+                        <button class="kdrt-play-btn" id="kdrt-play-btn" aria-label="play">
+                            <span class="kdrt-play-icon">▶</span>
+                        </button>
+                        <div class="kdrt-player-main">
+                            <input type="range" class="kdrt-seek" id="kdrt-seek" min="0" max="100" value="0" aria-label="seek through audio">
+                            <div class="kdrt-time">
+                                <span id="kdrt-current">0:00</span> / <span id="kdrt-duration">0:00</span>
+                            </div>
+                        </div>
+                        <audio id="kdrt-audio" preload="metadata" controlsList="nodownload">
+                            <source src="/download/audio/2026-08-13-yolo-backyard-bulletin.mp3" type="audio/mpeg">
+                        </audio>
+                    </div>
+                </div>
+                <p class="kdrt-note">heads up: the first minute of this recording has muted audio due to a mic issue on my end. it was fixed shortly after, and the rest of the segment is clear.</p>
+                <p>You can also <a href="https://kdrt.org/audio/yolo-backyard-bulletin-august-13-2026" target="_blank" rel="noopener" class="about-link">listen on KDRT.org ↗</a>.</p>
+            </div>
+
+            <div class="projectsection">
+                <h2>about the show</h2>
+                <p>Yolo Backyard Bulletin features local news, commentary, music, gossip, and true stories from Yolo County, working to rebuild community communication in the public sphere. Guests come from a wide variety of backgrounds to share news and views about what's happening locally, engaging respectfully and constructively even where there's disagreement.</p>
+                <p>Hosted by Jesse Drew. Airs live Thursdays 5 to 6pm on <a href="https://kdrt.org" target="_blank" rel="noopener" class="about-link">KDRT 95.7 FM ↗</a>, Davis, with a replay Sundays 8 to 9am.</p>
+            </div>
+
+        </div>
+    </main>
+
+        <!-- BUG REPORT MODAL -->
+    <div class="modal-overlay" id="bug-modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="bug-modal-close" aria-label="Close">✕</button>
+            <h2 class="modal-title">🐛 report a bug</h2>
+            <p class="modal-subtitle">spotted something broken, wrong, or inaccessible? let me know and i'll fix it!</p>
+            <div id="bug-form-area">
+                <div class="form-row">
+                    <label for="bug-page">where did you see it?</label>
+                    <input type="text" id="bug-page" placeholder="e.g. about page, lit review project...">
+                </div>
+                <div class="form-row">
+                    <label for="bug-description">what happened?</label>
+                    <textarea id="bug-description" rows="4" placeholder="describe the bug, what you saw, what you expected..."></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="bug-email">your email <span style="opacity:0.5;">(optional, if you want a reply)</span></label>
+                    <input type="email" id="bug-email" placeholder="your@email.com" autocomplete="email">
+                </div>
+                <button class="form-submit" id="bug-submit">submit report ↗</button>
+                <p class="form-status" id="bug-status"></p>
+
+                <p>thank you for helping me make my website a better place!</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer"></div>
+</body>
+</html>
