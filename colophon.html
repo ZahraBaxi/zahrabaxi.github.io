@@ -20,6 +20,356 @@
             font-size: 0.85em;
             color: var(--accentblue, #1F18FF);
         }
+
+        /* ---- build your own site section ---- */
+        .build-intro { max-width: 700px; }
+
+        .build-steps {
+            list-style: none;
+            padding: 0;
+            margin: 2em 0;
+            counter-reset: step;
+        }
+
+        .build-steps > li {
+            counter-increment: step;
+            position: relative;
+            padding: 0 0 0 3.2em;
+            margin-bottom: 2.5em;
+        }
+
+        .build-steps > li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.2em;
+            height: 2.2em;
+            border-radius: 50%;
+            border: 1.5px solid var(--accentblue, #1F18FF);
+            color: var(--accentblue, #1F18FF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "montreal medium";
+            font-size: 0.95em;
+        }
+
+        .build-steps h4 {
+            font-family: "montreal medium";
+            font-size: 1.2em;
+            margin: 0.1em 0 0.5em;
+        }
+
+        .build-steps p,
+        .build-steps li li {
+            font-size: 1.05em;
+            line-height: 1.75;
+            margin-bottom: 0.8em;
+        }
+
+        .build-steps ul,
+        .build-steps ol.sub {
+            margin: 0 0 0.8em 1.2em;
+        }
+
+        .build-steps code,
+        .build-intro code,
+        .build-resources code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.9em;
+            background: rgba(6, 4, 45, 0.07);
+            border-radius: 0.3em;
+            padding: 0.1em 0.4em;
+            overflow-wrap: anywhere;
+        }
+
+        kbd {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.85em;
+            border: 1px solid var(--blackish, #06042D);
+            border-radius: 0.35em;
+            padding: 0.05em 0.4em;
+            white-space: nowrap;
+        }
+
+        .step-shot { margin: 1.2em 0 0.5em; }
+        .step-shot img { border: 1px solid rgba(6, 4, 45, 0.25); }
+
+        .step-note {
+            border-left: 3px solid var(--accentblue, #1F18FF);
+            padding-left: 1em;
+            font-size: 0.95em;
+        }
+
+        .file-table {
+            width: 100%;
+            max-width: 700px;
+            border-collapse: collapse;
+            margin: 1em 0 1.5em;
+            font-size: 1.05em;
+        }
+
+        .file-table caption {
+            text-align: left;
+            font-family: "montreal medium";
+            margin-bottom: 0.5em;
+        }
+
+        .file-table th,
+        .file-table td {
+            text-align: left;
+            vertical-align: top;
+            padding: 0.6em 0.8em 0.6em 0;
+            border-bottom: 1px solid rgba(6, 4, 45, 0.25);
+            line-height: 1.6;
+        }
+
+        .download-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7em;
+            margin: 1em 0 1.5em;
+        }
+
+        .download-row a {
+            font-family: "montreal medium";
+            font-size: 0.95em;
+            text-decoration: none;
+            color: var(--blackish, #06042D);
+            border: 1px solid var(--blackish, #06042D);
+            border-radius: 2em;
+            padding: 0.5em 1.2em;
+            transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .download-row a:hover,
+        .download-row a:focus-visible {
+            color: var(--accentblue, #1F18FF);
+            border-color: var(--accentblue, #1F18FF);
+            background: rgba(31, 24, 255, 0.05);
+        }
+
+        .download-row a.primary {
+            background: var(--accentblue, #1F18FF);
+            border-color: var(--accentblue, #1F18FF);
+            color: var(--cream, #F5F2E8);
+        }
+
+        .download-row a.primary:hover,
+        .download-row a.primary:focus-visible {
+            background: var(--blackish, #06042D);
+            border-color: var(--blackish, #06042D);
+            color: var(--cream, #F5F2E8);
+        }
+
+
+        /* ---- dropdowns (reuse the site's tutorials dropdown look) ---- */
+        .build-dropdown { margin-bottom: 1.5em; }
+
+        .build-dropdown .tutorials-summary-title h3 {
+            font-family: "montreal medium";
+            font-size: 1.2em;
+            margin: 0;
+            transition: color 0.2s ease;
+        }
+
+        .build-dropdown .tutorials-summary:hover h3 { color: var(--accentblue, #1F18FF); }
+
+        .build-summary-desc {
+            display: block;
+            font-size: 0.95em;
+            opacity: 0.75;
+        }
+
+        .build-dropdown[open] .build-panel {
+            border: 1px solid var(--blackish, #06042D);
+            border-top: none;
+            border-bottom-left-radius: 1em;
+            border-bottom-right-radius: 1em;
+            padding: 2em 1.6em 0.5em;
+        }
+
+        .build-dropdown > .build-panel > p { font-size: 1.05em; line-height: 1.75; margin-bottom: 1.2em; }
+
+
+        /* ---- nested dropdowns inside the guide ---- */
+        .build-sub { margin-bottom: 1em; }
+
+        .build-sub > summary {
+            list-style: none;
+            cursor: pointer;
+            border: 1px solid rgba(6, 4, 45, 0.55);
+            border-radius: 0.8em;
+            padding: 0.9em 1.2em;
+            transition: border-color 0.2s ease, background 0.2s ease;
+            user-select: none;
+        }
+
+        .build-sub > summary::-webkit-details-marker { display: none; }
+
+        .build-sub > summary:hover {
+            border-color: var(--accentblue, #1F18FF);
+            background: rgba(31, 24, 255, 0.03);
+        }
+
+        .build-sub > summary:hover .sub-title-text { color: var(--accentblue, #1F18FF); }
+
+        .sub-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.4em 0.8em;
+        }
+
+        .sub-title-text {
+            font-family: "montreal medium";
+            font-size: 1.1em;
+            transition: color 0.2s ease;
+        }
+
+        .build-heading {
+            font-family: "montreal medium";
+            font-size: 1.2em;
+            margin: 1.5em 0 0.5em;
+        }
+
+        .build-subhead {
+            font-family: "montreal medium";
+            font-size: 1.1em;
+            margin: 1.5em 0 0.5em;
+        }
+
+        .sub-hint,
+        .sub-collapse {
+            font-size: 0.85em;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        .sub-collapse { display: none; }
+        .build-sub[open] > summary .sub-hint { display: none; }
+        .build-sub[open] > summary .sub-collapse { display: inline; }
+
+        .build-sub[open] > summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-color: transparent;
+            background: rgba(31, 24, 255, 0.03);
+        }
+
+        .build-sub[open] > .sub-panel {
+            border: 1px solid rgba(6, 4, 45, 0.55);
+            border-top: none;
+            border-bottom-left-radius: 0.8em;
+            border-bottom-right-radius: 0.8em;
+            padding: 1.5em 1.2em 0.4em;
+        }
+
+
+        .build-intro pre {
+            background: rgba(6, 4, 45, 0.07);
+            border-radius: 0.6em;
+            padding: 1em 1.2em;
+            overflow-x: auto;
+            font-size: 0.85em;
+            line-height: 1.6;
+            margin: 0 0 1.2em;
+        }
+
+        .build-intro pre code {
+            background: none;
+            padding: 0;
+            font-size: 1em;
+            overflow-wrap: normal;
+        }
+
+        .sub-panel > p { font-size: 1.05em; line-height: 1.75; margin-bottom: 1.2em; }
+
+        /* ---- side contents + scroll progress ---- */
+        .page-toc {
+            position: fixed;
+            top: 50%;
+            right: 2em;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6em;
+            z-index: 100;
+        }
+
+        .toc-label {
+            font-family: "montreal medium", "montreal", sans-serif;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.6;
+            margin: 0 0 0.2em 0;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.1em;
+        }
+
+        .toc-link {
+            font-family: "montreal", sans-serif;
+            font-size: 0.8em;
+            color: var(--blackish);
+            text-decoration: none;
+            opacity: 0.6;
+            display: block;
+            padding: 0.2em 0;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .toc-link:hover { opacity: 0.85; }
+        .toc-link.toc-active { opacity: 1; font-family: "montreal medium", "montreal", sans-serif; }
+
+        .toc-progress {
+            margin-top: 0.8em;
+            width: 2px;
+            height: 80px;
+            background: rgba(6, 4, 45, 0.1);
+            border-radius: 2px;
+            align-self: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .toc-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--blackish);
+            border-radius: 2px;
+            transition: height 0.1s linear;
+            height: 0%;
+        }
+
+        @media screen and (max-width: 1100px) {
+            .page-toc { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .toc-progress-bar { transition: none; }
+        }
+
+        @media (max-width: 600px) {
+            .build-dropdown[open] .build-panel { padding: 1.4em 1em 0.3em; }
+            .build-sub > summary { padding: 0.8em 1em; }
+            .build-sub[open] > .sub-panel { padding: 1.2em 0.9em 0.3em; }
+            .build-steps > li { padding-left: 0; }
+            .build-steps > li::before { position: static; margin-bottom: 0.6em; }
+            .file-table th, .file-table td { display: block; padding-right: 0; }
+            .file-table th { border-bottom: none; padding-bottom: 0; }
+        }
     </style>
 </head>
 <body>
@@ -29,6 +379,22 @@
         <div class="projectpage">
 
             <div class="back-link"><a href="index.html">← back</a></div>
+
+            <!-- PAGE TOC SIDEBAR -->
+            <nav class="page-toc" aria-label="Page contents">
+                <p class="toc-label">contents</p>
+                <ol class="toc-list">
+                    <li><a href="#why" class="toc-link">why a colophon</a></li>
+                    <li><a href="#philosophy" class="toc-link">philosophy</a></li>
+                    <li><a href="#design" class="toc-link">design</a></li>
+                    <li><a href="#development" class="toc-link">development</a></li>
+                    <li><a href="#typography" class="toc-link">typography</a></li>
+                    <li><a href="#land-acknowledgement" class="toc-link">land acknowledgement</a></li>
+                </ol>
+                <div class="toc-progress" aria-hidden="true">
+                    <div class="toc-progress-bar" id="toc-progress-bar"></div>
+                </div>
+            </nav>
 
             <div class="projectintro">
                 <h1>colophon</h1>
@@ -40,6 +406,7 @@
                 <a href="#philosophy">philosophy</a>
                 <a href="#design">design</a>
                 <a href="#development">development</a>
+
                 <a href="#typography">typography</a>
                 <a href="#land-acknowledgement">land acknowledgement</a>
             </nav>
@@ -62,6 +429,381 @@
             <div class="projectsection" id="development">
                 <h2>development</h2>
                 <p>This site is hand-coded in plain HTML, CSS, and vanilla JavaScript, using no frameworks. I use <a href="https://code.visualstudio.com/" target="_blank" rel="noopener" class="about-link">Visual Studio Code ↗</a> (I previously used Atom). While coding from scratch adds a bit of complexity with a huge learning curve, it also keeps things simple by not relying on external libraries and I get to have things exactly the way I want them to be. Pages share a header and footer through a small partials.js script, mostly so I only have to update the copyright year in one place. The site is version-controlled with Git, and files pushed via <a href="https://desktop.github.com/" target="_blank" rel="noopener" class="about-link">GitHub Desktop ↗</a>. Served for free via <a href="https://pages.github.com/" target="_blank" rel="noopener" class="about-link">GitHub Pages ↗</a>, with the source living on a public repo since 2019 (and seeing many, many evolutions). The domain is registered through <a href="https://www.namecheap.com/" target="_blank" rel="noopener" class="about-link">Namecheap ↗</a>. Contact and bug report forms run on <a href="https://back4app.com" target="_blank" rel="noopener" class="about-link">Back4App ↗</a>, a cloud backend built on Parse. I use <a href="https://search.google.com/search-console" target="_blank" rel="noopener" class="about-link">Google Search Console ↗</a> to make sure pages stay properly indexed.</p>
+
+                <div class="build-intro build-resources" id="build-your-own">
+                <h3 class="build-heading">make your own website</h3>
+                <p>Want to build a site like this one? Anyone can, and it is free!</p>
+
+
+                
+
+                        <details class="build-sub" id="start-here">
+                            <summary>
+                                <span class="sub-title">
+                                    <span class="sub-title-text">start here</span>
+                                    <span class="sub-hint">click to expand</span>
+                                    <span class="sub-collapse">click to collapse</span>
+                                </span>
+                                <span class="build-summary-desc">you can do this!</span>
+                            </summary>
+                            <div class="sub-panel">
+                <p>I think learning to build your own website is powerful and incredibly cost effective. You can make your own website for free, and you do not need a degree, an expensive computer, or any prior experience. I was a TA for the Interactive Media Design series at UC Davis, which was an introduction to web development, and I loved seeing my students realize they could do this on their own. Everything listed below is free to get you started on the web. I do encourage you to dive deeper, however, to learn how to customize it to be your own and understand web safety and accessibility compliance.</p>
+                <p>I try to make things accessible to everyone, and that includes learning how to build a website. This guide is for anyone who wants a place online to show their work, who have no background with coding. If anything here is confusing, send me a message through the <a href="about.html" class="about-link">about page</a> and I will make it clearer.</p>
+                <p>Let's say you are Frodo Baggins! You live in the Shire and run Baggins Map Co., where you sell hand-drawn maps and illustrated stories. Customers keep asking where they can see your work, so you decide to build a website. Scrolling below, you'll find the ways that will guide you step by step.</p>
+                <h4 class="build-subhead">how to peek at web code</h4>
+                <p>My website code is public on <a href="https://github.com/ZahraBaxi/ZahraBaxi.github.io" target="_blank" rel="noopener" class="about-link">GitHub ↗</a>. Feel free to look around and learn from it. You can also see the code of almost any website, right in your browser:</p>
+                <ul class="colophon-list">
+                    <li>Mac: press <kbd>Option</kbd> + <kbd>Command</kbd> + <kbd>U</kbd> in Chrome and Safari, or <kbd>Command</kbd> + <kbd>U</kbd> in Firefox</li>
+                    <li>Windows: press <kbd>Ctrl</kbd> + <kbd>U</kbd></li>
+                    <li>Any computer: right click the page and choose "view page source"</li>
+                </ul>
+                <p>Looking is great for learning. Copying someone else's whole site or work is not, so use what you see as inspiration.</p>
+
+                
+                            </div>
+                        </details>
+
+
+                        <details class="build-sub" id="steps">
+                            <summary>
+                                <span class="sub-title">
+                                    <span class="sub-title-text">step by step</span>
+                                    <span class="sub-hint">click to expand</span>
+                                    <span class="sub-collapse">click to collapse</span>
+                                </span>
+                                <span class="build-summary-desc">9 small steps from nothing to something!</span>
+                            </summary>
+                            <div class="sub-panel">
+                <p>You will use three free tools. GitHub keeps your website online. Visual Studio Code is where you write it. GitHub Desktop sends it out into the world. There are lots of other tools you can use in the future, free and paid, that can help you maintain certain aspects of your website.</p>
+
+                <ol class="build-steps" role="list">
+
+                    <li>
+                        <h4>make a GitHub account</h4>
+                        <p>Your website needs a place to live online. Go to <a href="https://github.com/signup" target="_blank" rel="noopener" class="about-link">github.com/signup ↗</a> and make a free account.</p>
+                        <p>Your username becomes part of your website address, so pick one you are happy to share. As Frodo, you pick <code>frodo-baggins</code>.</p>
+                        <!--
+                        SCREENSHOT: delete the comment symbols around this block, then change the file name and the alt text (describe what the screenshot shows).
+                        <figure class="step-shot"><img src="images/colophon/step-01.png" alt="DESCRIBE THE SCREENSHOT" width="1200" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+                        -->
+                    </li>
+
+                    <li>
+                        <h4>make a repository</h4>
+                        <p>A repository (people say "repo") is a folder for your website that lives on GitHub. Think of it as the home of your business site. It is where all your maps, stories, and pages will live.</p>
+                        <p>Click the <code>+</code> button in the top right corner, then click "New repository."</p>
+                        <p>Name it <code>yourusername.github.io</code>. Frodo's repo name is <code>frodo-baggins.github.io</code>. Choose "Public," then click "Create repository."</p>
+                        <p class="step-note">GitHub will offer to add a "README" file. You do not need one, so you can skip it.</p>
+                        <!--
+                        SCREENSHOT: delete the comment symbols around this block, then change the file name and the alt text (describe what the screenshot shows).
+                        <figure class="step-shot"><img src="images/colophon/step-02.png" alt="DESCRIBE THE SCREENSHOT" width="1200" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+                        -->
+                    </li>
+
+                    <li>
+                        <h4>turn the repository into a website</h4>
+                        <p>Open your repo and click "Settings." Then click "Pages" in the menu on the left. Under "Build and deployment," set "Source" to "Deploy from a branch." Then choose the branch called <code>main</code> and the folder called <code>/ (root)</code>. Click "Save."</p>
+                        <p class="step-note">Can't find <code>main</code> in the list? That is normal when a repo is empty. Do steps 4 to 9 first, then come back and do this step. (Some older repos call it <code>master</code> instead of <code>main</code>. Either one works.)</p>
+                        <p>This turns your folder into a real website that customers can visit. Your website will be live a couple of minutes after you finish. Wait a bit, then refresh the page. Frodo's address will be <code>https://frodo-baggins.github.io</code>. Yours will use your own username.</p>
+                        <!--
+                        SCREENSHOT: delete the comment symbols around this block, then change the file name and the alt text (describe what the screenshot shows).
+                        <figure class="step-shot"><img src="images/colophon/step-03.png" alt="DESCRIBE THE SCREENSHOT" width="1200" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+                        -->
+                    </li>
+
+                    <li>
+                        <h4>install GitHub Desktop and Visual Studio Code</h4>
+                        <p>Now get two free apps. Visual Studio Code (people say "VS Code") is where you write your website. Think of it as a notebook for websites. GitHub Desktop sends your work to GitHub so customers can see it.</p>
+                        <ul>
+                            <li><a href="https://desktop.github.com/" target="_blank" rel="noopener" class="about-link">GitHub Desktop ↗</a></li>
+                            <li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener" class="about-link">Visual Studio Code ↗</a></li>
+                        </ul>
+                        <p>Next, give GitHub Desktop permission to send your files to your repo. Without this, publishing will not work.</p>
+                        <ol class="sub">
+                            <li>Open GitHub Desktop and click "Sign in to GitHub.com."</li>
+                            <li>Your web browser opens. Log in to GitHub if it asks, then click "Authorize."</li>
+                            <li>Go back to GitHub Desktop. It may ask for your name and email. These get attached to your work. If you see a "keep my email private" choice, check it.</li>
+                        </ol>
+                        <!--
+                        SCREENSHOT: delete the comment symbols around this block, then change the file name and the alt text (describe what the screenshot shows).
+                        <figure class="step-shot"><img src="images/colophon/step-04.png" alt="DESCRIBE THE SCREENSHOT" width="1200" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+                        -->
+                    </li>
+
+                    <li>
+                        <h4>add Live Server to VS Code</h4>
+                        <p>Live Server shows you your website while you build it. That way you can check that your maps look right before anyone else sees them.</p>
+                        <p>In VS Code, click the Extensions icon in the left bar. It looks like four little squares. Type "Live Server" in the search box. Pick the one made by <strong>Ritwick Dey</strong> (his name is under the title) and click "Install."</p>
+                        <!--
+                        SCREENSHOT: delete the comment symbols around this block, then change the file name and the alt text (describe what the screenshot shows).
+                        <figure class="step-shot"><img src="images/colophon/step-05.png" alt="DESCRIBE THE SCREENSHOT" width="1200" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+                        -->
+                    </li>
+
+                    <li>
+                        <h4>copy your repository to your computer</h4>
+                        <p>Now copy your repo from GitHub to your computer. This is called "cloning." It lets you work on your site at home.</p>
+                        <p>First, decide where the folder will live. Pick a place you will remember. I keep mine right on my desktop.</p>
+                        <p>In VS Code, click the Source Control icon in the left bar. It looks like a little branch. Click "Clone Repository" and choose your <code>yourusername.github.io</code> repo. VS Code may ask you to sign in to GitHub first. When it asks where to save the folder, pick your desktop or another easy spot. Click "Open" when it asks.</p>
+                        <!--
+                        SCREENSHOT: delete the comment symbols around this block, then change the file name and the alt text (describe what the screenshot shows).
+                        <figure class="step-shot"><img src="images/colophon/step-06.png" alt="DESCRIBE THE SCREENSHOT" width="1200" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+                        -->
+                    </li>
+
+                    <li>
+                        <h4>make your first files</h4>
+                        <p>In VS Code, use the "new file" icon to make your files. You need an HTML file and a CSS file. A JavaScript file is optional. Use these names:</p>
+                        <table class="file-table">
+                            <caption>file names to use</caption>
+                            <thead>
+                                <tr><th scope="col">file</th><th scope="col">what it does</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>index.html</code></td><td>Your home page. It must have this exact name. A browser looks for <code>index.html</code> first, like the front door of a shop.</td></tr>
+                                <tr><td><code>styles.css</code></td><td>The looks of your site: colors, fonts, and spacing.</td></tr>
+                                <tr><td><code>scripts.js</code></td><td>Optional. Makes things move or change. You can skip it until you want it.</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="step-note">Name tips: use all lowercase letters, no spaces, and use hyphens instead. For example, <code>shire-maps.html</code>. Extra pages can be called anything, like <code>about.html</code>.</p>
+                        <p>Not sure what to type inside them? Read "code basics" below, or use Frodo's starter files for a head start.</p>
+                        <!--
+                        SCREENSHOT: delete the comment symbols around this block, then change the file name and the alt text (describe what the screenshot shows).
+                        <figure class="step-shot"><img src="images/colophon/step-07.png" alt="DESCRIBE THE SCREENSHOT" width="1200" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+                        -->
+                    </li>
+
+                    <li>
+                        <h4>see your website while you work</h4>
+                        <p>In VS Code, right click <code>index.html</code> and choose "Open with Live Server." Your website opens in your browser. Now change a word, save your file, and watch it change. To save, press <kbd>Command</kbd> + <kbd>S</kbd> on a Mac or <kbd>Ctrl</kbd> + <kbd>S</kbd> on Windows.</p>
+                        <!--
+                        SCREENSHOT: delete the comment symbols around this block, then change the file name and the alt text (describe what the screenshot shows).
+                        <figure class="step-shot"><img src="images/colophon/step-08.png" alt="DESCRIBE THE SCREENSHOT" width="1200" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+                        -->
+                    </li>
+
+                    <li>
+                        <h4>publish your website</h4>
+                        <p>GitHub Desktop is how you send your work from your computer to GitHub. Two words you will see: "commit" means saving a snapshot of your changes, and "push" means sending that snapshot to GitHub.</p>
+                        <p><strong>First time only:</strong> show GitHub Desktop where your folder is.</p>
+                        <ol class="sub">
+                            <li>Open GitHub Desktop. In the menu at the top of your screen, click "File," then "Add Local Repository."</li>
+                            <li>Click "Choose," find the repo folder you saved in step 6, and click "Add Repository."</li>
+                        </ol>
+                        <p><strong>Every time you want to publish:</strong></p>
+                        <ol class="sub">
+                            <li>Open GitHub Desktop. Check that your repo name, like <code>frodo-baggins.github.io</code>, shows at the top left. Your changed files show up in a list on the left.</li>
+                            <li>Type a short note in the "Summary" box at the bottom left, like "first draft."</li>
+                            <li>Click the blue "Commit to main" button.</li>
+                            <li>Click "Push origin" at the top. The first time, it may say "Publish branch" instead. Click that.</li>
+                        </ol>
+                        <p>Wait a couple of minutes and refresh your website address. Your site is live. Customers can now find Baggins Map Co. Do this step again any time you want to update your site, like when you finish a new map.</p>
+                        <p class="step-note">If GitHub Desktop says it cannot push or asks you to log in, you need to give it permission again. On a Mac, click "GitHub Desktop" in the top menu, then "Settings." On Windows, click "File," then "Options." Open "Accounts," sign out, sign back in, and click "Authorize" in your browser. Then try "Push origin" again.</p>
+                        <!--
+                        SCREENSHOT: delete the comment symbols around this block, then change the file name and the alt text (describe what the screenshot shows).
+                        <figure class="step-shot"><img src="images/colophon/step-09.png" alt="DESCRIBE THE SCREENSHOT" width="1200" height="800" loading="lazy"><figcaption>CAPTION</figcaption></figure>
+                        -->
+                    </li>
+
+                </ol>
+
+                            </div>
+                        </details>
+
+
+                        <details class="build-sub" id="code-basics">
+                            <summary>
+                                <span class="sub-title">
+                                    <span class="sub-title-text">code basics</span>
+                                    <span class="sub-hint">click to expand</span>
+                                    <span class="sub-collapse">click to collapse</span>
+                                </span>
+                                <span class="build-summary-desc">what tags like p, h1, and a mean</span>
+                            </summary>
+                            <div class="sub-panel">
+                <p>A website is made of a few simple pieces. You do not need to learn them all at once. Here is what each one does.</p>
+                <ul class="colophon-list">
+                    <li><strong>HTML</strong> is the words and parts of your page: headings, paragraphs, links, and pictures. Think of it as the skeleton.</li>
+                    <li><strong>CSS</strong> is how it looks: colors, fonts, and spacing. Think of it as the clothes.</li>
+                    <li><strong>JavaScript</strong> is what it does: menus that open, buttons that react. It is optional. Think of it as the movement.</li>
+                </ul>
+
+                <h4 class="build-subhead">tags: what does &lt;p&gt; mean?</h4>
+                <p>HTML is written with tags. A tag is a label inside angle brackets, like <code>&lt;p&gt;</code>. The <code>p</code> stands for paragraph.</p>
+                <p>Most tags come in pairs. The first one opens, and the second one closes. The closing tag has a slash in it. Whatever sits in between is the content.</p>
+                <pre tabindex="0"><code>&lt;p&gt;I draw maps by hand.&lt;/p&gt;</code></pre>
+                <p>Some tags need extra information. This is called an attribute. It goes inside the opening tag, as a name and a value in quotes.</p>
+                <pre tabindex="0"><code>&lt;a href="work.html"&gt;see my work&lt;/a&gt;</code></pre>
+                <p>Here, <code>a</code> makes a link, <code>href</code> is the attribute, and <code>work.html</code> is where the link goes. A few tags, like <code>&lt;img&gt;</code>, have no closing tag because they have no content in the middle.</p>
+
+                <table class="file-table">
+                    <caption>common tags</caption>
+                    <thead>
+                        <tr><th scope="col">tag</th><th scope="col">stands for</th><th scope="col">what it does</th></tr>
+                    </thead>
+                    <tbody>
+                                <tr><td><code>&lt;html&gt;</code></td><td>the whole page</td><td>Wraps everything on the page.</td></tr>
+                                <tr><td><code>&lt;head&gt;</code></td><td>page info</td><td>Holds things people do not see on the page, like the title and the link to your CSS.</td></tr>
+                                <tr><td><code>&lt;body&gt;</code></td><td>page body</td><td>Holds everything people do see.</td></tr>
+                                <tr><td><code>&lt;h1&gt; to &lt;h6&gt;</code></td><td>headings</td><td>Titles. <code>h1</code> is the biggest. Use one <code>h1</code> per page.</td></tr>
+                                <tr><td><code>&lt;p&gt;</code></td><td>paragraph</td><td>A paragraph of text.</td></tr>
+                                <tr><td><code>&lt;a&gt;</code></td><td>anchor</td><td>A link. The <code>href</code> says where it goes.</td></tr>
+                                <tr><td><code>&lt;img&gt;</code></td><td>image</td><td>A picture. The <code>alt</code> describes it for people who cannot see it.</td></tr>
+                                <tr><td><code>&lt;ul&gt; and &lt;li&gt;</code></td><td>unordered list, list item</td><td>A list with bullets. Each <code>li</code> is one bullet.</td></tr>
+                                <tr><td><code>&lt;div&gt;</code></td><td>division</td><td>An invisible box. Use it to group things so you can style them together.</td></tr>
+                                <tr><td><code>&lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;footer&gt;</code></td><td>page parts</td><td>Name the top, the menu, the main content, and the bottom of a page. They help screen readers find their way.</td></tr>
+                                <tr><td><code>&lt;section&gt; and &lt;article&gt;</code></td><td>section, article</td><td>Group related content, like one project or one piece of writing.</td></tr>
+                                <tr><td><code>&lt;figure&gt; and &lt;figcaption&gt;</code></td><td>figure, caption</td><td>A picture with a caption.</td></tr>
+                    </tbody>
+                </table>
+
+                <h4 class="build-subhead">a whole page</h4>
+                <p>Put the tags together and you get a tiny website. Save this as <code>index.html</code> and open it with Live Server to see it.</p>
+                <pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;title&gt;Baggins Map Co.&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Baggins Map Co.&lt;/h1&gt;
+    &lt;p&gt;I draw maps by hand.&lt;/p&gt;
+    &lt;a href="work.html"&gt;see my work&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                <p>Tags can go inside other tags. Notice the <code>h1</code>, <code>p</code>, and <code>a</code> all sit inside <code>body</code>. Indenting, which means pushing lines in with the Tab key, makes this easier to read. The computer does not need it, but you will.</p>
+
+                <h4 class="build-subhead">css: how it looks</h4>
+                <p>CSS goes in your <code>styles.css</code> file. It is written as rules. Each rule has three parts: who to style, what to change, and how to change it.</p>
+                <pre tabindex="0"><code>p {
+    color: #1B1B1B;
+    font-size: 1.1rem;
+}</code></pre>
+                <ul class="colophon-list">
+                    <li><code>p</code> is the selector. It picks which part of the page to style. This rule styles every paragraph.</li>
+                    <li><code>color</code> and <code>font-size</code> are properties. They are the things you can change.</li>
+                    <li><code>#1B1B1B</code> and <code>1.1rem</code> are values. They say how to change it. Each line ends with a semicolon.</li>
+                </ul>
+                <p>You can give a tag a name with <code>class</code>, like <code>&lt;div class="card"&gt;</code>. In CSS, a dot picks that name: <code>.card</code> styles everything with that class.</p>
+                <p>To connect your CSS to a page, add this line inside the <code>head</code>: <code>&lt;link rel="stylesheet" href="styles.css"&gt;</code>. The starter files already do this.</p>
+
+                <h4 class="build-subhead">javascript: what it does</h4>
+                <p>JavaScript goes in your <code>scripts.js</code> file. You can skip it at first. Here is a tiny example from the starter files. It finds the year in your footer and keeps it up to date, so you never have to change it by hand. <code>querySelector</code> finds one thing on the page, and <code>#year</code> means the thing with the id "year."</p>
+                <pre tabindex="0"><code>// this is a comment
+const yearSpot = document.querySelector("#year");
+yearSpot.textContent = new Date().getFullYear();</code></pre>
+                <p>Two slashes start a comment. A comment is a note to yourself. To connect a script to a page, add <code>&lt;script src="scripts.js" defer&gt;&lt;/script&gt;</code> inside the <code>head</code>.</p>
+
+                <h4 class="build-subhead">comments</h4>
+                <p>Every language lets you leave notes that the browser ignores. In HTML, a comment starts with <code>&lt;!--</code> and ends with <code>--&gt;</code>. Use comments to explain things to your future self, or to hide something for now.</p>
+                            </div>
+                        </details>
+
+                        <details class="build-sub" id="starter-files">
+                            <summary>
+                                <span class="sub-title">
+                                    <span class="sub-title-text">starter files</span>
+                                    <span class="sub-hint">click to expand</span>
+                                    <span class="sub-collapse">click to collapse</span>
+                                </span>
+                                <span class="build-summary-desc">things to give you a head start</span>
+                            </summary>
+                            <div class="sub-panel">
+                <p>These are starter files I made for "Frodo's website" for Baggins Map Co. They use simple placeholder words and grey placeholder images, so you can see how a real portfolio site fits together. You get a home page, a work page, and an about page. Each one has a menu at the top.</p>
+                <p>Download them, put them in your repo folder, and swap in your own words, colors, and pictures. The zip has everything, including an <code>images</code> folder with the grey pictures. Keep that folder next to your HTML files. I've made them so that every file has comments that explains what each piece of code does. Download the whole zip to get started and find placeholder images. Or you can look at the individual files to see how the code is structured and what each part does.</p>
+                <div class="download-row">
+                    <a class="primary" href="download/starter-site.zip" download>download all (.zip)</a>
+                    <a href="download/starter-site/index.html" download>index.html</a>
+                    <a href="download/starter-site/work.html" download>work.html</a>
+                    <a href="download/starter-site/about.html" download>about.html</a>
+                    <a href="download/starter-site/styles.css" download>styles.css</a>
+                    <a href="download/starter-site/scripts.js" download>scripts.js</a>
+                </div>
+                <p>A quick way to spot comments:</p>
+                <ul class="colophon-list">
+                    <li>In HTML, a comment starts with <code>&lt;!--</code> and ends with <code>--&gt;</code></li>
+                    <li>In CSS, a comment starts with <code>/*</code> and ends with <code>*/</code></li>
+                    <li>In JavaScript, a comment starts with <code>//</code></li>
+                </ul>
+                <p>The starter files use a font called Metamorphous. You can use any font you like. Go to <a href="https://fonts.google.com/" target="_blank" rel="noopener" class="about-link">Google Fonts ↗</a>, pick one, and copy the link it gives you. Paste it where my font link is in each HTML file, then change the font name in <code>styles.css</code>. The comments in the files show you exactly where.</p>
+                <p>The starter files are free to use, no credit necessary so long as you change content; however, it is always appreciated :) The rest of this site is licensed separately, see the <a href="disclaimers.html" class="about-link">disclaimers page</a>.</p>
+
+                            </div>
+                        </details>
+
+
+                        <details class="build-sub" id="learn-more">
+                            <summary>
+                                <span class="sub-title">
+                                    <span class="sub-title-text">where to learn more</span>
+                                    <span class="sub-hint">click to expand</span>
+                                    <span class="sub-collapse">click to collapse</span>
+                                </span>
+                                <span class="build-summary-desc">free lessons and tools</span>
+                            </summary>
+                            <div class="sub-panel">
+                <p>You do not have to memorize any of this + there is way more too learn! Everyone looks things up constantly, including myself. If you feel comfortable, you can allow GitHub Copilot into your Visual Studio Code to help autofill commonly typed website layouts, such as navigations. I find it too annoying, however, and often leave it off, but it's a great resource for beginners. Below are some resources I use myself still to this day or recommend to beginners.</p>
+                <ul class="colophon-list">
+                    <li><a href="https://www.w3schools.com/" target="_blank" rel="noopener" class="about-link">W3Schools ↗</a> is the best place to start. The lessons are short and easy to read. Every page has a "try it yourself" box where you can change the code and see what happens. Start with <a href="https://www.w3schools.com/html/" target="_blank" rel="noopener" class="about-link">HTML ↗</a>, then <a href="https://www.w3schools.com/css/" target="_blank" rel="noopener" class="about-link">CSS ↗</a>, then <a href="https://www.w3schools.com/js/" target="_blank" rel="noopener" class="about-link">JavaScript ↗</a>.</li>
+                    <li><a href="https://developer.mozilla.org/" target="_blank" rel="noopener" class="about-link">MDN Web Docs ↗</a> from Mozilla explains what every piece of code does. It is great once you know the basics.</li>
+                    <li><a href="https://fonts.google.com/" target="_blank" rel="noopener" class="about-link">Google Fonts ↗</a> has hundreds of free fonts you can use on your site.</li>
+                    <li><a href="https://docs.github.com/en/pages/quickstart" target="_blank" rel="noopener" class="about-link">GitHub Pages quickstart ↗</a> is GitHub's own guide for steps 1 to 3 above.</li>
+                </ul>
+
+                            </div>
+                        </details>
+
+
+                        <details class="build-sub" id="safety-accessibility">
+                            <summary>
+                                <span class="sub-title">
+                                    <span class="sub-title-text">web safety and accessibility</span>
+                                    <span class="sub-hint">click to expand</span>
+                                    <span class="sub-collapse">click to collapse</span>
+                                </span>
+                                <span class="build-summary-desc">how to make your site safer and easier for everyone</span>
+                            </summary>
+                            <div class="sub-panel">
+                <p>Once your site is live, you can (and should) make it safer and easier for everyone to use.</p>
+                <p>There are also official rules and policies about websites. Which ones apply depends on where you live, where your visitors live, and what your site does. I am not a lawyer, so treat this as a starting point and use the links below to learn more on your own.</p>
+
+                <h4 style="font-family: 'montreal medium'; font-size: 1.1em; margin: 1.5em 0 0.5em;">keep it safe</h4>
+                <ul class="colophon-list">
+                    <li>Anything in a public repo can be seen by anyone. Never put passwords, private addresses, or phone numbers in your files.</li>
+                    <li>Turn on HTTPS. In your repo, go to "Settings," then "Pages," and check "Enforce HTTPS." This puts a padlock next to your address. If the box is grayed out, wait a little and try again.</li>
+                    <li>Be careful with your email address. Bots collect emails from websites and send spam. A contact form or a link to your social media is safer. I use a contact form on my own site.</li>
+                    <li>Only use pictures and words that are yours, or that you have permission to use. Ask before you show other people's faces, names, or work, and give credit.</li>
+                    <li>If you collect anything from visitors, like a newsletter sign up or a form, you may need a privacy policy. Many places have privacy laws, like GDPR in Europe and CCPA in California. The simplest way to stay safe is to collect nothing.</li>
+                    <li>Say how people can use your work. A license, like a <a href="https://creativecommons.org/share-your-work/" target="_blank" rel="noopener" class="about-link">Creative Commons license ↗</a>, makes that clear. See mine on the <a href="disclaimers.html" class="about-link">disclaimers page</a>.</li>
+                </ul>
+
+                <h4 style="font-family: 'montreal medium'; font-size: 1.1em; margin: 1.5em 0 0.5em;">keep it accessible</h4>
+                <p>Accessible means people with different needs can use your site. That includes people who are blind, people who cannot use a mouse, and people who need larger text. The starter files already do some of this for you.</p>
+                <ul class="colophon-list">
+                    <li>Add alt text to every image. It is a short description of the picture for people who cannot see it. If you are an artist, describe your art.</li>
+                    <li>Make sure your text is easy to read against the background. Dark text on a light background, or the other way around, works well.</li>
+                    <li>Use headings in order: one <code>h1</code>, then <code>h2</code>, then <code>h3</code>. Screen readers use them like a table of contents.</li>
+                    <li>Make sure you can use your whole site with just the Tab key. Do not remove the outline that shows where you are.</li>
+                    <li>Do not use color alone to give information. Add words or icons too.</li>
+                    <li>Test your site. <a href="https://wave.webaim.org/" target="_blank" rel="noopener" class="about-link">WAVE ↗</a> is free and shows what to fix. Chrome also has a free tool called Lighthouse. Right click your page, choose "Inspect," and look for the Lighthouse tab.</li>
+                </ul>
+
+                <h4 style="font-family: 'montreal medium'; font-size: 1.1em; margin: 1.5em 0 0.5em;">rules and policies to read about</h4>
+                <ul class="colophon-list">
+                    <li><a href="https://www.w3.org/WAI/WCAG22/quickref/" target="_blank" rel="noopener" class="about-link">WCAG ↗</a> (Web Content Accessibility Guidelines) is the worldwide standard for accessible websites. Most laws point to it.</li>
+                    <li><a href="https://www.ada.gov/resources/web-guidance/" target="_blank" rel="noopener" class="about-link">ADA web guidance ↗</a> explains how the Americans with Disabilities Act applies to websites in the United States.</li>
+                    <li><a href="https://www.section508.gov/" target="_blank" rel="noopener" class="about-link">Section 508 ↗</a> covers accessibility for US government sites, and for many schools and organizations that work with them.</li>
+                    <li><a href="https://www.a11yproject.com/checklist/" target="_blank" rel="noopener" class="about-link">The A11y Project checklist ↗</a> is a plain language list you can check off one item at a time.</li>
+                    <li><a href="https://webaim.org/intro/" target="_blank" rel="noopener" class="about-link">WebAIM ↗</a> teaches web accessibility in simple terms.</li>
+                    <li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https" target="_blank" rel="noopener" class="about-link">GitHub Pages and HTTPS ↗</a> shows how to turn on HTTPS.</li>
+                    <li><a href="https://oag.ca.gov/privacy/ccpa" target="_blank" rel="noopener" class="about-link">California privacy law (CCPA) ↗</a> is a good place to start reading about privacy policies.</li>
+                </ul>
+                <p>You can also read about how I check my own site on the <a href="accessibility.html" class="about-link">accessibility page</a>.</p>
+
+                            </div>
+                        </details>
+
+                </div>
             </div>
 
             <div class="projectsection" id="typography">
@@ -72,8 +814,6 @@
                 </ul>
             </div>
 
-
-
             <div class="projectsection" id="land-acknowledgement">
                 <h2>land acknowledgement</h2>
                 <p>I live and work on the traditional homelands of two Indigenous nations: the Nisenan people, whose ancestral territory includes present-day Sacramento, and the Patwin people, whose territory includes present-day Davis and the Yolo Basin, where much of my thesis research took place. Both peoples have stewarded this land since time immemorial, and both continue to do so today despite the profound disruption of colonization. I pay respect to their Elders past and present, and to all Indigenous people connected to this place.</p>
@@ -81,7 +821,7 @@
 
             <p>you can find more about who I am on the <a href="about.html" class="about-link">about page</a>, and how licensing and privacy work on this site on the <a href="disclaimers.html" class="about-link">disclaimers page</a>.</p>
 
-            <p>this colophon was last updated on August 10th, 2026.</p>
+            <p>this colophon was last updated on October 1st, 2026.</p>
 
         </div>
     </main>
@@ -113,6 +853,44 @@
         </div>
     </div>
 
+
+    <script>
+    (function () {
+        var links = document.querySelectorAll('.toc-link');
+        var bar = document.getElementById('toc-progress-bar');
+        var ids = Array.from(links).map(function (l) { return l.getAttribute('href').slice(1); });
+
+        function onScroll() {
+            var total = document.body.scrollHeight - window.innerHeight;
+            if (bar && total > 0) bar.style.height = Math.min(100, (window.scrollY / total) * 100) + '%';
+
+            var current = ids[0];
+            ids.forEach(function (id) {
+                var el = document.getElementById(id);
+                if (el && el.getBoundingClientRect().top <= 120) current = id;
+            });
+            links.forEach(function (l) {
+                var on = l.getAttribute('href') === '#' + current;
+                l.classList.toggle('toc-active', on);
+                if (on) { l.setAttribute('aria-current', 'location'); } else { l.removeAttribute('aria-current'); }
+            });
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        onScroll();
+
+        // if a link points inside a closed dropdown, open it first
+        function openForHash() {
+            var el = location.hash ? document.getElementById(location.hash.slice(1)) : null;
+            var d = el && el.closest('details');
+            while (d) { d.open = true; d = d.parentElement.closest('details'); }
+            if (el && el.tagName === 'DETAILS') el.open = true;
+        }
+        window.addEventListener('hashchange', openForHash);
+        openForHash();
+    })();
+    </script>
 
     <div id="footer"></div>
 </body>
