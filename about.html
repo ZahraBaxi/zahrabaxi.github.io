@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>zahra baxi - about</title>
+    <title>about - zahra baxi</title>
 
     <link rel="icon" type="image/png" href="images/content/icon.png">
 
@@ -82,6 +82,150 @@
         .skill-tag i {
             font-size: 0.9em;
         }
+
+        section[id] { scroll-margin-top: 1.5em; }
+        html { scroll-behavior: smooth; }
+
+        /* ---------- collapsible groups ---------- */
+        .about-group { border-bottom: 1px solid rgba(31, 24, 255, 0.25); }
+        .about-group > summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1em;
+            padding: 0.6em 0;
+            cursor: pointer;
+            list-style: none;
+        }
+        .about-group > summary::-webkit-details-marker { display: none; }
+        .about-group > summary h3 { margin: 0; }
+        .about-group > summary::after {
+            content: "+";
+            font-family: "montreal medium";
+            font-size: 1.3em;
+            line-height: 1;
+            color: var(--accentblue, #1F18FF);
+        }
+        .about-group[open] > summary::after { content: "\2212"; }
+        .about-group > summary:hover h3 { color: var(--accentblue, #1F18FF); }
+        .about-group > summary:focus-visible {
+            outline: 3px solid var(--accentblue, #1F18FF);
+            outline-offset: 2px;
+        }
+        .about-group > .about-list { margin-top: 0.4em; margin-bottom: 1.2em; }
+
+        .group-controls { display: flex; gap: 0.75em; margin: 0 0 0.75em; }
+        .group-controls button {
+            font-family: "montreal medium";
+            font-size: 0.8em;
+            background: none;
+            border: none;
+            padding: 0.2em 0;
+            color: var(--accentblue, #1F18FF);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .group-controls button:focus-visible { outline: 3px solid var(--accentblue, #1F18FF); outline-offset: 2px; }
+
+        /* ---------- selected work: type filter ---------- */
+        .work-filter { display: flex; flex-wrap: wrap; gap: 0.5em; margin: 0 0 0.6em; }
+        .work-filter button {
+            font-family: "montreal medium";
+            font-size: 0.85em;
+            padding: 0.45em 0.9em;
+            border-radius: 999px;
+            border: 1.5px solid var(--accentblue, #1F18FF);
+            background: transparent;
+            color: var(--accentblue, #1F18FF);
+            cursor: pointer;
+        }
+        .work-filter button[aria-pressed="true"] { background: var(--accentblue, #1F18FF); color: var(--cream, #FFF8ED); }
+        .work-filter button:focus-visible { outline: 3px solid var(--accentblue, #1F18FF); outline-offset: 2px; }
+        .work-count { font-size: 0.8em; opacity: 0.7; margin: 0 0 1em; }
+        .work-list > li[hidden] { display: none !important; }
+        .work-type {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4em;
+            font-family: "montreal medium";
+            font-size: 0.85em;
+            padding: 0.1em 0.6em;
+            margin-right: 0.4em;
+            border: 1px solid var(--accentblue, #1F18FF);
+            border-radius: 999px;
+            color: var(--accentblue, #1F18FF);
+            line-height: 1.4;
+        }
+        .work-type svg {
+            width: 1em;
+            height: 1em;
+            flex: none;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* ---------- side contents (same pattern as the thesis page) ---------- */
+        .page-toc {
+            position: fixed;
+            top: 50%;
+            right: 2em;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6em;
+            z-index: 100;
+        }
+        .toc-label {
+            font-family: "montreal medium", "montreal", sans-serif;
+            font-size: 0.75em;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.6;
+            margin: 0 0 0.2em 0;
+        }
+        .toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.1em; }
+        .toc-link {
+            font-family: "montreal", sans-serif;
+            font-size: 0.8em;
+            color: var(--blackish, #06042d);
+            text-decoration: none;
+            opacity: 0.6;
+            display: block;
+            padding: 0.2em 0;
+            white-space: nowrap;
+        }
+        .toc-link:hover { opacity: 0.85; }
+        .toc-link:focus-visible { outline: 3px solid var(--accentblue, #1F18FF); outline-offset: 2px; opacity: 1; }
+        .toc-link.toc-active { opacity: 1; font-family: "montreal medium", "montreal", sans-serif; }
+        .toc-progress {
+            margin-top: 0.8em;
+            width: 2px;
+            height: 80px;
+            background: rgba(6, 4, 45, 0.1);
+            border-radius: 2px;
+            align-self: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .toc-progress-bar { position: absolute; top: 0; left: 0; width: 100%; height: 0%; background: var(--blackish, #06042d); border-radius: 2px; }
+        @media screen and (max-width: 1100px) { .page-toc { display: none; } }
+
+        /* "roles" label row: anchors expand/collapse to the groups below it */
+        .group-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.25em 1em;
+            margin: 1.6em 0 0.4em;
+            padding-top: 1.2em;
+            border-top: 1px solid rgba(31, 24, 255, 0.25);
+        }
+        .group-header .skills-label { margin: 0; }
+        .group-header .group-controls { margin: 0; }
     </style>
 </head>
 <body>
@@ -90,7 +234,20 @@
     <main class="aboutpage">
         <h1 class="abouttitle">about me</h1>
 
-        <section class="aboutsection">
+        <nav class="page-toc" aria-label="Page contents">
+            <p class="toc-label">contents</p>
+            <ol class="toc-list">
+                <li><a href="#bio" class="toc-link">about</a></li>
+                <li><a href="#selected-work" class="toc-link">selected work</a></li>
+                <li><a href="#experience" class="toc-link">experience</a></li>
+                <li><a href="#contact" class="toc-link">contact</a></li>
+            </ol>
+            <div class="toc-progress" aria-hidden="true">
+                <div class="toc-progress-bar" id="toc-progress-bar"></div>
+            </div>
+        </nav>
+
+        <section class="aboutsection" id="bio">
             <div class="aboutcontent">
                 <figure class="profilepic-figure">
                     <img src="images/content/zahra-baxi.jpg" alt="profile picture of zahra baxi" class="profilepic">
@@ -112,7 +269,115 @@
 
                 <p>Outside of design, I like to sketch, paint in gouache, knit, sew and mend, bake sourdough, shoot on film, train for marathons, and learning bluegrass banjo! I also run a small handmade art business, <a href="https://trinketsbypickles.github.io" target="_blank">Trinkets by Pickles ↗</a>. I still find that even when I'm not on the clock designing, I spend my free time still doing so such as coding databases for my favorite video game Animal Crossing.</p>
 
-                <div class="skills-wrap">
+                
+
+                
+            </div>
+        </section>
+
+        <section class="aboutsection" id="selected-work">
+            <div class="aboutcontent">
+                <h2 class="aboutheading">selected work</h2>
+
+                <div class="work-filter" role="group" aria-label="filter selected work by type">
+                    <button type="button" data-filter="all" aria-pressed="true">all</button>
+                    <button type="button" data-filter="publication" aria-pressed="false">publications</button>
+                    <button type="button" data-filter="feature" aria-pressed="false">features</button>
+                    <button type="button" data-filter="talk" aria-pressed="false">talks</button>
+                    <button type="button" data-filter="media" aria-pressed="false">media</button>
+                    <button type="button" data-filter="exhibition" aria-pressed="false">exhibitions</button>
+                </div>
+                <p class="work-count" id="work-count" role="status" aria-live="polite">showing all 8</p>
+
+                <ul class="about-list work-list">
+                    <li data-type="media">
+                        <time class="about-date">Aug 2026</time>
+                        <div class="about-details">
+                            <p class="about-title">Guest, Yolo Backyard Bulletin</p>
+                            <p class="about-meta">
+                                <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.9 16.1C1 12.2 1 5.8 4.9 1.9"/><path d="M7.8 4.7a6.14 6.14 0 0 0-.8 7.5"/><circle cx="12" cy="9" r="2"/><path d="M16.2 4.8c2 2 2.26 5.11.8 7.47"/><path d="M19.1 1.9a9.96 9.96 0 0 1 0 14.1"/><path d="M9.5 18h5"/><path d="m8 22 4-11 4 11"/></svg>media</span>
+                                Community radio segment on KDRT 95.7 FM, Davis · <a href="https://kdrt.org/audio/yolo-backyard-bulletin-august-13-2026" target="_blank">Listen on KDRT ↗</a> /// <a href="audiovisual/kdrt-2026-08-13.html">Back up link ↗</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li data-type="publication">
+                        <time class="about-date">Jun 2026</time>
+                        <div class="about-details">
+                            <p class="about-title">Floodplain Futures: Designing for Shared Ecological Understanding</p>
+                            <p class="about-meta">
+                                <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>publication</span>
+                                MFA Thesis, Interactive Design @ University of California, Davis · <a href="projects/mfathesis.html" target="_blank">View project ↗</a> /// <a href="/download/documents/baxi_zahra_mfathesis_design_2026_final.pdf" target="_blank">Read thesis ↗</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li data-type="exhibition">
+                        <time class="about-date">Jun 2026</time>
+                        <div class="about-details">
+                            <p class="about-title">The Yolo Basin: Designing for Shared Ecological Understanding</p>
+                            <p class="about-meta">
+                                <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 22h18"/><path d="M6 18v-7"/><path d="M10 18v-7"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M12 2 20 7H4z"/></svg>exhibition</span>
+                                Manetti Shrem Museum, June 4th - 20th, 2026 · <a href="https://manettishremmuseum.ucdavis.edu/arts-and-humanities-2026-graduate-exhibition" target="_blank">Information on exhibition ↗</a> /// <a href="https://lettersandsciencemag.ucdavis.edu/arts-humanities/graduate-exhibition-showcases-intersection-health-technology-art-design" target="_blank">Press release ↗</a> /// <a href="https://www.instagram.com/p/DZDh_YOkgdU/" target="_blank">Museum of Wildlife and Fish Biology social media release ↗</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li data-type="talk">
+                        <time class="about-date">Apr 2026</time>
+                        <div class="about-details">
+                            <p class="about-title">Presenter @ California Trails and Greenways Conference</p>
+                            <p class="about-meta">
+                                <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg>talk</span>
+                                “Trails by Design: Designing for Shared Ecological Understanding” · <a href="https://catrailsconference.org/conference/" target="_blank">About conference ↗</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li data-type="publication">
+                        <time class="about-date">Nov 2025</time>
+                        <div class="about-details">
+                            <p class="about-title">Bots ‘n’ Beings: AI Futures beyond Big Tech’s efficiency driven Agents</p>
+                            <p class="about-meta">
+                                <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>publication</span>
+                                Graduate Researcher @ University of California, Davis · <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5735854" target="_blank">Read publication ↗</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li data-type="publication">
+                        <time class="about-date">Dec 2023</time>
+                        <div class="about-details">
+                            <p class="about-title">Leveling up during lockdown: The surge of social gaming in college students during COVID-19 and its post-pandemic implications</p>
+                            <p class="about-meta">
+                                <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>publication</span>
+                                Undergraduate Thesis @ University of California, Berkeley · <a href="https://research.berkeley.edu/surf-fellows/zahra-baxi/" target="_blank">Berkeley SURF profile ↗</a> · Request for thesis
+                            </p>
+                        </div>
+                    </li>
+                    <li data-type="feature">
+                        <time class="about-date">Oct 2022</time>
+                        <div class="about-details">
+                            <p class="about-title">Collaboration, confidence, critical thinking: CITRIS internships teach UC students essential skills</p>
+                            <p class="about-meta">
+                                <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>feature</span>
+                                Interview feature · <a href="https://citris-uc.org/collaboration-confidence-critical-thinking-citris-internships-teach-uc-students-essential-skills/" target="_blank">Read article ↗</a>
+                            </p>
+                        </div>
+                    </li>
+                    <li data-type="publication">
+                        <time class="about-date">Feb 2022</time>
+                        <div class="about-details">
+                            <p class="about-title">Enhancing Situational Awareness and Patient Safety in Pediatrics Through Virtual Simulation</p>
+                            <p class="about-meta">
+                                <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>publication</span>
+                                Research Intern @ University of California, Davis · <a href="https://publications.aap.org/pediatrics/article/149/1%20Meeting%20Abstracts%20February%202022/149/185753/Enhancing-Situational-Awareness-and-Patient-Safety?autologincheck=redirected" target="_blank">Read publication ↗</a>
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="aboutsection" id="experience">
+    <div class="aboutcontent">
+        <h2 class="aboutheading">experience</h2>
+        <div class="skills-wrap">
                     <p class="skills-label">skills</p>
                     <div class="tag-row">
                         <span class="skill-tag filled">Interaction Design</span>
@@ -150,169 +415,137 @@
                 </div>
 
 
-                
-            </div>
-        </section>
+        <div class="group-header">
+            <p class="skills-label">roles</p>
+            <div class="group-controls">
+                    <button type="button" data-expand>expand all</button>
+                    <button type="button" data-collapse>collapse all</button>
+                </div>
+        </div>
 
-        <section class="aboutsection">
-            <div class="aboutcontent">
-                <h2 class="aboutheading">selected work</h2>
+        <details class="about-group" open>
+<summary><h3>current roles</h3></summary>
+<ul class="about-list">
+            <li>
+                <time class="about-date">Sep 2026 – present</time>
+                <div class="about-details">
+                    <p class="about-title">Communications Fellow @ California Natural Resources Agency</p>
+                    <p class="about-meta">
+                        California Climate Action Corps · Sacramento, CA ·
+                        <a href="https://www.caclimateactioncorps.org" target="_blank" rel="noopener">About the program ↗</a> ///
+                        <a href="https://resources.ca.gov" target="_blank" rel="noopener">About CNRA ↗</a>
+                    </p>
+                    <p class="about-meta">Working on communications projects focused on public accessibility and education.</p>
+                </div>
+            </li>
+            <li>
+                <time class="about-date">2026 – present</time> <!-- TODO: real start date -->
+                <div class="about-details">
+                    <p class="about-title">Member, Civic Arts Advisory Board @ City of Davis</p>
+                    <p class="about-meta">
+                        Arts &amp; Culture, City Manager's Office ·
+                        <a href="https://www.cityofdavis.org/city-hall/city-manager-s-office/arts-culture/arts-initiatives" target="_blank" rel="noopener">About arts initiatives ↗</a>
+                    </p>
+                </div>
+            </li>
+        </ul>
+</details>
 
-                <h3>publications</h3>
-                <ul class="about-list">
-                    <li>
-                        <time class="about-date">Jun 2026</time>
-                        <div class="about-details">
-                            <p class="about-title">
-                                Floodplain Futures: Designing for Shared Ecological Understanding
-                            </p>
-                            <p class="about-meta">
-                                MFA Thesis, Interactive Design @ University of California, Davis · 
-                                <a href="projects/mfathesis.html" target="_blank">
-                                    View project ↗
-                                </a>  /// 
-                                <a href="/download/documents/baxi_zahra_mfathesis_design_2026_final.pdf" target="_blank">
-                                    Read thesis ↗
-                                </a>
-                            </p>
-                        </div>
-                    </li>
+        <details class="about-group">
+<summary><h3>teaching</h3></summary>
+<ul class="about-list">
+            <li>
+                <time class="about-date">Sep 2024 – Jun 2026</time>
+                <div class="about-details">
+                    <p class="about-title">Graduate Teaching Assistant @ UC Davis Department of Design</p>
+                    <p class="about-meta">Davis, CA</p>
+                    <p class="about-meta">TA'd core design courses (DES 001, 40C, 145, 149) and the Interactive Media series (DES 157A/B), supporting about 50 students each quarter. Taught HTML, CSS, and JavaScript for web design studio projects, and focused on making design approachable for students of any background.</p>
+                </div>
+            </li>
+        </ul>
+</details>
 
-                    <li>
-                        <time class="about-date">Nov 2025</time>
-                        <div class="about-details">
-                            <p class="about-title">
-                                Bots ‘n’ Beings: AI Futures beyond Big Tech’s efficiency driven Agents​
-                            </p>
-                            <p class="about-meta">
-                                Graduate Researcher @ University of California, Davis · 
-                                <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5735854" target="_blank">
-                                    Read publication ↗
-                                </a>
-                            </p>
-                        </div>
-                    </li>
+        <details class="about-group">
+<summary><h3>design &amp; communication</h3></summary>
+<ul class="about-list">
+            <li>
+                <time class="about-date">Jun – Oct 2025</time>
+                <div class="about-details">
+                    <p class="about-title">Park Interpretive Specialist @ California State Parks</p>
+                    <p class="about-meta">Capitol District, California Railroad Museum · Sacramento, CA</p>
+                    <p class="about-meta">Created a digital exhibit guide to improve language accessibility for non-English speakers and support visitors with visual impairments.</p>
+                </div>
+            </li>
+            <li>
+                <time class="about-date">Aug 2022 – Dec 2023</time>
+                <div class="about-details">
+                    <p class="about-title">Lead Designer @ NeoNiche</p>
+                    <p class="about-meta">Led a team of designers across marketing, graphic design, responsive web design, and UX for an e-commerce education startup. Built early prototypes and interfaces, and ran UX research for the beta launch.</p>
+                </div>
+            </li>
+            <li>
+                <time class="about-date">Jun – Aug 2022</time>
+                <div class="about-details">
+                    <p class="about-title">Intern, Workforce Innovation Program @ CITRIS and the Banatao Institute</p>
+                    <p class="about-meta">
+                        Designed social media strategy and visual messaging for UC Santa Cruz's OpenLab Collaborative Research Center to raise public awareness of climate resilience.
+                    </p>
+                </div>
+            </li>
+        </ul>
+</details>
 
-                    <li>
-                        <time class="about-date">Dec 2023</time>
-                        <div class="about-details">
-                            <p class="about-title">
-                                Leveling up during lockdown: The surge of social gaming in college students during COVID-19 and its post-pandemic implications
-                            </p>
-                            <p class="about-meta">
-                                Undergraduate Thesis @ University of California, Berkeley · 
-                                <a href="https://research.berkeley.edu/surf-fellows/zahra-baxi/" target="_blank">
-                                    Berkeley SURF profile ↗
-                                </a>
-                                 · Request for thesis
-                            </p>
-                        </div>
-                    </li>
+        <details class="about-group">
+<summary><h3>consulting &amp; leadership</h3></summary>
+<ul class="about-list">
+            <li>
+                <time class="about-date">Sep 2020 – Dec 2023</time>
+                <div class="about-details">
+                    <p class="about-title">Product Design Consultant @ Berkeley Innovation</p>
+                    <p class="about-meta">Human-centered design consultancy at UC Berkeley</p>
+                    <p class="about-meta">Client projects with Target (calming in-store spaces), Stray Design Studio (public access to composting and carbon credits), Meta (intern mentorship and support), and Notability (subscriber research).</p>
+                </div>
+            </li>
+            <li>
+                <time class="about-date">May – Dec 2022</time>
+                <div class="about-details">
+                    <p class="about-title">Founding Director of Diversity, Equity &amp; Inclusion @ Berkeley Innovation</p>
+                    <p class="about-meta">Created the role, ran workshops, and partnered with university and external organizations on inclusive product design. Student applications increased by 175%.</p>
+                </div>
+            </li>
+        </ul>
+</details>
 
-                    <li>
-                        <time class="about-date">Feb 2022</time>
-                        <div class="about-details">
-                            <p class="about-title">
-                                Enhancing Situational Awareness and Patient Safety in Pediatrics Through Virtual Simulation
-                            </p>
-                            <p class="about-meta">
-                                Research Intern @ University of California, Davis · 
-                                <a href="https://publications.aap.org/pediatrics/article/149/1%20Meeting%20Abstracts%20February%202022/149/185753/Enhancing-Situational-Awareness-and-Patient-Safety?autologincheck=redirected" target="_blank">
-                                    Read publication ↗
-                                </a>
-                            </p>
-                        </div>
-                    </li>
-                </ul>
+        <details class="about-group">
+<summary><h3>earlier experience</h3></summary>
+<ul class="about-list">
+            <li>
+                <time class="about-date">Jun – Aug 2021</time>
+                <div class="about-details">
+                    <p class="about-title">UX Design Intern @ Beehively</p>
+                    <p class="about-meta">Interviewed educators to improve the beta of an online learning and grading platform.</p>
+                </div>
+            </li>
+            <li>
+                <time class="about-date">Jun – Aug 2020</time>
+                <div class="about-details">
+                    <p class="about-title">Intern @ UC Davis Center for Simulation and Education Enhancement</p>
+                    <p class="about-meta">Ran qualitative research and surveys on a virtual hospital simulation, and delivered a design proposal for product improvements.</p>
+                </div>
+            </li>
+            <li>
+                <time class="about-date">2016 – 2020</time>
+                <div class="about-details">
+                    <p class="about-title">President, Teen Animators Club &amp; Teaching Assistant @ Davis Media Access</p>
+                    <p class="about-meta">Built a community of teen animators and helped teach youth summer camps in digital media.</p>
+                </div>
+            </li>
+        </ul>
+</details>
+    </div>
+</section>
 
-                <h3>features</h3>
-                <ul class="about-list">
-                    <li>
-                        <time class="about-date">Oct 2022</time>
-                        <div class="about-details">
-                            <p class="about-title">
-                                Collaboration, confidence, critical thinking: CITRIS internships teach UC students essential skills
-                            </p>
-                            <p class="about-meta">
-                                Interview feature · 
-                                <a href="https://citris-uc.org/collaboration-confidence-critical-thinking-citris-internships-teach-uc-students-essential-skills/" target="_blank">
-                                    Read article ↗
-                                </a>
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-
-                <h3>conferences</h3>
-                <ul class="about-list">
-                    <li class="about-item has-media">
-                        <time class="about-date">Apr 2026</time>
-
-                        <div class="about-details">
-                            <p class="about-title">
-                                Presenter @ California Trails and Greenways Conference
-                            </p>
-                            <p class="about-meta">
-                                “Trails by Design: Designing for Shared Ecological Understanding” · 
-                                <a href="https://catrailsconference.org/conference/" target="_blank">
-                                    About conference ↗
-                                </a>
-                            </p>
-                        </div>
-
-                        <!-- <img class="about-media" src="images/content/trailsandgreenways1.png" alt="Conference presentation photo"> -->
-                    
-                    </li>
-                </ul>
-
-                <h3>audio &amp; video</h3>
-                <ul class="about-list">
-                    <li>
-                        <time class="about-date">Aug 2026</time>
-                        <div class="about-details">
-                            <p class="about-title">
-                                Guest, Yolo Backyard Bulletin
-                            </p>
-                            <p class="about-meta">
-                                Community radio segment on KDRT 95.7 FM, Davis · 
-                                <a href="https://kdrt.org/audio/yolo-backyard-bulletin-august-13-2026" target="_blank">
-                                    Listen on KDRT ↗
-                                </a>  /// 
-                                <a href="audiovisual/kdrt-2026-08-13.html">
-                                    Back up link ↗
-                                </a>
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-
-                <h3>exhibitions</h3>
-                <ul class="about-list">
-                    <li>
-                        <time class="about-date">Jun 2026</time>
-                        <div class="about-details">
-                            <p class="about-title">The Yolo Basin: Designing for Shared Ecological Understanding</p>
-                            <p class="about-meta">Manetti Shrem Museum, June 4th - 20th, 2026 · 
-                                <a href="https://manettishremmuseum.ucdavis.edu/arts-and-humanities-2026-graduate-exhibition" target="_blank">
-                                    Information on exhibition ↗
-                                </a>  /// 
-                                <a href="https://lettersandsciencemag.ucdavis.edu/arts-humanities/graduate-exhibition-showcases-intersection-health-technology-art-design" target="_blank">
-                                    Press release ↗
-                                </a>  ///  
-                                <a href="https://www.instagram.com/p/DZDh_YOkgdU/" target="_blank">
-                                    Museum of Wildlife and Fish Biology social media release ↗
-                                </a>
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-                
-                
-
-            </div>
-        </section>
-
-        <section class="aboutsection">
+        <section class="aboutsection" id="contact">
             <div class="aboutcontent">
                 <h2 class="aboutheading">want to talk?</h2>
 
@@ -413,6 +646,59 @@
 
 
     <div id="footer"></div>
+    <script>
+        document.querySelectorAll('.group-controls').forEach(function (bar) {
+            var section = bar.closest('section');
+            function setAll(open) {
+                section.querySelectorAll('details.about-group').forEach(function (d) { d.open = open; });
+            }
+            bar.querySelector('[data-expand]').addEventListener('click', function () { setAll(true); });
+            bar.querySelector('[data-collapse]').addEventListener('click', function () { setAll(false); });
+        });
+    </script>
+    <script>
+        (function () {
+            var buttons = document.querySelectorAll('.work-filter button');
+            var items = document.querySelectorAll('.work-list > li');
+            var count = document.querySelector('#work-count');
+            buttons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var f = btn.dataset.filter, shown = 0;
+                    buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+                    items.forEach(function (li) {
+                        var show = f === 'all' || li.dataset.type === f;
+                        li.hidden = !show;
+                        if (show) shown++;
+                    });
+                    count.textContent = f === 'all' ? 'showing all ' + items.length : 'showing ' + shown + ' of ' + items.length;
+                });
+            });
+        })();
+    </script>
+    <script>
+        (function () {
+            var links = document.querySelectorAll('.toc-link');
+            var bar = document.querySelector('#toc-progress-bar');
+            if (!links.length) return;
+            var ids = Array.from(links).map(function (l) { return l.getAttribute('href').slice(1); });
+            function onScroll() {
+                var total = document.body.scrollHeight - window.innerHeight;
+                if (bar && total > 0) bar.style.height = Math.min(100, (window.scrollY / total) * 100) + '%';
+                var current = ids[0];
+                ids.forEach(function (id) {
+                    var el = document.querySelector('#' + id);
+                    if (el && el.getBoundingClientRect().top <= 120) current = id;
+                });
+                links.forEach(function (l) {
+                    var on = l.getAttribute('href') === '#' + current;
+                    l.classList.toggle('toc-active', on);
+                    if (on) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current');
+                });
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        })();
+    </script>
     <script src="scripts.js"></script>
 </body>
 </html>
