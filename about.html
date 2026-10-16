@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>about - zahra baxi</title>
+    <title>zahra baxi - about</title>
 
     <link rel="icon" type="image/png" href="images/content/icon.png">
 
@@ -142,7 +142,8 @@
         .work-filter button[aria-pressed="true"] { background: var(--accentblue, #1F18FF); color: var(--cream, #FFF8ED); }
         .work-filter button:focus-visible { outline: 3px solid var(--accentblue, #1F18FF); outline-offset: 2px; }
         .work-count { font-size: 0.8em; opacity: 0.7; margin: 0 0 1em; }
-        .work-list > li[hidden] { display: none !important; }
+        .work-list > li[hidden],
+        .work-list [data-line][hidden] { display: none !important; }
         .work-type {
             display: inline-flex;
             align-items: center;
@@ -265,7 +266,7 @@
 
                 <div style="clear: both;"></div>
 
-                <p>I earned my undergraduate degree in 2024 in Human-Centered Design at UC Berkeley, an interdisciplinary program blending design, sociology, psychology, geography, and technology, along with a <a href="https://bcdi.berkeley.edu/" target="_blank">Certificate in Design Innovation ↗</a>. While at Berkeley, I founded the DEI Officer role  (now known as DEIB short for: Diversity, Equity, Inclusion, and Belonging) within the Human-Centered Design Club, <a href="https://berkeleyinnovation.org/" target="_blank">Berkeley Innovation ↗</a>, to promote greater accessibility in design communities.</p>
+                <p>I earned my undergraduate degree in 2024 in Human-Centered Design at UC Berkeley, an interdisciplinary program blending design, sociology, psychology, geography, and technology, along with a <a href="https://bcdi.berkeley.edu/" target="_blank">Certificate in Design Innovation ↗</a>. While at Berkeley, I founded the DEI Officer role  (now known as DEIB short for: Diversity, Equity, Inclusion, and Belonging) within the Human-Centered Design Club, <a href="https://berkeleyinnovation.org/" target="_blank">Berkeley Innovation</a>, to promote greater accessibility in design communities.</p>
 
                 <p>Outside of design, I like to sketch, paint in gouache, knit, sew and mend, bake sourdough, shoot on film, train for marathons, and learning bluegrass banjo! I also run a small handmade art business, <a href="https://trinketsbypickles.github.io" target="_blank">Trinkets by Pickles ↗</a>. I still find that even when I'm not on the clock designing, I spend my free time still doing so such as coding databases for my favorite video game Animal Crossing.</p>
 
@@ -287,7 +288,7 @@
                     <button type="button" data-filter="media" aria-pressed="false">media</button>
                     <button type="button" data-filter="exhibition" aria-pressed="false">exhibitions</button>
                 </div>
-                <p class="work-count" id="work-count" role="status" aria-live="polite">showing all 8</p>
+                <p class="work-count" id="work-count" role="status" aria-live="polite">showing all 7</p>
 
                 <ul class="about-list work-list">
                     <li data-type="media">
@@ -300,28 +301,25 @@
                             </p>
                         </div>
                     </li>
-                    <li data-type="publication">
+                    <li data-type="publication exhibition">
                         <time class="about-date">Jun 2026</time>
                         <div class="about-details">
                             <p class="about-title">Floodplain Futures: Designing for Shared Ecological Understanding</p>
-                            <p class="about-meta">
+                            <p class="about-meta" data-line="publication">
                                 <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>publication</span>
-                                MFA Thesis, Interactive Design @ University of California, Davis · <a href="projects/mfathesis.html" target="_blank">View project ↗</a> /// <a href="/download/documents/baxi_zahra_mfathesis_design_2026_final.pdf" target="_blank">Read thesis ↗</a> <br><br>
+                                MFA Thesis, Interactive Design @ University of California, Davis ·
+                                <a href="projects/mfathesis.html" target="_blank">View project ↗</a> ///
+                                <a href="/download/documents/baxi_zahra_mfathesis_design_2026_final.pdf" target="_blank">Read thesis ↗</a>
+                            </p>
+                            <p class="about-meta" data-line="exhibition">
                                 <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 22h18"/><path d="M6 18v-7"/><path d="M10 18v-7"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M12 2 20 7H4z"/></svg>exhibition</span>
-                                Manetti Shrem Museum, June 4th - 20th, 2026 · <a href="https://manettishremmuseum.ucdavis.edu/arts-and-humanities-2026-graduate-exhibition" target="_blank">Information on exhibition ↗</a> /// <a href="https://lettersandsciencemag.ucdavis.edu/arts-humanities/graduate-exhibition-showcases-intersection-health-technology-art-design" target="_blank">Press release ↗</a> /// <a href="https://www.instagram.com/p/DZDh_YOkgdU/" target="_blank">Museum of Wildlife and Fish Biology social media release ↗</a>
+                                Manetti Shrem Museum, June 4th - 20th, 2026 ·
+                                <a href="https://manettishremmuseum.ucdavis.edu/arts-and-humanities-2026-graduate-exhibition" target="_blank">Information on exhibition ↗</a> ///
+                                <a href="https://lettersandsciencemag.ucdavis.edu/arts-humanities/graduate-exhibition-showcases-intersection-health-technology-art-design" target="_blank">Press release ↗</a> ///
+                                <a href="https://www.instagram.com/p/DZDh_YOkgdU/" target="_blank">Museum of Wildlife and Fish Biology social media release ↗</a>
                             </p>
                         </div>
                     </li>
-                    <!-- <li data-type="exhibition">
-                        <time class="about-date">Jun 2026</time>
-                        <div class="about-details">
-                            <p class="about-title">The Yolo Basin: Designing for Shared Ecological Understanding</p>
-                            <p class="about-meta">
-                                <span class="work-type"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 22h18"/><path d="M6 18v-7"/><path d="M10 18v-7"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M12 2 20 7H4z"/></svg>exhibition</span>
-                                Manetti Shrem Museum, June 4th - 20th, 2026 · <a href="https://manettishremmuseum.ucdavis.edu/arts-and-humanities-2026-graduate-exhibition" target="_blank">Information on exhibition ↗</a> /// <a href="https://lettersandsciencemag.ucdavis.edu/arts-humanities/graduate-exhibition-showcases-intersection-health-technology-art-design" target="_blank">Press release ↗</a> /// <a href="https://www.instagram.com/p/DZDh_YOkgdU/" target="_blank">Museum of Wildlife and Fish Biology social media release ↗</a>
-                            </p>
-                        </div>
-                    </li> -->
                     <li data-type="talk">
                         <time class="about-date">Apr 2026</time>
                         <div class="about-details">
@@ -460,7 +458,7 @@
                 <time class="about-date">Sep 2024 – Jun 2026</time>
                 <div class="about-details">
                     <p class="about-title">Graduate Teaching Assistant @ UC Davis Department of Design</p>
-                    <p class="about-meta">Davis, CA</p>
+                    <p class="about-meta">Davis, CA · <a href="https://arts.ucdavis.edu/design/about" target="_blank" rel="noopener">About the department ↗</a></p>
                     <p class="about-meta">TA'd core design courses (DES 001, 40C, 145, 149) and the Interactive Media series (DES 157A/B), supporting about 50 students each quarter. Taught HTML, CSS, and JavaScript for web design studio projects, and focused on making design approachable for students of any background.</p>
                 </div>
             </li>
@@ -474,7 +472,11 @@
                 <time class="about-date">Jun – Oct 2025</time>
                 <div class="about-details">
                     <p class="about-title">Park Interpretive Specialist @ California State Parks</p>
-                    <p class="about-meta">Capitol District, California Railroad Museum · Sacramento, CA</p>
+                    <p class="about-meta">
+                        Capitol District, California Railroad Museum · Sacramento, CA ·
+                        <a href="https://www.californiarailroad.museum/" target="_blank" rel="noopener">About the museum ↗</a> ///
+                        <a href="https://www.parks.ca.gov/" target="_blank" rel="noopener">About State Parks ↗</a>
+                    </p>
                     <p class="about-meta">Created a digital exhibit guide to improve language accessibility for non-English speakers and support visitors with visual impairments.</p>
                 </div>
             </li>
@@ -490,6 +492,10 @@
                 <div class="about-details">
                     <p class="about-title">Intern, Workforce Innovation Program @ CITRIS and the Banatao Institute</p>
                     <p class="about-meta">
+                        <a href="https://citris-uc.org/citris-workforce-innovation" target="_blank" rel="noopener">About the program ↗</a> ///
+                        <a href="https://citris-uc.org/collaboration-confidence-critical-thinking-citris-internships-teach-uc-students-essential-skills/" target="_blank" rel="noopener">Read the feature ↗</a>
+                    </p>
+                    <p class="about-meta">
                         Designed social media strategy and visual messaging for UC Santa Cruz's OpenLab Collaborative Research Center to raise public awareness of climate resilience.
                     </p>
                 </div>
@@ -504,7 +510,7 @@
                 <time class="about-date">Sep 2020 – Dec 2023</time>
                 <div class="about-details">
                     <p class="about-title">Product Design Consultant @ Berkeley Innovation</p>
-                    <p class="about-meta">Human-centered design consultancy at UC Berkeley</p>
+                    <p class="about-meta">Human-centered design consultancy at UC Berkeley · <a href="https://berkeleyinnovation.org/" target="_blank" rel="noopener">About Berkeley Innovation ↗</a></p>
                     <p class="about-meta">Client projects with Target (calming in-store spaces), Stray Design Studio (public access to composting and carbon credits), Meta (intern mentorship and support), and Notability (subscriber research).</p>
                 </div>
             </li>
@@ -512,6 +518,7 @@
                 <time class="about-date">May – Dec 2022</time>
                 <div class="about-details">
                     <p class="about-title">Founding Director of Diversity, Equity &amp; Inclusion @ Berkeley Innovation</p>
+                    <p class="about-meta"><a href="https://berkeleyinnovation.org/" target="_blank" rel="noopener">About Berkeley Innovation ↗</a></p>
                     <p class="about-meta">Created the role, ran workshops, and partnered with university and external organizations on inclusive product design. Student applications increased by 175%.</p>
                 </div>
             </li>
@@ -525,6 +532,7 @@
                 <time class="about-date">Jun – Aug 2021</time>
                 <div class="about-details">
                     <p class="about-title">UX Design Intern @ Beehively</p>
+                    <p class="about-meta"><a href="https://beehively.com/" target="_blank" rel="noopener">About Beehively ↗</a></p>
                     <p class="about-meta">Interviewed educators to improve the beta of an online learning and grading platform.</p>
                 </div>
             </li>
@@ -532,6 +540,7 @@
                 <time class="about-date">Jun – Aug 2020</time>
                 <div class="about-details">
                     <p class="about-title">Intern @ UC Davis Center for Simulation and Education Enhancement</p>
+                    <p class="about-meta"><a href="https://health.ucdavis.edu/simulation/" target="_blank" rel="noopener">About the center ↗</a></p>
                     <p class="about-meta">Ran qualitative research and surveys on a virtual hospital simulation, and delivered a design proposal for product improvements.</p>
                 </div>
             </li>
@@ -539,6 +548,7 @@
                 <time class="about-date">2016 – 2020</time>
                 <div class="about-details">
                     <p class="about-title">President, Teen Animators Club &amp; Teaching Assistant @ Davis Media Access</p>
+                    <p class="about-meta"><a href="https://davismedia.org/about" target="_blank" rel="noopener">About Davis Media Access ↗</a></p>
                     <p class="about-meta">Built a community of teen animators and helped teach youth summer camps in digital media.</p>
                 </div>
             </li>
@@ -668,8 +678,11 @@
                     var f = btn.dataset.filter, shown = 0;
                     buttons.forEach(function (b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
                     items.forEach(function (li) {
-                        var show = f === 'all' || li.dataset.type === f;
+                        var show = f === 'all' || li.dataset.type.split(' ').indexOf(f) > -1;
                         li.hidden = !show;
+                        li.querySelectorAll('[data-line]').forEach(function (line) {
+                            line.hidden = !(f === 'all' || line.dataset.line === f);
+                        });
                         if (show) shown++;
                     });
                     count.textContent = f === 'all' ? 'showing all ' + items.length : 'showing ' + shown + ' of ' + items.length;
