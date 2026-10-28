@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zahra baxi - personal artwork</title>
+
+    <link rel="icon" type="image/png" href="../images/content/icon.png">
+
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+    <script src="../partials.js"></script>
+    <script src="../scripts.js"></script>
+
+    <style>
+        .artwork-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2em 1.5em;
+            align-items: start;
+        }
+        .artwork {
+            margin: 0;
+        }
+        .artwork img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        /* masonry: the script adds this class, then sets how many small rows each piece spans */
+        .artwork-grid.is-masonry {
+            grid-auto-rows: 8px;
+            grid-auto-flow: row dense;
+            row-gap: 0;
+        }
+        .artwork-grid.is-masonry .artwork {
+            padding-bottom: 2em;
+        }
+        .artwork figcaption {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15em;
+            margin-top: 0.6em;
+        }
+        .artwork-title {
+            font-family: "montreal medium", "montreal", sans-serif;
+        }
+        .artwork-meta {
+            font-size: 0.88em;
+            opacity: 0.75;
+        }
+
+        .artwork-open {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: none;
+            background: none;
+            cursor: zoom-in;
+        }
+        .artwork-open:focus-visible {
+            outline: 3px solid var(--accentblue, #1F18FF);
+            outline-offset: 3px;
+        }
+
+        /* larger view */
+        .art-viewer {
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: rgba(245, 242, 232, 0.97);
+            color: var(--blackish, #06042d);
+        }
+        .art-viewer[open] {
+            display: flex;
+        }
+        .art-viewer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8em;
+            width: 100%;
+            padding: 3.5em 1em 1em;
+            box-sizing: border-box;
+        }
+        .art-viewer-img {
+            display: block;
+            max-width: 92vw;
+            max-height: 74vh;
+            object-fit: contain;
+        }
+        .art-viewer-caption {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15em;
+            text-align: center;
+        }
+        .art-viewer-title {
+            font-family: "montreal medium", "montreal", sans-serif;
+        }
+        .art-viewer-meta {
+            font-size: 0.88em;
+            opacity: 0.85;
+        }
+        .art-viewer-nav {
+            display: flex;
+            gap: 1em;
+        }
+        .art-viewer button.art-viewer-btn {
+            font-family: "montreal medium", "montreal", sans-serif;
+            font-size: 0.88em;
+            color: inherit;
+            background: transparent;
+            border: 1px solid currentColor;
+            border-radius: 2em;
+            padding: 0.4em 1.1em;
+            cursor: pointer;
+        }
+        .art-viewer button.art-viewer-btn:hover {
+            background: rgba(6, 4, 45, 0.08);
+        }
+        .art-viewer button.art-viewer-btn:focus-visible {
+            outline: 3px solid var(--accentblue, #1F18FF);
+            outline-offset: 2px;
+        }
+        .art-viewer-close {
+            position: absolute;
+            top: 1em;
+            right: 1em;
+        }
+        @media screen and (max-width: 900px) {
+            .artwork-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media screen and (max-width: 600px) {
+            .artwork-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+HEADER
+========================= -->
+<div id="header"></div>
+
+<!-- =========================
+PROJECT INTRO
+========================= -->
+<main class="projectpage">
+    <div class="back-link"><a href="../index.html">← back</a></div>
+
+    <section class="projectintro">
+        <h1>personal artwork</h1>
+        <p class="subtitle">art pieces in different mediums i've made over the years</p>
+    </section>
+
+<!-- =========================
+ARTWORK
+To add a piece: copy one <figure class="artwork"> block, change the image
+path, alt text (describe what is in the piece), title, medium, and date.
+The click-to-enlarge button is added automatically, so no extra markup is needed.
+Optional: add data-full="path/to/bigger-file.jpg" on the <img> to show a
+higher resolution version when the piece is opened larger.
+Pieces are laid out in a masonry grid: each next piece goes in the shortest
+column, so they read roughly left to right in the same order as this file.
+========================= -->
+
+    <div class="artwork-grid">
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art1.png" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">a cup of joe</span>
+                <span class="artwork-meta">digital sketch · SEP 2026</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art2.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">wednesday</span>
+                <span class="artwork-meta">gouache · DEC 2022</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art3.png" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">gather</span>
+                <span class="artwork-meta">digital illustraion for website · NOV 2025</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art4.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">destiny 2 guardians</span>
+                <span class="artwork-meta">pencil · FEB 2024</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art5.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">skin</span>
+                <span class="artwork-meta">digital sketch · JUN 2024</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art6.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">mk.gee</span>
+                <span class="artwork-meta">colored pencils · MAY 2025</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art7.png" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">moving postcard</span>
+                <span class="artwork-meta">digital sketch · AUG 2026</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art8.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">peace</span>
+                <span class="artwork-meta">digital sketch · AUG 2026</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art9.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">berkeley</span>
+                <span class="artwork-meta">digital sketch · FEB 2021</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art10.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">frisbee</span>
+                <span class="artwork-meta">pencil · DEC 2020</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art11.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">pilot</span>
+                <span class="artwork-meta">pencil · AUG 2019</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art12.png" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">bangalore</span>
+                <span class="artwork-meta">pencil · JUL 2025</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art13.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">sherman</span>
+                <span class="artwork-meta">pencil · MAY 2021</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art14.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">melt</span>
+                <span class="artwork-meta">digital sketch · JUN 2024</span>
+            </figcaption>
+        </figure>
+
+        <figure class="artwork">
+            <img src="../images/projects/illustrations/art15.jpg" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">dogpatch</span>
+                <span class="artwork-meta">digital sketch · APR 2021</span>
+            </figcaption>
+        </figure>
+
+         <figure class="artwork">
+            <img src="../images/projects/illustrations/art16.png" alt="describe what is in this piece">
+            <figcaption>
+                <span class="artwork-title">tiger</span>
+                <span class="artwork-meta">rug tufting · MAY 2025</span>
+            </figcaption>
+        </figure>
+
+    </div>
+
+</main>
+
+<!-- LARGER VIEW -->
+<dialog class="art-viewer" aria-label="artwork larger view">
+    <button type="button" class="art-viewer-btn art-viewer-close" aria-label="close larger view">✕ close</button>
+    <div class="art-viewer-inner">
+        <img class="art-viewer-img" src="" alt="">
+        <p class="art-viewer-caption">
+            <span class="art-viewer-title"></span>
+            <span class="art-viewer-meta"></span>
+        </p>
+        <div class="art-viewer-nav">
+            <button type="button" class="art-viewer-btn art-viewer-prev">☜ prev</button>
+            <button type="button" class="art-viewer-btn art-viewer-next">next ☞</button>
+        </div>
+    </div>
+</dialog>
+
+
+
+        <!-- BUG REPORT MODAL -->
+    <div class="modal-overlay" id="bug-modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="bug-modal-close" aria-label="Close">✕</button>
+            <h2 class="modal-title">🐛 report a bug</h2>
+            <p class="modal-subtitle">spotted something broken, wrong, or inaccessible? let me know and i'll fix it!</p>
+            <div id="bug-form-area">
+                <div class="form-row">
+                    <label for="bug-page">where did you see it?</label>
+                    <input type="text" id="bug-page" placeholder="e.g. about page, lit review project...">
+                </div>
+                <div class="form-row">
+                    <label for="bug-description">what happened?</label>
+                    <textarea id="bug-description" rows="4" placeholder="describe the bug, what you saw, what you expected..."></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="bug-email">your email <span style="opacity:0.5;">(optional, if you want a reply)</span></label>
+                    <input type="email" id="bug-email" placeholder="your@email.com" autocomplete="email">
+                </div>
+                <button class="form-submit" id="bug-submit">submit report ↗</button>
+                <p class="form-status" id="bug-status"></p>
+
+                <p>thank you for helping me make my website a better place!</p>
+            </div>
+        </div>
+    </div>
+
+
+<!-- =========================
+FOOTER
+========================= -->
+<div id="footer"></div>
+
+<script>
+(function () {
+    var figures = Array.prototype.slice.call(document.querySelectorAll('.artwork'));
+    var viewer = document.querySelector('.art-viewer');
+    if (!viewer || !figures.length) return;
+
+    var viewerImg = viewer.querySelector('.art-viewer-img');
+    var viewerTitle = viewer.querySelector('.art-viewer-title');
+    var viewerMeta = viewer.querySelector('.art-viewer-meta');
+    var closeBtn = viewer.querySelector('.art-viewer-close');
+    var prevBtn = viewer.querySelector('.art-viewer-prev');
+    var nextBtn = viewer.querySelector('.art-viewer-next');
+    var current = 0;
+    var opener = null;
+
+    function show(index) {
+        current = (index + figures.length) % figures.length;
+        var fig = figures[current];
+        var img = fig.querySelector('img');
+        viewerImg.src = img.getAttribute('data-full') || img.getAttribute('src');
+        viewerImg.alt = img.getAttribute('alt') || '';
+        viewerTitle.textContent = fig.querySelector('.artwork-title').textContent;
+        viewerMeta.textContent = fig.querySelector('.artwork-meta').textContent;
+    }
+
+    function openViewer(index, button) {
+        opener = button;
+        show(index);
+        viewer.showModal();
+        document.body.style.overflow = 'hidden';
+    }
+
+    figures.forEach(function (fig, i) {
+        var button = fig.querySelector('.artwork-open');
+        if (!button) {
+            var img = fig.querySelector('img');
+            button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'artwork-open';
+            img.parentNode.insertBefore(button, img);
+            button.appendChild(img);
+        }
+        var title = fig.querySelector('.artwork-title').textContent;
+        button.setAttribute('aria-label', 'view larger: ' + title);
+        button.addEventListener('click', function () { openViewer(i, button); });
+    });
+
+    closeBtn.addEventListener('click', function () { viewer.close(); });
+    prevBtn.addEventListener('click', function () { show(current - 1); });
+    nextBtn.addEventListener('click', function () { show(current + 1); });
+
+    // clicking the dark area around the image closes the viewer
+    viewer.addEventListener('click', function (e) {
+        if (e.target === viewer || e.target.classList.contains('art-viewer-inner')) {
+            viewer.close();
+        }
+    });
+
+    viewer.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { show(current - 1); }
+        if (e.key === 'ArrowRight') { show(current + 1); }
+    });
+
+    // Escape and the close button both end up here
+    viewer.addEventListener('close', function () {
+        document.body.style.overflow = '';
+        if (opener) { opener.focus(); }
+    });
+})();
+</script>
+
+<script>
+(function () {
+    var grid = document.querySelector('.artwork-grid');
+    if (!grid) return;
+    var figures = Array.prototype.slice.call(grid.querySelectorAll('.artwork'));
+    var rowHeight = 8;
+
+    grid.classList.add('is-masonry');
+
+    function layout() {
+        figures.forEach(function (fig) {
+            var height = fig.getBoundingClientRect().height;
+            fig.style.gridRowEnd = 'span ' + Math.ceil(height / rowHeight);
+        });
+    }
+
+    layout();
+    window.addEventListener('load', layout);
+    window.addEventListener('resize', layout);
+
+    figures.forEach(function (fig) {
+        var img = fig.querySelector('img');
+        if (img) { img.addEventListener('load', layout); }
+    });
+
+    if (window.ResizeObserver) {
+        var observer = new ResizeObserver(layout);
+        figures.forEach(function (fig) { observer.observe(fig); });
+    }
+})();
+</script>
+
+</body>
+</html>
