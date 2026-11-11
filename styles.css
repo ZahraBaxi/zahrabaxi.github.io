@@ -1893,11 +1893,12 @@ footer p {
     .profilepic-figure {
         float: none;
         width: 100%;
+        max-width: 340px;
         margin: 0 0 1.5em 0;
     }
 
     .profilepic {
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 3 / 4;
     }
 
     .aboutsection {
